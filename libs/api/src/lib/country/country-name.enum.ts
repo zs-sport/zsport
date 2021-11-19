@@ -1,0 +1,11 @@
+export enum CountryNameEnum {
+    HUNGARY = 'HUNGARY',
+    ROMANIA = 'ROMANIA',
+    SERBIA = 'SERBIA',
+    UNITED_KINGDOM = 'UNITED_KINGDOM',
+    CROATIA = 'CROATIA',
+    SLOVENIA = 'SLOVENIA',
+    AUSTRIA = 'AUSTRIA',
+    SLOVAKIA = 'SLOVAKIA',
+    UKRAINE = 'UKRAINE',
+}

@@ -1,7 +1,28 @@
 {
-  "version": 1,
-  "projects": {},
-  "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "version": 1,
+    "projects": {
+        "api": {
+            "projectType": "library",
+            "root": "libs/api",
+            "sourceRoot": "libs/api/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/api"],
+                    "options": {
+                        "jestConfig": "libs/api/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/api/src/**/*.ts", "libs/api/src/**/*.html"]
+                    }
+                }
+            },
+            "tags": []
+        }
+    }
 }

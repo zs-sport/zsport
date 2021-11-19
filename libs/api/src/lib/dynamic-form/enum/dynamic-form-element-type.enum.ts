@@ -1,0 +1,17 @@
+export enum DynamicFormElementTypeEnum {
+    CHECKBOX = 'checkbox',
+    COLOR_CIRCLE = 'color_circle',
+    DATE_PICKER = 'date_picker',
+    DOUBLE_NUMBER = 'double_number',
+    email = 'email',
+    GROUP = 'group',
+    hidden = 'hidden',
+    INPUT_NUMBER = 'input_number',
+    phone = 'phone',
+    select = 'select',
+    SELECT_ICON = 'select_icon',
+    text = 'text',
+    textArea = 'textArea',
+    radio = 'radio',
+    FILE = 'file',
+}

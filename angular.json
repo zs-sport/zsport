@@ -23,6 +23,29 @@
                 }
             },
             "tags": []
+        },
+        "core-i18n": {
+            "projectType": "library",
+            "root": "libs/core/i18n",
+            "sourceRoot": "libs/core/i18n/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/core/i18n"],
+                    "options": {
+                        "jestConfig": "libs/core/i18n/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/core/i18n/src/**/*.ts", "libs/core/i18n/src/**/*.html"]
+                    }
+                }
+            },
+            "tags": []
         }
     }
 }

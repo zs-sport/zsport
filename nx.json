@@ -36,5 +36,13 @@
         },
         "@nrwl/angular:component": {}
     },
-    "defaultProject": "api"
+    "defaultProject": "api",
+    "projects": {
+        "api": {
+            "tags": []
+        },
+        "core-i18n": {
+            "tags": []
+        }
+    }
 }

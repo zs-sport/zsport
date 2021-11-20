@@ -228,6 +228,55 @@
                 }
             },
             "tags": []
+        },
+        "core-storage-util": {
+            "projectType": "library",
+            "root": "libs/core/storage/util",
+            "sourceRoot": "libs/core/storage/util/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/core/storage/util"],
+                    "options": {
+                        "jestConfig": "libs/core/storage/util/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/core/storage/util/src/**/*.ts",
+                            "libs/core/storage/util/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
+        "ui-dynamic-form": {
+            "projectType": "library",
+            "root": "libs/ui/dynamic-form",
+            "sourceRoot": "libs/ui/dynamic-form/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ui/dynamic-form"],
+                    "options": {
+                        "jestConfig": "libs/ui/dynamic-form/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/ui/dynamic-form/src/**/*.ts", "libs/ui/dynamic-form/src/**/*.html"]
+                    }
+                }
+            },
+            "tags": []
         }
     }
 }

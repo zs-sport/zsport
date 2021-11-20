@@ -1,0 +1,26 @@
+<div class="file" *ngIf="!!fileName">
+    <i nz-icon nzType="file"></i>
+
+    <span>
+        {{ fileName }}
+    </span>
+</div>
+
+<nz-upload [(nzFileList)]="fileList" [id]="control.key" [nzBeforeUpload]="beforeUpload">
+    <button nz-button>
+        <i nz-icon nzType="upload"></i>
+
+        <span> {{ 'form.file.upload' | transloco }}</span>
+    </button>
+</nz-upload>
+
+<button
+    nz-button
+    [nzType]="'primary'"
+    [nzLoading]="uploading"
+    (click)="fileHandler()"
+    [disabled]="fileList.length === 0"
+    style="margin-top: 16px"
+>
+    {{ uploading ? 'Uploading' : 'Start Upload' }}
+</button>

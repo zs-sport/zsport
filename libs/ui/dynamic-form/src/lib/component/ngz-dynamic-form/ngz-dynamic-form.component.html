@@ -1,0 +1,149 @@
+<form nz-form [formGroup]="dynamicFormGroup" [nzLayout]="config.layout">
+    <ng-container *ngFor="let control of controls">
+        <ng-container *ngIf="control.controlType == dynamicFormElementTypes.group">
+            <div class="form-group" formGroupName="rule">
+                <nz-form-label [nzSpan]="config.formLabelSpan" [nzFor]="control.key" [nzRequired]="control.required">
+                    {{ control.label }}
+                </nz-form-label>
+
+                <ng-container *ngFor="let groupControl of control.controls">
+                    <ng-container *ngTemplateOutlet="formItem; context: { control: groupControl }"></ng-container>
+                </ng-container>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="control.controlType !== dynamicFormElementTypes.group">
+            <ng-container *ngTemplateOutlet="formItem; context: { control: control }"></ng-container>
+        </ng-container>
+
+        <ng-template #formItem let-control="control">
+            <nz-form-item *ngIf="control.controlType !== dynamicFormElementTypes.hidden; else hiddenControl">
+                <nz-form-label [nzSpan]="config.formLabelSpan" [nzFor]="control.key" [nzRequired]="control.required">{{
+                    control.label
+                }}</nz-form-label>
+
+                <nz-form-control [nzSpan]="config.formControlSpan">
+                    <ng-container [ngSwitch]="control.controlType">
+                        <ngz-date-picker-element
+                            [formControlName]="control.key || ''"
+                            *ngSwitchCase="dynamicFormElementTypes.datePicker"
+                            [control]="control"
+                        >
+                        </ngz-date-picker-element>
+
+                        <ngz-text-element
+                            [formControlName]="control.key || ''"
+                            *ngSwitchCase="dynamicFormElementTypes.text"
+                            [control]="control"
+                        ></ngz-text-element>
+
+                        <ngz-select-element
+                            [formControlName]="control.key || ''"
+                            *ngSwitchCase="dynamicFormElementTypes.select"
+                            [control]="control"
+                        ></ngz-select-element>
+
+                        <ngz-select-icon-element
+                            [formControlName]="control.key || ''"
+                            *ngSwitchCase="dynamicFormElementTypes.selectIcon"
+                            [control]="control"
+                        >
+                        </ngz-select-icon-element>
+
+                        <ngz-text-area-element
+                            [formControlName]="control.key || ''"
+                            *ngSwitchCase="dynamicFormElementTypes.textArea"
+                            [control]="control"
+                        >
+                        </ngz-text-area-element>
+
+                        <ngz-email-element
+                            [formControlName]="control.key || ''"
+                            *ngSwitchCase="dynamicFormElementTypes.email"
+                            [control]="control"
+                        ></ngz-email-element>
+
+                        <ngz-double-number
+                            [formControlName]="control.key || ''"
+                            *ngSwitchCase="dynamicFormElementTypes.doubleNumber"
+                            [control]="control"
+                        >
+                        </ngz-double-number>
+
+                        <ngz-input-number
+                            [formControlName]="control.key || ''"
+                            *ngSwitchCase="dynamicFormElementTypes.inputNumber"
+                            [control]="control"
+                        >
+                        </ngz-input-number>
+
+                        <ngz-phone-element
+                            [formControlName]="control.key || ''"
+                            *ngSwitchCase="dynamicFormElementTypes.phone"
+                            [control]="control"
+                        ></ngz-phone-element>
+
+                        <ngz-radio-element
+                            [formControlName]="control.key || ''"
+                            *ngSwitchCase="dynamicFormElementTypes.radio"
+                            [control]="control"
+                        ></ngz-radio-element>
+
+                        <ngz-checkbox-element
+                            [formControlName]="control.key || ''"
+                            *ngSwitchCase="dynamicFormElementTypes.checkbox"
+                            [control]="control"
+                        >
+                        </ngz-checkbox-element>
+
+                        <ngz-color-circle-element
+                            [formControlName]="control.key || ''"
+                            *ngSwitchCase="dynamicFormElementTypes.colorCircle"
+                            [control]="control"
+                        >
+                        </ngz-color-circle-element>
+
+                        <ngz-file-element
+                            [formControlName]="control.key || ''"
+                            *ngSwitchCase="dynamicFormElementTypes.file"
+                            [control]="control"
+                            (fileEvent)="$any(control).fileEventHandler($event)"
+                        ></ngz-file-element>
+                    </ng-container>
+                </nz-form-control>
+            </nz-form-item>
+
+            <ng-template #hiddenControl>
+                <nz-form-control class="hidden-form-control">
+                    <ngz-hidden-element [formControlName]="control.key || ''" [control]="control"> </ngz-hidden-element>
+                </nz-form-control>
+            </ng-template>
+        </ng-template>
+    </ng-container>
+
+    <nz-form-item>
+        <ng-container *ngFor="let button of buttons">
+            <ng-container [ngSwitch]="button.buttonType">
+                <ngz-submit-button
+                    *ngSwitchCase="dynamicFormButtonTypes.submit"
+                    [config]="button"
+                    (clickEvent)="button.clickHandler(dynamicFormGroup.value)"
+                    [disabled]="dynamicFormGroup.invalid"
+                >
+                </ngz-submit-button>
+
+                <ngz-reset-button
+                    *ngSwitchCase="dynamicFormButtonTypes.reset"
+                    (clickEvent)="button.clickHandler(dynamicFormGroup)"
+                    [config]="button"
+                ></ngz-reset-button>
+
+                <ngz-cancel-button
+                    *ngSwitchCase="dynamicFormButtonTypes.cancel"
+                    (clickEvent)="button.clickHandler()"
+                    [config]="button"
+                ></ngz-cancel-button>
+            </ng-container>
+        </ng-container>
+    </nz-form-item>
+</form>

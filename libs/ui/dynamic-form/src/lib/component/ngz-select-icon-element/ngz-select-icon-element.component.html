@@ -1,0 +1,23 @@
+<div class="select-icon">
+    <nz-select
+        [id]="control.key"
+        [formControl]="formControl"
+        [nzPlaceHolder]="control.placeholder || ''"
+        [compareWith]="compare"
+        [nzDisabled]="!!control.disabled"
+        [nzMode]="mode"
+        [nzServerSearch]="serverSearch"
+        [nzShowArrow]="showArrow"
+        [nzShowSearch]="searchShow"
+        (ngModelChange)="modelChangeHandler($event)"
+        (nzOnSearch)="searchHandler($event)"
+        [nzOptions]="options"
+    >
+    </nz-select>
+
+    <ng-container *ngFor="let icon of icons">
+        <a [href]="icon.url" target="_blank" nz-tooltip [nzTooltipTitle]="icon.text"
+            ><i nz-icon [nzType]="icon.type"></i
+        ></a>
+    </ng-container>
+</div>

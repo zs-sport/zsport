@@ -48,6 +48,7 @@
         "firebase": "^9.5.0",
         "ng-zorro-antd": "^12.0.2",
         "ngrx-store-localstorage": "^12.0.1",
+        "ngx-color": "^7.3.3",
         "ngx-permissions": "^8.1.1",
         "object-hash": "^2.2.0",
         "rxjs": "~7.4.0",

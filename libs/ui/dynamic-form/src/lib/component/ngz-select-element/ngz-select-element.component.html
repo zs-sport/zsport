@@ -1,0 +1,13 @@
+<nz-select
+    [id]="control.key"
+    [formControl]="formControl"
+    [nzPlaceHolder]="control.placeholder || ''"
+    [compareWith]="compare"
+    [nzDisabled]="!!control.disabled"
+    [nzMode]="mode"
+    [nzShowSearch]="searchShow"
+    (ngModelChange)="modelChangeHandler($event)"
+    (nzOnSearch)="searchHandler($event)"
+    [nzOptions]="options"
+>
+</nz-select>

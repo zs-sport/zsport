@@ -1,0 +1,8 @@
+<nz-input-number
+    [nzMin]="min"
+    [nzMax]="max"
+    [nzStep]="step"
+    [id]="control.key"
+    [formControl]="formControl"
+    (ngModelChange)="modelChangeHandler($event)"
+></nz-input-number>

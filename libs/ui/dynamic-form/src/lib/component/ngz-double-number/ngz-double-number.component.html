@@ -1,0 +1,13 @@
+<div class="double-number">
+    <nz-input-number
+        [nzMin]="min"
+        [nzMax]="max"
+        [nzStep]="step"
+        [id]="control.key"
+        [(ngModel)]="first"
+        (ngModelChange)="modelChangeHandler($event)"
+    >
+    </nz-input-number>
+
+    <nz-input-number [(ngModel)]="second" [nzDisabled]="true"></nz-input-number>
+</div>

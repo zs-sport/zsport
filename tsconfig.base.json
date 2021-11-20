@@ -20,6 +20,9 @@
             "@zsport/core/authentication/store": ["libs/core/authentication/store/src/index.ts"],
             "@zsport/core/authentication/view": ["libs/core/authentication/view/src/index.ts"],
             "@zsport/core/authorization/data": ["libs/core/authorization/data/src/index.ts"],
+            "@zsport/core/entity-quantity/data": ["libs/core/entity-quantity/data/src/index.ts"],
+            "@zsport/core/entity-quantity/store": ["libs/core/entity-quantity/store/src/index.ts"],
+            "@zsport/core/entity-quantity/util": ["libs/core/entity-quantity/util/src/index.ts"],
             "@zsport/core/i18n": ["libs/core/i18n/src/index.ts"]
         }
     },

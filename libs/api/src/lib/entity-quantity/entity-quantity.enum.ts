@@ -1,7 +1,8 @@
 export enum EntityQuantityEnum {
-    CUSTOMER = 'customer',
-    DOCUMENT = 'document',
-    OPERATION = 'operation',
-    PRODUCT = 'product',
-    PRODUCT_PRICE = 'productPrice',
+    ASSOCIATION = 'association',
+    CATEGORY = 'category',
+    CLUB = 'club',
+    COMPETITION = 'competition',
+    TEAM = 'team',
+    EVENT = 'event',
 }

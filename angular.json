@@ -202,6 +202,32 @@
                 }
             },
             "tags": []
+        },
+        "core-storage-data": {
+            "projectType": "library",
+            "root": "libs/core/storage/data",
+            "sourceRoot": "libs/core/storage/data/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/core/storage/data"],
+                    "options": {
+                        "jestConfig": "libs/core/storage/data/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/core/storage/data/src/**/*.ts",
+                            "libs/core/storage/data/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
         }
     }
 }

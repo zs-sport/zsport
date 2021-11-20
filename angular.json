@@ -24,6 +24,58 @@
             },
             "tags": []
         },
+        "core-authentication-store": {
+            "projectType": "library",
+            "root": "libs/core/authentication/store",
+            "sourceRoot": "libs/core/authentication/store/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/core/authentication/store"],
+                    "options": {
+                        "jestConfig": "libs/core/authentication/store/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/core/authentication/store/src/**/*.ts",
+                            "libs/core/authentication/store/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
+        "core-authentication-view": {
+            "projectType": "library",
+            "root": "libs/core/authentication/view",
+            "sourceRoot": "libs/core/authentication/view/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/core/authentication/view"],
+                    "options": {
+                        "jestConfig": "libs/core/authentication/view/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/core/authentication/view/src/**/*.ts",
+                            "libs/core/authentication/view/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "core-i18n": {
             "projectType": "library",
             "root": "libs/core/i18n",

@@ -17,6 +17,8 @@
         "baseUrl": ".",
         "paths": {
             "@zsport/api": ["libs/api/src/index.ts"],
+            "@zsport/core/authentication/store": ["libs/core/authentication/store/src/index.ts"],
+            "@zsport/core/authentication/view": ["libs/core/authentication/view/src/index.ts"],
             "@zsport/core/i18n": ["libs/core/i18n/src/index.ts"]
         }
     },

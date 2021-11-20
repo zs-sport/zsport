@@ -1,0 +1,168 @@
+<nz-table #basicTable [nzData]="data" [nzScroll]="{ x: '1200px' }">
+    <thead>
+        <tr>
+            <th nzLeft *ngIf="config.isExpandable" nzWidth="60px"></th>
+
+            <ng-container *ngFor="let columnHeader of config.columnHeaders; let i = index">
+                <ng-container
+                    [ngTemplateOutlet]="!!columnHeader.listOfFilter.length ? headerWithFilter : header"
+                    [ngTemplateOutletContext]="{ columnHeader, i, size: config.columnHeaders.length }"
+                >
+                </ng-container>
+            </ng-container>
+
+            <ng-template #header let-columnHeader="columnHeader" let-i="i" let-size="size">
+                <th
+                    [nzSortFn]="columnHeader.compare"
+                    [nzSortPriority]="columnHeader.priority || 0"
+                    [nzFilterMultiple]="columnHeader.filterMultiple || false"
+                    [nzFilterFn]="columnHeader.filterFn"
+                    [nzLeft]="i === 0 ? true : false"
+                    [nzRight]="i === size - 1 ? true : false"
+                >
+                    {{ columnHeader.title }}
+                </th>
+            </ng-template>
+            <ng-template #headerWithFilter let-columnHeader="columnHeader" let-i="i" let-size="size">
+                <th
+                    [nzSortFn]="columnHeader.compare"
+                    [nzSortPriority]="columnHeader.priority || 0"
+                    [nzFilterMultiple]="columnHeader.filterMultiple || false"
+                    [nzFilters]="columnHeader.listOfFilter"
+                    [nzFilterFn]="columnHeader.filterFn"
+                    [nzLeft]="i === 0 ? true : false"
+                    [nzRight]="i === size - 1 ? true : false"
+                >
+                    {{ columnHeader.title }}
+                </th>
+            </ng-template>
+        </tr>
+    </thead>
+
+    <tbody>
+        <ng-container *ngFor="let entity of basicTable.data">
+            <tr>
+                <td
+                    *ngIf="
+                        config.isExpandable &&
+                        entity[config.expandSetName || ''] &&
+                        entity[config.expandSetName || ''].length > 0
+                    "
+                    [nzExpand]="expandSet.has(entity.uid)"
+                    (nzExpandChange)="onExpandChange(entity.uid, $event)"
+                    nzLeft
+                ></td>
+
+                <td
+                    *ngIf="
+                        config.isExpandable &&
+                        !(entity[config.expandSetName || ''] && entity[config.expandSetName || ''].length > 0)
+                    "
+                    nzLeft
+                ></td>
+
+                <ng-container *ngFor="let column of config.columns; let i = index">
+                    <td
+                        [class]="column?.class"
+                        [nzLeft]="i === 0 ? true : false"
+                        [nzRight]="i === config.columns.length - 1 ? true : false"
+                    >
+                        <ng-container *ngIf="column.isArray">
+                            <ng-container
+                                *ngFor="let entityItem of entity[column.propertyName]"
+                                [ngTemplateOutlet]="templateContent"
+                                [ngTemplateOutletContext]="{
+                                    entity: entityItem,
+                                    column: column,
+                                    propertyName: column.objectPropertyName
+                                }"
+                            >
+                            </ng-container>
+                        </ng-container>
+
+                        <ng-container *ngIf="!column.isArray">
+                            <ng-container
+                                [ngTemplateOutlet]="templateContent"
+                                [ngTemplateOutletContext]="{
+                                    entity: entity,
+                                    column: column,
+                                    propertyName: column.propertyName
+                                }"
+                            >
+                            </ng-container>
+                        </ng-container>
+                    </td>
+
+                    <ng-template
+                        #templateContent
+                        let-entity="entity"
+                        let-column="column"
+                        let-propertyName="propertyName"
+                    >
+                        <ng-container *ngIf="column.isAction">
+                            <a
+                                [routerLink]="[column.actionRoute, entity.uid]"
+                                [queryParams]="column.queryParams"
+                                (click)="column.actionHandler(entity)"
+                                >{{ column.actionName }}</a
+                            >
+                        </ng-container>
+
+                        <ng-container *ngIf="column.isObject">
+                            {{
+                                entity[propertyName]
+                                    ? column.isLocalized
+                                        ? entity[propertyName][currentLanguage]
+                                        : entity[propertyName][column.objectPropertyName]
+                                    : entity[propertyName]
+                            }}
+                        </ng-container>
+
+                        <ng-container *ngIf="column.isSimple">
+                            {{ entity[propertyName] }}
+                        </ng-container>
+
+                        <ng-container *ngIf="column.isDoubleObject">
+                            <ng-container *ngIf="column.isDate">
+                                {{
+                                    entity[propertyName][column.objectPropertyName]
+                                        | translocoDate: { dateStyle: 'short', timeStyle: 'short' }
+                                }}
+                            </ng-container>
+
+                            <ng-container *ngIf="!column.isDate">
+                                {{
+                                    entity[propertyName]
+                                        ? column.isLocalized
+                                            ? entity[propertyName][column.objectPropertyName][currentLanguage]
+                                            : entity[propertyName][column.objectPropertyName]
+                                        : entity[propertyName]
+                                }}
+                            </ng-container>
+                        </ng-container>
+
+                        <ng-container *ngIf="column.isDate">
+                            {{ entity[propertyName] | translocoDate: { dateStyle: 'medium', timeStyle: 'short' } }}
+                        </ng-container>
+
+                        <ng-container *ngIf="!!column.icon && !!entity[propertyName]">
+                            <a
+                                [href]="entity[propertyName]"
+                                target="blank"
+                                nz-tooltip
+                                [nzTooltipTitle]="entity[column.helperPropertyName]"
+                                ><i nz-icon [nzType]="column.icon"></i
+                            ></a>
+                        </ng-container>
+                    </ng-template>
+                </ng-container>
+            </tr>
+
+            <tr [nzExpand]="expandSet.has(entity.uid)" *ngIf="config.isExpandable">
+                <div *ngFor="let expandItem of entity[config.expandSetName || '']">
+                    <span>{{ expandItem[config.expandSetItemName || ''] }}</span>
+                </div>
+            </tr>
+        </ng-container>
+    </tbody>
+</nz-table>

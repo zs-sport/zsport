@@ -277,6 +277,29 @@
                 }
             },
             "tags": []
+        },
+        "ui-dynamic-table": {
+            "projectType": "library",
+            "root": "libs/ui/dynamic-table",
+            "sourceRoot": "libs/ui/dynamic-table/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ui/dynamic-table"],
+                    "options": {
+                        "jestConfig": "libs/ui/dynamic-table/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/ui/dynamic-table/src/**/*.ts", "libs/ui/dynamic-table/src/**/*.html"]
+                    }
+                }
+            },
+            "tags": []
         }
     }
 }

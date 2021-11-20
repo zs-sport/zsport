@@ -26,7 +26,8 @@
             "@zsport/core/i18n": ["libs/core/i18n/src/index.ts"],
             "@zsport/core/storage/data": ["libs/core/storage/data/src/index.ts"],
             "@zsport/core/storage/util": ["libs/core/storage/util/src/index.ts"],
-            "@zsport/ui/dynamic-form": ["libs/ui/dynamic-form/src/index.ts"]
+            "@zsport/ui/dynamic-form": ["libs/ui/dynamic-form/src/index.ts"],
+            "@zsport/ui/dynamic-table": ["libs/ui/dynamic-table/src/index.ts"]
         }
     },
     "angularCompilerOptions": {

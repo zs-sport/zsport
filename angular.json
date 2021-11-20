@@ -76,6 +76,32 @@
             },
             "tags": []
         },
+        "core-authorization-data": {
+            "projectType": "library",
+            "root": "libs/core/authorization/data",
+            "sourceRoot": "libs/core/authorization/data/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/core/authorization/data"],
+                    "options": {
+                        "jestConfig": "libs/core/authorization/data/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/core/authorization/data/src/**/*.ts",
+                            "libs/core/authorization/data/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "core-i18n": {
             "projectType": "library",
             "root": "libs/core/i18n",

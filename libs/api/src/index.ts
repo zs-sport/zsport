@@ -8,6 +8,7 @@ export * from './lib/country';
 export * from './lib/dynamic-form';
 export * from './lib/dynamic-table';
 export * from './lib/entity-quantity';
+export * from './lib/environment';
 export * from './lib/gender';
 export * from './lib/i18n';
 export * from './lib/icon';

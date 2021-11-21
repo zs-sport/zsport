@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { StateUtilService } from '@zs-ground/api';
+import { StateUtilService } from '@zsport/api';
 
 import { StateUtilServiceImpl } from './service';
 

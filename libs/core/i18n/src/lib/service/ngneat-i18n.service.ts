@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HashMap, Translation, TranslocoLoader, TranslocoService } from '@ngneat/transloco';
 import { TranslocoLoaderData } from '@ngneat/transloco/lib/transloco.loader';
-import { HashMapModel, I18nService, LanguagesEnum } from '@zs-ground/api';
+import { HashMapModel, I18nService, LanguagesEnum } from '@zsport/api';
 
 @Injectable()
 export class NgneatI18nService extends I18nService implements TranslocoLoader {

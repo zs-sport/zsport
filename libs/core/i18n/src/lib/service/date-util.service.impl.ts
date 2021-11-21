@@ -1,7 +1,7 @@
 import * as moment from 'moment';
 
 import { Injectable } from '@angular/core';
-import { DateUtilService } from '@zs-ground/api';
+import { DateUtilService } from '@zsport/api';
 
 @Injectable()
 export class DateUtilServiceImpl extends DateUtilService {

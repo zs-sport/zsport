@@ -6,7 +6,7 @@ import hu from '@angular/common/locales/hu';
 import { Injectable } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 import { TranslocoLocaleService } from '@ngneat/transloco-locale';
-import { I18nUtil } from '@zs-ground/api';
+import { I18nUtil } from '@zsport/api';
 
 const ngZorroLanguages: any = {
     en: en_GB,

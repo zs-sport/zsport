@@ -278,6 +278,32 @@
             },
             "tags": []
         },
+        "domain-user-store": {
+            "projectType": "library",
+            "root": "libs/domain/user/store",
+            "sourceRoot": "libs/domain/user/store/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/user/store"],
+                    "options": {
+                        "jestConfig": "libs/domain/user/store/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/user/store/src/**/*.ts",
+                            "libs/domain/user/store/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "ui-dynamic-form": {
             "projectType": "library",
             "root": "libs/ui/dynamic-form",

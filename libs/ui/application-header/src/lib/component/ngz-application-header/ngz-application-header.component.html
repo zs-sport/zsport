@@ -1,0 +1,72 @@
+<div class="header__top-bar clearfix">
+    <div nz-row nzJustify="end" class="header__top-bar-inner">
+        <div nz-col>
+            <ul class="nav-account">
+                <li class="nav-account__item nav-account__item--wishlist">
+                    <a href="#">{{ 'application.header.competition' | transloco }}: <span class="highlight">3</span></a>
+                </li>
+
+                <li class="nav-account__item">
+                    <a href="#">{{ 'application.header.article' | transloco }}: <span class="highlight">7</span></a>
+                </li>
+
+                <li class="nav-account__item nav-account__item--wishlist">
+                    <a href="#">{{ 'application.header.club' | transloco }}: <span class="highlight">30</span></a>
+                </li>
+
+                <li class="nav-account__item">
+                    <a href="#">{{ 'application.header.player' | transloco }}: <span class="highlight">300</span></a>
+                </li>
+
+                <li *zsIsAuthenticated="false" class="nav-account__item has-children">
+                    <span class="main-nav__toggle"></span
+                    ><a href="#"
+                        >{{ 'application.header.language' | transloco }}:
+                        <span class="highlight">
+                            {{ activeLanguage$ | async }}
+                        </span></a
+                    >
+
+                    <ul class="main-nav__sub">
+                        <li><a href="#" (click)="languageChangeHandler('en')">English</a></li>
+                        <li><a href="#" (click)="languageChangeHandler('hu')">Hungarian</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-account__item nav-account__item--logout"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="header__primary">
+    <div nz-row class="header__primary-inner">
+        <div nz-col nzXs="1" nzSm="18" nzMd="19" nzLg="20" nzXl="21">
+            <div class="header-logo">
+                <a href=""><img src="assets/site/site.png" alt="Alchemists" class="header-logo__img" /></a>
+            </div>
+
+            <ng-container *ngIf="menuItems$ | async as menuItems">
+                <zs-ngz-header-menu [items]="menuItems" [mode]="menuMode" [theme]="menuTheme"> </zs-ngz-header-menu>
+            </ng-container>
+        </div>
+
+        <div nz-col nzXs="6" nzSm="6" nzMd="5" nzLg="4" nzXl="3" class="user-profile">
+            <ng-container *ngIf="userProfileItems$ | async as userProfileItems">
+                <zs-ngz-user-profile
+                    *zsIsAuthenticated="true"
+                    [url]="avatarUrl"
+                    [items]="userProfileItems"
+                    [displayName]="displayName"
+                >
+                </zs-ngz-user-profile>
+            </ng-container>
+
+            <ng-container *zsIsAuthenticated="false">
+                <i nz-icon [nzType]="'login'"></i>
+
+                <a (click)="loginClickHandler()">{{ 'action.login' | transloco }}</a>
+            </ng-container>
+        </div>
+    </div>
+</div>

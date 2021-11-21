@@ -32,8 +32,11 @@
             "@zsport/domain/user/store": ["libs/domain/user/store/src/index.ts"],
             "@zsport/domain/user/table": ["libs/domain/user/table/src/index.ts"],
             "@zsport/shared": ["libs/shared/src/index.ts"],
+            "@zsport/ui/application-header": ["libs/ui/application-header/src/index.ts"],
             "@zsport/ui/dynamic-form": ["libs/ui/dynamic-form/src/index.ts"],
-            "@zsport/ui/dynamic-table": ["libs/ui/dynamic-table/src/index.ts"]
+            "@zsport/ui/dynamic-table": ["libs/ui/dynamic-table/src/index.ts"],
+            "@zsport/ui/header-menu": ["libs/ui/header-menu/src/index.ts"],
+            "@zsport/ui/user-profile": ["libs/ui/user-profile/src/index.ts"]
         }
     },
     "angularCompilerOptions": {

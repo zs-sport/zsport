@@ -1,0 +1,15 @@
+<nav class="main-nav">
+    <ul nz-menu [nzTheme]="theme" [nzMode]="mode" class="main-nav__list">
+        <li
+            *ngFor="let item of items"
+            nz-menu-item
+            routerLinkActive="ant-menu-item-selected"
+            [class]="item.class"
+            [nzDisabled]="item.disabled"
+            [routerLink]="item.route"
+            [nzSelected]="item.selected"
+        >
+            <a>{{ item.titleKey | transloco }}</a>
+        </li>
+    </ul>
+</nav>

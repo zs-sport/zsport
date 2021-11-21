@@ -402,6 +402,32 @@
             },
             "tags": []
         },
+        "ui-application-header": {
+            "projectType": "library",
+            "root": "libs/ui/application-header",
+            "sourceRoot": "libs/ui/application-header/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ui/application-header"],
+                    "options": {
+                        "jestConfig": "libs/ui/application-header/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/ui/application-header/src/**/*.ts",
+                            "libs/ui/application-header/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "ui-dynamic-form": {
             "projectType": "library",
             "root": "libs/ui/dynamic-form",
@@ -443,6 +469,52 @@
                     "builder": "@nrwl/linter:eslint",
                     "options": {
                         "lintFilePatterns": ["libs/ui/dynamic-table/src/**/*.ts", "libs/ui/dynamic-table/src/**/*.html"]
+                    }
+                }
+            },
+            "tags": []
+        },
+        "ui-header-menu": {
+            "projectType": "library",
+            "root": "libs/ui/header-menu",
+            "sourceRoot": "libs/ui/header-menu/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ui/header-menu"],
+                    "options": {
+                        "jestConfig": "libs/ui/header-menu/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/ui/header-menu/src/**/*.ts", "libs/ui/header-menu/src/**/*.html"]
+                    }
+                }
+            },
+            "tags": []
+        },
+        "ui-user-profile": {
+            "projectType": "library",
+            "root": "libs/ui/user-profile",
+            "sourceRoot": "libs/ui/user-profile/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ui/user-profile"],
+                    "options": {
+                        "jestConfig": "libs/ui/user-profile/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/ui/user-profile/src/**/*.ts", "libs/ui/user-profile/src/**/*.html"]
                     }
                 }
             },

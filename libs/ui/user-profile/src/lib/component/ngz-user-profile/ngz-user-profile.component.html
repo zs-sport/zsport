@@ -1,0 +1,39 @@
+<div>
+    <nz-avatar
+        nz-popover
+        nzIcon="user"
+        nzPopoverPlacement="bottom"
+        nzPopoverTrigger="hover"
+        nzSize="large"
+        [nzSrc]="url"
+        [nzPopoverContent]="contentTemplate"
+        [nzPopoverTitle]="displayName"
+    ></nz-avatar>
+
+    <ng-template #contentTemplate>
+        <div>
+            <ul nz-menu nzMode="inline" nzTheme="dark">
+                <ng-container *ngFor="let item of items">
+                    <li
+                        *ngIf="item.route; else routeTemplate"
+                        nz-menu-item
+                        [routerLink]="[item.route]"
+                        routerLinkActive
+                    >
+                        <i nz-icon [nzType]="item.icon"></i>
+
+                        <span>{{ item.title | transloco }}</span>
+                    </li>
+
+                    <ng-template #routeTemplate>
+                        <li nz-menu-item (click)="item.actionHandler()">
+                            <i nz-icon [nzType]="item.icon"></i>
+
+                            <span>{{ item.title | transloco }}</span>
+                        </li>
+                    </ng-template>
+                </ng-container>
+            </ul>
+        </div>
+    </ng-template>
+</div>

@@ -4,7 +4,7 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 
 import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, InjectionToken, NgModule } from '@angular/core';
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule } from '@angular/fire/compat';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';

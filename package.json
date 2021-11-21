@@ -47,6 +47,7 @@
         "@ngrx/store-devtools": "^13.0.1",
         "@nrwl/angular": "^13.1.4",
         "firebase": "^9.5.0",
+        "ng-dynamic-component": "^8.0.1",
         "ng-zorro-antd": "^12.0.2",
         "ngrx-store-localstorage": "^12.0.1",
         "ngx-color": "^7.3.3",

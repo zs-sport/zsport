@@ -29,6 +29,7 @@
             "@zsport/domain/user/data": ["libs/domain/user/data/src/index.ts"],
             "@zsport/domain/user/form": ["libs/domain/user/form/src/index.ts"],
             "@zsport/domain/user/store": ["libs/domain/user/store/src/index.ts"],
+            "@zsport/domain/user/table": ["libs/domain/user/table/src/index.ts"],
             "@zsport/ui/dynamic-form": ["libs/ui/dynamic-form/src/index.ts"],
             "@zsport/ui/dynamic-table": ["libs/ui/dynamic-table/src/index.ts"]
         }

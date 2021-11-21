@@ -1,0 +1,31 @@
+import { takeUntil, tap } from 'rxjs/operators';
+
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+
+import { <%= classify(name) %>HomePageContentBase } from '../../base/home-page-content';
+import { <%= classify(name) %>HomePageContentService } from '../../service/home-page-content';
+
+@Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [<%= classify(name) %>HomePageContentService],
+    selector: '<%= name %>-home-page-content',
+    templateUrl: './<%= name %>-home-page-content.component.html',
+    styleUrls: ['./<%= name %>-home-page-content.component.scss'],
+})
+export class <%= classify(name) %>HomePageContentComponent extends <%= classify(name) %>HomePageContentBase implements OnInit {
+    public constructor(private componentService: <%= classify(name) %>HomePageContentService) {
+        super();
+    }
+
+    public ngOnInit(): void {
+        this.componentService
+            .init$()
+            .pipe(
+                tap(() => {
+                    this.icons = this.componentService.icons;
+                }),
+                takeUntil(this.destroy)
+            )
+            .subscribe();
+    }
+}

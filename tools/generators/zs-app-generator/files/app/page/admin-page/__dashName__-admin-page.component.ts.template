@@ -1,0 +1,26 @@
+import { NzIconService } from 'ng-zorro-antd/icon';
+
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { <%= classify(name) %>AdminPermissionsService } from '../../permission/admin';
+import { <%= classify(name) %>AdminRolePermissionsService } from '../../permission/role';
+import { <%= classify(name) %>AdminUserPermissionsService } from '../../permission/user';
+
+@Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: '<%= name %>-admin-page',
+    templateUrl: './<%= name %>-admin-page.component.html',
+    styleUrls: ['./<%= name %>-admin-page.component.less'],
+})
+export class <%= classify(name) %>AdminPageComponent {
+    public title: string;
+
+    public constructor(
+        private iconService: NzIconService,
+        private adminPermissionsService: <%= classify(name) %>AdminPermissionsService,
+        private adminRolePermissionsService: <%= classify(name) %>AdminRolePermissionsService,
+        private adminUserPermissionsService: <%= classify(name) %>AdminUserPermissionsService
+    ) {
+        this.title = 'Admin';
+    }
+}

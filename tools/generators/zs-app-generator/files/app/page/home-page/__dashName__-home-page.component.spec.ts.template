@@ -1,0 +1,31 @@
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+
+import { <%= classify(name) %>HomePageContentComponent } from './component/home-page-content';
+import { <%= classify(name) %>HomePageComponent } from './<%= name %>-home-page.component';
+
+describe('<%= classify(name) %>HomePageComponent', () => {
+    let component: <%= classify(name) %>HomePageComponent;
+    let fixture: ComponentFixture<<%= classify(name) %>HomePageComponent>;
+
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [<%= classify(name) %>HomePageComponent, <%= classify(name) %>HomePageContentComponent],
+                imports: [NzLayoutModule, NzGridModule],
+            }).compileComponents();
+        })
+    );
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(<%= classify(name) %>HomePageComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+});

@@ -1,0 +1,71 @@
+.site-content {
+    margin: 0 8px;
+}
+.layout {
+    min-height: 100%;
+
+    .app-content {
+        padding: 0 30px;
+    }
+}
+
+.nav-link {
+    margin-left: 10px;
+}
+
+.application-header {
+    height: unset;
+    line-height: unset;
+}
+
+@media only screen and (max-width: 600px) {
+    nz-header {
+        padding: 0;
+    }
+
+    .layout {
+        .app-content {
+            padding: 0 5px;
+        }
+    }
+
+    :host ::ng-deep nz-page-header {
+        &.ant-page-header {
+            padding: 4px 8px;
+        }
+
+        .ant-page-header-heading-extra {
+            right: 0px;
+            top: 6px;
+            width: 60%;
+        }
+    }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
+
+.develop {
+    border-top: 10px solid blue;
+}
+
+.stage {
+    border-top: 10px solid green;
+}

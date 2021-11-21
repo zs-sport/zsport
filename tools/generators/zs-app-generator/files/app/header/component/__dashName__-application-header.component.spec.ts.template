@@ -1,0 +1,50 @@
+import { DynamicModule } from 'ng-dynamic-component';
+
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { AuthenticationStateService } from '@zsport/api';
+import { HeaderMenuItemFactory, UserProfileItemFactory } from '@zsport/shared';
+
+import { <%= classify(name) %>ApplicationHeaderService } from '../service';
+import { <%= classify(name) %>ApplicationHeaderComponent } from './<%= name %>-application-header.component';
+
+describe('<%= classify(name) %>ApplicationHeaderComponent', () => {
+    let component: <%= classify(name) %>ApplicationHeaderComponent;
+    let fixture: ComponentFixture<<%= classify(name) %>ApplicationHeaderComponent>;
+
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [<%= classify(name) %>ApplicationHeaderComponent],
+                imports: [DynamicModule],
+                providers: [
+                    {
+                        provide: <%= classify(name) %>ApplicationHeaderService,
+                        useValue: {},
+                    },
+                    {
+                        provide: AuthenticationStateService,
+                        useValue: {},
+                    },
+                    {
+                        provide: HeaderMenuItemFactory,
+                        useValue: {},
+                    },
+                    {
+                        provide: UserProfileItemFactory,
+                        useValue: {},
+                    },
+                ],
+            }).compileComponents();
+        })
+    );
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(<%= classify(name) %>ApplicationHeaderComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+});

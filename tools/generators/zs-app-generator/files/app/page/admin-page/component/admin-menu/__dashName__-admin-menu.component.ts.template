@@ -1,0 +1,22 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RoleNames } from '@zsport/api';
+
+import { <%= classify(name) %>AdminRolePermissionsService } from '../../../../permission/role';
+import { <%= classify(name) %>AdminUserPermissionsService } from '../../../../permission/user';
+
+@Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: '<%= name %>-admin-menu',
+    templateUrl: './<%= name %>-admin-menu.component.html',
+    styleUrls: ['./<%= name %>-admin-menu.component.less'],
+})
+export class <%= classify(name) %>AdminMenuComponent {
+    public adminRoleName = RoleNames.ADMIN;
+    public isCollapsed: boolean;
+    public viewRoleAdminPage = <%= classify(name) %>AdminRolePermissionsService.viewRoleAdminPage;
+    public viewUserAdminPage = <%= classify(name) %>AdminUserPermissionsService.viewUserAdminPage;
+
+    public constructor() {
+        this.isCollapsed = false;
+    }
+}

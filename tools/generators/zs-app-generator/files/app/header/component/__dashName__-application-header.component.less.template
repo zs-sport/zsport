@@ -1,0 +1,17 @@
+a {
+    color: #fff;
+}
+
+.header {
+    &__primary {
+        &-inner {
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 5px 5px;
+        }
+
+        .icon {
+            width: 50%;
+        }
+    }
+}

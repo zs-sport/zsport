@@ -1,0 +1,19 @@
+import { TestBed } from '@angular/core/testing';
+
+import { <%= classify(name) %>AdminResolverService } from './<%= name %>-admin-resolver.service';
+
+describe('<%= classify(name) %>AdminResolverService', () => {
+    let service: <%= classify(name) %>AdminResolverService;
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [<%= classify(name) %>AdminResolverService],
+        });
+
+        service = TestBed.inject(<%= classify(name) %>AdminResolverService);
+    });
+
+    it('should be created', () => {
+        expect(service).toBeTruthy();
+    });
+});

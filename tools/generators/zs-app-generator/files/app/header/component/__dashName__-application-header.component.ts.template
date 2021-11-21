@@ -1,0 +1,36 @@
+import { ReplaySubject } from 'rxjs';
+import { takeUntil, tap } from 'rxjs/operators';
+
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+
+import { <%= classify(name) %>ApplicationHeaderBase } from '../base';
+import { <%= classify(name) %>ApplicationHeaderService } from '../service';
+
+@Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [<%= classify(name) %>ApplicationHeaderService],
+    selector: '<%= name %>-application-header',
+    templateUrl: './<%= name %>-application-header.component.html',
+    styleUrls: ['./<%= name %>-application-header.component.less'],
+})
+export class <%= classify(name) %>ApplicationHeaderComponent extends <%= classify(name) %>ApplicationHeaderBase implements OnInit {
+    public constructor(private componentService: <%= classify(name) %>ApplicationHeaderService) {
+        super();
+
+        this.params$$ = new ReplaySubject();
+    }
+
+    public ngOnInit(): void {
+        this.componentService
+            .init$(this.params$$)
+            .pipe(
+                tap(() => {}),
+                takeUntil(this.destroy)
+            )
+            .subscribe();
+    }
+
+    public onLogin(): void {
+        this.componentService.logIn();
+    }
+}

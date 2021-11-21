@@ -1,0 +1,1 @@
+export * from './<%= name %>-header-menu-item.factory.impl';

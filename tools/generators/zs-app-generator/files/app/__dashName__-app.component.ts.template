@@ -1,0 +1,18 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { EnvironmentType } from '@zsport/api';
+
+import { environment } from '../environments/environment';
+
+@Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: '<%= name %>-root',
+    templateUrl: './<%= name %>-app.component.html',
+    styleUrls: ['./<%= name %>-app.component.less'],
+})
+export class <%= classify(name) %>AppComponent {
+    public version = environment.version;
+    public environmentType: EnvironmentType = environment.type as EnvironmentType;
+    public title = '<%= classify(name) %>';
+
+    public constructor() {}
+}

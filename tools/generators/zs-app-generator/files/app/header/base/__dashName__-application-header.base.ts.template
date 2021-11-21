@@ -1,0 +1,7 @@
+import { Subject } from 'rxjs';
+
+import { BaseService } from '@zsport/api';
+
+export abstract class <%= classify(name) %>ApplicationHeaderBase extends BaseService {
+    public params$$!: Subject<any>;
+}

@@ -1,0 +1,5 @@
+import { Injectable } from '@angular/core';
+import { UserFormConfigFactory } from '@zsport/domain/user';
+
+@Injectable()
+export class <%= classify(name) %>UserFormConfigFactoryImpl extends UserFormConfigFactory {}

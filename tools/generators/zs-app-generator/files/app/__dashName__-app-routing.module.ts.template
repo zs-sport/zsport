@@ -1,0 +1,54 @@
+import { NgxPermissionsGuard } from 'ngx-permissions';
+
+import { NgModule } from '@angular/core';
+import { PreloadAllModules, RouterModule } from '@angular/router';
+import { RoleNames } from '@zsport/api';
+
+import { <%= classify(name) %>ErrorPageComponent } from './page/error-page';
+import { <%= classify(name) %>AdminResolverService } from './resolver';
+
+export const routes = [
+    {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+    },
+    {
+        path: 'home',
+        loadChildren: () => import('./page/home-page/<%= name %>-home-page.module').then((module) => module.<%= classify(name) %>HomePageModule),
+        data: {
+            breadcrumb: 'home',
+        },
+    },
+    {
+        path: 'admin',
+        loadChildren: () => import('./page/admin-page/<%= name %>-admin-page.module').then((lib) => lib.<%= classify(name) %>AdminPageModule),
+        resolve: { data: <%= classify(name) %>AdminResolverService },
+        data: {
+            breadcrumb: 'admin',
+            permissions: {
+                only: [RoleNames.ADMIN, 'viewAdminPage'],
+                redirectTo: '/error',
+            },
+        },
+        canActivate: [NgxPermissionsGuard],
+        canLoad: [NgxPermissionsGuard],
+    },
+    {
+        path: 'error',
+        component: <%= classify(name) %>ErrorPageComponent,
+        pathMatch: 'full',
+    },
+];
+
+@NgModule({
+    imports: [
+        RouterModule.forRoot(routes, {
+            useHash: true,
+            preloadingStrategy: PreloadAllModules,
+            initialNavigation: 'enabled',
+        }),
+    ],
+    exports: [RouterModule],
+})
+export class <%= classify(name) %>AppRoutingModule {}

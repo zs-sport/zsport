@@ -1,0 +1,42 @@
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import {
+    RoleFormButtonFactory,
+    RoleFormConfigFactory,
+    RoleFormControlFactory,
+    RoleFormFactory,
+    RoleTableFactory,
+} from '@zsport/domain/role';
+
+import { <%= classify(name) %>RoleFormFactoryImpl } from './form';
+import { <%= classify(name) %>RoleFormButtonFactoryImpl } from './form-button';
+import { <%= classify(name) %>RoleFormConfigFactoryImpl } from './form-config';
+import { <%= classify(name) %>RoleFormControlFactoryImpl } from './form-control';
+import { <%= classify(name) %>RoleTableFactoryImpl } from './table';
+
+@NgModule({
+    imports: [CommonModule],
+    providers: [
+        {
+            provide: RoleFormButtonFactory,
+            useClass: <%= classify(name) %>RoleFormButtonFactoryImpl,
+        },
+        {
+            provide: RoleFormConfigFactory,
+            useClass: <%= classify(name) %>RoleFormConfigFactoryImpl,
+        },
+        {
+            provide: RoleFormControlFactory,
+            useClass: <%= classify(name) %>RoleFormControlFactoryImpl,
+        },
+        {
+            provide: RoleFormFactory,
+            useClass: <%= classify(name) %>RoleFormFactoryImpl,
+        },
+        {
+            provide: RoleTableFactory,
+            useClass: <%= classify(name) %>RoleTableFactoryImpl,
+        },
+    ],
+})
+export class <%= classify(name) %>RoleFactoryModule {}

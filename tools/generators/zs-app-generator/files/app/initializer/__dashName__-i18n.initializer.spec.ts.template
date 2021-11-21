@@ -1,0 +1,17 @@
+import { TestBed } from '@angular/core/testing';
+
+import { <%= classify(name) %>I18nInitializer } from './<%= name %>-i18n.initializer';
+
+describe('<%= classify(name) %>I18nInitializer', () => {
+    let service: any;
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({});
+
+        service = TestBed.inject(<%= classify(name) %>I18nInitializer);
+    });
+
+    it('should be created', () => {
+        expect(service).toBeTruthy();
+    });
+});

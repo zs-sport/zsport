@@ -1,0 +1,57 @@
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NgxPermissionsModule } from 'ngx-permissions';
+
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { LanguagesEnum } from '@zsport/api';
+import { CoreI18nModule } from '@zsport/core/i18n';
+
+import { <%= classify(name) %>AdminPermissionsService } from '../../permission/admin';
+import { <%= classify(name) %>AdminMenuComponent } from './component/admin-menu';
+import { <%= classify(name) %>AdminPageComponent } from './<%= name %>-admin-page.component';
+
+describe('<%= classify(name) %>AdminPageComponent', () => {
+    let component: <%= classify(name) %>AdminPageComponent;
+    let fixture: ComponentFixture<<%= classify(name) %>AdminPageComponent>;
+
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [<%= classify(name) %>AdminPageComponent, <%= classify(name) %>AdminMenuComponent],
+                imports: [
+                    NgxPermissionsModule.forRoot(),
+                    NzMenuModule,
+                    NzBreadCrumbModule,
+                    NzLayoutModule,
+                    RouterTestingModule,
+                    CoreI18nModule.forRoot({
+                        availableLangs: ['hu', 'en'] as LanguagesEnum[],
+                        defaultLang: 'hu' as LanguagesEnum,
+                        prodMode: false,
+                        reRenderOnLangChange: true,
+                    }),
+                ],
+                providers: [
+                    {
+                        provide: <%= classify(name) %>AdminPermissionsService,
+                        useValue: {},
+                    },
+                ],
+            }).compileComponents();
+        })
+    );
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(<%= classify(name) %>AdminPageComponent);
+
+        component = fixture.componentInstance;
+
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+});

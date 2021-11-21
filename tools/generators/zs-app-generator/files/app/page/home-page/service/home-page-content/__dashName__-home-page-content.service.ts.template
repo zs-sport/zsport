@@ -1,0 +1,16 @@
+import { Observable, of } from 'rxjs';
+
+import { Injectable } from '@angular/core';
+
+import { <%= classify(name) %>HomePageContentBase } from '../../base/home-page-content';
+
+@Injectable()
+export class <%= classify(name) %>HomePageContentService extends <%= classify(name) %>HomePageContentBase {
+    public constructor() {
+        super();
+    }
+
+    public init$(): Observable<boolean> {
+        return of(true);
+    }
+}

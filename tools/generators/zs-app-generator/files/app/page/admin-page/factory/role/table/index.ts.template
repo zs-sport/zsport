@@ -1,0 +1,1 @@
+export * from './<%= name %>-role-table.factory.impl';

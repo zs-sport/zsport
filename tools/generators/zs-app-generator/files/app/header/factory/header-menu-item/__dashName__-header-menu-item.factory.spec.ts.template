@@ -1,0 +1,19 @@
+import { TestBed } from '@angular/core/testing';
+
+import { <%= classify(name) %>HeaderMenuItemFactoryImpl } from './<%= name %>-header-menu-item.factory.impl';
+
+describe('<%= classify(name) %>HeaderMenuItemFactoryImpl', () => {
+    let service: <%= classify(name) %>HeaderMenuItemFactoryImpl;
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [<%= classify(name) %>HeaderMenuItemFactoryImpl],
+        });
+
+        service = TestBed.inject(<%= classify(name) %>HeaderMenuItemFactoryImpl);
+    });
+
+    it('should be created', () => {
+        expect(service).toBeTruthy();
+    });
+});

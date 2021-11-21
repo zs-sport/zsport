@@ -1,0 +1,13 @@
+import { Injectable } from '@angular/core';
+import { ActionEnum, PermissionsService } from '@zsport/api';
+
+import { <%= classify(name) %>AdminResourceEnum } from '../../page/admin-page/enum';
+
+@Injectable()
+export class <%= classify(name) %>AdminPermissionsService {
+    public static viewAdminPage = ActionEnum.VIEW.toString() + <%= classify(name) %>AdminResourceEnum.ADMIN_PAGE.toString();
+
+    constructor() {
+        PermissionsService.addPermissions([<%= classify(name) %>AdminPermissionsService.viewAdminPage]);
+    }
+}

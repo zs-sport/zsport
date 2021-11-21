@@ -1,0 +1,16 @@
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
+import { <%= classify(name) %>AdminPermissionsService } from './admin';
+import { <%= classify(name) %>AdminRolePermissionsService } from './role';
+import { <%= classify(name) %>AdminUserPermissionsService } from './user';
+
+@NgModule({
+    imports: [CommonModule],
+    providers: [
+        <%= classify(name) %>AdminPermissionsService,
+        <%= classify(name) %>AdminRolePermissionsService,
+        <%= classify(name) %>AdminUserPermissionsService,
+    ],
+})
+export class  <%= classify(name) %>PermissionModule {}

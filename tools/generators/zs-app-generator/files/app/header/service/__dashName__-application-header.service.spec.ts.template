@@ -1,0 +1,34 @@
+import { TestBed } from '@angular/core/testing';
+import { AuthenticationStateService } from '@zsport/api';
+import { HeaderMenuItemFactory, UserProfileItemFactory } from '@zsport/shared';
+
+import { <%= classify(name) %>ApplicationHeaderService } from './<%= name %>-application-header.service';
+
+describe('<%= classify(name) %>ApplicationHeaderService', () => {
+    let service: <%= classify(name) %>ApplicationHeaderService;
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [
+                <%= classify(name) %>ApplicationHeaderService,
+                {
+                    provide: AuthenticationStateService,
+                    useValue: {},
+                },
+                {
+                    provide: HeaderMenuItemFactory,
+                    useValue: {},
+                },
+                {
+                    provide: UserProfileItemFactory,
+                    useValue: {},
+                },
+            ],
+        });
+        service = TestBed.inject(<%= classify(name) %>ApplicationHeaderService);
+    });
+
+    it('should be created', () => {
+        expect(service).toBeTruthy();
+    });
+});

@@ -1,0 +1,42 @@
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import {
+    UserFormButtonFactory,
+    UserFormConfigFactory,
+    UserFormControlFactory,
+    UserFormFactory,
+    UserTableFactory,
+} from '@zsport/domain/user';
+
+import { <%= classify(name) %>UserFormFactoryImpl } from './user-form';
+import { <%= classify(name) %>UserFormButtonFactoryImpl } from './user-form-button';
+import { <%= classify(name) %>UserFormConfigFactoryImpl } from './user-form-config';
+import { <%= classify(name) %>UserFormControlFactoryImpl } from './user-form-control';
+import { <%= classify(name) %>UserTableFactoryImpl } from './user-table';
+
+@NgModule({
+    imports: [CommonModule],
+    providers: [
+        {
+            provide: UserFormButtonFactory,
+            useClass: <%= classify(name) %>UserFormButtonFactoryImpl,
+        },
+        {
+            provide: UserFormConfigFactory,
+            useClass: <%= classify(name) %>UserFormConfigFactoryImpl,
+        },
+        {
+            provide: UserFormControlFactory,
+            useClass: <%= classify(name) %>UserFormControlFactoryImpl,
+        },
+        {
+            provide: UserFormFactory,
+            useClass: <%= classify(name) %>UserFormFactoryImpl,
+        },
+        {
+            provide: UserTableFactory,
+            useClass: <%= classify(name) %>UserTableFactoryImpl,
+        },
+    ],
+})
+export class <%= classify(name) %>UserFactoryModule {}

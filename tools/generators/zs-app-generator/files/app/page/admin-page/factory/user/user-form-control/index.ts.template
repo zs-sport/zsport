@@ -1,0 +1,1 @@
+export * from './<%= name %>-user-form-control.factory.impl';

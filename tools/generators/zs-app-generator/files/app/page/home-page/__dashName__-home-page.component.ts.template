@@ -1,0 +1,13 @@
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+
+@Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: '<%= name %>-home-page',
+    templateUrl: './<%= name %>-home-page.component.html',
+    styleUrls: ['./<%= name %>-home-page.component.less'],
+})
+export class <%= classify(name) %>HomePageComponent implements OnInit {
+    public constructor() {}
+
+    public ngOnInit(): void {}
+}

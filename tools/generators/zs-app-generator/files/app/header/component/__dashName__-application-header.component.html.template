@@ -1,0 +1,29 @@
+<div class="header__primary">
+    <div nz-row class="header__primary-inner">
+        <div class="header-logo">
+            <a href=""><svg-icon src="assets/site/site.svg" [svgClass]="'icon'"></svg-icon></a>
+        </div>
+
+        <ng-container *ngIf="params$$ | async as params">
+            <div>
+                <ng-container>
+                    <zs-ngz-user-profile
+                        *zsIsAuthenticated="true"
+                        [url]="params.avatarUrl"
+                        [items]="params.userProfileItems"
+                        [displayName]="params.displayName"
+                    >
+                    </zs-ngz-user-profile>
+                </ng-container>
+
+                <ng-container *zsIsAuthenticated="false">
+                    <i nz-icon [nzType]="'login'"></i>
+
+                    <span>
+                        <a (click)="onLogin()">{{ 'action.login' | transloco }}</a>
+                    </span>
+                </ng-container>
+            </div>
+        </ng-container>
+    </div>
+</div>

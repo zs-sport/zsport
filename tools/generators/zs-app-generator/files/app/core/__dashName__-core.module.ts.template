@@ -1,0 +1,44 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { LanguagesEnum, UserHookService } from '@zsport/api';
+import { CoreAuthenticationStoreModule } from '@zsport/core/authentication/store';
+import { CoreAuthenticationViewModule } from '@zsport/core/authentication/view';
+import { CoreAuthorizationDataModule } from '@zsport/core/authorization/data';
+import { CoreI18nModule } from '@zsport/core/i18n';
+import { StorageDataModule, StorageUtilModule } from '@zsport/core/storage';
+import { RoleDataModule, RoleStoreModule } from '@zsport/domain/role';
+import { UserDataModule, UserStoreModule } from '@zsport/domain/user';
+import { SharedModule, StateUtilModule } from '@zsport/shared';
+
+import { environment } from '../../environments/environment';
+import { DefaultUserHookService } from './hook/user';
+
+@NgModule({
+    imports: [
+        BrowserModule,
+        UserDataModule,
+        UserStoreModule,
+        CoreI18nModule.forRoot({
+            availableLangs: environment.availableLangs as LanguagesEnum[],
+            defaultLang: environment.defaultLanguage as LanguagesEnum,
+            prodMode: environment.production,
+            reRenderOnLangChange: true,
+        }),
+        CoreAuthenticationStoreModule,
+        CoreAuthenticationViewModule,
+        CoreAuthorizationDataModule,
+        StorageDataModule,
+        StorageUtilModule,
+        RoleDataModule,
+        RoleStoreModule,
+        StateUtilModule,
+        SharedModule,
+    ],
+    providers: [
+        {
+            provide: UserHookService,
+            useClass: DefaultUserHookService,
+        },
+    ],
+})
+export class <%= classify(name) %>CoreModule {}

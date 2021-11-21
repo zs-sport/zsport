@@ -1,0 +1,1 @@
+export * from './<%= name %>-role-form-config.factory.impl';

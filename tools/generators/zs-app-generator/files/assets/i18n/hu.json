@@ -1,0 +1,86 @@
+{
+    "action": {
+        "admin": "Adminisztrátor",
+        "control": "Kontrol",
+        "login": "Bejelentkezés",
+        "profile": "Profil",
+        "logout": "Kijelentkezés"
+    },
+    "application": {
+        "header": {
+            "language": "Nyelv",
+            "languages": {
+                "en": "angol",
+                "hu": "magyar"
+            }
+        }
+    },
+    "form": {
+        "file": {
+            "upload": "Feltöltés"
+        }
+    },
+    "page": {
+        "admin": "Adminisztrátor",
+        "home": "Kezdőoldal",
+        "error": {
+            "back_to_results": "Vissza a kezdőoldalra",
+            "sub_title": "Nem rendelkezik a megfelelő jogosultsággal"
+        }
+    },
+    "admin": {
+        "form": {
+            "cancel": "Mégse",
+            "reset": "Töröl",
+            "submit": "Küld"
+        },
+        "user": {
+            "action": {
+                "add_user": "Új felhasználó",
+                "edit": "Szerkesztés"
+            },
+            "column": {
+                "display_name": "Megjelenített név",
+                "email": "Email",
+                "action": "Művelet"
+            },
+            "label": {
+                "display_name": "Megjelenített név",
+                "display_name_placeholder": "Megjelenített név",
+                "email": "Email",
+                "email_placeholder": "Email",
+                "first_name": "Keresztnév",
+                "first_name_placeholder": "Keresztnév",
+                "language": "Nyelv",
+                "language_placeholder": "Nyelv",
+                "last_name": "Vezetéknév",
+                "last_name_placeholder": "Vezetéknév",
+                "mobile_phone": "Mobil telefon",
+                "mobile_phone_placeholder": "Mobil telefon",
+                "roles": "Szerepkörök",
+                "roles_placeholder": "Szerepkörök"
+            },
+            "cancel": "Mégse",
+            "reset": "Töröl",
+            "submit": "Küld",
+            "users": "Felhasználók"
+        },
+        "role": {
+            "action": {
+                "add_role": "Új szerepkör",
+                "edit": "Szerkesztés"
+            },
+            "column": {
+                "name": "Név",
+                "edit": "Akció"
+            },
+            "label": {
+                "name": "Név",
+                "name_placeholder": "Név",
+                "permissions": "Jogosultságok",
+                "permissions_placeholder": "Jogosultságok"
+            },
+            "roles": "Szerepkörök"
+        }
+    }
+}

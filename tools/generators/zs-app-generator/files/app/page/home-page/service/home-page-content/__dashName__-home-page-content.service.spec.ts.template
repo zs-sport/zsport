@@ -1,0 +1,19 @@
+import { TestBed } from '@angular/core/testing';
+
+import { <%= classify(name) %>HomePageContentService } from './<%= name %>-home-page-content.service';
+
+describe('<%= classify(name) %>HomePageContentService', () => {
+    beforeEach(() =>
+        TestBed.configureTestingModule({
+            providers: [
+                <%= classify(name) %>HomePageContentService,
+            ],
+        })
+    );
+
+    it('should be created', () => {
+        const service: <%= classify(name) %>HomePageContentService = TestBed.inject(<%= classify(name) %>HomePageContentService);
+
+        expect(service).toBeTruthy();
+    });
+});

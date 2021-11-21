@@ -1,0 +1,54 @@
+import { NgxPermissionsGuard } from 'ngx-permissions';
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { RoleNames } from '@zsport/api';
+
+import { <%= classify(name) %>AdminRolePermissionsService } from '../../permission/role';
+import { <%= classify(name) %>AdminUserPermissionsService } from '../../permission/user';
+import { <%= classify(name) %>AdminPageComponent } from './<%= name %>-admin-page.component';
+
+const routes: Routes = [
+    {
+        path: '',
+        component: <%= classify(name) %>AdminPageComponent,
+        children: [
+            {
+                path: '',
+                pathMatch: 'full',
+            },
+            {
+                path: 'user',
+                data: {
+                    breadcrumb: 'user',
+                    permissions: {
+                        only: [RoleNames.ADMIN, <%= classify(name) %>AdminUserPermissionsService.viewUserAdminPage],
+                        redirectTo: '/error',
+                    },
+                },
+                loadChildren: () => import('@zsport/domain/user').then((lib) => lib.UserAdminModule),
+                canActivate: [NgxPermissionsGuard],
+                canLoad: [NgxPermissionsGuard],
+            },
+            {
+                path: 'role',
+                data: {
+                    breadcrumb: 'role',
+                    permissions: {
+                        only: [RoleNames.ADMIN, <%= classify(name) %>AdminRolePermissionsService.viewRoleAdminPage],
+                        redirectTo: '/error',
+                    },
+                },
+                loadChildren: () => import('@zsport/domain/role').then((lib) => lib.RoleAdminModule),
+                canActivate: [NgxPermissionsGuard],
+                canLoad: [NgxPermissionsGuard],
+            },
+        ],
+    },
+];
+
+@NgModule({
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
+})
+export class <%= classify(name) %>AdminRoutingModule {}

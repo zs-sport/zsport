@@ -1,0 +1,17 @@
+<nz-content class="site-content">
+    <div class="inner-header">
+        <nz-breadcrumb [nzAutoGenerate]="true"> </nz-breadcrumb>
+    </div>
+
+    <div class="inner-content">
+        <div nz-row nzGutter="16">
+            <div nz-col nzXs="9" nzSm="8" nzMd="7" nzLg="6" nzXl="5">
+                <<%= name %>-admin-menu></<%= name %>-admin-menu>
+            </div>
+
+            <div nz-col nzXs="15" nzSm="16" nzMd="17" nzLg="18" nzXl="19">
+                <router-outlet> </router-outlet>
+            </div>
+        </div>
+    </div>
+</nz-content>

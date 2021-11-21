@@ -1,0 +1,21 @@
+figure.detailed {
+    height: 150px;
+
+    .handball {
+        margin: 80px 30px;
+    }
+}
+
+a.icon {
+    border-radius: 100%;
+    color: #000;
+    float: left;
+    height: 60px;
+    margin-right: 7px;
+    text-align: center;
+    width: 60px;
+
+    i {
+        font-size: xxx-large;
+    }
+}

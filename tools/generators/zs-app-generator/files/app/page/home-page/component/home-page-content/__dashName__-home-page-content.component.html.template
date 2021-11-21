@@ -1,0 +1,9 @@
+<div nz-row nzJustify="space-around" nzAlign="top">
+    <div nz-col class="gutter-row content" nzXs="24" nzSm="14" nzMd="16" nzLg="18" nzXl="8">
+        <div class="inner-box"></div>
+    </div>
+
+    <div nz-col class="gutter-row content" nzXs="24" nzSm="14" nzMd="16" nzLg="18" nzXl="16">
+        <div class="inner-box"></div>
+    </div>
+</div>

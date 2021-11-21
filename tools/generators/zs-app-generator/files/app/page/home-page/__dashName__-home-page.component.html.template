@@ -1,0 +1,5 @@
+<nz-content class="site-content">
+    <div class="inner-content">
+        <<%= name %>-home-page-content></<%= name %>-home-page-content>
+    </div>
+</nz-content>

@@ -29,6 +29,7 @@
             "@zsport/domain/role/data": ["libs/domain/role/data/src/index.ts"],
             "@zsport/domain/role/form": ["libs/domain/role/form/src/index.ts"],
             "@zsport/domain/role/store": ["libs/domain/role/store/src/index.ts"],
+            "@zsport/domain/role/table": ["libs/domain/role/table/src/index.ts"],
             "@zsport/domain/user/admin": ["libs/domain/user/admin/src/index.ts"],
             "@zsport/domain/user/data": ["libs/domain/user/data/src/index.ts"],
             "@zsport/domain/user/form": ["libs/domain/user/form/src/index.ts"],

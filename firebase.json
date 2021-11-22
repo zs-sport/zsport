@@ -1,0 +1,14 @@
+{
+    "hosting": [
+        {
+            "site": "zs-sport-admin",
+            "public": "dist/apps/zsport-admin",
+            "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+        },
+        {
+            "site": "zs-sport-admin-dev",
+            "public": "dist/apps/zsport-admin",
+            "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+        }
+    ]
+}

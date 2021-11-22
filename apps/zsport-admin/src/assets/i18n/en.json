@@ -1,0 +1,87 @@
+{
+    "action": {
+        "admin": "Admin",
+        "control": "Control",
+        "login": "Login",
+        "profile": "Profile",
+        "logout": "Logout"
+    },
+    "application": {
+        "header": {
+            "article": "Article",
+            "language": "Language",
+            "languages": {
+                "en": "english",
+                "hu": "hungarian"
+            }
+        }
+    },
+    "form": {
+        "file": {
+            "upload": "Upload"
+        }
+    },
+    "page": {
+        "admin": "Admin",
+        "home": "Home",
+        "error": {
+            "back_to_results": "Back to the home page",
+            "sub_title": "Sorry, you are not authorized to access this page"
+        }
+    },
+    "admin": {
+        "form": {
+            "cancel": "Cancel",
+            "reset": "Reset",
+            "submit": "Submit"
+        },
+        "user": {
+            "action": {
+                "add_user": "Add user",
+                "edit": "Edit"
+            },
+            "column": {
+                "display_name": "Display name",
+                "email": "Email",
+                "action": "Action"
+            },
+            "label": {
+                "display_name": "Display name",
+                "display_name_placeholder": "Display name",
+                "email": "Email",
+                "email_placeholder": "Email",
+                "first_name": "First name",
+                "first_name_placeholder": "First name",
+                "language": "Language",
+                "language_placeholder": "Language",
+                "last_name": "Last name",
+                "last_name_placeholder": "Last name",
+                "mobile_phone": "Mobile phone",
+                "mobile_phone_placeholder": "Mobile phone",
+                "roles": "Roles",
+                "roles_placeholder": "Roles"
+            },
+            "cancel": "Cancel",
+            "reset": "Reset",
+            "submit": "Submit",
+            "users": "Users"
+        },
+        "role": {
+            "action": {
+                "add_role": "Add role",
+                "edit": "Edit"
+            },
+            "column": {
+                "name": "Name",
+                "edit": "Action"
+            },
+            "label": {
+                "name": "Name",
+                "name_placeholder": "Name",
+                "permissions": "Permissions",
+                "permissions_placeholder": "Permissions"
+            },
+            "roles": "Roles"
+        }
+    }
+}

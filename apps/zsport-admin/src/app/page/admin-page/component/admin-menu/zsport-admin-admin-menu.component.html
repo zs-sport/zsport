@@ -1,0 +1,23 @@
+<div>
+    <ul nz-menu [nzMode]="'inline'" nzTheme="dark" [nzInlineCollapsed]="isCollapsed">
+        <ng-template [ngxPermissionsOnly]="[adminRoleName, viewUserAdminPage]">
+            <li nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLink="user">
+                <span title>
+                    <i nz-icon nzType="user"></i>
+
+                    <span>{{ 'admin.user.users' | transloco }}</span>
+                </span>
+            </li>
+        </ng-template>
+
+        <ng-template [ngxPermissionsOnly]="[adminRoleName, viewRoleAdminPage]">
+            <li nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLink="role">
+                <span title>
+                    <i nz-icon nzType="icon:role"></i>
+
+                    <span>{{ 'admin.role.roles' | transloco }}</span>
+                </span>
+            </li>
+        </ng-template>
+    </ul>
+</div>

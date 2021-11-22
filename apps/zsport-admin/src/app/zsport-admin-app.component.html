@@ -1,0 +1,13 @@
+<nz-layout [ngClass]="environmentType" class="layout">
+    <nz-header class="application-header header header--layout-1">
+        <zsport-admin-application-header></zsport-admin-application-header>
+    </nz-header>
+
+    <nz-content class="app-content">
+        <router-outlet></router-outlet>
+    </nz-content>
+
+    <nz-footer style="text-align: center">
+        ©Copyright 2021 - Company Kft | Minden jog fenntartva | version: {{ version }}
+    </nz-footer>
+</nz-layout>

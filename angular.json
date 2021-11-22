@@ -9,7 +9,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/api"],
+                    "outputs": [
+                        "coverage/libs/api"
+                    ],
                     "options": {
                         "jestConfig": "libs/api/jest.config.js",
                         "passWithNoTests": true
@@ -18,7 +20,10 @@
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
                     "options": {
-                        "lintFilePatterns": ["libs/api/src/**/*.ts", "libs/api/src/**/*.html"]
+                        "lintFilePatterns": [
+                            "libs/api/src/**/*.ts",
+                            "libs/api/src/**/*.html"
+                        ]
                     }
                 }
             },
@@ -32,7 +37,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/core/authentication/store"],
+                    "outputs": [
+                        "coverage/libs/core/authentication/store"
+                    ],
                     "options": {
                         "jestConfig": "libs/core/authentication/store/jest.config.js",
                         "passWithNoTests": true
@@ -58,7 +65,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/core/authentication/view"],
+                    "outputs": [
+                        "coverage/libs/core/authentication/view"
+                    ],
                     "options": {
                         "jestConfig": "libs/core/authentication/view/jest.config.js",
                         "passWithNoTests": true
@@ -84,7 +93,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/core/authorization/data"],
+                    "outputs": [
+                        "coverage/libs/core/authorization/data"
+                    ],
                     "options": {
                         "jestConfig": "libs/core/authorization/data/jest.config.js",
                         "passWithNoTests": true
@@ -110,7 +121,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/core/entity-quantity/data"],
+                    "outputs": [
+                        "coverage/libs/core/entity-quantity/data"
+                    ],
                     "options": {
                         "jestConfig": "libs/core/entity-quantity/data/jest.config.js",
                         "passWithNoTests": true
@@ -136,7 +149,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/core/entity-quantity/store"],
+                    "outputs": [
+                        "coverage/libs/core/entity-quantity/store"
+                    ],
                     "options": {
                         "jestConfig": "libs/core/entity-quantity/store/jest.config.js",
                         "passWithNoTests": true
@@ -162,7 +177,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/core/entity-quantity/util"],
+                    "outputs": [
+                        "coverage/libs/core/entity-quantity/util"
+                    ],
                     "options": {
                         "jestConfig": "libs/core/entity-quantity/util/jest.config.js",
                         "passWithNoTests": true
@@ -188,7 +205,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/core/i18n"],
+                    "outputs": [
+                        "coverage/libs/core/i18n"
+                    ],
                     "options": {
                         "jestConfig": "libs/core/i18n/jest.config.js",
                         "passWithNoTests": true
@@ -197,7 +216,10 @@
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
                     "options": {
-                        "lintFilePatterns": ["libs/core/i18n/src/**/*.ts", "libs/core/i18n/src/**/*.html"]
+                        "lintFilePatterns": [
+                            "libs/core/i18n/src/**/*.ts",
+                            "libs/core/i18n/src/**/*.html"
+                        ]
                     }
                 }
             },
@@ -211,7 +233,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/core/storage/data"],
+                    "outputs": [
+                        "coverage/libs/core/storage/data"
+                    ],
                     "options": {
                         "jestConfig": "libs/core/storage/data/jest.config.js",
                         "passWithNoTests": true
@@ -237,7 +261,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/core/storage/util"],
+                    "outputs": [
+                        "coverage/libs/core/storage/util"
+                    ],
                     "options": {
                         "jestConfig": "libs/core/storage/util/jest.config.js",
                         "passWithNoTests": true
@@ -263,7 +289,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/domain/role/admin"],
+                    "outputs": [
+                        "coverage/libs/domain/role/admin"
+                    ],
                     "options": {
                         "jestConfig": "libs/domain/role/admin/jest.config.js",
                         "passWithNoTests": true
@@ -289,7 +317,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/domain/role/data"],
+                    "outputs": [
+                        "coverage/libs/domain/role/data"
+                    ],
                     "options": {
                         "jestConfig": "libs/domain/role/data/jest.config.js",
                         "passWithNoTests": true
@@ -298,7 +328,10 @@
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
                     "options": {
-                        "lintFilePatterns": ["libs/domain/role/data/src/**/*.ts", "libs/domain/role/data/src/**/*.html"]
+                        "lintFilePatterns": [
+                            "libs/domain/role/data/src/**/*.ts",
+                            "libs/domain/role/data/src/**/*.html"
+                        ]
                     }
                 }
             },
@@ -312,7 +345,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/domain/role/form"],
+                    "outputs": [
+                        "coverage/libs/domain/role/form"
+                    ],
                     "options": {
                         "jestConfig": "libs/domain/role/form/jest.config.js",
                         "passWithNoTests": true
@@ -321,7 +356,10 @@
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
                     "options": {
-                        "lintFilePatterns": ["libs/domain/role/form/src/**/*.ts", "libs/domain/role/form/src/**/*.html"]
+                        "lintFilePatterns": [
+                            "libs/domain/role/form/src/**/*.ts",
+                            "libs/domain/role/form/src/**/*.html"
+                        ]
                     }
                 }
             },
@@ -335,7 +373,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/domain/role/store"],
+                    "outputs": [
+                        "coverage/libs/domain/role/store"
+                    ],
                     "options": {
                         "jestConfig": "libs/domain/role/store/jest.config.js",
                         "passWithNoTests": true
@@ -361,7 +401,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/domain/role/table"],
+                    "outputs": [
+                        "coverage/libs/domain/role/table"
+                    ],
                     "options": {
                         "jestConfig": "libs/domain/role/table/jest.config.js",
                         "passWithNoTests": true
@@ -387,7 +429,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/domain/user/admin"],
+                    "outputs": [
+                        "coverage/libs/domain/user/admin"
+                    ],
                     "options": {
                         "jestConfig": "libs/domain/user/admin/jest.config.js",
                         "passWithNoTests": true
@@ -413,7 +457,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/domain/user/data"],
+                    "outputs": [
+                        "coverage/libs/domain/user/data"
+                    ],
                     "options": {
                         "jestConfig": "libs/domain/user/data/jest.config.js",
                         "passWithNoTests": true
@@ -422,7 +468,10 @@
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
                     "options": {
-                        "lintFilePatterns": ["libs/domain/user/data/src/**/*.ts", "libs/domain/user/data/src/**/*.html"]
+                        "lintFilePatterns": [
+                            "libs/domain/user/data/src/**/*.ts",
+                            "libs/domain/user/data/src/**/*.html"
+                        ]
                     }
                 }
             },
@@ -436,7 +485,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/domain/user/form"],
+                    "outputs": [
+                        "coverage/libs/domain/user/form"
+                    ],
                     "options": {
                         "jestConfig": "libs/domain/user/form/jest.config.js",
                         "passWithNoTests": true
@@ -445,7 +496,10 @@
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
                     "options": {
-                        "lintFilePatterns": ["libs/domain/user/form/src/**/*.ts", "libs/domain/user/form/src/**/*.html"]
+                        "lintFilePatterns": [
+                            "libs/domain/user/form/src/**/*.ts",
+                            "libs/domain/user/form/src/**/*.html"
+                        ]
                     }
                 }
             },
@@ -459,7 +513,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/domain/user/store"],
+                    "outputs": [
+                        "coverage/libs/domain/user/store"
+                    ],
                     "options": {
                         "jestConfig": "libs/domain/user/store/jest.config.js",
                         "passWithNoTests": true
@@ -485,7 +541,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/domain/user/table"],
+                    "outputs": [
+                        "coverage/libs/domain/user/table"
+                    ],
                     "options": {
                         "jestConfig": "libs/domain/user/table/jest.config.js",
                         "passWithNoTests": true
@@ -511,7 +569,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/shared"],
+                    "outputs": [
+                        "coverage/libs/shared"
+                    ],
                     "options": {
                         "jestConfig": "libs/shared/jest.config.js",
                         "passWithNoTests": true
@@ -520,7 +580,10 @@
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
                     "options": {
-                        "lintFilePatterns": ["libs/shared/src/**/*.ts", "libs/shared/src/**/*.html"]
+                        "lintFilePatterns": [
+                            "libs/shared/src/**/*.ts",
+                            "libs/shared/src/**/*.html"
+                        ]
                     }
                 }
             },
@@ -534,7 +597,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/ui/application-header"],
+                    "outputs": [
+                        "coverage/libs/ui/application-header"
+                    ],
                     "options": {
                         "jestConfig": "libs/ui/application-header/jest.config.js",
                         "passWithNoTests": true
@@ -560,7 +625,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/ui/dynamic-form"],
+                    "outputs": [
+                        "coverage/libs/ui/dynamic-form"
+                    ],
                     "options": {
                         "jestConfig": "libs/ui/dynamic-form/jest.config.js",
                         "passWithNoTests": true
@@ -569,7 +636,10 @@
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
                     "options": {
-                        "lintFilePatterns": ["libs/ui/dynamic-form/src/**/*.ts", "libs/ui/dynamic-form/src/**/*.html"]
+                        "lintFilePatterns": [
+                            "libs/ui/dynamic-form/src/**/*.ts",
+                            "libs/ui/dynamic-form/src/**/*.html"
+                        ]
                     }
                 }
             },
@@ -583,7 +653,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/ui/dynamic-table"],
+                    "outputs": [
+                        "coverage/libs/ui/dynamic-table"
+                    ],
                     "options": {
                         "jestConfig": "libs/ui/dynamic-table/jest.config.js",
                         "passWithNoTests": true
@@ -592,7 +664,10 @@
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
                     "options": {
-                        "lintFilePatterns": ["libs/ui/dynamic-table/src/**/*.ts", "libs/ui/dynamic-table/src/**/*.html"]
+                        "lintFilePatterns": [
+                            "libs/ui/dynamic-table/src/**/*.ts",
+                            "libs/ui/dynamic-table/src/**/*.html"
+                        ]
                     }
                 }
             },
@@ -606,7 +681,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/ui/header-menu"],
+                    "outputs": [
+                        "coverage/libs/ui/header-menu"
+                    ],
                     "options": {
                         "jestConfig": "libs/ui/header-menu/jest.config.js",
                         "passWithNoTests": true
@@ -615,7 +692,10 @@
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
                     "options": {
-                        "lintFilePatterns": ["libs/ui/header-menu/src/**/*.ts", "libs/ui/header-menu/src/**/*.html"]
+                        "lintFilePatterns": [
+                            "libs/ui/header-menu/src/**/*.ts",
+                            "libs/ui/header-menu/src/**/*.html"
+                        ]
                     }
                 }
             },
@@ -629,7 +709,9 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/ui/user-profile"],
+                    "outputs": [
+                        "coverage/libs/ui/user-profile"
+                    ],
                     "options": {
                         "jestConfig": "libs/ui/user-profile/jest.config.js",
                         "passWithNoTests": true
@@ -638,11 +720,153 @@
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
                     "options": {
-                        "lintFilePatterns": ["libs/ui/user-profile/src/**/*.ts", "libs/ui/user-profile/src/**/*.html"]
+                        "lintFilePatterns": [
+                            "libs/ui/user-profile/src/**/*.ts",
+                            "libs/ui/user-profile/src/**/*.html"
+                        ]
                     }
                 }
             },
             "tags": []
+        },
+        "zsport-admin": {
+            "projectType": "application",
+            "root": "apps/zsport-admin",
+            "sourceRoot": "apps/zsport-admin/src",
+            "prefix": "zsport",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "outputs": [
+                        "{options.outputPath}"
+                    ],
+                    "options": {
+                        "outputPath": "dist/apps/zsport-admin",
+                        "index": "apps/zsport-admin/src/index.html",
+                        "main": "apps/zsport-admin/src/main.ts",
+                        "polyfills": "apps/zsport-admin/src/polyfills.ts",
+                        "tsConfig": "apps/zsport-admin/tsconfig.app.json",
+                        "inlineStyleLanguage": "less",
+                        "assets": [
+                            "apps/zsport-admin/src/favicon.ico",
+                            "apps/zsport-admin/src/assets",
+                            {
+                                "glob": "**/*",
+                                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                                "output": "/assets/"
+                            }
+                        ],
+                        "styles": [
+                            "apps/zsport-admin/src/styles.less"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "1mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
+                                }
+                            ],
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/zsport-admin/src/environments/environment.ts",
+                                    "with": "apps/zsport-admin/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "zsport-admin:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "zsport-admin:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "zsport-admin:build"
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/zsport-admin/src/**/*.ts",
+                            "apps/zsport-admin/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": [
+                        "coverage/apps/zsport-admin"
+                    ],
+                    "options": {
+                        "jestConfig": "apps/zsport-admin/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            },
+            "tags": []
+        },
+        "zsport-admin-e2e": {
+            "root": "apps/zsport-admin-e2e",
+            "sourceRoot": "apps/zsport-admin-e2e/src",
+            "projectType": "application",
+            "architect": {
+                "e2e": {
+                    "builder": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/zsport-admin-e2e/cypress.json",
+                        "devServerTarget": "zsport-admin:serve:development"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "zsport-admin:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "outputs": [
+                        "{options.outputFile}"
+                    ],
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/zsport-admin-e2e/**/*.{js,ts}"
+                        ]
+                    }
+                }
+            },
+            "tags": [],
+            "implicitDependencies": [
+                "zsport-admin"
+            ]
         }
     }
 }

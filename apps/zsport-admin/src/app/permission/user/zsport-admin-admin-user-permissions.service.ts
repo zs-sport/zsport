@@ -1,0 +1,19 @@
+import { Injectable } from '@angular/core';
+import { PermissionsService } from '@zsport/api';
+import { UserAdminPermissionsService } from '@zsport/domain/user/admin';
+
+@Injectable()
+export class ZsportAdminAdminUserPermissionsService extends UserAdminPermissionsService {
+    public constructor() {
+        super();
+
+        PermissionsService.addPermissions([
+            UserAdminPermissionsService.viewUserAdminPage,
+            UserAdminPermissionsService.viewUserEditPage,
+            UserAdminPermissionsService.viewUserListPage,
+            UserAdminPermissionsService.createUserEntity,
+            UserAdminPermissionsService.updateUserEntity,
+            UserAdminPermissionsService.viewUserEntity,
+        ]);
+    }
+}

@@ -37,3 +37,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+/apps/zsport-admin/src/environments/firebase.config.dev.ts
+/apps/zsport-admin/src/environments/firebase.config.prod.ts
+/.firebaserc

@@ -12,6 +12,5 @@ export class NgzUserProfileComponent extends UserProfileComponent {
         super();
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     protected init(): void {}
 }

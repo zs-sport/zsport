@@ -1,26 +1,24 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { NgzUserProfileComponent } from './ngz-user-profile.component';
 
 describe('NgzUserProfileComponent', () => {
-    let component: NgzUserProfileComponent;
-    let fixture: ComponentFixture<NgzUserProfileComponent>;
+    let spectator: Spectator<NgzUserProfileComponent>;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [NgzUserProfileComponent],
-            }).compileComponents();
-        })
-    );
-
-    beforeEach(() => {
-        fixture = TestBed.createComponent(NgzUserProfileComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+    const createComponent = createComponentFactory({
+        component: NgzUserProfileComponent,
+        imports: [HttpClientTestingModule, NzAvatarModule, NzIconModule, NzMenuModule, NzPopoverModule],
     });
 
+    beforeEach(() => (spectator = createComponent()));
+
     it('should create', () => {
-        expect(component).toBeTruthy();
+        expect(spectator.component).toBeTruthy();
     });
 });

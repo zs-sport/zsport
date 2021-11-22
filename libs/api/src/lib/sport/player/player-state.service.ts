@@ -1,13 +1,9 @@
 import { Observable } from 'rxjs';
 
-import { EntityStateService } from '../../../base';
-import { PlayerEntity } from '../entity';
+import { EntityStateService } from '../../base';
+import { PlayerEntity } from './player.entity';
 
 export abstract class PlayerStateService extends EntityStateService {
-    public constructor() {
-        super();
-    }
-
     public abstract dispatchAddPlayerByClubIdAction(player: PlayerEntity, clubId: string): void;
     public abstract dispatchChangeNewEntityButtonEnabled(enabled: boolean): void;
     public abstract dispatchListPlayersByClubIdAction(clubId: string): void;

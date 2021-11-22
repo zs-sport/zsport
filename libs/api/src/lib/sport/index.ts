@@ -1,7 +1,7 @@
 export * from './article';
 export * from './association';
 export * from './category';
-export * from './club';
+
 export * from './competition';
 export * from './event';
 export * from './period';

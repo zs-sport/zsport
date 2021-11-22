@@ -7,7 +7,7 @@ export abstract class CompetitionStateService extends EntityStateService {
     public abstract dispatchAddEventByCompetitionId(event: Event): void;
     public abstract dispatchChangeNewEntityButtonEnabled(enabled: boolean): void;
     public abstract dispatchChangeSelectedfinalTabId(selectedFinalTabId: number): void;
-    public abstract dispatchListMatchesByCompetitionId(competitionId: string): void;
+    public abstract dispatchListEventsByCompetitionId(competitionId: string): void;
     public abstract dispatchSelectCompetitionAction(uid: string): void;
     public abstract dispatchUpdateEventByCompetitionId(event: Event): void;
     public abstract selectNewEntityButtonEnabled$(): Observable<boolean>;

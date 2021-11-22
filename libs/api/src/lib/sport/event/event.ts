@@ -13,7 +13,7 @@ export interface Event extends Identifiable {
     dates?: Dates;
     gender: Gender;
     location?: Location;
-    matchDayTime: number | Date;
+    eventDayTime: number | Date;
     report?: Report;
     result?: Result;
     roundId?: number;

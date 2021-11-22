@@ -13,5 +13,5 @@ export abstract class EventUtilService extends EntityUtilService {
         competitionId: string,
         roundId: number
     ): EventEntity;
-    public abstract createMatchLists(matches: EventEntity[]): EventList[];
+    public abstract createEventLists(events: EventEntity[]): EventList[];
 }

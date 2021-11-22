@@ -5,7 +5,7 @@ export * from './report-consequence';
 export * from './report-consequence-types.enum';
 export * from './report-item';
 export * from './report-item-values';
-export * from './report-match-team-environment';
+export * from './report-event-team-environment';
 export * from './report-position-short-forms.enum';
 export * from './report-util.service';
 export * from './report.entity';

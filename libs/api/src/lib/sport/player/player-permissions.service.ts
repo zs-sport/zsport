@@ -1,5 +1,5 @@
-import { ActionEnum } from '../../../action';
-import { PlayerResourceEnum } from '../enum';
+import { ActionEnum } from '../../action';
+import { PlayerResourceEnum } from './player-resource.enum';
 
 export class PlayerPermissionsService {
     static readonly createPlayerEntity = ActionEnum.CREATE.toString() + PlayerResourceEnum.PLAYER_ENTITY.toString();

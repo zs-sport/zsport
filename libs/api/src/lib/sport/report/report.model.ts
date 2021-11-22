@@ -1,9 +1,4 @@
-import { Model } from '../../base';
-import { Stateable } from '../../state';
-import { ReportItem } from './report-item';
+import { Report } from '.';
 
-export interface ReportModel extends Model, Stateable {
-    creatorId?: string;
-    items: ReportItem[];
-    matchId: string;
+export interface ReportModel extends Report {
 }

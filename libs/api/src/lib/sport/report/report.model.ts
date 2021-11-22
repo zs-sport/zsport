@@ -1,4 +1,3 @@
 import { Report } from '.';
 
-export interface ReportModel extends Report {
-}
+export interface ReportModel extends Report {}

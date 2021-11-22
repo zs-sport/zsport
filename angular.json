@@ -27,7 +27,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:api", "type:api"]
         },
         "core-authentication-store": {
             "projectType": "library",
@@ -55,7 +55,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:store", "type:core"]
         },
         "core-authentication-view": {
             "projectType": "library",
@@ -83,7 +83,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:view", "type:core"]
         },
         "core-authorization-data": {
             "projectType": "library",
@@ -111,7 +111,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:data", "type:core"]
         },
         "core-entity-quantity-data": {
             "projectType": "library",
@@ -139,7 +139,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:data", "type:core"]
         },
         "core-entity-quantity-store": {
             "projectType": "library",
@@ -167,7 +167,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:store", "type:core"]
         },
         "core-entity-quantity-util": {
             "projectType": "library",
@@ -195,7 +195,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:util", "type:core"]
         },
         "core-i18n": {
             "projectType": "library",
@@ -223,7 +223,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:core", "type:core"]
         },
         "core-storage-data": {
             "projectType": "library",
@@ -251,7 +251,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:core", "type:core"]
         },
         "core-storage-util": {
             "projectType": "library",
@@ -279,7 +279,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:util", "type:core"]
         },
         "domain-role-admin": {
             "projectType": "library",
@@ -307,7 +307,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:admin", "type:domain"]
         },
         "domain-role-data": {
             "projectType": "library",
@@ -335,7 +335,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:data", "type:domain"]
         },
         "domain-role-form": {
             "projectType": "library",
@@ -363,7 +363,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:form", "type:domain"]
         },
         "domain-role-store": {
             "projectType": "library",
@@ -391,7 +391,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:store", "type:domain"]
         },
         "domain-role-table": {
             "projectType": "library",
@@ -419,7 +419,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:table", "type:domain"]
         },
         "domain-user-admin": {
             "projectType": "library",
@@ -447,7 +447,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:admin", "type:domain"]
         },
         "domain-user-data": {
             "projectType": "library",
@@ -475,7 +475,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:data", "type:domain"]
         },
         "domain-user-form": {
             "projectType": "library",
@@ -503,7 +503,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:form", "type:domain"]
         },
         "domain-user-store": {
             "projectType": "library",
@@ -531,7 +531,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:store", "type:domain"]
         },
         "domain-user-table": {
             "projectType": "library",
@@ -559,7 +559,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:table", "type:domain"]
         },
         "shared": {
             "projectType": "library",
@@ -587,7 +587,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:shared", "type:domain"]
         },
         "ui-application-header": {
             "projectType": "library",
@@ -615,7 +615,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:ui", "type:ui"]
         },
         "ui-dynamic-form": {
             "projectType": "library",
@@ -643,7 +643,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:ui", "type:ui"]
         },
         "ui-dynamic-table": {
             "projectType": "library",
@@ -671,7 +671,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:ui", "type:ui"]
         },
         "ui-header-menu": {
             "projectType": "library",
@@ -699,7 +699,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:ui", "type:ui"]
         },
         "ui-user-profile": {
             "projectType": "library",
@@ -727,7 +727,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:ui", "type:ui"]
         },
         "zsport-admin": {
             "projectType": "application",
@@ -832,7 +832,7 @@
                     }
                 }
             },
-            "tags": []
+            "tags": ["scope:app", "type:app"]
         },
         "zsport-admin-e2e": {
             "root": "apps/zsport-admin-e2e",
@@ -863,7 +863,7 @@
                     }
                 }
             },
-            "tags": [],
+            "tags": ["scope:app", "type:ui"],
             "implicitDependencies": [
                 "zsport-admin"
             ]

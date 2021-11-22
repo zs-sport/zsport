@@ -13,9 +13,37 @@
                         "allow": [],
                         "depConstraints": [
                             {
-                                "sourceTag": "*",
-                                "onlyDependOnLibsWithTags": ["*"]
-                            }
+                                "sourceTag": "scope:shared",
+                                "onlyDependOnLibsWithTags": ["scope:api"]
+                              },
+                              {
+                                "sourceTag": "scope:admin",
+                                "onlyDependOnLibsWithTags": ["scope:api", "scope:data", "scope:store"]
+                              },
+                              {
+                                "sourceTag": "scope:data",
+                                "onlyDependOnLibsWithTags": ["scope:api"]
+                              },
+                              {
+                                "sourceTag": "scope:store",
+                                "onlyDependOnLibsWithTags": ["scope:api"]
+                              },
+                              {
+                                "sourceTag": "scope:form",
+                                "onlyDependOnLibsWithTags": ["scope:api"]
+                              },
+                              {
+                                "sourceTag": "scope:table",
+                                "onlyDependOnLibsWithTags": ["scope:api"]
+                              },
+                              {
+                                "sourceTag": "scope:view",
+                                "onlyDependOnLibsWithTags": ["scope:api", "scope:ui"]
+                              },
+                              {
+                                "sourceTag": "scope:app",
+                                "onlyDependOnLibsWithTags": ["scope:api", "scope:admin", "scope:shared"]
+                              }
                         ]
                     }
                 ]

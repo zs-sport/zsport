@@ -1,26 +1,33 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+
+import { RouterModule } from '@angular/router';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
+import { I18nService } from '@zsport/api';
+import { CoreI18nModule } from '@zsport/core/i18n';
 
 import { NgzDynamicTableComponent } from './ngz-dynamic-table.component';
 
 describe('NgzDynamicTableComponent', () => {
-    let component: NgzDynamicTableComponent;
-    let fixture: ComponentFixture<NgzDynamicTableComponent>;
+    let spectator: Spectator<NgzDynamicTableComponent>;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [NgzDynamicTableComponent],
-            }).compileComponents();
-        })
-    );
-
-    beforeEach(() => {
-        fixture = TestBed.createComponent(NgzDynamicTableComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+    const createComponent = createComponentFactory({
+        component: NgzDynamicTableComponent,
+        imports: [NzTableModule, NzIconModule, NzToolTipModule, RouterModule, CoreI18nModule],
+        providers: [
+            {
+                provide: I18nService,
+                useValue: {
+                    getActiveLangAsString: () => {},
+                },
+            },
+        ],
     });
 
+    beforeEach(() => (spectator = createComponent()));
+
     it('should create', () => {
-        expect(component).toBeTruthy();
+        expect(spectator.component).toBeTruthy();
     });
 });

@@ -1,0 +1,20 @@
+<section>
+    <nz-page-header [nzGhost]="false">
+        <nz-page-header-extra>
+            <ng-template [ngxPermissionsOnly]="buttonPermissions">
+                <button
+                    nz-button
+                    nzType="primary"
+                    (click)="clickHandler()"
+                    [disabled]="!(isNewEntityButtonEnabled$ | async)"
+                >
+                    {{ 'admin.role.action.add_role' | transloco }}
+                </button>
+            </ng-template>
+        </nz-page-header-extra>
+    </nz-page-header>
+
+    <div>
+        <router-outlet> </router-outlet>
+    </div>
+</section>

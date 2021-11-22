@@ -255,6 +255,32 @@
             },
             "tags": []
         },
+        "domain-role-admin": {
+            "projectType": "library",
+            "root": "libs/domain/role/admin",
+            "sourceRoot": "libs/domain/role/admin/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/role/admin"],
+                    "options": {
+                        "jestConfig": "libs/domain/role/admin/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/role/admin/src/**/*.ts",
+                            "libs/domain/role/admin/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-role-data": {
             "projectType": "library",
             "root": "libs/domain/role/data",

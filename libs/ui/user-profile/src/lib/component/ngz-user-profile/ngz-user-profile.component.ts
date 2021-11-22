@@ -8,9 +8,5 @@ import { UserProfileComponent } from '@zsport/shared';
     styleUrls: ['./ngz-user-profile.component.less'],
 })
 export class NgzUserProfileComponent extends UserProfileComponent {
-    public constructor() {
-        super();
-    }
-
     protected init(): void {}
 }

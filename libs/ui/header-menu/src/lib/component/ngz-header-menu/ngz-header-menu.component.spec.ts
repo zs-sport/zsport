@@ -1,26 +1,22 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+
+import { RouterModule } from '@angular/router';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
+import { CoreI18nModule } from '@zsport/core/i18n';
 
 import { NgzHeaderMenuComponent } from './ngz-header-menu.component';
 
 describe('NgzHeaderMenuComponent', () => {
-    let component: NgzHeaderMenuComponent;
-    let fixture: ComponentFixture<NgzHeaderMenuComponent>;
+    let spectator: Spectator<NgzHeaderMenuComponent>;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [NgzHeaderMenuComponent],
-            }).compileComponents();
-        })
-    );
-
-    beforeEach(() => {
-        fixture = TestBed.createComponent(NgzHeaderMenuComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+    const createComponent = createComponentFactory({
+        component: NgzHeaderMenuComponent,
+        imports: [NzMenuModule, RouterModule, CoreI18nModule],
     });
 
+    beforeEach(() => (spectator = createComponent()));
+
     it('should create', () => {
-        expect(component).toBeTruthy();
+        expect(spectator.component).toBeTruthy();
     });
 });

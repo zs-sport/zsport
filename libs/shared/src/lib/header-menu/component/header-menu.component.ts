@@ -15,10 +15,6 @@ export abstract class HeaderMenuComponent extends BaseComponent implements OnIni
     @Input()
     public theme!: HeaderMenuThemeEnum;
 
-    public constructor() {
-        super();
-    }
-
     public ngOnInit(): void {
         this.init();
     }

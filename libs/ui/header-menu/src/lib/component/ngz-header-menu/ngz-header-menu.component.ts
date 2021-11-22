@@ -8,9 +8,5 @@ import { HeaderMenuComponent } from '@zsport/shared';
     styleUrls: ['./ngz-header-menu.component.less'],
 })
 export class NgzHeaderMenuComponent extends HeaderMenuComponent {
-    public constructor() {
-        super();
-    }
-
     protected init(): void {}
 }

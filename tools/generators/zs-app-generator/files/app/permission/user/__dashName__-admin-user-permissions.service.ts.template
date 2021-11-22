@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PermissionsService } from '@zsport/api';
-import { UserAdminPermissionsService } from '@zsport/domain/user';
+import { UserAdminPermissionsService } from '@zsport/domain/user/admin';
 
 @Injectable()
 export class  <%= classify(name) %>AdminUserPermissionsService extends UserAdminPermissionsService {

@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Injectable, Optional } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AuthorizationService, ButtonBase, I18nService, RoleNames, UserModel, UserStateService } from '@zsport/api';
-import { UserFormButtonFactory } from '@zsport/domain/user';
+import { UserFormButtonFactory } from '@zsport/domain/user/form';
 
 import { <%= classify(name) %>AdminUserPermissionsService } from '../../../../../permission/user';
 

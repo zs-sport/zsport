@@ -14,7 +14,7 @@ import {
     RoleNames,
     RoleStateService,
 } from '@zsport/api';
-import { RoleTableFactory } from '@zsport/domain/role';
+import { RoleTableFactory } from '@zsport/domain/role/table';
 import { NgzDynamicTableComponent } from '@zsport/ui/dynamic-table';
 
 import { <%= classify(name) %>AdminRolePermissionsService } from '../../../../../permission/role';

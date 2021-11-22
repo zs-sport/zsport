@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { UserEntity, UserStateService } from '@zsport/api';
-import { UserFormFactory } from '@zsport/domain/user';
+import { UserFormFactory } from '@zsport/domain/user/form';
 import { NgzDynamicFormComponent } from '@zsport/ui/dynamic-form';
 
 @Injectable()

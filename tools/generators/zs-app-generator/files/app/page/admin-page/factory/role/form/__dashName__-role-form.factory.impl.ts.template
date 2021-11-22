@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { Entity, RoleStateService } from '@zsport/api';
-import { RoleFormFactory } from '@zsport/domain/role';
+import { RoleFormFactory } from '@zsport/domain/role/form';
 import { NgzDynamicFormComponent } from '@zsport/ui/dynamic-form';
 
 @Injectable()

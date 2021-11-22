@@ -5,8 +5,8 @@ import {
     UserFormConfigFactory,
     UserFormControlFactory,
     UserFormFactory,
-    UserTableFactory,
-} from '@zsport/domain/user';
+} from '@zsport/domain/user/form';
+import { UserTableFactory } from '@zsport/domain/user/table';
 
 import { <%= classify(name) %>UserFormFactoryImpl } from './user-form';
 import { <%= classify(name) %>UserFormButtonFactoryImpl } from './user-form-button';

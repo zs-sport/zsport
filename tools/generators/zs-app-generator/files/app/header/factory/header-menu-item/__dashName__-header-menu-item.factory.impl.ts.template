@@ -3,10 +3,6 @@ import { HeaderMenuItemFactory, HeaderMenuItemModel } from '@zsport/shared';
 
 @Injectable()
 export class <%= classify(name) %>HeaderMenuItemFactoryImpl extends HeaderMenuItemFactory {
-    public constructor() {
-        super();
-    }
-
     public createMenuItems(): HeaderMenuItemModel[] {
         return [
             {

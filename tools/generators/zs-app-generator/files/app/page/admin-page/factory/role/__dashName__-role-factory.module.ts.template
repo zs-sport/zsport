@@ -5,8 +5,8 @@ import {
     RoleFormConfigFactory,
     RoleFormControlFactory,
     RoleFormFactory,
-    RoleTableFactory,
-} from '@zsport/domain/role';
+} from '@zsport/domain/role/form';
+import { RoleTableFactory } from '@zsport/domain/role/table';
 
 import { <%= classify(name) %>RoleFormFactoryImpl } from './form';
 import { <%= classify(name) %>RoleFormButtonFactoryImpl } from './form-button';

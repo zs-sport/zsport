@@ -14,7 +14,7 @@ import {
     UserEntity,
     UserPermissionsService,
 } from '@zsport/api';
-import { UserFormControlFactory } from '@zsport/domain/user';
+import { UserFormControlFactory } from '@zsport/domain/user/form';
 
 @Injectable()
 export class <%= classify(name) %>UserFormControlFactoryImpl extends UserFormControlFactory {

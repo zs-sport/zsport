@@ -12,7 +12,7 @@ import {
     UserEntity,
     UserStateService,
 } from '@zsport/api';
-import { UserTableFactory } from '@zsport/domain/user';
+import { UserTableFactory } from '@zsport/domain/user/table';
 import { NgzDynamicTableComponent } from '@zsport/ui/dynamic-table';
 
 import { <%= classify(name) %>AdminUserPermissionsService } from '../../../../../permission/user';

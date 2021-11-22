@@ -10,7 +10,7 @@ import {
     PermissionsService,
     RoleEntity,
 } from '@zsport/api';
-import { RoleFormControlFactory } from '@zsport/domain/role';
+import { RoleFormControlFactory } from '@zsport/domain/role/form';
 
 @Injectable()
 export class <%= classify(name) %>RoleFormControlFactoryImpl extends RoleFormControlFactory {

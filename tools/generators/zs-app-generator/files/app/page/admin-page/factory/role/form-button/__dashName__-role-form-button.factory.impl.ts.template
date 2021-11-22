@@ -10,7 +10,7 @@ import {
     RoleNames,
     RoleStateService,
 } from '@zsport/api';
-import { RoleFormButtonFactory } from '@zsport/domain/role';
+import { RoleFormButtonFactory } from '@zsport/domain/role/form';
 
 import { <%= classify(name) %>AdminRolePermissionsService } from '../../../../../permission/role';
 

@@ -509,6 +509,32 @@
             },
             "tags": []
         },
+        "domain-sport-association-util": {
+            "projectType": "library",
+            "root": "libs/domain/sport/association/util",
+            "sourceRoot": "libs/domain/sport/association/util/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/association/util"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/association/util/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/association/util/src/**/*.ts",
+                            "libs/domain/sport/association/util/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-user-admin": {
             "projectType": "library",
             "root": "libs/domain/user/admin",

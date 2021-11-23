@@ -379,6 +379,32 @@
             },
             "tags": ["scope:table", "type:domain"]
         },
+        "domain-sport-age-group-util": {
+            "projectType": "library",
+            "root": "libs/domain/sport/age-group/util",
+            "sourceRoot": "libs/domain/sport/age-group/util/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/age-group/util"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/age-group/util/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/age-group/util/src/**/*.ts",
+                            "libs/domain/sport/age-group/util/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-user-admin": {
             "projectType": "library",
             "root": "libs/domain/user/admin",

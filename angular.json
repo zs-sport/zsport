@@ -483,6 +483,32 @@
             },
             "tags": []
         },
+        "domain-sport-association-table": {
+            "projectType": "library",
+            "root": "libs/domain/sport/association/table",
+            "sourceRoot": "libs/domain/sport/association/table/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/association/table"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/association/table/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/association/table/src/**/*.ts",
+                            "libs/domain/sport/association/table/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-user-admin": {
             "projectType": "library",
             "root": "libs/domain/user/admin",

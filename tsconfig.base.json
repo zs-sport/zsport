@@ -39,6 +39,7 @@
             "@zsport/domain/sport/association/table": ["libs/domain/sport/association/table/src/index.ts"],
             "@zsport/domain/sport/association/util": ["libs/domain/sport/association/util/src/index.ts"],
             "@zsport/domain/sport/category/data": ["libs/domain/sport/category/data/src/index.ts"],
+            "@zsport/domain/sport/category/store": ["libs/domain/sport/category/store/src/index.ts"],
             "@zsport/domain/user/admin": ["libs/domain/user/admin/src/index.ts"],
             "@zsport/domain/user/data": ["libs/domain/user/data/src/index.ts"],
             "@zsport/domain/user/form": ["libs/domain/user/form/src/index.ts"],

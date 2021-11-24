@@ -1,0 +1,20 @@
+<section>
+    <nz-page-header nzBackIcon [nzGhost]="false">
+        <nz-page-header-extra>
+            <ng-template [ngxPermissionsOnly]="buttonPermissions">
+                <button
+                    nz-button
+                    nzType="primary"
+                    (click)="clickHandler()"
+                    [disabled]="!(isNewEntityButtonEnabled$ | async)"
+                >
+                    {{ 'admin.sport.association.action.add_association' | transloco }}
+                </button>
+            </ng-template>
+        </nz-page-header-extra>
+    </nz-page-header>
+
+    <div>
+        <router-outlet> </router-outlet>
+    </div>
+</section>

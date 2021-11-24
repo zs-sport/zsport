@@ -82,6 +82,28 @@
                 "permissions_placeholder": "Permissions"
             },
             "roles": "Roles"
+        },
+        "sport": {
+            "category": {
+                "action": {
+                    "add_category": "Add category",
+                    "edit": "Edit"
+                },
+                "column": {
+                    "action": "Action",
+                    "color": "Color",
+                    "edit": "Edit",
+                    "name": "Name"
+                },
+                "label": {
+                    "name": "Name",
+                    "name_placeholder": "Name",
+                    "color": "Color",
+                    "color_placeholder": "Color"
+                }
+            },
+            "categories": "Categories",
+            "sport": "Sport"
         }
     }
 }

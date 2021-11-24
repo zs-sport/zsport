@@ -9,6 +9,9 @@ import { CoreStorageDataModule } from '@zsport/core/storage/data';
 import { CoreStorageUtilModule } from '@zsport/core/storage/util';
 import { DomainRoleDataModule } from '@zsport/domain/role/data';
 import { DomainRoleStoreModule } from '@zsport/domain/role/store';
+import { DomainSportCategoryDataModule } from '@zsport/domain/sport/category/data';
+import { DomainSportCategoryStoreModule } from '@zsport/domain/sport/category/store';
+import { DomainSportCategoryUtilModule } from '@zsport/domain/sport/category/util';
 import { DomainUserDataModule } from '@zsport/domain/user/data';
 import { DomainUserStoreModule } from '@zsport/domain/user/store';
 import { SharedModule, StateUtilModule } from '@zsport/shared';
@@ -32,6 +35,9 @@ import { DefaultUserHookService } from './hook/user';
         CoreAuthorizationDataModule,
         CoreStorageDataModule,
         CoreStorageUtilModule,
+        DomainSportCategoryDataModule,
+        DomainSportCategoryStoreModule,
+        DomainSportCategoryUtilModule,
         DomainRoleDataModule,
         DomainRoleStoreModule,
         StateUtilModule,

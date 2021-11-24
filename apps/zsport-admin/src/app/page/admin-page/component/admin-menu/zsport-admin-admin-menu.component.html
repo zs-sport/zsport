@@ -1,6 +1,6 @@
 <div>
     <ul nz-menu [nzMode]="'inline'" nzTheme="dark" [nzInlineCollapsed]="isCollapsed">
-        <ng-template [ngxPermissionsOnly]="[adminRoleName, viewUserAdminPage]">
+        <ng-template [ngxPermissionsOnly]="[adminRoleName, viewUserAdminPagePermission]">
             <li nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLink="user">
                 <span title>
                     <i nz-icon nzType="user"></i>
@@ -10,13 +10,35 @@
             </li>
         </ng-template>
 
-        <ng-template [ngxPermissionsOnly]="[adminRoleName, viewRoleAdminPage]">
+        <ng-template [ngxPermissionsOnly]="[adminRoleName, viewRoleAdminPagePermission]">
             <li nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLink="role">
                 <span title>
                     <i nz-icon nzType="icon:role"></i>
 
                     <span>{{ 'admin.role.roles' | transloco }}</span>
                 </span>
+            </li>
+        </ng-template>
+
+        <ng-template [ngxPermissionsOnly]="['ADMIN', 'viewCategoryAdminPage']">
+            <li nz-submenu>
+                <span title>
+                    <i nz-icon nzType="appstore"></i>
+
+                    <span>{{ 'admin.sport.sport' | transloco }}</span>
+                </span>
+
+                <ul>
+                    <ng-template [ngxPermissionsOnly]="[adminRoleName, viewCategoryAdminPagePermission]">
+                        <li nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLink="category">
+                            <span title>
+                                <i nz-icon nzType="mail"></i>
+
+                                <span>{{ 'admin.sport.categories' | transloco }}</span>
+                            </span>
+                        </li>
+                    </ng-template>
+                </ul>
             </li>
         </ng-template>
     </ul>

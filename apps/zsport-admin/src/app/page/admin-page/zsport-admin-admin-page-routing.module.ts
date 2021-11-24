@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoleNames } from '@zsport/api';
 
+import { AdminCategoryPermissionsService } from '../../permission/category';
 import { ZsportAdminAdminRolePermissionsService } from '../../permission/role';
 import { ZsportAdminAdminUserPermissionsService } from '../../permission/user';
 import { ZsportAdminAdminPageComponent } from './zsport-admin-admin-page.component';
@@ -40,6 +41,20 @@ const routes: Routes = [
                     },
                 },
                 loadChildren: () => import('@zsport/domain/role/admin').then((lib) => lib.DomainRoleAdminModule),
+                canActivate: [NgxPermissionsGuard],
+                canLoad: [NgxPermissionsGuard],
+            },
+            {
+                path: 'category',
+                data: {
+                    breadcrumb: 'Category',
+                    permissions: {
+                        only: ['ADMIN', AdminCategoryPermissionsService.viewCategoryAdminPage],
+                        redirectTo: '/error',
+                    },
+                },
+                loadChildren: () =>
+                    import('@zsport/domain/sport/category/admin').then((lib) => lib.DomainSportCategoryAdminModule),
                 canActivate: [NgxPermissionsGuard],
                 canLoad: [NgxPermissionsGuard],
             },

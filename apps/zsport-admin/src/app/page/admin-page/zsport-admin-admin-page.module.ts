@@ -12,8 +12,9 @@ import { FormsModule } from '@angular/forms';
 import { CoreI18nModule } from '@zsport/core/i18n';
 
 import { ZsportAdminAdminMenuComponent } from './component/admin-menu';
+import { CategoryFactoryModule } from './factory/category';
 import { ZsportAdminRoleFactoryModule } from './factory/role';
-import { ZsportAdminUserFactoryModule } from './factory/user/zsport-admin-user-factory.module';
+import { ZsportAdminUserFactoryModule } from './factory/user';
 import { ZsportAdminAdminRoutingModule } from './zsport-admin-admin-page-routing.module';
 import { ZsportAdminAdminPageComponent } from './zsport-admin-admin-page.component';
 
@@ -30,6 +31,7 @@ import { ZsportAdminAdminPageComponent } from './zsport-admin-admin-page.compone
         NzMenuModule,
         NzPageHeaderModule,
         CoreI18nModule,
+        CategoryFactoryModule,
         ZsportAdminAdminRoutingModule,
         ZsportAdminRoleFactoryModule,
         ZsportAdminUserFactoryModule,

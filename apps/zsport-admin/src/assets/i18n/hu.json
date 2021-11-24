@@ -81,6 +81,28 @@
                 "permissions_placeholder": "Jogosultságok"
             },
             "roles": "Szerepkörök"
+        },
+        "sport": {
+            "category": {
+                "action": {
+                    "add_category": "Új kategória",
+                    "edit": "Szerkesztés"
+                },
+                "column": {
+                    "action": "Művelet",
+                    "color": "Szín",
+                    "edit": "Akció",
+                    "name": "Név"
+                },
+                "label": {
+                    "name": "Név",
+                    "name_placeholder": "Név",
+                    "color": "Szín",
+                    "color_placeholder": "Szín"
+                }
+            },
+            "categories": "Kategóriák",
+            "sport": "Sport"
         }
     }
 }

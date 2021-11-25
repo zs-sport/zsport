@@ -769,6 +769,32 @@
             },
             "tags": []
         },
+        "domain-sport-club-form": {
+            "projectType": "library",
+            "root": "libs/domain/sport/club/form",
+            "sourceRoot": "libs/domain/sport/club/form/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/club/form"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/club/form/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/club/form/src/**/*.ts",
+                            "libs/domain/sport/club/form/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-sport-club-store": {
             "projectType": "library",
             "root": "libs/domain/sport/club/store",

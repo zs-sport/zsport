@@ -3,7 +3,9 @@ import { NzIconService } from 'ng-zorro-antd/icon';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { ZsportAdminAdminPermissionsService } from '../../permission/admin';
+import { AdminAssociationPermissionsService } from '../../permission/association';
 import { AdminCategoryPermissionsService } from '../../permission/category';
+import { AdminClubPermissionsService } from '../../permission/club';
 import { ZsportAdminAdminRolePermissionsService } from '../../permission/role';
 import { ZsportAdminAdminUserPermissionsService } from '../../permission/user';
 
@@ -19,6 +21,8 @@ export class ZsportAdminAdminPageComponent {
     public constructor(
         private iconService: NzIconService,
         private adminPermissionsService: ZsportAdminAdminPermissionsService,
+        private adminAssociationPermissionsService: AdminAssociationPermissionsService,
+        private adminClubPermissionsService: AdminClubPermissionsService,
         private adminCategoryPermissionsService: AdminCategoryPermissionsService,
         private adminRolePermissionsService: ZsportAdminAdminRolePermissionsService,
         private adminUserPermissionsService: ZsportAdminAdminUserPermissionsService

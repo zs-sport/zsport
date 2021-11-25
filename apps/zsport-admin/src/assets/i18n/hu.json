@@ -120,8 +120,41 @@
                     "color_placeholder": "Szín"
                 }
             },
+            "club": {
+                "action": {
+                    "add_club": "Új klub",
+                    "edit": "Szerkesztés"
+                },
+                "column": {
+                    "action": "Művelet",
+                    "edit": "Akció",
+                    "name": "Név",
+                    "category": "Kategória",
+                    "association": "Szervezet"
+                },
+                "label": {
+                    "club": "Klub",
+                    "teams": "Csapatok",
+                    "players": "Játékosok",
+                    "name": "Név",
+                    "name_placeholder": "Név",
+                    "locations": "Pályák",
+                    "locations_placeholder": "Pályák",
+                    "logo": "Logo",
+                    "logo_placeholder": "Logo",
+                    "short_name": "Rövid név",
+                    "short_name_placeholder": "Rövid név",
+                    "simple_name": "Egyszerű név",
+                    "simple_name_placeholder": "Egyszerű név",
+                    "category": "Kategória",
+                    "category_placeholder": "Kategória",
+                    "association": "Szervezet",
+                    "association_placeholder": "Szervezet"
+                }
+            },
             "associations": "Szervezetek",
             "categories": "Kategóriák",
+            "clubs": "Klubok",
             "sport": "Sport"
         }
     }

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RoleNames } from '@zsport/api';
 import { AdminAssociationPermissionsService } from 'apps/zsport-admin/src/app/permission/association';
+import { AdminClubPermissionsService } from 'apps/zsport-admin/src/app/permission/club';
 
 import { AdminCategoryPermissionsService } from '../../../../permission/category';
 import { ZsportAdminAdminRolePermissionsService } from '../../../../permission/role';
@@ -17,6 +18,7 @@ export class ZsportAdminAdminMenuComponent {
     public isCollapsed: boolean;
     public viewAssociationAdminPagePermission = AdminAssociationPermissionsService.viewAssociationAdminPage;
     public viewCategoryAdminPagePermission = AdminCategoryPermissionsService.viewCategoryAdminPage;
+    public viewClubAdminPagePermission = AdminClubPermissionsService.viewClubAdminPage;
     public viewRoleAdminPagePermission = ZsportAdminAdminRolePermissionsService.viewRoleAdminPage;
     public viewUserAdminPagePermission = ZsportAdminAdminUserPermissionsService.viewUserAdminPage;
 

@@ -14,6 +14,7 @@ import { CoreI18nModule } from '@zsport/core/i18n';
 import { ZsportAdminAdminMenuComponent } from './component/admin-menu';
 import { AssociationFactoryModule } from './factory/association';
 import { CategoryFactoryModule } from './factory/category';
+import { ClubFactoryModule } from './factory/club';
 import { ZsportAdminRoleFactoryModule } from './factory/role';
 import { ZsportAdminUserFactoryModule } from './factory/user';
 import { ZsportAdminAdminRoutingModule } from './zsport-admin-admin-page-routing.module';
@@ -34,6 +35,7 @@ import { ZsportAdminAdminPageComponent } from './zsport-admin-admin-page.compone
         CoreI18nModule,
         AssociationFactoryModule,
         CategoryFactoryModule,
+        ClubFactoryModule,
         ZsportAdminAdminRoutingModule,
         ZsportAdminRoleFactoryModule,
         ZsportAdminUserFactoryModule,

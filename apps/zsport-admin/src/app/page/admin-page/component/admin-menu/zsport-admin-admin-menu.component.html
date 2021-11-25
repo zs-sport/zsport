@@ -48,6 +48,16 @@
                             </span>
                         </li>
                     </ng-template>
+
+                    <ng-template [ngxPermissionsOnly]="[adminRoleName, viewClubAdminPagePermission]">
+                        <li nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLink="club">
+                            <span title>
+                                <i nz-icon nzType="mail"></i>
+
+                                <span>{{ 'admin.sport.clubs' | transloco }}</span>
+                            </span>
+                        </li>
+                    </ng-template>
                 </ul>
             </li>
         </ng-template>

@@ -1,5 +1,5 @@
 import { ActionEnum } from '../../action';
-import { ClubResourceEnum } from '../club';
+import { ClubResourceEnum } from './club-resource.enum';
 
 export class ClubPermissionsService {
     static readonly createClubEntity = ActionEnum.CREATE.toString() + ClubResourceEnum.CLUB_ENTITY.toString();

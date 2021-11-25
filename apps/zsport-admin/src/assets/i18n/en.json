@@ -121,8 +121,40 @@
                     "color_placeholder": "Color"
                 }
             },
+            "club": {
+                "action": {
+                    "add_club": "Add club",
+                    "edit": "Edit"
+                },
+                "column": {
+                    "action": "Action",
+                    "edit": "Edit",
+                    "name": "Name",
+                    "category": "Category",
+                    "association": "Association"
+                },
+                "label": {
+                    "club": "Club",
+                    "teams": "Teams",
+                    "name": "Name",
+                    "name_placeholder": "Name",
+                    "category": "Category",
+                    "category_placeholder": "Category",
+                    "association": "Association",
+                    "association_placeholder": "Association",
+                    "locations": "Locations",
+                    "locations_placeholder": "Locations",
+                    "logo": "Logo",
+                    "logo_placeholder": "Logo",
+                    "short_name": "Short name",
+                    "short_name_placeholder": "Short name",
+                    "simple_name": "Simple name",
+                    "simple_name_placeholder": "Simple name"
+                }
+            },
             "associations": "Associations",
             "categories": "Categories",
+            "clubs": "Clubs",
             "sport": "Sport"
         }
     }

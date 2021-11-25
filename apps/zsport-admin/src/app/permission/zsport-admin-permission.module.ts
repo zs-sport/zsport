@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { ZsportAdminAdminPermissionsService } from './admin';
 import { AdminAssociationPermissionsService } from './association';
 import { AdminCategoryPermissionsService } from './category';
+import { AdminClubPermissionsService } from './club';
 import { ZsportAdminAdminRolePermissionsService } from './role';
 import { ZsportAdminAdminUserPermissionsService } from './user';
 
@@ -12,6 +13,7 @@ import { ZsportAdminAdminUserPermissionsService } from './user';
     providers: [
         AdminAssociationPermissionsService,
         AdminCategoryPermissionsService,
+        AdminClubPermissionsService,
         ZsportAdminAdminPermissionsService,
         ZsportAdminAdminRolePermissionsService,
         ZsportAdminAdminUserPermissionsService,

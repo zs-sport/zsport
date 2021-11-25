@@ -15,6 +15,9 @@ import { DomainSportAssociationUtilModule } from '@zsport/domain/sport/associati
 import { DomainSportCategoryDataModule } from '@zsport/domain/sport/category/data';
 import { DomainSportCategoryStoreModule } from '@zsport/domain/sport/category/store';
 import { DomainSportCategoryUtilModule } from '@zsport/domain/sport/category/util';
+import { DomainSportClubDataModule } from '@zsport/domain/sport/club/data';
+import { DomainSportClubStoreModule } from '@zsport/domain/sport/club/store';
+import { DomainSportClubUtilModule } from '@zsport/domain/sport/club/util';
 import { DomainUserDataModule } from '@zsport/domain/user/data';
 import { DomainUserStoreModule } from '@zsport/domain/user/store';
 import { SharedModule, StateUtilModule } from '@zsport/shared';
@@ -44,6 +47,9 @@ import { DefaultUserHookService } from './hook/user';
         DomainSportCategoryDataModule,
         DomainSportCategoryStoreModule,
         DomainSportCategoryUtilModule,
+        DomainSportClubDataModule,
+        DomainSportClubStoreModule,
+        DomainSportClubUtilModule,
         DomainRoleDataModule,
         DomainRoleStoreModule,
         StateUtilModule,

@@ -6,6 +6,7 @@ import { RoleNames } from '@zsport/api';
 
 import { AdminAssociationPermissionsService } from '../../permission/association';
 import { AdminCategoryPermissionsService } from '../../permission/category';
+import { AdminClubPermissionsService } from '../../permission/club';
 import { ZsportAdminAdminRolePermissionsService } from '../../permission/role';
 import { ZsportAdminAdminUserPermissionsService } from '../../permission/user';
 import { ZsportAdminAdminPageComponent } from './zsport-admin-admin-page.component';
@@ -72,6 +73,20 @@ const routes: Routes = [
                 },
                 loadChildren: () =>
                     import('@zsport/domain/sport/category/admin').then((lib) => lib.DomainSportCategoryAdminModule),
+                canActivate: [NgxPermissionsGuard],
+                canLoad: [NgxPermissionsGuard],
+            },
+            {
+                path: 'club',
+                data: {
+                    breadcrumb: 'Club',
+                    permissions: {
+                        only: ['ADMIN', AdminClubPermissionsService.viewClubAdminPage],
+                        redirectTo: '/error',
+                    },
+                },
+                loadChildren: () =>
+                    import('@zsport/domain/sport/club/admin').then((lib) => lib.DomainSportClubAdminModule),
                 canActivate: [NgxPermissionsGuard],
                 canLoad: [NgxPermissionsGuard],
             },

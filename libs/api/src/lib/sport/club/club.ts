@@ -1,3 +1,4 @@
+import { Address } from '../../address';
 import { Identifiable } from '../../base';
 import { Dates, States } from '../../state';
 import { Association } from '../association';
@@ -5,15 +6,15 @@ import { Category } from '../category';
 import { Player } from '../player';
 
 export interface Club extends Identifiable {
-    address?: string;
-    association?: Association;
+    address: Address | null;
+    association: Association;
     category: Category;
-    contacts?: unknown[];
+    contacts?: unknown[] | null;
     dates: Dates;
-    locations?: Location[];
+    locations: Location[];
     logo: string;
     name: string;
-    officialWebSite?: string;
+    officialWebSite: string | null;
     players?: Player[];
     shortName?: string;
     simpleName?: string;

@@ -27,6 +27,7 @@
             "@zsport/core/storage/data": ["libs/core/storage/data/src/index.ts"],
             "@zsport/core/storage/util": ["libs/core/storage/util/src/index.ts"],
             "@zsport/domain/gender/util": ["libs/domain/gender/util/src/index.ts"],
+            "@zsport/domain/location/data": ["libs/domain/location/data/src/index.ts"],
             "@zsport/domain/role/admin": ["libs/domain/role/admin/src/index.ts"],
             "@zsport/domain/role/data": ["libs/domain/role/data/src/index.ts"],
             "@zsport/domain/role/form": ["libs/domain/role/form/src/index.ts"],

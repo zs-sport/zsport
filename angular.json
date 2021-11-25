@@ -743,6 +743,32 @@
             },
             "tags": []
         },
+        "domain-sport-club-admin": {
+            "projectType": "library",
+            "root": "libs/domain/sport/club/admin",
+            "sourceRoot": "libs/domain/sport/club/admin/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/club/admin"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/club/admin/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/club/admin/src/**/*.ts",
+                            "libs/domain/sport/club/admin/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-sport-club-data": {
             "projectType": "library",
             "root": "libs/domain/sport/club/data",

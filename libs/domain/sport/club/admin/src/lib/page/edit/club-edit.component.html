@@ -1,0 +1,39 @@
+<nz-tabset nzLinkRouter>
+    <nz-tab>
+        <a
+            *nzTabLink
+            nz-tab-link
+            [routerLink]="['./edit-details']"
+            [queryParams]="{ clubId: clubId }"
+            queryParamsHandling="merge"
+            routerLinkActive="ant-tabs-tab-active"
+            >{{ 'admin.sport.club.label.club' | transloco }}</a
+        >
+    </nz-tab>
+
+    <nz-tab>
+        <a
+            *nzTabLink
+            nz-tab-link
+            [routerLink]="['./teams']"
+            [queryParams]="{ clubId: clubId }"
+            routerLinkActive="ant-tabs-tab-active"
+            queryParamsHandling="merge"
+            >{{ 'admin.sport.club.label.teams' | transloco }}</a
+        >
+    </nz-tab>
+
+    <nz-tab>
+        <a
+            *nzTabLink
+            nz-tab-link
+            [routerLink]="['./players']"
+            [queryParams]="{ clubId: clubId }"
+            routerLinkActive="ant-tabs-tab-active"
+            queryParamsHandling="merge"
+            >{{ 'admin.sport.club.label.players' | transloco }}</a
+        >
+    </nz-tab>
+</nz-tabset>
+
+<router-outlet></router-outlet>

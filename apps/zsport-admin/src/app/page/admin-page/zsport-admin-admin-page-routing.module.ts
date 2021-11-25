@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoleNames } from '@zsport/api';
 
+import { AdminAssociationPermissionsService } from '../../permission/association';
 import { AdminCategoryPermissionsService } from '../../permission/category';
 import { ZsportAdminAdminRolePermissionsService } from '../../permission/role';
 import { ZsportAdminAdminUserPermissionsService } from '../../permission/user';
@@ -41,6 +42,22 @@ const routes: Routes = [
                     },
                 },
                 loadChildren: () => import('@zsport/domain/role/admin').then((lib) => lib.DomainRoleAdminModule),
+                canActivate: [NgxPermissionsGuard],
+                canLoad: [NgxPermissionsGuard],
+            },
+            {
+                path: 'association',
+                data: {
+                    breadcrumb: 'Association',
+                    permissions: {
+                        only: [RoleNames.ADMIN, AdminAssociationPermissionsService.viewAssociationAdminPage],
+                        redirectTo: '/error',
+                    },
+                },
+                loadChildren: () =>
+                    import('@zsport/domain/sport/association/admin').then(
+                        (lib) => lib.DomainSportAssociationAdminModule
+                    ),
                 canActivate: [NgxPermissionsGuard],
                 canLoad: [NgxPermissionsGuard],
             },

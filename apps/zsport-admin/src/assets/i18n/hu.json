@@ -83,6 +83,25 @@
             "roles": "Szerepkörök"
         },
         "sport": {
+            "association": {
+                "action": {
+                    "add_association": "Új sport szervezet",
+                    "edit": "Szerkesztés"
+                },
+                "column": {
+                    "action": "Művelet",
+                    "edit": "Akció",
+                    "name": "Név"
+                },
+                "label": {
+                    "name": "Név",
+                    "name_placeholder": "Név",
+                    "parent": "Szülő",
+                    "parent_placeholder": "Szülő",
+                    "category": "Kategória",
+                    "category_placeholder": "Kategória"
+                }
+            },
             "category": {
                 "action": {
                     "add_category": "Új kategória",
@@ -101,6 +120,7 @@
                     "color_placeholder": "Szín"
                 }
             },
+            "associations": "Szervezetek",
             "categories": "Kategóriák",
             "sport": "Sport"
         }

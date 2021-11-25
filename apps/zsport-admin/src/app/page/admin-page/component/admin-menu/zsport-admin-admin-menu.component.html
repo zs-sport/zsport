@@ -29,6 +29,16 @@
                 </span>
 
                 <ul>
+                    <ng-template [ngxPermissionsOnly]="[adminRoleName, viewAssociationAdminPagePermission]">
+                        <li nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLink="association">
+                            <span title>
+                                <i nz-icon nzType="mail"></i>
+
+                                <span>{{ 'admin.sport.associations' | transloco }}</span>
+                            </span>
+                        </li>
+                    </ng-template>
+
                     <ng-template [ngxPermissionsOnly]="[adminRoleName, viewCategoryAdminPagePermission]">
                         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLink="category">
                             <span title>

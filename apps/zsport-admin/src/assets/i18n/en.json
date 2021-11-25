@@ -84,6 +84,25 @@
             "roles": "Roles"
         },
         "sport": {
+            "association": {
+                "action": {
+                    "add_association": "Add association",
+                    "edit": "Edit"
+                },
+                "column": {
+                    "action": "Action",
+                    "edit": "Edit",
+                    "name": "Name"
+                },
+                "label": {
+                    "name": "Name",
+                    "name_placeholder": "Name",
+                    "parent": "Parent",
+                    "parent_placeholder": "Parent",
+                    "category": "Category",
+                    "category_placeholder": "Category"
+                }
+            },
             "category": {
                 "action": {
                     "add_category": "Add category",
@@ -102,6 +121,7 @@
                     "color_placeholder": "Color"
                 }
             },
+            "associations": "Associations",
             "categories": "Categories",
             "sport": "Sport"
         }

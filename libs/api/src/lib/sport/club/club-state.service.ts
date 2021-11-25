@@ -22,5 +22,5 @@ export abstract class ClubStateService extends EntityStateService {
     ): Observable<ClubEntity[]>;
     public abstract selectClubsByCategoryId$(sportCategoryId: string): Observable<ClubEntity[]>;
     public abstract selectNewEntityButtonEnabled$(): Observable<boolean>;
-    public abstract selectPlayersByClubId$(clubId: string): Observable<PlayerEntity[]>;
+    public abstract selectPlayersByClubId$(clubId: string): Observable<PlayerEntity[] | undefined>;
 }

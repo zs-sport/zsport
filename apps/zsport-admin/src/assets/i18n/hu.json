@@ -82,6 +82,31 @@
             },
             "roles": "Szerepkörök"
         },
+        "location": {
+            "action": {
+                "add_location": "Új hely",
+                "edit": "Szerkesztés"
+            },
+            "column": {
+                "address": "Cím",
+                "name": "Name",
+                "edit": "Akció",
+                "type": "Típus"
+            },
+            "label": {
+                "address": "Cím",
+                "address_placeholder": "Cím",
+                "description": "Leírás",
+                "description_placeholder": "Leírás",
+                "name": "Név",
+                "name_placeholder": "Név",
+                "photo": "Fotó",
+                "photo_placeholder": "Fotó",
+                "type": "Típus",
+                "type_placeholder": "Típus"
+            },
+            "locations": "Helyek"
+        },
         "sport": {
             "association": {
                 "action": {

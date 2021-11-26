@@ -10,6 +10,7 @@ import { AdminClubPermissionsService } from '../../permission/club';
 import { ZsportAdminAdminRolePermissionsService } from '../../permission/role';
 import { ZsportAdminAdminUserPermissionsService } from '../../permission/user';
 import { ZsportAdminAdminPageComponent } from './zsport-admin-admin-page.component';
+import { AdminLocationPermissionsService } from '../../permission/location';
 
 const routes: Routes = [
     {
@@ -87,6 +88,20 @@ const routes: Routes = [
                 },
                 loadChildren: () =>
                     import('@zsport/domain/sport/club/admin').then((lib) => lib.DomainSportClubAdminModule),
+                canActivate: [NgxPermissionsGuard],
+                canLoad: [NgxPermissionsGuard],
+            },
+            {
+                path: 'location',
+                data: {
+                    breadcrumb: 'Location',
+                    permissions: {
+                        only: ['ADMIN', AdminLocationPermissionsService.viewLocationAdminPage],
+                        redirectTo: '/error',
+                    },
+                },
+                loadChildren: () =>
+                    import('@zsport/domain/location/admin').then((lib) => lib.DomainLocationAdminModule),
                 canActivate: [NgxPermissionsGuard],
                 canLoad: [NgxPermissionsGuard],
             },

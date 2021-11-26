@@ -5,6 +5,7 @@ import { ZsportAdminAdminPermissionsService } from './admin';
 import { AdminAssociationPermissionsService } from './association';
 import { AdminCategoryPermissionsService } from './category';
 import { AdminClubPermissionsService } from './club';
+import { AdminLocationPermissionsService } from './location';
 import { ZsportAdminAdminRolePermissionsService } from './role';
 import { ZsportAdminAdminUserPermissionsService } from './user';
 
@@ -14,6 +15,7 @@ import { ZsportAdminAdminUserPermissionsService } from './user';
         AdminAssociationPermissionsService,
         AdminCategoryPermissionsService,
         AdminClubPermissionsService,
+        AdminLocationPermissionsService,
         ZsportAdminAdminPermissionsService,
         ZsportAdminAdminRolePermissionsService,
         ZsportAdminAdminUserPermissionsService,

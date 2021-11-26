@@ -25,7 +25,7 @@ export class LocationUtilServiceImpl extends LocationUtilService {
             photo: location.photo || null,
             name: location.name,
             dates: location.dates,
-            seats: location.seats,
+            seats: location.seats || 0,
             states: location.states,
             uid: location.uid,
             type: location.type || null,

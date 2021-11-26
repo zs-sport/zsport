@@ -20,6 +20,16 @@
             </li>
         </ng-template>
 
+        <ng-template [ngxPermissionsOnly]="[adminRoleName, viewLocationAdminPagePermission]">
+            <li nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLink="location">
+                <span title>
+                    <i nz-icon nzType="icon:role"></i>
+
+                    <span>{{ 'admin.location.locations' | transloco }}</span>
+                </span>
+            </li>
+        </ng-template>
+
         <ng-template [ngxPermissionsOnly]="['ADMIN', 'viewCategoryAdminPage']">
             <li nz-submenu>
                 <span title>

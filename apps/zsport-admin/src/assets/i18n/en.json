@@ -83,6 +83,31 @@
             },
             "roles": "Roles"
         },
+        "location": {
+            "action": {
+                "add_location": "New location",
+                "edit": "Edit"
+            },
+            "column": {
+                "address": "Address",
+                "name": "Name",
+                "edit": "Action",
+                "type": "Type"
+            },
+            "label": {
+                "address": "Address",
+                "address_placeholder": "Address",
+                "description": "Description",
+                "description_placeholder": "Description",
+                "name": "Name",
+                "name_placeholder": "Name",
+                "photo": "Photo",
+                "photo_placeholder": "Photo",
+                "type": "Type",
+                "type_placeholder": "Type"
+            },
+            "locations": "Locations"
+        },
         "sport": {
             "association": {
                 "action": {

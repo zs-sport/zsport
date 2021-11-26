@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RoleNames } from '@zsport/api';
 import { AdminAssociationPermissionsService } from 'apps/zsport-admin/src/app/permission/association';
 import { AdminClubPermissionsService } from 'apps/zsport-admin/src/app/permission/club';
+import { AdminLocationPermissionsService } from 'apps/zsport-admin/src/app/permission/location';
+
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RoleNames } from '@zsport/api';
 
 import { AdminCategoryPermissionsService } from '../../../../permission/category';
 import { ZsportAdminAdminRolePermissionsService } from '../../../../permission/role';
@@ -19,6 +21,7 @@ export class ZsportAdminAdminMenuComponent {
     public viewAssociationAdminPagePermission = AdminAssociationPermissionsService.viewAssociationAdminPage;
     public viewCategoryAdminPagePermission = AdminCategoryPermissionsService.viewCategoryAdminPage;
     public viewClubAdminPagePermission = AdminClubPermissionsService.viewClubAdminPage;
+    public viewLocationAdminPagePermission = AdminLocationPermissionsService.viewLocationAdminPage;
     public viewRoleAdminPagePermission = ZsportAdminAdminRolePermissionsService.viewRoleAdminPage;
     public viewUserAdminPagePermission = ZsportAdminAdminUserPermissionsService.viewUserAdminPage;
 

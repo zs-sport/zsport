@@ -5,12 +5,11 @@ import { LocationTypeEnum } from './location-type.enum';
 
 export interface Location extends Identifiable {
     address: string;
-    currentLanguage: string;
     dates: Dates;
     descriptionI18n?: I18nText;
     name: string;
-    photo?: string;
-    seats?: number;
-    states?: States;
-    type?: LocationTypeEnum;
+    photo: string | null;
+    seats: number;
+    states: States;
+    type: LocationTypeEnum;
 }

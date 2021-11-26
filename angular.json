@@ -281,6 +281,32 @@
             },
             "tags": []
         },
+        "domain-location-admin": {
+            "projectType": "library",
+            "root": "libs/domain/location/admin",
+            "sourceRoot": "libs/domain/location/admin/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/location/admin"],
+                    "options": {
+                        "jestConfig": "libs/domain/location/admin/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/location/admin/src/**/*.ts",
+                            "libs/domain/location/admin/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-location-data": {
             "projectType": "library",
             "root": "libs/domain/location/data",

@@ -27,6 +27,7 @@
             "@zsport/core/storage/data": ["libs/core/storage/data/src/index.ts"],
             "@zsport/core/storage/util": ["libs/core/storage/util/src/index.ts"],
             "@zsport/domain/gender/util": ["libs/domain/gender/util/src/index.ts"],
+            "@zsport/domain/location/admin": ["libs/domain/location/admin/src/index.ts"],
             "@zsport/domain/location/data": ["libs/domain/location/data/src/index.ts"],
             "@zsport/domain/location/form": ["libs/domain/location/form/src/index.ts"],
             "@zsport/domain/location/store": ["libs/domain/location/store/src/index.ts"],

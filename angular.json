@@ -1081,6 +1081,32 @@
             },
             "tags": []
         },
+        "domain-sport-team-form": {
+            "projectType": "library",
+            "root": "libs/domain/sport/team/form",
+            "sourceRoot": "libs/domain/sport/team/form/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/team/form"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/team/form/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/team/form/src/**/*.ts",
+                            "libs/domain/sport/team/form/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-sport-team-store": {
             "projectType": "library",
             "root": "libs/domain/sport/team/store",

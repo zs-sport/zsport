@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs';
+import { TeamEntity } from '.';
 
 import { EntityStateService } from '../../base';
 import { EventTeam } from '../event';
@@ -14,7 +15,7 @@ export abstract class TeamStateService extends EntityStateService {
     public abstract dispatchUpdateEventTeamByEventIdAction(eventTeam: Partial<EventTeam>, eventId: string): void;
     public abstract dispatchUpdateTeamByClubIdAction(team: Team, clubId: string): void;
     public abstract selectEntitiesByClubId$(clubId: string): Observable<Team[]>;
-    public abstract selectEventTeamByEventId$(eventId: string): Observable<EventTeam[]>;
+    public abstract selectEventTeamsByEventId$(eventId: string): Observable<TeamEntity[]>;
     public abstract selectNewEntityButtonEnabled$(): Observable<boolean>;
     public abstract selectTeamsByAGGCId$(aggcId: string): Observable<Team[]>;
     public abstract selectTeamsByAGGCIdAndClubIds$(aggcId: string, clubIds: string[]): Observable<Team[]>;

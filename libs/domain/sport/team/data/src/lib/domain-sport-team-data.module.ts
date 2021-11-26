@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { TeamDataService } from '@zs-soft/api';
+import { TeamDataService } from '@zsport/api';
 
 import { TeamDataServiceImpl } from './service';
 

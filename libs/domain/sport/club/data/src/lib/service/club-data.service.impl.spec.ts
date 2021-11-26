@@ -11,6 +11,7 @@ describe('ClubDataServiceImpl', () => {
 
     it('should be created', () => {
         const service: ClubDataServiceImpl = TestBed.inject(ClubDataServiceImpl);
+
         expect(service).toBeTruthy();
     });
 });

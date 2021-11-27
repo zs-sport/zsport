@@ -437,6 +437,32 @@
             },
             "tags": []
         },
+        "domain-person-data": {
+            "projectType": "library",
+            "root": "libs/domain/person/data",
+            "sourceRoot": "libs/domain/person/data/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/person/data"],
+                    "options": {
+                        "jestConfig": "libs/domain/person/data/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/person/data/src/**/*.ts",
+                            "libs/domain/person/data/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-role-admin": {
             "projectType": "library",
             "root": "libs/domain/role/admin",

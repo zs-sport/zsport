@@ -7,5 +7,4 @@ export abstract class EntityUtilService extends BaseService {
 
     public abstract convertEntityToModel(entity: Entity, isVersion: boolean): Model;
     public abstract convertModelToEntity(model: Model): Entity;
-    public abstract getSimpleEntity(model: Model): Partial<Entity>;
 }

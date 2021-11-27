@@ -107,6 +107,43 @@
             },
             "locations": "Helyek"
         },
+        "person": {
+            "action": {
+                "add_person": "Új személy",
+                "edit": "Szerkesztés"
+            },
+            "column": {
+                "email": "Email",
+                "first_name": "Keresztnév",
+                "gender": "Nem",
+                "last_name": "Vezetéknév",
+                "edit": "Akció",
+                "type": "Típus"
+            },
+            "label": {
+                "birth_day": "Születési dátum",
+                "birth_day_placeholder": "Születési dátum",
+                "email": "Email",
+                "email_placeholder": "Email",
+                "gender": "Nem",
+                "gender_placeholder": "Nem",
+                "nationality": "Nemzetiség",
+                "nationality_placeholder": "Nemzetiség",
+                "nick_name": "Becenév",
+                "nick_name_placeholder": "Becenév",
+                "first_name": "Keresztnév",
+                "first_name_placeholder": "Keresztnév",
+                "last_name": "Vezetéknév",
+                "last_name_placeholder": "Vezetéknév",
+                "image": "Kép",
+                "image_placeholder": "Kép",
+                "skill_sets": "Képességek",
+                "skill_sets_placeholder": "Képességek",
+                "type": "Típus",
+                "type_placeholder": "Típus"
+            },
+            "persons": "Személyek"
+        },
         "sport": {
             "association": {
                 "action": {

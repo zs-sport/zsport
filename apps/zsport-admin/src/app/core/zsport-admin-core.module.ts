@@ -5,12 +5,16 @@ import { CoreAuthenticationStoreModule } from '@zsport/core/authentication/store
 import { CoreAuthenticationViewModule } from '@zsport/core/authentication/view';
 import { CoreAuthorizationDataModule } from '@zsport/core/authorization/data';
 import { CoreI18nModule } from '@zsport/core/i18n';
+import { DomainSkillSetUtilModule } from '@zsport/domain/skill-set/util';
 import { CoreStorageDataModule } from '@zsport/core/storage/data';
 import { CoreStorageUtilModule } from '@zsport/core/storage/util';
 import { DomainGenderUtilModule } from '@zsport/domain/gender/util';
 import { DomainLocationDataModule } from '@zsport/domain/location/data';
 import { DomainLocationStoreModule } from '@zsport/domain/location/store';
 import { DomainLocationUtilModule } from '@zsport/domain/location/util';
+import { DomainPersonDataModule } from '@zsport/domain/person/data';
+import { DomainPersonStoreModule } from '@zsport/domain/person/store';
+import { DomainPersonUtilModule } from '@zsport/domain/person/util';
 import { DomainRoleDataModule } from '@zsport/domain/role/data';
 import { DomainRoleStoreModule } from '@zsport/domain/role/store';
 import { DomainSportAgeGroupUtilModule } from '@zsport/domain/sport/age-group/util';
@@ -53,6 +57,10 @@ import { DefaultUserHookService } from './hook/user';
         DomainLocationDataModule,
         DomainLocationStoreModule,
         DomainLocationUtilModule,
+        DomainPersonDataModule,
+        DomainPersonStoreModule,
+        DomainPersonUtilModule,
+        DomainSkillSetUtilModule,
         DomainSportAgeGroupUtilModule,
         DomainSportAssociationDataModule,
         DomainSportAssociationStoreModule,

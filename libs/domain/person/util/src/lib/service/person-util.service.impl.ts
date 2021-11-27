@@ -36,7 +36,8 @@ export class PersonUtilServiceImpl extends PersonUtilService {
             image: person.image || null,
             lastName: person.lastName,
             nationalityI18n: person.nationalityI18n,
-            phone: person.phone,
+            nickName: person.nickName || null,
+            phone: person.phone || null,
             skillSets: person.skillSets || [],
             states: person.states,
             uid: person.uid,
@@ -47,14 +48,5 @@ export class PersonUtilServiceImpl extends PersonUtilService {
 
     public convertModelToEntity(personModel: PersonModel): PersonEntity {
         return { ...personModel };
-    }
-
-    public getSimpleEntity(personModel: PersonModel): Partial<PersonModel> {
-        return {
-            image: personModel.image,
-            firstName: personModel.firstName,
-            lastName: personModel.lastName,
-            uid: personModel.uid,
-        };
     }
 }

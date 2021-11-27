@@ -13,7 +13,7 @@ export interface Person extends Identifiable {
     image: string | null;
     lastName: string;
     nationalityI18n?: I18nText;
-    nickName?: string;
+    nickName: string | null;
     phone: string | null;
     skillSets: SkillSet[];
     states: States | null;

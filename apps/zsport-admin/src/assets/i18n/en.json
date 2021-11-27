@@ -108,6 +108,43 @@
             },
             "locations": "Locations"
         },
+        "person": {
+            "action": {
+                "add_person": "Add Person",
+                "edit": "Edit"
+            },
+            "column": {
+                "email": "Email",
+                "first_name": "First name",
+                "gender": "Gender",
+                "last_name": "Last name",
+                "edit": "Edit",
+                "type": "Type"
+            },
+            "label": {
+                "birth_day": "Birth day",
+                "birth_day_placeholder": "Birth day",
+                "email": "Email",
+                "email_placeholder": "Email",
+                "gender": "Gender",
+                "gender_placeholder": "Gender",
+                "nationality": "Nationality",
+                "nationality_placeholder": "Nationality",
+                "nick_name": "Nick name",
+                "nick_name_placeholder": "Nick name",
+                "first_name": "First name",
+                "first_name_placeholder": "First name",
+                "last_name": "Last name",
+                "last_name_placeholder": "Last name",
+                "image": "Image",
+                "image_placeholder": "Image",
+                "skill_sets": "Skill sets",
+                "skill_sets_placeholder": "Skill sets",
+                "type": "Type",
+                "type_placeholder": "Type"
+            },
+            "persons": "Persons"
+        },
         "sport": {
             "association": {
                 "action": {

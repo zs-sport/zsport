@@ -11,6 +11,7 @@ import { ZsportAdminAdminRolePermissionsService } from '../../permission/role';
 import { ZsportAdminAdminUserPermissionsService } from '../../permission/user';
 import { ZsportAdminAdminPageComponent } from './zsport-admin-admin-page.component';
 import { AdminLocationPermissionsService } from '../../permission/location';
+import { AdminPersonPermissionsService } from '../../permission/person';
 
 const routes: Routes = [
     {
@@ -31,6 +32,19 @@ const routes: Routes = [
                     },
                 },
                 loadChildren: () => import('@zsport/domain/user/admin').then((lib) => lib.DomainUserAdminModule),
+                canActivate: [NgxPermissionsGuard],
+                canLoad: [NgxPermissionsGuard],
+            },
+            {
+                path: 'person',
+                data: {
+                    breadcrumb: 'Person',
+                    permissions: {
+                        only: ['ADMIN', AdminPersonPermissionsService.viewPersonAdminPage],
+                        redirectTo: '/error',
+                    },
+                },
+                loadChildren: () => import('@zsport/domain/person/admin').then((lib) => lib.DomainPersonAdminModule),
                 canActivate: [NgxPermissionsGuard],
                 canLoad: [NgxPermissionsGuard],
             },

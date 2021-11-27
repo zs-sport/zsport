@@ -5,16 +5,16 @@ import { SkillSet } from '../sport/skill-set';
 import { Dates, States } from '../state';
 
 export interface Person extends Identifiable {
-    birthDay?: number;
-    dates?: Dates;
-    email?: string;
+    birthDay: number;
+    dates: Dates | null;
+    email: string;
     firstName: string;
-    gender?: Gender;
-    image?: string;
+    gender: Gender;
+    image: string | null;
     lastName: string;
     nationalityI18n?: I18nText;
     nickName?: string;
-    phone?: string;
-    skillSets?: SkillSet[];
-    states?: States;
+    phone: string | null;
+    skillSets: SkillSet[];
+    states: States | null;
 }

@@ -717,6 +717,32 @@
             },
             "tags": ["scope:table", "type:domain"]
         },
+        "domain-skill-set-util": {
+            "projectType": "library",
+            "root": "libs/domain/skill-set/util",
+            "sourceRoot": "libs/domain/skill-set/util/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/skill-set/util"],
+                    "options": {
+                        "jestConfig": "libs/domain/skill-set/util/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/skill-set/util/src/**/*.ts",
+                            "libs/domain/skill-set/util/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-sport-age-group-util": {
             "projectType": "library",
             "root": "libs/domain/sport/age-group/util",

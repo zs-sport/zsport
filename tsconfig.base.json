@@ -34,6 +34,7 @@
             "@zsport/domain/location/table": ["libs/domain/location/table/src/index.ts"],
             "@zsport/domain/location/util": ["libs/domain/location/util/src/index.ts"],
             "@zsport/domain/person/data": ["libs/domain/person/data/src/index.ts"],
+            "@zsport/domain/person/form": ["libs/domain/person/form/src/index.ts"],
             "@zsport/domain/person/store": ["libs/domain/person/store/src/index.ts"],
             "@zsport/domain/role/admin": ["libs/domain/role/admin/src/index.ts"],
             "@zsport/domain/role/data": ["libs/domain/role/data/src/index.ts"],

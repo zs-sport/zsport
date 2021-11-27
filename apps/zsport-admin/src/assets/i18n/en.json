@@ -177,10 +177,33 @@
                     "simple_name_placeholder": "Simple name"
                 }
             },
+            "team": {
+                "action": {
+                    "add_team": "Add team",
+                    "edit": "Edit"
+                },
+                "column": {
+                    "action": "Action",
+                    "edit": "Edit",
+                    "age_group": "Age group",
+                    "gender": "Gender"
+                },
+                "label": {
+                    "age_group": "Age group",
+                    "age_group_placeholder": "Age group",
+                    "name": "Name",
+                    "name_placeholder": "Name",
+                    "category": "Category",
+                    "category_placeholder": "Category",
+                    "gender": "Gender",
+                    "gender_placeholder": "Gender"
+                }
+            },
             "associations": "Associations",
             "categories": "Categories",
             "clubs": "Clubs",
-            "sport": "Sport"
+            "sport": "Sport",
+            "teams": "Teams"
         }
     }
 }

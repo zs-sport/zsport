@@ -177,10 +177,33 @@
                     "association_placeholder": "Szervezet"
                 }
             },
+            "team": {
+                "action": {
+                    "add_team": "Új csapat",
+                    "edit": "Szerkesztés"
+                },
+                "column": {
+                    "action": "Művelet",
+                    "edit": "Akció",
+                    "age_group": "Korosztály",
+                    "gender": "Nem"
+                },
+                "label": {
+                    "age_group": "Korosztály",
+                    "age_group_placeholder": "Korosztály",
+                    "name": "Név",
+                    "name_placeholder": "Név",
+                    "category": "Kategória",
+                    "category_placeholder": "Kategória",
+                    "gender": "Nem",
+                    "gender_placeholder": "Nem"
+                }
+            },
             "associations": "Szervezetek",
             "categories": "Kategóriák",
             "clubs": "Klubok",
-            "sport": "Sport"
+            "sport": "Sport",
+            "teams": "Csapatok"
         }
     }
 }

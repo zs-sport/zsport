@@ -5,8 +5,8 @@ import { CategoryRule } from './category-rule';
 
 export interface Category extends Identifiable {
     color: string;
-    dates?: Dates;
+    dates: Dates | null;
     nameI18n: I18nText;
     rule: CategoryRule;
-    states?: States;
+    states: States | null;
 }

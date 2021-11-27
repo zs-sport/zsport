@@ -27,7 +27,7 @@ export class ClubUtilServiceImpl extends ClubUtilService {
         updatedClubModel = {
             address: club.address || null,
             association: club.association,
-            category: this.categoryUtilService.getSimpleEntity(club.category) as CategoryModel,
+            category: club.category,
             logo: club.logo,
             name: club.name,
             dates: club.dates,
@@ -46,9 +46,5 @@ export class ClubUtilServiceImpl extends ClubUtilService {
         const club = { ...clubModel };
 
         return club;
-    }
-
-    public getSimpleEntity(clubModel: ClubModel): ClubModel {
-        return clubModel;
     }
 }

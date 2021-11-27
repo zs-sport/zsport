@@ -7,11 +7,13 @@ import { CoreAuthorizationDataModule } from '@zsport/core/authorization/data';
 import { CoreI18nModule } from '@zsport/core/i18n';
 import { CoreStorageDataModule } from '@zsport/core/storage/data';
 import { CoreStorageUtilModule } from '@zsport/core/storage/util';
-import { DomainRoleDataModule } from '@zsport/domain/role/data';
-import { DomainRoleStoreModule } from '@zsport/domain/role/store';
+import { DomainGenderUtilModule } from '@zsport/domain/gender/util';
 import { DomainLocationDataModule } from '@zsport/domain/location/data';
 import { DomainLocationStoreModule } from '@zsport/domain/location/store';
 import { DomainLocationUtilModule } from '@zsport/domain/location/util';
+import { DomainRoleDataModule } from '@zsport/domain/role/data';
+import { DomainRoleStoreModule } from '@zsport/domain/role/store';
+import { DomainSportAgeGroupUtilModule } from '@zsport/domain/sport/age-group/util';
 import { DomainSportAssociationDataModule } from '@zsport/domain/sport/association/data';
 import { DomainSportAssociationStoreModule } from '@zsport/domain/sport/association/store';
 import { DomainSportAssociationUtilModule } from '@zsport/domain/sport/association/util';
@@ -21,6 +23,9 @@ import { DomainSportCategoryUtilModule } from '@zsport/domain/sport/category/uti
 import { DomainSportClubDataModule } from '@zsport/domain/sport/club/data';
 import { DomainSportClubStoreModule } from '@zsport/domain/sport/club/store';
 import { DomainSportClubUtilModule } from '@zsport/domain/sport/club/util';
+import { DomainSportTeamDataModule } from '@zsport/domain/sport/team/data';
+import { DomainSportTeamStoreModule } from '@zsport/domain/sport/team/store';
+import { DomainSportTeamUtilModule } from '@zsport/domain/sport/team/util';
 import { DomainUserDataModule } from '@zsport/domain/user/data';
 import { DomainUserStoreModule } from '@zsport/domain/user/store';
 import { SharedModule, StateUtilModule } from '@zsport/shared';
@@ -44,9 +49,11 @@ import { DefaultUserHookService } from './hook/user';
         CoreAuthorizationDataModule,
         CoreStorageDataModule,
         CoreStorageUtilModule,
+        DomainGenderUtilModule,
         DomainLocationDataModule,
         DomainLocationStoreModule,
         DomainLocationUtilModule,
+        DomainSportAgeGroupUtilModule,
         DomainSportAssociationDataModule,
         DomainSportAssociationStoreModule,
         DomainSportAssociationUtilModule,
@@ -56,6 +63,9 @@ import { DefaultUserHookService } from './hook/user';
         DomainSportClubDataModule,
         DomainSportClubStoreModule,
         DomainSportClubUtilModule,
+        DomainSportTeamDataModule,
+        DomainSportTeamStoreModule,
+        DomainSportTeamUtilModule,
         DomainRoleDataModule,
         DomainRoleStoreModule,
         StateUtilModule,

@@ -8,9 +8,9 @@ export interface Association extends Identifiable {
     address?: Address;
     category: Category;
     contacts?: string[];
-    dates?: Dates;
+    dates: Dates | null;
     nameI18n: I18nText;
     parent: Association | null;
     phone?: string;
-    states?: States;
+    states: States | null;
 }

@@ -2,16 +2,9 @@ import { Injectable } from '@angular/core';
 import {
     AgeGroup,
     CategoryModel,
-    CategoryUtilService,
-    ClubModel,
-    ClubUtilService,
-    Entity,
-    EventPlayer,
     EventTeam,
     Gender,
     I18nService,
-    Model,
-    PlayerUtilService,
     StateUtilService,
     TeamEntity,
     TeamModel,
@@ -20,13 +13,7 @@ import {
 
 @Injectable()
 export class TeamUtilServiceImpl extends TeamUtilService {
-    public constructor(
-        private i18nService: I18nService,
-        private stateUtilService: StateUtilService,
-        private clubUtilService: ClubUtilService,
-        private categoryUtilService: CategoryUtilService,
-        private playerUtilService: PlayerUtilService
-    ) {
+    public constructor(private i18nService: I18nService, private stateUtilService: StateUtilService) {
         super();
 
         this.currentLanguage = this.i18nService.getActiveLangAsString();
@@ -74,9 +61,7 @@ export class TeamUtilServiceImpl extends TeamUtilService {
             dates: eventTeam.dates,
             gender: eventTeam.gender,
             eventId: eventTeam.eventId,
-            players: eventTeam.players.map(
-                (player) => this.playerUtilService.convertEventPlayerEntityToEventPlayerModel(player) as EventPlayer
-            ),
+            players: eventTeam.players,
             states: eventTeam.states ? eventTeam.states : null,
             uid: eventTeam.uid,
         };

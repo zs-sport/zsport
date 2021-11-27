@@ -33,8 +33,4 @@ export class LocationUtilServiceImpl extends LocationUtilService {
 
         return updatedLocationModel;
     }
-
-    public getSimpleEntity(locationModel: LocationModel): LocationModel {
-        throw new Error();
-    }
 }

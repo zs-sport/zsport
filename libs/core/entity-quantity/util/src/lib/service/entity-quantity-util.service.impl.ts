@@ -34,10 +34,6 @@ export class EntityQuantityUtilServiceImpl extends EntityQuantityUtilService {
         };
     }
 
-    public getSimpleEntity(model: Model): Partial<Entity> {
-        throw new Error('Method not implemented.');
-    }
-
     public createEntityQuantity(type: EntityQuantityEnum): EntityQuantityEntity {
         return {
             uid: type,

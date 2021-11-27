@@ -21,10 +21,6 @@ export class GenderUtilServiceImpl extends GenderUtilService {
         return this.genders;
     }
 
-    public getSimpleEntity(gender: Gender): Gender {
-        throw new Error('Method not implemented.');
-    }
-
     protected createGenders(): Gender[] {
         return [
             {

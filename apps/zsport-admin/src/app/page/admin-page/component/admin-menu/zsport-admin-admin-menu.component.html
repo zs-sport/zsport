@@ -30,7 +30,15 @@
             </li>
         </ng-template>
 
-        <ng-template [ngxPermissionsOnly]="['ADMIN', 'viewCategoryAdminPage']">
+        <ng-template
+            [ngxPermissionsOnly]="[
+                'ADMIN',
+                'viewAssociationAdminPage',
+                'viewCategoryAdminPage',
+                'viewClubAdminPage',
+                'viewEventAdminPage'
+            ]"
+        >
             <li nz-submenu>
                 <span title>
                     <i nz-icon nzType="appstore"></i>

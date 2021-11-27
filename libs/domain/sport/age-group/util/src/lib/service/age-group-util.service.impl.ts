@@ -26,10 +26,6 @@ export class AgeGroupUtilServiceImpl extends AgeGroupUtilService {
         return this.ageGroups;
     }
 
-    public getSimpleEntity(ageGroup: AgeGroup): AgeGroup {
-        throw new Error('Method not implemented.');
-    }
-
     protected createAgeGroups(): AgeGroup[] {
         return [
             {

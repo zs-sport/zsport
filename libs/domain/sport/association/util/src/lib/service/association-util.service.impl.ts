@@ -57,13 +57,4 @@ export class AssociationUtilServiceImpl extends AssociationUtilService {
 
         return updatedAssociationModel;
     }
-
-    public getSimpleEntity(associationModel: AssociationModel): AssociationModel {
-        return {
-            nameI18n: associationModel.nameI18n,
-            parent: associationModel.parent,
-            category: associationModel.category,
-            uid: associationModel.uid,
-        };
-    }
 }

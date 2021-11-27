@@ -41,6 +41,20 @@ const routes: Routes = [
                         path: 'edit-details',
                         component: EditDetailsComponent,
                     },
+                    {
+                        path: 'teams',
+                        data: {
+                            breadcrumb: 'Teams',
+                            permissions: {
+                                only: ['ADMIN', 'viewTeamAdminPage'],
+                                redirectTo: '/error',
+                            },
+                        },
+                        loadChildren: () =>
+                            import('@zsport/domain/sport/team/admin').then((lib) => lib.DomainSportTeamAdminModule),
+                        canActivate: [NgxPermissionsGuard],
+                        canLoad: [NgxPermissionsGuard],
+                    },
                 ],
             },
             {

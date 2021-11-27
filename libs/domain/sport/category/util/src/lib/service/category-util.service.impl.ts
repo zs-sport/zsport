@@ -47,13 +47,4 @@ export class CategoryUtilServiceImpl extends CategoryUtilService {
             ...categoryModel,
         } as CategoryEntity;
     }
-
-    public getSimpleEntity(categoryModel: CategoryModel): CategoryModel {
-        return {
-            color: categoryModel.color,
-            nameI18n: categoryModel.nameI18n,
-            rule: categoryModel.rule,
-            uid: categoryModel.uid,
-        };
-    }
 }

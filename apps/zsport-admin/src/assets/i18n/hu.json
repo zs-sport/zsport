@@ -214,6 +214,33 @@
                     "association_placeholder": "Szervezet"
                 }
             },
+            "player": {
+                "action": {
+                    "add_player": "Új játékos",
+                    "edit": "Szerkesztés"
+                },
+                "column": {
+                    "first_name": "Keresztnév",
+                    "number": "Mezszám",
+                    "last_name": "Vezetéknév",
+                    "edit": "Akció"
+                },
+                "label": {
+                    "number": "Mezszám",
+                    "number_placeholder": "Mezszám",
+                    "status": "Státusz",
+                    "status_placeholder": "Státusz",
+                    "person": "Személy",
+                    "person_placeholder": "Személy",
+                    "players": "Játékosok",
+                    "position": "Poszt",
+                    "position_placeholder": "Poszt",
+                    "from_date": "Szerződés kezdete",
+                    "from_date_placeholder": "Szerződés kezdete",
+                    "to_date": "Szerződés vége",
+                    "to_date_placeholder": "Szerződés vége"
+                }
+            },
             "team": {
                 "action": {
                     "add_team": "Új csapat",
@@ -239,6 +266,7 @@
             "associations": "Szervezetek",
             "categories": "Kategóriák",
             "clubs": "Klubok",
+            "players": "Játékosok",
             "sport": "Sport",
             "teams": "Csapatok"
         }

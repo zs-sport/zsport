@@ -208,11 +208,39 @@
                     "locations_placeholder": "Locations",
                     "logo": "Logo",
                     "logo_placeholder": "Logo",
+                    "players": "Players",
                     "short_name": "Short name",
                     "short_name_placeholder": "Short name",
                     "simple_name": "Simple name",
                     "simple_name_placeholder": "Simple name"
                 }
+            },
+            "player": {
+                "action": {
+                    "add_player": "Add player",
+                    "edit": "Edit"
+                },
+                "column": {
+                    "first_name": "First name",
+                    "number": "Number",
+                    "last_name": "Last name",
+                    "edit": "Edit"
+                },
+                "label": {
+                    "number": "Number",
+                    "number_placeholder": "Number",
+                    "status": "Status",
+                    "status_placeholder": "Status",
+                    "person": "Person",
+                    "person_placeholder": "Person",
+                    "position": "Position",
+                    "position_placeholder": "Pozition",
+                    "from_date": "From date",
+                    "from_date_placeholder": "From date",
+                    "to_date": "End date",
+                    "to_date_placeholder": "End date"
+                },
+                "players": "Players"
             },
             "team": {
                 "action": {
@@ -239,6 +267,7 @@
             "associations": "Associations",
             "categories": "Categories",
             "clubs": "Clubs",
+            "players": "Players",
             "sport": "Sport",
             "teams": "Teams"
         }

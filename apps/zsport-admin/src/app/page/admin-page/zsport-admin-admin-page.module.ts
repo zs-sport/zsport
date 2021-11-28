@@ -17,6 +17,7 @@ import { CategoryFactoryModule } from './factory/category';
 import { ClubFactoryModule } from './factory/club';
 import { LocationFactoryModule } from './factory/location';
 import { PersonFactoryModule } from './factory/person';
+import { PlayerFactoryModule } from './factory/player';
 import { ZsportAdminRoleFactoryModule } from './factory/role';
 import { TeamFactoryModule } from './factory/team';
 import { ZsportAdminUserFactoryModule } from './factory/user';
@@ -41,6 +42,7 @@ import { ZsportAdminAdminPageComponent } from './zsport-admin-admin-page.compone
         ClubFactoryModule,
         LocationFactoryModule,
         PersonFactoryModule,
+        PlayerFactoryModule,
         TeamFactoryModule,
         ZsportAdminAdminRoutingModule,
         ZsportAdminRoleFactoryModule,

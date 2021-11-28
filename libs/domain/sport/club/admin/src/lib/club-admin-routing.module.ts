@@ -55,6 +55,20 @@ const routes: Routes = [
                         canActivate: [NgxPermissionsGuard],
                         canLoad: [NgxPermissionsGuard],
                     },
+                    {
+                        path: 'players',
+                        data: {
+                            breadcrumb: 'Players',
+                            permissions: {
+                                only: ['ADMIN', 'viewPlayerAdminPage'],
+                                redirectTo: '/error',
+                            },
+                        },
+                        loadChildren: () =>
+                            import('@zsport/domain/sport/player/admin').then((lib) => lib.DomainSportPlayerAdminModule),
+                        canActivate: [NgxPermissionsGuard],
+                        canLoad: [NgxPermissionsGuard],
+                    },
                 ],
             },
             {

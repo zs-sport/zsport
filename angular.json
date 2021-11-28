@@ -1263,6 +1263,32 @@
             },
             "tags": []
         },
+        "domain-sport-player-store": {
+            "projectType": "library",
+            "root": "libs/domain/sport/player/store",
+            "sourceRoot": "libs/domain/sport/player/store/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/player/store"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/player/store/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/player/store/src/**/*.ts",
+                            "libs/domain/sport/player/store/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-sport-team-admin": {
             "projectType": "library",
             "root": "libs/domain/sport/team/admin",

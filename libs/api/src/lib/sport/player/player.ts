@@ -5,15 +5,15 @@ import { Position } from './position';
 import { Status } from './status';
 
 export interface Player extends Identifiable {
-    clubId?: string;
+    clubId: string | null;
     contractTime?: number;
     dates: Dates;
-    endDate?: number;
+    endDate: number | null;
     fromDate: number;
-    number?: number;
+    number: number;
     person: Person;
     position?: Position;
-    price?: number;
+    price: number | null;
     priceCurrency?: number;
     states: States;
     status: Status;

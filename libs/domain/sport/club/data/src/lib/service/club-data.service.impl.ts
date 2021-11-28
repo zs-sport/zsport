@@ -168,7 +168,7 @@ export class ClubDataServiceImpl extends ClubDataService {
                     if (club) {
                         return { ...club, uid: uid };
                     } else {
-                        throw new Error('Customer loading error: ' + uid);
+                        throw new Error('Club loading error: ' + uid);
                     }
                 })
             );

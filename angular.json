@@ -1237,6 +1237,32 @@
             },
             "tags": []
         },
+        "domain-sport-competition-data": {
+            "projectType": "library",
+            "root": "libs/domain/sport/competition/data",
+            "sourceRoot": "libs/domain/sport/competition/data/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/competition/data"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/competition/data/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/competition/data/src/**/*.ts",
+                            "libs/domain/sport/competition/data/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-sport-player-admin": {
             "projectType": "library",
             "root": "libs/domain/sport/player/admin",

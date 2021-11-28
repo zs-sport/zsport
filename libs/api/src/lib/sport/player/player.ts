@@ -6,7 +6,7 @@ import { Status } from './status';
 
 export interface Player extends Identifiable {
     clubId: string | null;
-    contractTime?: number;
+    contractTime: number | null;
     dates: Dates;
     endDate: number | null;
     fromDate: number;
@@ -14,7 +14,7 @@ export interface Player extends Identifiable {
     person: Person;
     position?: Position;
     price: number | null;
-    priceCurrency?: number;
+    priceCurrency: number | null;
     states: States;
     status: Status;
 }

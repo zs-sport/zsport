@@ -1,0 +1,22 @@
+<ng-container *ngIf="events$ | async as events">
+    <nz-card
+        style="background-color: aliceblue; margin-bottom: 20px"
+        [nzBordered]="false"
+        [nzTitle]="round.index + 1 + ' round'"
+        [nzExtra]="extraTemplate"
+    >
+        <p *ngFor="let match of events">
+            <span>{{ match.team1.club.name }}</span>
+            -
+            <span>{{ match.team2.club.name }}</span>
+
+            <span style="float: right">
+                <a (click)="editEventClickHandler(match)">edit</a>
+            </span>
+        </p>
+    </nz-card>
+
+    <ng-template #extraTemplate>
+        <a *ngIf="events.length < eventNumber" (click)="addEventClickHandler(round.index)">add match</a>
+    </ng-template>
+</ng-container>

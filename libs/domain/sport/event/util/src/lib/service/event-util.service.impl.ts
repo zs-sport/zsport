@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EventEntity, EventList, EventModel, EventUtilService } from '@zsport/api';
+import { AgeGroup, Category, EventEntity, EventList, EventModel, EventUtilService, Gender } from '@zsport/api';
 
 @Injectable()
 export class EventUtilServiceImpl extends EventUtilService {
@@ -9,6 +9,22 @@ export class EventUtilServiceImpl extends EventUtilService {
 
     public convertModelToEntity(eventModel: EventModel): EventEntity {
         return { ...eventModel };
+    }
+
+    public createEventForCompetition(
+        ageGroup: AgeGroup,
+        category: Category,
+        gender: Gender,
+        competitionId: string,
+        roundId: number
+    ): Partial<EventEntity> {
+        return {
+            ageGroup,
+            category,
+            gender,
+            competitionId,
+            roundId,
+        };
     }
 
     public createEventLists(events: EventEntity[]): EventList[] {

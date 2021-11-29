@@ -1315,6 +1315,32 @@
             },
             "tags": []
         },
+        "domain-sport-event-form": {
+            "projectType": "library",
+            "root": "libs/domain/sport/event/form",
+            "sourceRoot": "libs/domain/sport/event/form/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/event/form"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/event/form/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/event/form/src/**/*.ts",
+                            "libs/domain/sport/event/form/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-sport-event-store": {
             "projectType": "library",
             "root": "libs/domain/sport/event/store",

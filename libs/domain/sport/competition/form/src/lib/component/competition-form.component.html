@@ -1,0 +1,166 @@
+<ng-container *ngIf="currentStep$$ | async as currentStep">
+    <form nz-form [formGroup]="competitionForm" novalidate>
+        <nz-form-control>
+            <input hidden formControlName="uid" />
+        </nz-form-control>
+
+        <div class="steps-header">
+            <nz-steps [nzCurrent]="currentStep">
+                <nz-step nzTitle="{{ 'admin.sport.competition.label.base' | transloco }}"></nz-step>
+
+                <nz-step nzTitle="{{ 'admin.sport.competition.label.advanced' | transloco }}"></nz-step>
+
+                <nz-step nzTitle="{{ 'admin.sport.competition.label.final' | transloco }}"></nz-step>
+            </nz-steps>
+        </div>
+
+        <div class="steps-content">
+            <ng-container [ngTemplateOutlet]="template | async"></ng-container>
+        </div>
+
+        <div class="steps-action">
+            <button nz-button [nzType]="'primary'" (click)="previousStep()" *ngIf="currentStep > 0">
+                <span>{{ 'admin.sport.competition.button.previous' | transloco }}</span>
+            </button>
+
+            <button
+                nz-button
+                [nzType]="'primary'"
+                [disabled]="!competitionForm.valid"
+                (click)="nextStep()"
+                *ngIf="currentStep < 2"
+            >
+                <span>{{ 'admin.sport.competition.button.next' | transloco }}</span>
+            </button>
+
+            <button nz-button [nzType]="'primary'" (click)="doneSteps()" *ngIf="currentStep === 2">
+                <span>{{ 'admin.sport.competition.button.done' | transloco }}</span>
+            </button>
+        </div>
+
+        <ng-template #base>
+            <fieldset>
+                <legend>{{ 'admin.sport.competition.label.competition' | transloco }}:</legend>
+
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="6" nzFor="name" nzRequired>{{
+                        'admin.sport.competition.label.name' | transloco
+                    }}</nz-form-label>
+
+                    <nz-form-control [nzSpan]="14" nzHasFeedback="true">
+                        <input
+                            nz-input
+                            formControlName="name"
+                            type="text"
+                            id="name"
+                            placeholder="{{ 'admin.sport.competition.label.name_placeholder' | transloco }}"
+                        />
+                    </nz-form-control>
+                </nz-form-item>
+            </fieldset>
+
+            <fieldset>
+                <legend>{{ 'admin.sport.competition.label.data' | transloco }}:</legend>
+
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="6" nzFor="category" nzRequired>
+                        {{ 'admin.sport.competition.label.category' | transloco }}
+                    </nz-form-label>
+
+                    <nz-form-control [nzSpan]="14" nzHasFeedback nzValidateStatus="success" #categoryFormControl>
+                        <nz-select
+                            id="category"
+                            formControlName="category"
+                            nzPlaceHolder="{{ 'admin.sport.competition.label.category_placeholder' | transloco }}"
+                            [compareWith]="compareEntities"
+                            nzErrorTip="Please select a category!"
+                            (ngModelChange)="categorySelectChangeHandler($event)"
+                        >
+                            <nz-option
+                                *ngFor="let category of categories$ | async"
+                                [nzLabel]="category | i18nName: 'nameI18n'"
+                                [nzValue]="category"
+                            >
+                            </nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="6" nzFor="owner" nzRequired>
+                        {{ 'admin.sport.competition.label.owner' | transloco }}
+                    </nz-form-label>
+
+                    <nz-form-control [nzSpan]="14" nzHasFeedback nzValidateStatus>
+                        <nz-select
+                            id="owner"
+                            formControlName="owner"
+                            nzPlaceHolder="{{ 'admin.sport.competition.label.owner_placeholder' | transloco }}"
+                            [compareWith]="compareEntities"
+                            [nzDisabled]="!isValid(categoryFormControl.status || '')"
+                            nzErrorTip="Please select an owner!"
+                        >
+                            <nz-option-group nzLabel="Association">
+                                <nz-option
+                                    *ngFor="let association of associations$$ | async"
+                                    [nzLabel]="association | i18nName: 'nameI18n'"
+                                    [nzValue]="association"
+                                ></nz-option>
+                            </nz-option-group>
+
+                            <nz-option-group nzLabel="Club">
+                                <nz-option *ngFor="let club of clubs$$ | async" [nzLabel]="club.name" [nzValue]="club">
+                                </nz-option>
+                            </nz-option-group>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="6" nzFor="action" nzRequired>{{
+                        'admin.sport.competition.label.type' | transloco
+                    }}</nz-form-label>
+
+                    <nz-form-control [nzSpan]="14" nzHasFeedback="true">
+                        <nz-select
+                            id="type"
+                            formControlName="type"
+                            nzPlaceHolder="{{ 'admin.sport.competition.label.type_placeholder' | transloco }}"
+                            [compareWith]="compareTypes"
+                        >
+                            <nz-option *ngFor="let type of types$ | async" [nzLabel]="type" [nzValue]="type">
+                            </nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="6" nzFor="fromTo" nzRequired>{{
+                        'admin.sport.competition.label.from_date_to_date' | transloco
+                    }}</nz-form-label>
+
+                    <nz-form-control [nzSpan]="14" nzHasFeedback="true">
+                        <nz-range-picker
+                            id="fromTo"
+                            formControlName="fromTo"
+                            nzErrorTip="Please input from - to dates!"
+                        ></nz-range-picker>
+                    </nz-form-control>
+                </nz-form-item>
+            </fieldset>
+        </ng-template>
+
+        <ng-template #advanced_tournament> </ng-template>
+
+        <ng-template #advanced_championship>
+            <zs-championship-form [championship$]="instance$" (changeChampionship)="changeChampionshipHandler($event)">
+            </zs-championship-form>
+        </ng-template>
+
+        <ng-template #advanced_cup> Cup edit </ng-template>
+
+        <ng-template #final>
+            <zs-championship-final [championship$]="instance$"></zs-championship-final>
+        </ng-template>
+    </form>
+</ng-container>

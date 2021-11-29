@@ -10,14 +10,14 @@ export interface Event extends Identifiable {
     ageGroup: AgeGroup;
     category: Category;
     competitionId?: string;
-    dates?: Dates;
+    dates: Dates | null;
     gender: Gender;
-    location?: Location;
+    location: Location | null;
     eventDayTime: number | Date;
-    report?: Report;
-    result?: Result;
-    roundId?: number;
-    states?: States;
+    report: Report | null;
+    result: Result | null;
+    roundId: number | null;
+    states: States | null;
     team1: Team;
     team2: Team;
 }

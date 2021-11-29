@@ -215,6 +215,40 @@
                     "simple_name_placeholder": "Simple name"
                 }
             },
+            "event": {
+                "action": {
+                    "add_event": "New event",
+                    "edit": "Edit"
+                },
+                "column": {
+                    "action": "Action",
+                    "age_group": "Age group",
+                    "edit": "Action",
+                    "gender": "Gender",
+                    "team1": "Team 1",
+                    "team2": "Team 2",
+                    "sport_category": "Category"
+                },
+                "label": {
+                    "match": "Match",
+                    "results": "Results",
+                    "event_day_time": "Event day time",
+                    "event_day_time_placeholder": "Event day time",
+                    "team1": "Team1 1",
+                    "team1_placeholder": "Team 1",
+                    "team2": "Team 2",
+                    "team2_placeholder": "Team 2",
+                    "location": "Location",
+                    "location_placeholder": "Location",
+                    "age_group": "Age group",
+                    "age_group_placeholder": "Age group",
+                    "category": "Category",
+                    "category_placeholder": "Category",
+                    "gender": "Gender",
+                    "gender_placeholder": "Gender",
+                    "round_id": "Round id"
+                }
+            },
             "player": {
                 "action": {
                     "add_player": "Add player",
@@ -267,6 +301,7 @@
             "associations": "Associations",
             "categories": "Categories",
             "clubs": "Clubs",
+            "events": "Events",
             "players": "Players",
             "sport": "Sport",
             "teams": "Teams"

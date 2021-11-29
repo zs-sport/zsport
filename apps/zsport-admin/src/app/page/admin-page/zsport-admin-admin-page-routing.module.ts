@@ -7,11 +7,12 @@ import { RoleNames } from '@zsport/api';
 import { AdminAssociationPermissionsService } from '../../permission/association';
 import { AdminCategoryPermissionsService } from '../../permission/category';
 import { AdminClubPermissionsService } from '../../permission/club';
+import { AdminEventPermissionsService } from '../../permission/event';
+import { AdminLocationPermissionsService } from '../../permission/location';
+import { AdminPersonPermissionsService } from '../../permission/person';
 import { ZsportAdminAdminRolePermissionsService } from '../../permission/role';
 import { ZsportAdminAdminUserPermissionsService } from '../../permission/user';
 import { ZsportAdminAdminPageComponent } from './zsport-admin-admin-page.component';
-import { AdminLocationPermissionsService } from '../../permission/location';
-import { AdminPersonPermissionsService } from '../../permission/person';
 
 const routes: Routes = [
     {
@@ -102,6 +103,20 @@ const routes: Routes = [
                 },
                 loadChildren: () =>
                     import('@zsport/domain/sport/club/admin').then((lib) => lib.DomainSportClubAdminModule),
+                canActivate: [NgxPermissionsGuard],
+                canLoad: [NgxPermissionsGuard],
+            },
+            {
+                path: 'event',
+                data: {
+                    breadcrumb: 'Event',
+                    permissions: {
+                        only: ['ADMIN', AdminEventPermissionsService.viewEventAdminPage],
+                        redirectTo: '/error',
+                    },
+                },
+                loadChildren: () =>
+                    import('@zsport/domain/sport/event/admin').then((lib) => lib.DomainSportEventAdminModule),
                 canActivate: [NgxPermissionsGuard],
                 canLoad: [NgxPermissionsGuard],
             },

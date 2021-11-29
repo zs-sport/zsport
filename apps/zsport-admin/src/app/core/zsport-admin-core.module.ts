@@ -27,6 +27,9 @@ import { DomainSportCategoryUtilModule } from '@zsport/domain/sport/category/uti
 import { DomainSportClubDataModule } from '@zsport/domain/sport/club/data';
 import { DomainSportClubStoreModule } from '@zsport/domain/sport/club/store';
 import { DomainSportClubUtilModule } from '@zsport/domain/sport/club/util';
+import { DomainSportEventDataModule } from '@zsport/domain/sport/event/data';
+import { DomainSportEventStoreModule } from '@zsport/domain/sport/event/store';
+import { DomainSportEventUtilModule } from '@zsport/domain/sport/event/util';
 import { DomainSportPlayerDataModule } from '@zsport/domain/sport/player/data';
 import { DomainSportPlayerStoreModule } from '@zsport/domain/sport/player/store';
 import { DomainSportPlayerUtilModule } from '@zsport/domain/sport/player/util';
@@ -74,6 +77,9 @@ import { DefaultUserHookService } from './hook/user';
         DomainSportClubDataModule,
         DomainSportClubStoreModule,
         DomainSportClubUtilModule,
+        DomainSportEventDataModule,
+        DomainSportEventStoreModule,
+        DomainSportEventUtilModule,
         DomainSportPlayerDataModule,
         DomainSportPlayerStoreModule,
         DomainSportPlayerUtilModule,

@@ -86,6 +86,16 @@
                             </span>
                         </li>
                     </ng-template>
+
+                    <ng-template [ngxPermissionsOnly]="[adminRoleName, viewEventAdminPagePermission]">
+                        <li nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLink="event">
+                            <span title>
+                                <i nz-icon nzType="mail"></i>
+
+                                <span>{{ 'admin.sport.events' | transloco }}</span>
+                            </span>
+                        </li>
+                    </ng-template>
                 </ul>
             </li>
         </ng-template>

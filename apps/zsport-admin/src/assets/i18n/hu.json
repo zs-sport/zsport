@@ -214,6 +214,40 @@
                     "association_placeholder": "Szervezet"
                 }
             },
+            "event": {
+                "action": {
+                    "add_event": "Új esemény",
+                    "edit": "Szerkesztés"
+                },
+                "column": {
+                    "action": "Művelet",
+                    "age_group": "Életkor",
+                    "edit": "Akció",
+                    "gender": "Nem",
+                    "team1": "Csapat 1",
+                    "team2": "Csapat 2",
+                    "category": "Kategória"
+                },
+                "label": {
+                    "match": "Mérkőzés",
+                    "results": "Eredmények",
+                    "event_day_time": "Időpont",
+                    "event_day_time_placeholder": "Időpont",
+                    "team1": "Csapat 1",
+                    "team1_placeholder": "Csapat 1",
+                    "team2": "Csapat 2",
+                    "team2_placeholder": "Csapat 2",
+                    "location": "Helyszin",
+                    "location_placeholder": "Helyszin",
+                    "age_group": "Korosztály",
+                    "age_group_placeholder": "Korosztály",
+                    "category": "Kategória",
+                    "category_placeholder": "Kategória",
+                    "gender": "Nem",
+                    "gender_placeholder": "Nem",
+                    "round_id": "Forduló id"
+                }
+            },
             "player": {
                 "action": {
                     "add_player": "Új játékos",
@@ -266,6 +300,7 @@
             "associations": "Szervezetek",
             "categories": "Kategóriák",
             "clubs": "Klubok",
+            "events": "Események",
             "players": "Játékosok",
             "sport": "Sport",
             "teams": "Csapatok"

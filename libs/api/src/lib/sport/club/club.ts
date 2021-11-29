@@ -1,5 +1,6 @@
 import { Address } from '../../address';
 import { Identifiable } from '../../base';
+import { Location } from '../../location';
 import { Dates, States } from '../../state';
 import { Association } from '../association';
 import { Category } from '../category';

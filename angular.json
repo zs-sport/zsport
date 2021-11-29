@@ -1237,6 +1237,32 @@
             },
             "tags": []
         },
+        "domain-sport-competition-admin": {
+            "projectType": "library",
+            "root": "libs/domain/sport/competition/admin",
+            "sourceRoot": "libs/domain/sport/competition/admin/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/competition/admin"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/competition/admin/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/competition/admin/src/**/*.ts",
+                            "libs/domain/sport/competition/admin/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-sport-competition-championship-form": {
             "projectType": "library",
             "root": "libs/domain/sport/competition/championship-form",
@@ -1335,6 +1361,32 @@
                         "lintFilePatterns": [
                             "libs/domain/sport/competition/store/src/**/*.ts",
                             "libs/domain/sport/competition/store/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
+        "domain-sport-competition-table": {
+            "projectType": "library",
+            "root": "libs/domain/sport/competition/table",
+            "sourceRoot": "libs/domain/sport/competition/table/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/competition/table"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/competition/table/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/competition/table/src/**/*.ts",
+                            "libs/domain/sport/competition/table/src/**/*.html"
                         ]
                     }
                 }

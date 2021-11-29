@@ -1367,6 +1367,32 @@
             },
             "tags": []
         },
+        "domain-sport-event-table": {
+            "projectType": "library",
+            "root": "libs/domain/sport/event/table",
+            "sourceRoot": "libs/domain/sport/event/table/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/event/table"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/event/table/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/event/table/src/**/*.ts",
+                            "libs/domain/sport/event/table/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-sport-player-admin": {
             "projectType": "library",
             "root": "libs/domain/sport/player/admin",

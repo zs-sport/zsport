@@ -2,7 +2,12 @@ import { Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { AssociationStateService, CategoryStateService, CompetitionStateService, LocationStateService } from '@zsport/api';
+import {
+    AssociationStateService,
+    CategoryStateService,
+    CompetitionStateService,
+    LocationStateService,
+} from '@zsport/api';
 
 @Injectable()
 export class CompetitionEditResolverService implements Resolve<void> {

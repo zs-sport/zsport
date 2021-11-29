@@ -1289,6 +1289,32 @@
             },
             "tags": []
         },
+        "domain-sport-event-admin": {
+            "projectType": "library",
+            "root": "libs/domain/sport/event/admin",
+            "sourceRoot": "libs/domain/sport/event/admin/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/event/admin"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/event/admin/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/event/admin/src/**/*.ts",
+                            "libs/domain/sport/event/admin/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-sport-event-competition-form": {
             "projectType": "library",
             "root": "libs/domain/sport/event/competition-form",

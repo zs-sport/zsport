@@ -1,0 +1,24 @@
+<nz-tabset nzLinkRouter>
+    <nz-tab>
+        <a
+            nz-tab-link
+            [routerLink]="['./edit-details']"
+            [queryParams]="{ eventId: eventId }"
+            queryParamsHandling="merge"
+            routerLinkActive="ant-tabs-tab-active"
+            >{{ 'admin.sport.event.label.event' | transloco }}</a
+        >
+    </nz-tab>
+    <nz-tab>
+        <a
+            nz-tab-link
+            [routerLink]="['./results']"
+            [queryParams]="{ eventId: eventId }"
+            routerLinkActive="ant-tabs-tab-active"
+            queryParamsHandling="merge"
+            >{{ 'admin.sport.event.label.results' | transloco }}</a
+        >
+    </nz-tab>
+</nz-tabset>
+
+<router-outlet></router-outlet>

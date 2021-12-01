@@ -1,13 +1,12 @@
 import { combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { switchMap, takeUntil, tap } from 'rxjs/operators';
+import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { EventEmitter, Injectable } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
     AgeGroup,
     AgeGroupUtilService,
     Championship,
-    Club,
     Gender,
     GenderUtilService,
     I18nService,
@@ -20,6 +19,7 @@ import { ChampionshipFormBase } from '../../base';
 export class ChampionshipFormService extends ChampionshipFormBase {
     private ageGroups$$!: Subject<AgeGroup | null>;
     private championship!: Championship;
+    private entityForm!: FormGroup;
     private genders$$!: Subject<Gender | null>;
 
     public compareEntities = (o1: any, o2: any): boolean => (o1 && o2 ? o1.uid === o2.uid : o1 === o2);
@@ -27,6 +27,7 @@ export class ChampionshipFormService extends ChampionshipFormBase {
     public constructor(
         private ageGroupUtilService: AgeGroupUtilService,
         private formBuilder: FormBuilder,
+        private i18nService: I18nService,
         private genderUtilService: GenderUtilService,
         private teamStateService: TeamStateService
     ) {
@@ -35,13 +36,29 @@ export class ChampionshipFormService extends ChampionshipFormBase {
 
     public init$(
         championship$: Observable<Championship>,
+        entityForm$$: Subject<FormGroup>,
         changeChampionship: EventEmitter<Championship>
     ): Observable<boolean> {
         this.championship$ = championship$;
+        this.entityForm$$ = entityForm$$;
         this.changeChampionship = changeChampionship;
         this.buttonAction = 'Create';
-        this.ageGroups$ = of(this.ageGroupUtilService.getAgeGroups());
-        this.genders$ = of(this.genderUtilService.getGenders());
+        this.ageGroupOptions$ = of(this.ageGroupUtilService.getAgeGroups()).pipe(
+            map((ageGroups: AgeGroup[]) =>
+                ageGroups.map((ageGroup) => ({
+                    label: ageGroup.nameI18n[this.i18nService.getActiveLang()] as string,
+                    value: ageGroup,
+                }))
+            )
+        );
+        this.genderOptions$ = of(this.genderUtilService.getGenders()).pipe(
+            map((genders) =>
+                genders.map((gender) => ({
+                    label: gender.nameI18n[this.i18nService.getActiveLang()] as string,
+                    value: gender,
+                }))
+            )
+        );
         this.clubs$$ = new Subject();
         this.ageGroups$$ = new ReplaySubject();
         this.genders$$ = new ReplaySubject();
@@ -49,29 +66,24 @@ export class ChampionshipFormService extends ChampionshipFormBase {
         this.ageGroups$$.next(null);
         this.genders$$.next(null);
 
-        return combineLatest([
-            this.championship$,
-            this.genders$$.pipe(tap(console.log)),
-            this.ageGroups$$.pipe(tap(console.log)),
-        ]).pipe(
-            switchMap(([championship, gender, ageGroup]) => {
-                const ageGroupId = ageGroup ? ageGroup.uid : championship.ageGroup.uid;
-                const genderId = gender ? gender.uid : championship.gender.uid;
+        this.initChampionshipForm();
+        this.initChampionship();
 
+        return combineLatest([this.championship$, this.genders$$, this.ageGroups$$]).pipe(
+            switchMap(([championship, gender, ageGroup]) => {
+                const ageGroupId = ageGroup ? ageGroup.uid : championship.ageGroup ? championship.ageGroup.uid : 0;
+                const genderId = gender ? gender.uid : championship.gender ? championship.gender.uid : 0;
                 const aggcId = ageGroupId + '_' + genderId + '_' + championship.category.uid;
 
                 this.teamStateService.dispatchListTeamsByAGGCId(aggcId);
 
                 return this.teamStateService.selectTeamsByAGGCId$(aggcId).pipe(
-                    tap((sportTeams) => {
-                        this.clubs$$.next(sportTeams.map((sportTeam) => ({ ...sportTeam.club })));
+                    tap((teams) => {
+                        this.clubs$$.next(teams.map((teams) => ({ ...teams.club })));
                     })
                 );
             }),
             switchMap((data) => {
-                this.initChampionshipForm();
-                this.initChampionship();
-
                 return of(true);
             })
         );
@@ -110,6 +122,7 @@ export class ChampionshipFormService extends ChampionshipFormBase {
                 });
 
                 this.buttonAction = 'Update';
+                this.entityForm$$.next(this.entityForm);
             }
         });
     }
@@ -124,13 +137,13 @@ export class ChampionshipFormService extends ChampionshipFormBase {
 
         this.entityForm.valueChanges
             .pipe(
-                takeUntil(this.destroy),
                 tap((values) =>
                     this.changeChampionship.next({
                         ...this.championship,
                         ...values,
                     })
-                )
+                ),
+                takeUntil(this.destroy)
             )
             .subscribe();
     }

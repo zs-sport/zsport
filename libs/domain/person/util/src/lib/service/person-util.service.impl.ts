@@ -1,21 +1,9 @@
-import * as moment from 'moment';
-
 import { Injectable } from '@angular/core';
-import {
-    Entity,
-    GenderUtilService,
-    I18nService,
-    Model,
-    PersonEntity,
-    PersonModel,
-    PersonUtilService,
-    SkillSetUtilService,
-    StateUtilService,
-} from '@zsport/api';
+import { DateUtilService, PersonEntity, PersonModel, PersonUtilService, StateUtilService } from '@zsport/api';
 
 @Injectable()
 export class PersonUtilServiceImpl extends PersonUtilService {
-    public constructor(private stateUtilService: StateUtilService) {
+    public constructor(private dateUtilService: DateUtilService, private stateUtilService: StateUtilService) {
         super();
     }
 
@@ -28,7 +16,7 @@ export class PersonUtilServiceImpl extends PersonUtilService {
         }
 
         const updatedPersonModel: PersonModel = {
-            birthDay: person.birthDay ? moment(person.birthDay).milliseconds(0).valueOf() : 0,
+            birthDay: person.birthDay ? this.dateUtilService.convertToDate(person.birthDay) : 0,
             dates: person.dates,
             email: person.email,
             firstName: person.firstName,

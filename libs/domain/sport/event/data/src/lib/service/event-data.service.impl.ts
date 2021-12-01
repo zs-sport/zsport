@@ -17,7 +17,7 @@ export class EventDataServiceImpl extends EventDataService {
     private eventCollectionsByDay: Map<number, Observable<EventModel[]>>;
 
     protected eventCollection: AngularFirestoreCollection<EventModel>;
-    protected eventes$: Observable<EventModel[]>;
+    protected events$: Observable<EventModel[]>;
 
     public constructor(private angularFirestore: AngularFirestore, private dateUtilService: DateUtilService) {
         super();
@@ -25,7 +25,7 @@ export class EventDataServiceImpl extends EventDataService {
         this.eventCollection = angularFirestore.collection<EventModel>(EVENT_FEATURE_KEY);
         this.eventCollectionsByDay = new Map<number, Observable<EventModel[]>>();
 
-        this.eventes$ = this.eventCollection.valueChanges();
+        this.events$ = this.eventCollection.valueChanges();
     }
 
     public add$(event: EventModel): Observable<EventModel> {
@@ -49,7 +49,7 @@ export class EventDataServiceImpl extends EventDataService {
     }
 
     public list$(): Observable<EventModel[]> {
-        return this.eventes$;
+        return this.events$;
     }
 
     public listByDay$(day: Date): Observable<EventModel[]> {

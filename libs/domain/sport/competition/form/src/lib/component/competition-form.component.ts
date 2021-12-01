@@ -5,6 +5,7 @@ import { CategoryEntity, Championship } from '@zsport/api';
 
 import { CompetitionFormBase } from '../base';
 import { CompetitionFormService } from '../service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,6 +37,8 @@ export class CompetitionFormComponent extends CompetitionFormBase implements OnD
 
     @ViewChild('final', { static: true })
     public final!: TemplateRef<any>;
+
+    public competitionForm!: FormGroup;
 
     public constructor(private componentService: CompetitionFormService) {
         super();
@@ -75,20 +78,35 @@ export class CompetitionFormComponent extends CompetitionFormBase implements OnD
         typeRefs.set('advanced_cup', this.advanced_cup);
 
         this.componentService
-            .init$([this.base, typeRefs, this.final])
+            .init$([this.base, typeRefs, this.final], this.currentStep$$)
             .pipe(
                 tap(() => {
                     this.languages$ = this.componentService.languages$;
                     this.categories$ = this.componentService.categories$;
                     this.competitionForm = this.componentService.competitionForm;
-                    this.currentStep$$ = this.componentService.currentStep$$;
-                    this.template = this.componentService.template;
+                    this.template$$ = this.componentService.template$$;
                     this.types$ = this.componentService.types$;
                     this.associations$$ = this.componentService.associations$$;
                     this.clubs$$ = this.componentService.clubs$$;
                     this.instance$ = this.componentService.instance$;
                 }),
                 takeUntil(this.destroy)
+            )
+            .subscribe();
+
+        this.currentStep$$
+            .pipe(
+                tap((data) => {
+                    console.log(data);
+                })
+            )
+            .subscribe();
+
+        this.template$$
+            .pipe(
+                tap((data) => {
+                    console.log(data);
+                })
             )
             .subscribe();
     }

@@ -13,6 +13,7 @@ import { AdminPersonPermissionsService } from '../../permission/person';
 import { ZsportAdminAdminRolePermissionsService } from '../../permission/role';
 import { ZsportAdminAdminUserPermissionsService } from '../../permission/user';
 import { ZsportAdminAdminPageComponent } from './zsport-admin-admin-page.component';
+import { AdminCompetitionPermissionsService } from '../../permission/competition';
 
 const routes: Routes = [
     {
@@ -103,6 +104,22 @@ const routes: Routes = [
                 },
                 loadChildren: () =>
                     import('@zsport/domain/sport/club/admin').then((lib) => lib.DomainSportClubAdminModule),
+                canActivate: [NgxPermissionsGuard],
+                canLoad: [NgxPermissionsGuard],
+            },
+            {
+                path: 'competition',
+                data: {
+                    breadcrumb: 'Competition',
+                    permissions: {
+                        only: ['ADMIN', AdminCompetitionPermissionsService.viewCompetitionAdminPage],
+                        redirectTo: '/error',
+                    },
+                },
+                loadChildren: () =>
+                    import('@zsport/domain/sport/competition/admin').then(
+                        (lib) => lib.DomainSportCompetitionAdminModule
+                    ),
                 canActivate: [NgxPermissionsGuard],
                 canLoad: [NgxPermissionsGuard],
             },

@@ -214,6 +214,57 @@
                     "association_placeholder": "Szervezet"
                 }
             },
+            "competition": {
+                "action": {
+                    "add_competition": "Új verseny",
+                    "edit": "Szerkesztés"
+                },
+                "button": {
+                    "add_match": "Új mérkőzés",
+                    "done": "Kész",
+                    "next": "Következő",
+                    "previous": "Előző"
+                },
+                "column": {
+                    "action": "Művelet",
+                    "edit": "Akció",
+                    "gender": "Nem",
+                    "name": "Név",
+                    "type": "Típus",
+                    "category": "Kategória"
+                },
+                "label": {
+                    "association": "Szervezet",
+                    "advanced": "Részletes",
+                    "age_group": "Korosztály",
+                    "age_group_placeholder": "Korosztály",
+                    "base": "Alap",
+                    "category": "Kategória",
+                    "category_placeholder": "Kategória",
+                    "championship_info": "Bajnokság információ",
+                    "club": "Klub",
+                    "clubs": "Klubbok",
+                    "clubs_placeholder": "Klubbok",
+                    "competition": "Verseny",
+                    "data": "Adat",
+                    "final": "Teljes",
+                    "from_date_to_date": "Tól - Ig",
+                    "gender": "Nem",
+                    "gender_placeholder": "Nem",
+                    "list": "Lista",
+                    "owner": "Szülő",
+                    "owner_placeholder": "Szülő",
+                    "events": "Események",
+                    "event_edit": "Esemény szerkesztés",
+                    "name": "Név",
+                    "name_placeholder": "Név",
+                    "round": "Forduló",
+                    "round_iterations": "Fordulók száma",
+                    "round_iterations_placeholder": "Fordulók száma",
+                    "type": "Típus",
+                    "type_placeholder": "Típus"
+                }
+            },
             "event": {
                 "action": {
                     "add_event": "Új esemény",
@@ -300,6 +351,7 @@
             "associations": "Szervezetek",
             "categories": "Kategóriák",
             "clubs": "Klubok",
+            "competitions": "Versenyek",
             "events": "Események",
             "players": "Játékosok",
             "sport": "Sport",

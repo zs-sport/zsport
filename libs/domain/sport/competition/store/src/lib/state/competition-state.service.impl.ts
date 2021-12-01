@@ -2,32 +2,32 @@ import { Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { CompetitionEntity, CompetitionStateService, Entity, EventEntity } from '@zsport/api';
+import { Competition, CompetitionStateService, Entity, Event } from '@zsport/api';
 
 import * as competitionActions from './competition.actions';
+import * as fromCompetition from './competition.reducer';
 import * as competitionSelectors from './competition.selectors';
-import { CompetitionState } from './competition.reducer';
 
 @Injectable()
 export class CompetitionStateServiceImpl extends CompetitionStateService {
-    public constructor(private store: Store<CompetitionState>) {
+    public constructor(private store: Store<fromCompetition.CompetitionPartialState>) {
         super();
     }
 
-    public dispatchAddEntityAction(competition: CompetitionEntity): void {
-        this.store.dispatch(competitionActions.addCompetition({ competition: competition }));
+    public dispatchAddEntityAction(entity: Entity): void {
+        this.store.dispatch(competitionActions.addCompetition({ competition: entity as Competition }));
     }
 
-    public dispatchAddEventByCompetitionId(event: EventEntity): void {
+    public dispatchAddEventByCompetitionId(event: Event): void {
         this.store.dispatch(competitionActions.addEventByCompetitionId({ event }));
     }
 
     public dispatchChangeNewEntityButtonEnabled(enabled: boolean): void {
-        throw new Error('Method not implemented.');
+        this.store.dispatch(competitionActions.changeNewEntityButtonEnabled({ enabled }));
     }
 
     public dispatchChangeSelectedfinalTabId(selectedFinalTabId: number): void {
-        throw new Error('Method not implemented.');
+        this.store.dispatch(competitionActions.changeSelectedFinalTabId({ selectedFinalTabId }));
     }
 
     public dispatchDeleteEntityAction(competitionId: string): void {
@@ -35,23 +35,21 @@ export class CompetitionStateServiceImpl extends CompetitionStateService {
     }
 
     public dispatchListEntitiesAction(): void {
-        throw new Error('Method not implemented.');
+        this.store.dispatch(competitionActions.listCompetitions());
     }
 
-    public dispatchListEventesByCompetitionId(competitionId: string): void {
-        this.store.dispatch(competitionActions.listEventesByCompetitionId({ competitionId }));
+    public dispatchListEventsByCompetitionId(competitionId: string): void {
+        this.store.dispatch(competitionActions.listEventsByCompetitionId({ competitionId }));
     }
 
-    public dispatchLoadAction(): void {
-        this.store.dispatch(competitionActions.loadCompetitions());
-    }
+    public dispatchLoadEntitiesAction(): void {}
 
-    public dispatchLoadEntitiesAction(): void {
+    public dispatchLoadEntitiesByIdsAction(uids: string[]): void {
         throw new Error('Method not implemented.');
     }
 
     public dispatchLoadEntityAction(uid: string): void {
-        throw new Error('Method not implemented.');
+        this.store.dispatch(competitionActions.loadCompetition({ uid }));
     }
 
     public dispatchSelectCompetitionAction(uid: string): void {
@@ -59,50 +57,46 @@ export class CompetitionStateServiceImpl extends CompetitionStateService {
     }
 
     public dispatchSetSelectedEntityIdAction(entityId: string): void {
-        throw new Error('Method not implemented.');
-    }
-
-    public dispatchUpdateAction(competition: CompetitionEntity): void {
-        this.store.dispatch(competitionActions.updateCompetition({ competition: competition }));
+        this.store.dispatch(competitionActions.setSelectedCompetitionId({ competitionId: entityId }));
     }
 
     public dispatchUpdateEntityAction(entity: Entity): void {
-        throw new Error('Method not implemented.');
+        this.store.dispatch(competitionActions.updateCompetition({ competition: entity as Competition }));
     }
 
-    public dispatchUpdateEventByCompetitionId(event: EventEntity): void {
-        this.store.dispatch(competitionActions.updateEvent({ event }));
+    public dispatchUpdateEventByCompetitionId(event: Event): void {
+        this.store.dispatch(competitionActions.updateEventByCompetitionId({ event }));
     }
 
     public isLoading$(): Observable<boolean> {
         throw new Error('Method not implemented.');
     }
 
-    public selectEntities$(): Observable<Array<CompetitionEntity>> {
+    public selectEntities$(): Observable<Entity[]> {
         return this.store.pipe(select(competitionSelectors.selectAllCompetition));
     }
 
-    public selectEntity$(): Observable<CompetitionEntity | undefined> {
+    public selectEntity$(): Observable<Entity | undefined> {
         return this.store.pipe(select(competitionSelectors.selectCompetition));
     }
 
-    public selectEntityById$(entityId: string): Observable<Entity | undefined> {
-        return this.store.pipe(select(competitionSelectors.selectCompetitionById, { competitionId: entityId }));
+    public selectEntityById$(entityId: string): Observable<Entity> {
+        throw new Error('Method not implemented.');
     }
 
     public selectNewEntityButtonEnabled$(): Observable<boolean> {
-        throw new Error('Method not implemented.');
+        return this.store.pipe(select(competitionSelectors.isNewEntityButtonEnabled));
     }
 
-    public selectSelectedEntity$(): Observable<Entity> {
-        throw new Error('Method not implemented.');
+    public selectSelectedEntity$(): Observable<Entity | undefined> {
+        return this.store.pipe(select(competitionSelectors.selectCompetition));
     }
 
     public selectSelectedEntityID$(): Observable<string> {
-        throw new Error('Method not implemented.');
+        return this.store.pipe(select(competitionSelectors.getSelectedId));
     }
 
     public selectSelectedFinalTabId$(): Observable<number> {
-        throw new Error('Method not implemented.');
+        return this.store.pipe(select(competitionSelectors.selectSelectedFinalTabId));
     }
 }

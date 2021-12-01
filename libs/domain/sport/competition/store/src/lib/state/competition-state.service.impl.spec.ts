@@ -1,21 +1,19 @@
-import { inject, TestBed } from '@angular/core/testing';
-import { CompetitionStateService } from '@zsport/api';
+import { TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
 
 import { CompetitionStateServiceImpl } from './competition-state.service.impl';
 
-describe('CompetitionStateService', () => {
-    beforeEach(() => {
+describe('CompetitionStateServiceImpl', () => {
+    beforeEach(() =>
         TestBed.configureTestingModule({
-            providers: [
-                {
-                    provide: CompetitionStateService,
-                    useClass: CompetitionStateServiceImpl,
-                },
-            ],
-        });
-    });
+            imports: [StoreModule.forRoot({})],
+            providers: [CompetitionStateServiceImpl],
+        })
+    );
 
-    it('should be created', inject([CompetitionStateService], (service: CompetitionStateService) => {
+    it('should be created', () => {
+        const service: CompetitionStateServiceImpl = TestBed.inject(CompetitionStateServiceImpl);
+
         expect(service).toBeTruthy();
-    }));
+    });
 });

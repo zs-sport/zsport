@@ -1,10 +1,22 @@
 import { Injectable } from '@angular/core';
-import { AgeGroup, Category, EventEntity, EventList, EventModel, EventUtilService, Gender } from '@zsport/api';
+import {
+    AgeGroup,
+    Category,
+    DateUtilService,
+    EventEntity,
+    EventList,
+    EventModel,
+    EventUtilService,
+    Gender,
+} from '@zsport/api';
 
 @Injectable()
 export class EventUtilServiceImpl extends EventUtilService {
+    public constructor(private dateUtilService: DateUtilService) {
+        super();
+    }
     public convertEntityToModel(event: EventEntity): EventModel {
-        return { ...event };
+        return { ...event, eventDayTime: this.dateUtilService.convertToDate(event.eventDayTime) };
     }
 
     public convertModelToEntity(eventModel: EventModel): EventEntity {

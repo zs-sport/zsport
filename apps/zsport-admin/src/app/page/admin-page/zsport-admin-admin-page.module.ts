@@ -15,6 +15,8 @@ import { ZsportAdminAdminMenuComponent } from './component/admin-menu';
 import { AssociationFactoryModule } from './factory/association';
 import { CategoryFactoryModule } from './factory/category';
 import { ClubFactoryModule } from './factory/club';
+import { CompetitionEventFactoryModule } from './factory/competition-event/competition-event-factory.module';
+import { CompetitionFactoryModule } from './factory/competition/competition-factory.module';
 import { EventFactoryModule } from './factory/event';
 import { LocationFactoryModule } from './factory/location';
 import { PersonFactoryModule } from './factory/person';
@@ -40,6 +42,8 @@ import { ZsportAdminAdminPageComponent } from './zsport-admin-admin-page.compone
         CoreI18nModule,
         AssociationFactoryModule,
         CategoryFactoryModule,
+        CompetitionFactoryModule,
+        CompetitionEventFactoryModule,
         ClubFactoryModule,
         EventFactoryModule,
         LocationFactoryModule,

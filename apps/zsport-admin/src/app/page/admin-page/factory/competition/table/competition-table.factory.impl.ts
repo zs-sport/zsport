@@ -85,7 +85,7 @@ export class CompetitionTableFactoryImpl extends CompetitionTableFactory {
 
         const editColumnHeader: DynamicColumnHeaderModel = {
             listOfFilter: [],
-            title: this.i18NService.translate('admin.sport.sport_category.column.edit'),
+            title: this.i18NService.translate('admin.sport.competition.column.edit'),
         };
 
         if (this.hasEditEntityPermission()) {
@@ -135,7 +135,7 @@ export class CompetitionTableFactoryImpl extends CompetitionTableFactory {
 
         const editColumn: DynamicColumnModel = {
             actionHandler: this.clickHandler,
-            actionName: this.i18NService.translate('admin.sport.sport_category.action.edit'),
+            actionName: this.i18NService.translate('admin.sport.competition.action.edit'),
             actionRoute: '../edit',
             isAction: true,
             propertyName: '',

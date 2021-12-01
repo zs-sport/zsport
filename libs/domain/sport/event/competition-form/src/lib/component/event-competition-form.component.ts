@@ -1,13 +1,14 @@
 import { takeUntil, tap } from 'rxjs/operators';
 
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit } from '@angular/core';
 
 import { EventCompetitionFormBase } from '../base';
 import { EventCompetitionFormService } from '../service';
+import { AgeGroup, Category, Event, Gender, Team } from '@zsport/api';
+import { Observable } from 'rxjs';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    inputs: ['event$', 'ageGroups$', 'categories$', 'genders$', 'teams$'],
     outputs: ['eventUpdate', 'formValueChange'],
     providers: [EventCompetitionFormService],
     selector: 'zs-event-competition-form',
@@ -15,6 +16,17 @@ import { EventCompetitionFormService } from '../service';
     styleUrls: ['./event-competition-form.component.less'],
 })
 export class EventCompetitionFormComponent extends EventCompetitionFormBase implements OnInit {
+    @Input()
+    public ageGroups$!: Observable<AgeGroup[]>;
+    @Input()
+    public categories$!: Observable<Category[]>;
+    @Input()
+    public event$!: Observable<Event>;
+    @Input()
+    public genders$!: Observable<Gender[]>;
+    @Input()
+    public teams$!: Observable<Team[]>;
+
     public constructor(private componentService: EventCompetitionFormService) {
         super();
 

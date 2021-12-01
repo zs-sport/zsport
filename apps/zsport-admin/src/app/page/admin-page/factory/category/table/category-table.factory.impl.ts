@@ -22,13 +22,13 @@ import { AdminCategoryPermissionsService } from '../../../../../permission/categ
 @Injectable()
 export class CategoryTableFactoryImpl extends CategoryTableFactory {
     private clickHandler = (entity: Entity): void => {
-        this.sportCategoryStateService.dispatchSetSelectedEntityIdAction(entity.uid || '');
+        this.categoryStateService.dispatchSetSelectedEntityIdAction(entity.uid || '');
     };
 
     constructor(
         private authorizationService: AuthorizationService,
         private i18NService: I18nService,
-        private sportCategoryStateService: CategoryStateService
+        private categoryStateService: CategoryStateService
     ) {
         super();
     }
@@ -44,7 +44,7 @@ export class CategoryTableFactoryImpl extends CategoryTableFactory {
     }
 
     public getData$(): Observable<CategoryEntity[]> {
-        return this.sportCategoryStateService
+        return this.categoryStateService
             .selectEntities$()
             .pipe(map((entities) => entities.map((entity) => entity as CategoryEntity)));
     }

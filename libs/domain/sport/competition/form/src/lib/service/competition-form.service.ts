@@ -3,11 +3,10 @@ import { BehaviorSubject, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import {
     AssociationStateService,
-    AssociationUtilService,
     Category,
     CategoryStateService,
     Championship,
@@ -21,7 +20,8 @@ import { CompetitionFormBase } from '../base';
 
 @Injectable()
 export class CompetitionFormService extends CompetitionFormBase {
-    private current = 0;
+    public competitionForm!: FormGroup;
+    private current: number = 0;
     private editedCompetition!: Competition;
     private readClubsOrAssociations$$!: Subject<string>;
     private templates!: any[];
@@ -41,7 +41,6 @@ export class CompetitionFormService extends CompetitionFormBase {
         private i18nService: I18nService,
         private router: Router,
         private associationStateService: AssociationStateService,
-        private associationUtilService: AssociationUtilService,
         private categoryStateService: CategoryStateService,
         private clubStateService: ClubStateService
     ) {
@@ -67,11 +66,12 @@ export class CompetitionFormService extends CompetitionFormBase {
         this.onSubmit();
     }
 
-    public init$(viewChildren: any[]): Observable<boolean> {
+    public init$(viewChildren: any[], currentStep$$: Subject<number>): Observable<boolean> {
+        this.currentStep$$ = currentStep$$;
         this.templates = viewChildren;
         this.buttonAction = 'Create';
-        this.currentStep$$ = new BehaviorSubject(this.current);
-        this.template = new BehaviorSubject(this.templates[this.current]);
+
+        this.template$$.next(this.templates[this.current]);
         this.types$ = of(this.TYPES);
         this.categories$ = this.categoryStateService
             .selectEntities$()
@@ -117,14 +117,14 @@ export class CompetitionFormService extends CompetitionFormBase {
         this.currentStep$$.next(this.current);
 
         if (this.current === 1) {
-            this.template.next(this.templates[this.current].get('advanced_' + this.competitionForm.value['type']));
+            this.template$$.next(this.templates[this.current].get('advanced_' + this.competitionForm.value['type']));
             this.instance$.next({
                 ...this.competition,
                 ...this.competitionForm.value,
             });
         } else if (this.current > 1) {
-            this.template.next(this.templates[this.current]);
-            this.instance$.next(this.competition);
+            this.template$$.next(this.templates[this.current]);
+            this.instance$.next(this.competition as Championship);
         }
     }
 
@@ -145,9 +145,9 @@ export class CompetitionFormService extends CompetitionFormBase {
         this.currentStep$$.next(this.current);
 
         if (this.current === 1) {
-            this.template.next(this.templates[this.current].get('advanced_' + this.competitionForm.value['type']));
+            this.template$$.next(this.templates[this.current].get('advanced_' + this.competitionForm.value['type']));
         } else {
-            this.template.next(this.templates[this.current]);
+            this.template$$.next(this.templates[this.current]);
         }
     }
 

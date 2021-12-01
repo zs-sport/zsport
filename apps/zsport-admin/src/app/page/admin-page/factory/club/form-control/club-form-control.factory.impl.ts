@@ -29,7 +29,7 @@ export class ClubFormControlFactoryImpl extends ClubFormControlFactory {
         private i18nService: I18nService,
         private locationStateService: LocationStateService,
         private sportAssociationStateService: AssociationStateService,
-        private sportCategoryStateService: CategoryStateService,
+        private categoryStateService: CategoryStateService,
         private storageDataService: StorageDataService,
         private storageUtilService: StorageUtilService
     ) {
@@ -40,7 +40,7 @@ export class ClubFormControlFactoryImpl extends ClubFormControlFactory {
 
     public createFormControls$(data: ClubEntity): Observable<ControlBase<any>[]> {
         return combineLatest([
-            this.sportCategoryStateService.selectEntities$().pipe(filter((entities) => entities.length > 0)),
+            this.categoryStateService.selectEntities$().pipe(filter((entities) => entities.length > 0)),
             this.sportAssociationStateService.selectEntities$().pipe(filter((entities) => entities.length > 0)),
             this.locationStateService.selectEntities$().pipe(filter((entities) => entities.length > 0)),
         ]).pipe(

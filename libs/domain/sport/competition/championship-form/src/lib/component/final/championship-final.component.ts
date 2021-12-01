@@ -1,7 +1,8 @@
+import { Observable, ReplaySubject } from 'rxjs';
 import { skip, takeUntil, tap } from 'rxjs/operators';
 
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { EventEntity } from '@zsport/api';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Championship, EventEntity } from '@zsport/api';
 
 import { ChampionshipFinalBase } from '../../base';
 import { ChampionshipFinalService } from '../../service';
@@ -9,16 +10,21 @@ import { ChampionshipFinalService } from '../../service';
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [ChampionshipFinalService],
-    inputs: ['championship$'],
     selector: 'zs-championship-final',
     templateUrl: './championship-final.component.html',
     styleUrls: ['./championship-final.component.scss'],
 })
 export class ChampionshipFinalComponent extends ChampionshipFinalBase implements OnInit {
+    @Input()
+    public championship$!: Observable<Championship>;
     public radioEvents = 'round';
 
     public constructor(private championshipFinalService: ChampionshipFinalService) {
         super();
+
+        this.dynamicEventFormComponent$$ = new ReplaySubject();
+        this.dynamicEventFormInputs$$ = new ReplaySubject();
+        this.dynamicEventFormOutputs$$ = new ReplaySubject();
     }
 
     public addEventHandler(index: number): void {
@@ -35,7 +41,12 @@ export class ChampionshipFinalComponent extends ChampionshipFinalBase implements
 
     public ngOnInit(): void {
         this.championshipFinalService
-            .init$(this.championship$)
+            .init$(
+                this.championship$,
+                this.dynamicEventFormComponent$$,
+                this.dynamicEventFormInputs$$,
+                this.dynamicEventFormOutputs$$
+            )
             .pipe(
                 tap(() => {
                     this.event$$ = this.championshipFinalService.event$$;
@@ -46,9 +57,6 @@ export class ChampionshipFinalComponent extends ChampionshipFinalBase implements
                     this.genders$$ = this.championshipFinalService.genders$$;
                     this.categories$$ = this.championshipFinalService.categories$$;
                     this.teams$$ = this.championshipFinalService.teams$$;
-                    this.dynamicEventFormComponent$$ = this.championshipFinalService.dynamicEventFormComponent$$;
-                    this.dynamicEventFormInputs$$ = this.championshipFinalService.dynamicEventFormInputs$$;
-                    this.dynamicEventFormOutputs$$ = this.championshipFinalService.dynamicEventFormOutputs$$;
                     this.selectedFinalTabId$ = this.championshipFinalService.selectedFinalTabId$;
                 }),
                 takeUntil(this.destroy)

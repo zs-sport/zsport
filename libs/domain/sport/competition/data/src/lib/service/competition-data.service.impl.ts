@@ -63,7 +63,7 @@ export class CompetitionDataServiceImpl extends CompetitionDataService {
         return this.competitions$;
     }
 
-    public listEventesByCompetitionId(competitionId: string): Observable<EventModel[]> {
+    public listEventsByCompetitionId(competitionId: string): Observable<EventModel[]> {
         return new Observable<EventModel[]>((observer) => {
             const competitionDocument = this.angularFirestore.doc<CompetitionModel>(
                 COMPETITION_FEATURE_KEY + '/' + competitionId
@@ -73,17 +73,13 @@ export class CompetitionDataServiceImpl extends CompetitionDataService {
                 .collection(EVENT_FEATURE_KEY)
                 .valueChanges()
                 .subscribe((values) => {
-                    const eventes: EventModel[] = [];
+                    const events: EventModel[] = [];
 
-                    values.map((item) => eventes.push(item as EventModel));
+                    values.map((item) => events.push(item as EventModel));
 
-                    observer.next(eventes);
+                    observer.next(events);
                 });
         });
-    }
-
-    public listEventsByCompetitionId(competitionId: string): Observable<Event[]> {
-        throw new Error('Method not implemented.');
     }
 
     public load$(uid: string): Observable<CompetitionModel> {

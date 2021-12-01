@@ -215,6 +215,55 @@
                     "simple_name_placeholder": "Simple name"
                 }
             },
+            "competition": {
+                "action": {
+                    "add_competition": "New competition",
+                    "edit": "Edit"
+                },
+                "button": {
+                    "add_match": "New match",
+                    "done": "Done",
+                    "next": "Next",
+                    "previous": "Previous"
+                },
+                "column": {
+                    "gender": "Gender",
+                    "name": "Name",
+                    "type": "Type",
+                    "category": "Category"
+                },
+                "label": {
+                    "association": "Association",
+                    "advanced": "Advanced",
+                    "age_group": "Age group",
+                    "age_group_placeholder": "Age group",
+                    "base": "Base",
+                    "category": "Category",
+                    "category_placeholder": "Category",
+                    "championship_info": "Championship info",
+                    "club": "Club",
+                    "clubs": "Clubs",
+                    "clubs_placeholder": "Clubs",
+                    "competition": "Competition",
+                    "data": "Data",
+                    "final": "Final",
+                    "from_date_to_date": "From - To",
+                    "gender": "Gender",
+                    "gender_placeholder": "Gender",
+                    "list": "List",
+                    "owner": "Owner",
+                    "owner_placeholder": "Owner",
+                    "events": "Events",
+                    "event_edit": "Event edit",
+                    "name": "Name",
+                    "name_placeholder": "Name",
+                    "round": "Round",
+                    "round_iterations": "Round iterations",
+                    "round_iterations_placeholder": "Round iterations",
+                    "type": "Type",
+                    "type_placeholder": "Type"
+                }
+            },
             "event": {
                 "action": {
                     "add_event": "New event",
@@ -301,6 +350,7 @@
             "associations": "Associations",
             "categories": "Categories",
             "clubs": "Clubs",
+            "competitions": "Competitions",
             "events": "Events",
             "players": "Players",
             "sport": "Sport",

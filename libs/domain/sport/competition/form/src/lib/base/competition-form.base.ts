@@ -1,7 +1,7 @@
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
 
 import { TemplateRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+
 import { Association, Category, Championship, ClubEntity, Competition, EntityBaseComponent } from '@zsport/api';
 
 export abstract class CompetitionFormBase extends EntityBaseComponent {
@@ -14,11 +14,10 @@ export abstract class CompetitionFormBase extends EntityBaseComponent {
     public categories$!: Observable<Category[]>;
     public clubs$$!: Subject<ClubEntity[]>;
     public competition$!: Observable<Competition | null>;
-    public competitionForm!: FormGroup;
-    public currentStep$$!: Subject<number>;
-    public instance$!: Subject<Competition>;
+    public currentStep$$: Subject<number> = new BehaviorSubject(0);
+    public instance$!: Subject<Championship>;
     public languages$!: Observable<string[]>;
-    public template!: Subject<TemplateRef<any>>;
+    public template$$: Subject<TemplateRef<any>> = new ReplaySubject();
     public types$!: Observable<string[]>;
 
     public abstract categorySelectChangeHandler(category: Category): void;

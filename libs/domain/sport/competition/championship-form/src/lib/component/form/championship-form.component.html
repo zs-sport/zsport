@@ -1,84 +1,80 @@
-<form nz-form [formGroup]="entityForm" novalidate>
-    <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="gender" nzRequired>{{
-            'admin.sport.competition.label.gender' | transloco
-        }}</nz-form-label>
+<ng-container *ngIf="entityForm$$ | async as entityForm">
+    <form nz-form [formGroup]="entityForm" novalidate>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="gender" nzRequired>{{
+                'admin.sport.competition.label.gender' | transloco
+            }}</nz-form-label>
 
-        <nz-form-control [nzSpan]="14" nzHasFeedback="true">
-            <nz-select
-                id="gender"
-                formControlName="gender"
-                nzPlaceHolder="{{ 'admin.sport.competition.label.gender_placeholder' | transloco }}"
-                [compareWith]="compareEntities"
-                nzErrorTip="Please select a value!"
-                (ngModelChange)="onGenderChangeHandler($event)"
-            >
-                <nz-option
-                    *ngFor="let gender of genders$ | async"
-                    [nzLabel]="gender | i18nName: 'nameI18n'"
-                    [nzValue]="gender"
+            <nz-form-control [nzSpan]="14" nzHasFeedback="true">
+                <ng-container *ngIf="genderOptions$ | async as genderOptions">
+                    <nz-select
+                        id="gender"
+                        formControlName="gender"
+                        nzPlaceHolder="{{ 'admin.sport.competition.label.gender_placeholder' | transloco }}"
+                        [compareWith]="compareEntities"
+                        nzErrorTip="Please select a value!"
+                        (ngModelChange)="onGenderChangeHandler($event)"
+                        [nzOptions]="genderOptions"
+                    >
+                    </nz-select>
+                </ng-container>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="ageGroup" nzRequired>{{
+                'admin.sport.competition.label.age_group' | transloco
+            }}</nz-form-label>
+
+            <nz-form-control [nzSpan]="14" nzHasFeedback="true">
+                <ng-container *ngIf="ageGroupOptions$ | async as ageGroupOptions">
+                    <nz-select
+                        id="ageGroup"
+                        formControlName="ageGroup"
+                        nzPlaceHolder="{{ 'admin.sport.competition.label.age_group_placeholder' | transloco }}"
+                        [compareWith]="compareEntities"
+                        (ngModelChange)="onAgeGroupChangeHandler($event)"
+                        nzErrorTip="Please select a value!"
+                        [nzOptions]="ageGroupOptions"
+                    >
+                    </nz-select>
+                </ng-container>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="clubs" nzRequired>{{
+                'admin.sport.competition.label.clubs' | transloco
+            }}</nz-form-label>
+
+            <nz-form-control [nzSpan]="14" nzHasFeedback="true">
+                <nz-select
+                    id="clubs"
+                    formControlName="clubs"
+                    nzPlaceHolder="{{ 'admin.sport.competition.label.clubs_placeholder' | transloco }}"
+                    [nzMode]="'multiple'"
+                    [compareWith]="compareEntities"
+                    nzErrorTip="Please select a value!"
                 >
-                </nz-option>
-            </nz-select>
-        </nz-form-control>
-    </nz-form-item>
+                    <nz-option *ngFor="let club of clubs$$ | async" [nzLabel]="club.name" [nzValue]="club"> </nz-option>
+                </nz-select>
+            </nz-form-control>
+        </nz-form-item>
 
-    <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="ageGroup" nzRequired>{{
-            'admin.sport.competition.label.age_group' | transloco
-        }}</nz-form-label>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="roundIterations" nzRequired>{{
+                'admin.sport.competition.label.round_iterations' | transloco
+            }}</nz-form-label>
 
-        <nz-form-control [nzSpan]="14" nzHasFeedback="true">
-            <nz-select
-                id="ageGroup"
-                formControlName="ageGroup"
-                nzPlaceHolder="{{ 'admin.sport.competition.label.age_group_placeholder' | transloco }}"
-                [compareWith]="compareEntities"
-                (ngModelChange)="onAgeGroupChangeHandler($event)"
-                nzErrorTip="Please select a value!"
-            >
-                <nz-option
-                    *ngFor="let ageGroup of ageGroups$ | async"
-                    [nzLabel]="ageGroup | i18nName: 'nameI18n'"
-                    [nzValue]="ageGroup"
-                >
-                </nz-option>
-            </nz-select>
-        </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="clubs" nzRequired>{{
-            'admin.sport.competition.label.clubs' | transloco
-        }}</nz-form-label>
-
-        <nz-form-control [nzSpan]="14" nzHasFeedback="true">
-            <nz-select
-                id="clubs"
-                formControlName="clubs"
-                nzPlaceHolder="{{ 'admin.sport.competition.label.clubs_placeholder' | transloco }}"
-                [nzMode]="'multiple'"
-                [compareWith]="compareEntities"
-                nzErrorTip="Please select a value!"
-            >
-                <nz-option *ngFor="let club of clubs$$ | async" [nzLabel]="club.name" [nzValue]="club"> </nz-option>
-            </nz-select>
-        </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="roundIterations" nzRequired>{{
-            'admin.sport.competition.label.round_iterations' | transloco
-        }}</nz-form-label>
-
-        <nz-form-control [nzSpan]="14" nzHasFeedback="true">
-            <nz-input-number
-                [nzMin]="0"
-                [nzMax]="99"
-                [nzStep]="1"
-                formControlName="roundIterations"
-                id="roundIterations"
-            ></nz-input-number>
-        </nz-form-control>
-    </nz-form-item>
-</form>
+            <nz-form-control [nzSpan]="14" nzHasFeedback="true">
+                <nz-input-number
+                    [nzMin]="0"
+                    [nzMax]="99"
+                    [nzStep]="1"
+                    formControlName="roundIterations"
+                    id="roundIterations"
+                ></nz-input-number>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</ng-container>

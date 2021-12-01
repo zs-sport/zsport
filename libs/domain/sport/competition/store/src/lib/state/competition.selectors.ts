@@ -1,32 +1,32 @@
 import { Dictionary } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { CompetitionEntity } from '@zsport/api';
+import { Competition, COMPETITION_FEATURE_KEY } from '@zsport/api';
 
-import * as fromCompetition from './competition.reducer';
+import { competitionAdapter, CompetitionPartialState, State } from './competition.reducer';
 
-export const selectCompetitionState = createFeatureSelector<fromCompetition.CompetitionState>('competition');
+const { selectAll, selectEntities } = competitionAdapter.getSelectors();
 
-export const getError = (state: fromCompetition.CompetitionState) => state.error;
+export const getCompetitionState = createFeatureSelector<CompetitionPartialState, State>(COMPETITION_FEATURE_KEY);
 
-export const getLoadingIndicator = (state: fromCompetition.CompetitionState) => state.loading;
+export const getCompetitionError = createSelector(getCompetitionState, (state: State) => state.error);
 
-export const getSelectedCompetitionID = (state: fromCompetition.CompetitionState) => state.selectedCompetitionId || '';
+export const getCompetitionLoading = createSelector(getCompetitionState, (state: State) => state.loading);
 
-export const selectCompetitionID = createSelector(selectCompetitionState, getSelectedCompetitionID);
+export const getSelectedId = createSelector(getCompetitionState, (state: State) => state.selectedId || '');
 
-export const selectCompetitionEntities = createSelector(selectCompetitionState, fromCompetition.selectEntities);
-
-export const selectAllCompetition = createSelector(selectCompetitionState, fromCompetition.selectAll);
-
-export const selectCompetitionById = createSelector(
-    selectCompetitionEntities,
-    (competitionEntities: Dictionary<CompetitionEntity>, props: any) => {
-        return competitionEntities[props.competitionId];
-    }
+export const isNewEntityButtonEnabled = createSelector(
+    getCompetitionState,
+    (state: State) => state.isNewEntityButtonEnabled
 );
+
+export const selectSelectedFinalTabId = createSelector(getCompetitionState, (state: State) => state.selectedFinalTabId);
+
+export const selectCompetitionEntities = createSelector(getCompetitionState, selectEntities);
+
+export const selectAllCompetition = createSelector(getCompetitionState, selectAll);
 
 export const selectCompetition = createSelector(
     selectCompetitionEntities,
-    selectCompetitionID,
-    (competitionEntities, competitionId) => competitionEntities[competitionId]
+    getSelectedId,
+    (competitionEntities, competitionID: string) => competitionEntities[competitionID]
 );

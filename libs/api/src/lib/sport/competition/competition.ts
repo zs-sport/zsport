@@ -8,12 +8,11 @@ import { CompetitionTypeEnum } from './competition-type.enum';
 
 export interface Competition extends Identifiable {
     category: Category;
-    currentLanguage: string;
-    dates?: Dates;
+    dates: Dates | null;
     fromTo: number[];
     name: string;
     owner: Club | Association;
     rule: CompetitionRule;
-    states?: States;
+    states: States | null;
     type: CompetitionTypeEnum;
 }

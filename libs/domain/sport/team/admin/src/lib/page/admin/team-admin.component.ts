@@ -21,13 +21,13 @@ export class TeamAdminComponent extends BaseComponent implements OnInit {
     public constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private sportTeamStateService: TeamStateService
+        private teamStateService: TeamStateService
     ) {
         super();
 
         this.initButtonPermissions();
 
-        this.isNewEntityButtonEnabled$ = this.sportTeamStateService.selectNewEntityButtonEnabled$();
+        this.isNewEntityButtonEnabled$ = this.teamStateService.selectNewEntityButtonEnabled$();
         this.clubId = this.activatedRoute.snapshot.queryParams.clubId;
     }
 
@@ -36,7 +36,7 @@ export class TeamAdminComponent extends BaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.isNewEntityButtonEnabled$ = this.sportTeamStateService.selectNewEntityButtonEnabled$();
+        this.isNewEntityButtonEnabled$ = this.teamStateService.selectNewEntityButtonEnabled$();
     }
 
     private initButtonPermissions(): void {

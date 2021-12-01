@@ -32,8 +32,8 @@ export const listEventsByDay = createAction('[Event] List Events By Day', props<
 export const listEventsByDayFail = createAction('[Event] List Events By Day FAIL', props<{ error: Error }>());
 
 export const listEventsByDaySuccess = createAction(
-    '[Event] List Eventes By Day Success',
-    props<{ eventes: EventEntity[] }>()
+    '[Event] List Events By Day Success',
+    props<{ events: EventEntity[] }>()
 );
 
 export const listEventsByCategoryId = createAction(
@@ -46,9 +46,9 @@ export const listEventsByCategoryIdSuccess = createAction(
     props<{ events: EventEntity[] }>()
 );
 
-export const ListEventesByCompetitionIdSuccess = createAction(
-    '[Competition] List Eventes By Competition Id Success',
-    props<{ eventes: EventEntity[] }>()
+export const ListEventsByCompetitionIdSuccess = createAction(
+    '[Competition] List Events By Competition Id Success',
+    props<{ events: EventEntity[] }>()
 );
 
 export const loadEvent = createAction('[Event] Load Event', props<{ uid: string }>());

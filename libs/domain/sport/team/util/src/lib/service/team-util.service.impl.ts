@@ -34,6 +34,7 @@ export class TeamUtilServiceImpl extends TeamUtilService {
             club: team.club,
             dates: team.dates,
             gender: team.gender,
+            name: team.club.name,
             states: team.states ? team.states : null,
             uid: team.uid,
         };
@@ -62,6 +63,7 @@ export class TeamUtilServiceImpl extends TeamUtilService {
             gender: eventTeam.gender,
             eventId: eventTeam.eventId,
             players: eventTeam.players,
+            name: eventTeam.club.name,
             states: eventTeam.states ? eventTeam.states : null,
             uid: eventTeam.uid,
         };

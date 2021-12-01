@@ -8,7 +8,7 @@ import { RoundFormService } from '../service';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    inputs: ['eventNumber', 'eventes$', 'round'],
+    inputs: ['eventNumber', 'events$', 'round'],
     outputs: ['addEvent', 'editEvent'],
     providers: [RoundFormService],
     selector: 'zs-round-form',

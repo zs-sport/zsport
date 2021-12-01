@@ -30,8 +30,8 @@ export class EventStateServiceImpl extends EventStateService {
         this.store.dispatch(eventActions.listEvents());
     }
 
-    public dispatchListEventsByCompetitionIdSuccess(eventes: EventEntity[]): void {
-        this.store.dispatch(eventActions.ListEventesByCompetitionIdSuccess({ eventes }));
+    public dispatchListEventsByCompetitionIdSuccess(events: EventEntity[]): void {
+        this.store.dispatch(eventActions.ListEventsByCompetitionIdSuccess({ events }));
     }
 
     public dispatchListEventsByDay(day: Date): void {

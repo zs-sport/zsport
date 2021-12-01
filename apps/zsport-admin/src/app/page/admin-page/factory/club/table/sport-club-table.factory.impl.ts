@@ -31,13 +31,13 @@ export class ClubTableFactoryImpl extends ClubTableFactory {
         private authorizationService: AuthorizationService,
         private i18NService: I18nService,
         private sportClubStateService: ClubStateService,
-        private sportCategoryStateService: CategoryStateService
+        private categoryStateService: CategoryStateService
     ) {
         super();
     }
 
     public createTableConfig$(): Observable<DynamicTableConfigModel> {
-        return this.sportCategoryStateService.selectEntities$().pipe(
+        return this.categoryStateService.selectEntities$().pipe(
             switchMap((entities) => {
                 return of({
                     columnHeaders: this.createColumnHeaders(entities as CategoryEntity[]),

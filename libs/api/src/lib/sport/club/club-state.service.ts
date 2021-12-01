@@ -12,7 +12,7 @@ export abstract class ClubStateService extends EntityStateService {
         genderId: string,
         ageGroupId: string
     ): void;
-    public abstract dispatchListClubsByCategoryId$(sportCategoryId: string): void;
+    public abstract dispatchListClubsByCategoryId$(categoryId: string): void;
     public abstract dispatchListPlayersByClubIdAction(clubId: string): void;
     public abstract selectClubsByAssociationIdCategoryIdGenderIdAgeGroupId$(
         associationId: string,
@@ -20,7 +20,7 @@ export abstract class ClubStateService extends EntityStateService {
         genderId: string,
         ageGroupId: string
     ): Observable<ClubEntity[]>;
-    public abstract selectClubsByCategoryId$(sportCategoryId: string): Observable<ClubEntity[]>;
+    public abstract selectClubsByCategoryId$(categoryId: string): Observable<ClubEntity[]>;
     public abstract selectNewEntityButtonEnabled$(): Observable<boolean>;
     public abstract selectPlayersByClubId$(clubId: string): Observable<PlayerEntity[] | undefined>;
 }

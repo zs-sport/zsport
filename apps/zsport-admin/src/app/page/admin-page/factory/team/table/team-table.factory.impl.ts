@@ -33,7 +33,7 @@ export class TeamTableFactoryImpl extends TeamTableFactory {
 
     public createTableConfig$(): Observable<DynamicTableConfigModel> {
         return of({
-            id: 'sportTeamTable',
+            id: 'teamTable',
             size: DynamicTableSizeEnum.default,
             columnHeaders: this.createColumnHeaders(),
             columns: this.createColumns(),

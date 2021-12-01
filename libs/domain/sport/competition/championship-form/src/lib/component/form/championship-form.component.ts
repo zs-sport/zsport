@@ -1,14 +1,14 @@
+import { Observable } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
-import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { AgeGroup, Gender } from '@zsport/api';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
+import { AgeGroup, Championship, Gender } from '@zsport/api';
 
 import { ChampionshipFormBase } from '../../base';
 import { ChampionshipFormService } from '../../service';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    inputs: ['championship$'],
     outputs: ['changeChampionship'],
     providers: [ChampionshipFormService],
     selector: 'zs-championship-form',
@@ -16,6 +16,8 @@ import { ChampionshipFormService } from '../../service';
     styleUrls: ['./championship-form.component.less'],
 })
 export class ChampionshipFormComponent extends ChampionshipFormBase implements OnDestroy, OnInit {
+    @Input()
+    public championship$!: Observable<Championship>;
     public compareEntities = (o1: any, o2: any): boolean => {
         return this.championshipFormService.compareEntities(o1, o2);
     };
@@ -34,13 +36,18 @@ export class ChampionshipFormComponent extends ChampionshipFormBase implements O
 
     public ngOnInit(): void {
         this.championshipFormService
-            .init$(this.championship$, this.changeChampionship)
+            .init$(this.championship$, this.entityForm$$, this.changeChampionship)
             .pipe(
                 tap(() => {
-                    this.ageGroups$ = this.championshipFormService.ageGroups$;
-                    this.genders$ = this.championshipFormService.genders$;
+                    this.ageGroupOptions$ = this.championshipFormService.ageGroupOptions$;
+                    this.genderOptions$ = this.championshipFormService.genderOptions$;
                     this.clubs$$ = this.championshipFormService.clubs$$;
-                    this.entityForm = this.championshipFormService.entityForm;
+
+                    this.entityForm$$.pipe(
+                        tap((data) => {
+                            console.log(data);
+                        })
+                    );
                 }),
                 takeUntil(this.destroy)
             )

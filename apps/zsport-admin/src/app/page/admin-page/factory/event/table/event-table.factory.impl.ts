@@ -44,8 +44,8 @@ export class EventTableFactoryImpl extends EventTableFactory {
 
     public getData$(): Observable<EventEntity[]> {
         const values: Observable<EventEntity[]> = this.eventStateService.selectEntities$().pipe(
-            map((eventes) =>
-                eventes.map((event) => {
+            map((events) =>
+                events.map((event) => {
                     const newEvent = event;
 
                     return newEvent;

@@ -62,4 +62,8 @@ export class DateUtilServiceImpl extends DateUtilService {
 
         return date;
     }
+
+    public convertToDate(date: number | Date): number {
+        return moment(date).milliseconds(0).valueOf();
+    }
 }

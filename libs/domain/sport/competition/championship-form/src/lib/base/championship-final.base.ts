@@ -11,7 +11,7 @@ export abstract class ChampionshipFinalBase extends BaseService {
     public dynamicEventFormOutputs$$!: Subject<any>;
     public genders$$!: Subject<Gender[]>;
     public event$$!: Subject<Partial<Event>>;
-    public eventList$$!: Subject<EventList[]>;
+    public eventList$$!: Subject<EventList[] | undefined>;
     public eventNumber!: number;
     public events$$!: Subject<Event[]>[];
     public selectedFinalTabId$!: Observable<number>;

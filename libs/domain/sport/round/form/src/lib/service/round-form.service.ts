@@ -18,19 +18,19 @@ export class RoundFormService extends RoundFormBase {
 
     public init$(
         round: Round,
-        eventes$: Observable<EventEntity[]>,
+        events$: Observable<EventEntity[]>,
         eventNumber: number,
         addEvent: EventEmitter<number>,
         editEvent: EventEmitter<EventEntity>
     ): Observable<boolean> {
         this.round = round;
-        this.events$ = eventes$;
+        this.events$ = events$;
         this.eventNumber = eventNumber;
         this.addEvent = addEvent;
         this.editEvent = editEvent;
 
         return this.events$.pipe(
-            switchMap((eventes) => {
+            switchMap((events) => {
                 return of(true);
             })
         );

@@ -1,42 +1,77 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { createReducer, on } from '@ngrx/store';
-import { CompetitionEntity } from '@zsport/api';
+import { Action, createReducer, on } from '@ngrx/store';
+import { Competition, COMPETITION_FEATURE_KEY } from '@zsport/api';
 
 import * as competitionActions from './competition.actions';
 
-export interface CompetitionState extends EntityState<CompetitionEntity> {
-    error: string | null;
+export interface State extends EntityState<Competition> {
+    error?: string | null;
+    isNewEntityButtonEnabled: boolean;
     loading: boolean;
-    selectedCompetitionId: string | null;
+    selectedFinalTabId: number;
+    selectedId?: string;
 }
 
-export const adapter: EntityAdapter<CompetitionEntity> = createEntityAdapter<CompetitionEntity>({
-    selectId: (model: CompetitionEntity) => model.uid || '',
+export interface CompetitionPartialState {
+    readonly [COMPETITION_FEATURE_KEY]: State;
+}
+
+export const competitionAdapter: EntityAdapter<Competition> = createEntityAdapter<Competition>({
+    selectId: (model: Competition) => model.uid || '',
 });
 
-export const initialState: CompetitionState = adapter.getInitialState({
-    loading: false,
+export const initialState: State = competitionAdapter.getInitialState({
     error: null,
+    isNewEntityButtonEnabled: true,
+    loading: false,
     selectedCompetitionId: null,
+    selectedFinalTabId: 0,
 });
 
-export const reducer = createReducer(
+export const competitionReducer = createReducer(
     initialState,
-    on(competitionActions.addCompetition, (state, { competition }) => adapter.addOne(competition, state)),
+    on(competitionActions.addCompetitionSuccess, (state, { competition }) =>
+        competitionAdapter.addOne(competition as Competition, state)
+    ),
+    on(competitionActions.addEventByCompetitionIdSuccess, (state, { event }) => ({
+        ...state,
+        loading: false,
+    })),
+    on(competitionActions.changeNewEntityButtonEnabled, (state, { enabled }) => ({
+        ...state,
+        isNewEntityButtonEnabled: enabled,
+    })),
     on(competitionActions.selectCompetition, (state, { competitionId }) => ({
         ...state,
         loading: false,
         error: null,
         selectedCompetitionId: competitionId,
     })),
-    on(competitionActions.updateCompetitionSuccess, (state, { competition }) => adapter.updateOne(competition, state)),
+    on(competitionActions.changeSelectedFinalTabId, (state, { selectedFinalTabId }) => ({
+        ...state,
+        selectedFinalTabId,
+    })),
+    on(competitionActions.updateCompetitionSuccess, (state, { competition }) =>
+        competitionAdapter.updateOne(competition, state)
+    ),
     on(competitionActions.deleteCompetitionSuccess, (state, { competitionId }) =>
-        adapter.removeOne(competitionId, state)
+        competitionAdapter.removeOne(competitionId, state)
     ),
-    on(competitionActions.loadCompetitionsSuccess, (state, { competitions }) =>
-        adapter.upsertMany(competitions, state)
+    on(competitionActions.listCompetitionsSuccess, (state, { competitions }) =>
+        competitionAdapter.upsertMany(competitions as Competition[], state)
     ),
-    on(competitionActions.clearCompetition, (state) => adapter.removeAll(state))
+    on(competitionActions.loadCompetitionSuccess, (state, { competition }) =>
+        competitionAdapter.upsertOne(competition as Competition, state)
+    ),
+    on(competitionActions.clearCompetitions, (state) => competitionAdapter.removeAll(state)),
+    on(competitionActions.setSelectedCompetitionId, (state, { competitionId }) => ({
+        ...state,
+        selectedId: competitionId,
+    }))
 );
 
-export const { selectIds, selectEntities, selectAll, selectTotal } = adapter.getSelectors();
+export function reducer(state: State | undefined, action: Action) {
+    return competitionReducer(state, action);
+}
+
+export const { selectIds, selectEntities, selectAll, selectTotal } = competitionAdapter.getSelectors();

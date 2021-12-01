@@ -72,6 +72,7 @@
             "@zsport/domain/sport/competition/form": ["libs/domain/sport/competition/form/src/index.ts"],
             "@zsport/domain/sport/competition/store": ["libs/domain/sport/competition/store/src/index.ts"],
             "@zsport/domain/sport/competition/table": ["libs/domain/sport/competition/table/src/index.ts"],
+            "@zsport/domain/sport/competition/util": ["libs/domain/sport/competition/util/src/index.ts"],
             "@zsport/domain/sport/event/admin": ["libs/domain/sport/event/admin/src/index.ts"],
             "@zsport/domain/sport/event/competition-form": ["libs/domain/sport/event/competition-form/src/index.ts"],
             "@zsport/domain/sport/event/data": ["libs/domain/sport/event/data/src/index.ts"],

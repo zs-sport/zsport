@@ -12,5 +12,6 @@ export interface Team extends Identifiable {
     club: Club;
     dates: Dates | null;
     gender: Gender;
+    name: string;
     states: States | null;
 }

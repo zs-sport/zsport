@@ -11,9 +11,9 @@ export abstract class EventCompetitionFormControlFactory extends DynamicFormCont
 
     public abstract createFormControlsForEvent$(
         dataModel: Event,
-        sportCategories: Category[],
+        categories: Category[],
         genders: Gender[],
         ageGroups: AgeGroup[],
-        sportTeams: Team[]
+        teams: Team[]
     ): Observable<ControlBase<any>[]>;
 }

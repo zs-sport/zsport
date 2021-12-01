@@ -22,14 +22,14 @@ export class EventEffects {
             )
         )
     );
-    public listEventesByDay = createEffect(() =>
+    public listEventsByDay = createEffect(() =>
         this.actions$.pipe(
             ofType(eventActions.listEventsByDay),
             switchMap((action) =>
                 this.eventDataService.listByDay$(action.day).pipe(
                     map((eventModels) => {
                         return eventActions.listEventsByDaySuccess({
-                            eventes: eventModels.map(
+                            events: eventModels.map(
                                 (eventModel) => this.eventUtilService.convertModelToEntity(eventModel) as EventEntity
                             ),
                         });

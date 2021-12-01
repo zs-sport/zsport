@@ -55,15 +55,15 @@ export class ClubDataServiceImpl extends ClubDataService {
         });
     }
 
-    public addTeamByClubId(sportTeamModel: TeamModel, clubId: string): Observable<TeamModel> {
+    public addTeamByClubId(teamModel: TeamModel, clubId: string): Observable<TeamModel> {
         const newId = this.angularFirestore.createId();
 
-        sportTeamModel = { ...sportTeamModel, uid: newId };
+        teamModel = { ...teamModel, uid: newId };
 
-        this.clubCollection.doc(clubId).collection(TEAM_FEATURE_KEY).doc(newId).set(sportTeamModel, { merge: true });
+        this.clubCollection.doc(clubId).collection(TEAM_FEATURE_KEY).doc(newId).set(teamModel, { merge: true });
 
         return new Observable<TeamModel>((observer) => {
-            observer.next(sportTeamModel);
+            observer.next(teamModel);
         });
     }
 
@@ -150,11 +150,11 @@ export class ClubDataServiceImpl extends ClubDataService {
                 .collection(TEAM_FEATURE_KEY)
                 .valueChanges()
                 .subscribe((values) => {
-                    const sportTeams: TeamModel[] = [];
+                    const teams: TeamModel[] = [];
 
-                    values.map((item) => sportTeams.push(item as TeamModel));
+                    values.map((item) => teams.push(item as TeamModel));
 
-                    observer.next(sportTeams);
+                    observer.next(teams);
                 });
         });
     }

@@ -1,4 +1,4 @@
-import { combineLatest, Observable, of, ReplaySubject } from 'rxjs';
+import { combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
@@ -13,7 +13,6 @@ import {
     EventStateService,
     EventUtilService,
     Gender,
-    I18nService,
     Round,
     Team,
     TeamStateService,
@@ -32,7 +31,6 @@ export class ChampionshipFinalService extends ChampionshipFinalBase {
 
     public constructor(
         private competitionStateService: CompetitionStateService,
-        private i18nService: I18nService,
         private eventStateService: EventStateService,
         private eventUtilService: EventUtilService,
         private teamStateService: TeamStateService
@@ -94,11 +92,16 @@ export class ChampionshipFinalService extends ChampionshipFinalBase {
         }
     }
 
-    public init$(championship$: Observable<Championship>): Observable<boolean> {
+    public init$(
+        championship$: Observable<Championship>,
+        dynamicEventFormComponent$$: Subject<any>,
+        dynamicEventFormInputs$$: Subject<any>,
+        dynamicEventFormOutputs$$: Subject<any>
+    ): Observable<boolean> {
         this.championship$ = championship$;
-        this.dynamicEventFormComponent$$ = new ReplaySubject();
-        this.dynamicEventFormInputs$$ = new ReplaySubject();
-        this.dynamicEventFormOutputs$$ = new ReplaySubject();
+        this.dynamicEventFormComponent$$ = dynamicEventFormComponent$$;
+        this.dynamicEventFormInputs$$ = dynamicEventFormInputs$$;
+        this.dynamicEventFormOutputs$$ = dynamicEventFormOutputs$$;
         this.selectedFinalTabId$ = this.competitionStateService.selectSelectedFinalTabId$();
 
         return this.championship$.pipe(
@@ -128,7 +131,9 @@ export class ChampionshipFinalService extends ChampionshipFinalBase {
                     this.events$$.push(new ReplaySubject<Event[]>());
                 });
 
-                this.competitionStateService.dispatchListEventsByCompetitionId(championship.uid || '');
+                if (championship.uid) {
+                    this.competitionStateService.dispatchListEventsByCompetitionId(championship.uid || '');
+                }
 
                 this.eventNumber = championship.clubs.length / 2;
 
@@ -140,15 +145,14 @@ export class ChampionshipFinalService extends ChampionshipFinalBase {
                         this.teams = teams;
                         this.events = events;
 
-                        const eventesMap = this.separateEventes(events, this.championship!.rounds);
+                        const eventsMap = this.separateEvents(events, this.championship!.rounds);
 
                         this.eventList$$.next(this.createEventLists(this.events));
-
                         this.events$$.forEach((event$$, index) => {
-                            const sortedEventes: Event[] = eventesMap.get(index) || [];
+                            const sortedEvents: Event[] = eventsMap.get(index) || [];
 
                             event$$.next(
-                                sortedEventes.sort((a, b) =>
+                                sortedEvents.sort((a, b) =>
                                     (a as Event).eventDayTime < (b as Event).eventDayTime ? -1 : 1
                                 )
                             );
@@ -179,9 +183,9 @@ export class ChampionshipFinalService extends ChampionshipFinalBase {
         this.dynamicEventFormInputs$$.next({
             event$: this.event$$.asObservable(),
             ageGroups$: this.ageGroups$$.asObservable(),
-            sportCategories$: this.categories$$.asObservable(),
+            categories$: this.categories$$.asObservable(),
             genders$: this.genders$$.asObservable(),
-            sportTeams$: this.teams$$.asObservable(),
+            teams$: this.teams$$.asObservable(),
         });
 
         this.dynamicEventFormOutputs$$.next({
@@ -195,10 +199,10 @@ export class ChampionshipFinalService extends ChampionshipFinalBase {
         this.competitionStateService.dispatchAddEventByCompetitionId(eventModel);
     }
 
-    private createEventLists(eventes: Event[]): EventList[] {
+    private createEventLists(events: Event[]): EventList[] {
         const eventMap: Map<number | Date, EventList> = new Map();
 
-        eventes
+        events
             .sort((a, b) => (a.eventDayTime < b.eventDayTime ? -1 : 1))
             .forEach((event) => {
                 let tempEvents: EventList | null = eventMap.get(event.eventDayTime) || null;
@@ -222,30 +226,30 @@ export class ChampionshipFinalService extends ChampionshipFinalBase {
         return `${ageGroup.uid}_${gender.uid}_${category.uid}`;
     }
 
-    private initializeEventesMap(rounds: Round[]): Map<number, Event[]> {
-        const eventesMap: Map<number, Event[]> = new Map();
+    private initializeEventsMap(rounds: Round[]): Map<number, Event[]> {
+        const eventsMap: Map<number, Event[]> = new Map();
 
-        rounds.forEach((round) => eventesMap.set(round.index, []));
+        rounds.forEach((round) => eventsMap.set(round.index, []));
 
-        return eventesMap;
+        return eventsMap;
     }
 
-    private separateEventes(eventes: Event[], rounds: Round[]): Map<number, Event[]> {
-        const eventesMap: Map<number, Event[]> = this.initializeEventesMap(rounds);
+    private separateEvents(events: Event[], rounds: Round[]): Map<number, Event[]> {
+        const eventsMap: Map<number, Event[]> = this.initializeEventsMap(rounds);
 
-        eventes.forEach((event) => {
-            let tempEventes: Event[] | null = eventesMap.get(event.roundId || 0) || null;
+        events.forEach((event) => {
+            let tempEvents: Event[] | null = eventsMap.get(event.roundId || 0) || null;
 
-            if (!tempEventes) {
-                tempEventes = [event];
+            if (!tempEvents) {
+                tempEvents = [event];
             } else {
-                tempEventes.push(event);
+                tempEvents.push(event);
             }
 
-            eventesMap.set(event.roundId || 0, tempEventes);
+            eventsMap.set(event.roundId || 0, tempEvents);
         });
 
-        return eventesMap;
+        return eventsMap;
     }
 
     private updateEvent(event: Event): void {

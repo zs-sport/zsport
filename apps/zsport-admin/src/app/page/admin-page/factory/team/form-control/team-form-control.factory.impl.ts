@@ -29,7 +29,7 @@ export class TeamFormControlFactoryImpl extends TeamFormControlFactory {
         private ageGroupUtilService: AgeGroupUtilService,
         private genderUtilService: GenderUtilService,
         private i18nService: I18nService,
-        private sportCategoryStateService: CategoryStateService,
+        private categoryStateService: CategoryStateService,
         private sportClubStateService: ClubStateService
     ) {
         super();
@@ -41,7 +41,7 @@ export class TeamFormControlFactoryImpl extends TeamFormControlFactory {
             : this.clubId;
 
         return combineLatest([
-            this.sportCategoryStateService.selectEntities$(),
+            this.categoryStateService.selectEntities$(),
             this.sportClubStateService.selectEntityById$(this.clubId),
         ]).pipe(
             switchMap(([categories, club]) => {

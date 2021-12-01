@@ -12,7 +12,7 @@ export class TeamFormButtonFactoryImpl extends TeamFormButtonFactory {
         @Optional() private location: Location,
         private activatedRoute: ActivatedRoute,
         private authorizationService: AuthorizationService,
-        private sportTeamStateService: TeamStateService,
+        private teamStateService: TeamStateService,
         private i18nService: I18nService
     ) {
         super();
@@ -45,9 +45,9 @@ export class TeamFormButtonFactoryImpl extends TeamFormButtonFactory {
                 this.createSubmitButton(
                     (value: Entity) => {
                         if (value.uid) {
-                            this.sportTeamStateService.dispatchUpdateTeamByClubIdAction(value as TeamEntity, clubId);
+                            this.teamStateService.dispatchUpdateTeamByClubIdAction(value as TeamEntity, clubId);
                         } else {
-                            this.sportTeamStateService.dispatchAddTeamByClubIdAction(value as TeamEntity, clubId);
+                            this.teamStateService.dispatchAddTeamByClubIdAction(value as TeamEntity, clubId);
                         }
 
                         this.navigateBack();

@@ -61,7 +61,7 @@ export class TeamEffects {
             )
         )
     );
-    /* public listEventTeamsByEventId = createEffect(() =>
+    public listEventTeamsByEventId = createEffect(() =>
         this.actions$.pipe(
             ofType(teamActions.listEventTeamsByEventId),
             switchMap((action) =>
@@ -74,7 +74,7 @@ export class TeamEffects {
                 )
             )
         )
-    ); */
+    );
     public listTeams = createEffect(() =>
         this.actions$.pipe(
             ofType(teamActions.listTeams),
@@ -182,7 +182,7 @@ export class TeamEffects {
             )
         )
     );
-    /* public updateEventTeamByEventId = createEffect(() =>
+    public updateEventTeamByEventId = createEffect(() =>
         this.actions$.pipe(
             ofType(teamActions.updateEventTeamByEventId),
             switchMap((action) =>
@@ -198,7 +198,7 @@ export class TeamEffects {
                 )
             )
         )
-    ); */
+    );
     public updateTeam = createEffect(() =>
         this.actions$.pipe(
             ofType(teamActions.updateTeam),
@@ -248,7 +248,7 @@ export class TeamEffects {
 
     public constructor(
         private actions$: Actions,
-        //private eventDataService: EventDataService,
+        private eventDataService: EventDataService,
         private clubDataService: ClubDataService,
         private teamDataService: TeamDataService,
         private teamUtilService: TeamUtilService

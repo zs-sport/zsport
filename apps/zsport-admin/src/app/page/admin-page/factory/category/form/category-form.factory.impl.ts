@@ -8,7 +8,7 @@ import { NgzDynamicFormComponent } from '@zsport/ui/dynamic-form';
 
 @Injectable()
 export class CategoryFormFactoryImpl extends CategoryFormFactory {
-    public constructor(private sportCategoryStateService: CategoryStateService) {
+    public constructor(private categoryStateService: CategoryStateService) {
         super();
     }
 
@@ -17,6 +17,6 @@ export class CategoryFormFactoryImpl extends CategoryFormFactory {
     }
 
     public getEntity$(): Observable<CategoryEntity> {
-        return this.sportCategoryStateService.selectSelectedEntity$().pipe(map((entity) => entity as CategoryEntity));
+        return this.categoryStateService.selectSelectedEntity$().pipe(map((entity) => entity as CategoryEntity));
     }
 }

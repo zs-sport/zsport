@@ -1,9 +1,12 @@
-import { Observable, of } from 'rxjs';
+import { distinct, distinctUntilChanged, filter, Observable, of, tap } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import {
+    Association,
     AssociationStateService,
     AuthorizationService,
+    Category,
+    CategoryStateService,
     DynamicColumnHeaderModel,
     DynamicColumnModel,
     DynamicTableConfigModel,
@@ -18,16 +21,29 @@ import { AdminAssociationPermissionsService } from '../../../../../permission/as
 
 @Injectable()
 export class AssociationTableFactoryImpl extends AssociationTableFactory {
+    private categories: Category[] = [];
     private clickHandler = (entity: Identifiable): void => {
-        this.sportAssociationStateService.dispatchSetSelectedEntityIdAction(entity.uid || '');
+        this.associationStateService.dispatchSetSelectedEntityIdAction(entity.uid || '');
     };
 
     constructor(
+        private associationStateService: AssociationStateService,
         private authorizationService: AuthorizationService,
-        private i18NService: I18nService,
-        private sportAssociationStateService: AssociationStateService
+        private categoryStateService: CategoryStateService,
+        private i18NService: I18nService
     ) {
         super();
+
+        this.categoryStateService
+            .selectEntities$()
+            .pipe(
+                distinct((entities) => entities.length),
+                filter((entities) => !!entities),
+                tap((entities) => {
+                    this.categories = entities as Category[];
+                })
+            )
+            .subscribe();
     }
 
     public createTableConfig$(): Observable<DynamicTableConfigModel> {
@@ -41,7 +57,7 @@ export class AssociationTableFactoryImpl extends AssociationTableFactory {
     }
 
     public getData$(): Observable<Identifiable[]> {
-        return this.sportAssociationStateService.selectEntities$();
+        return this.associationStateService.selectEntities$();
     }
 
     public getTableComponent(): any {
@@ -49,10 +65,33 @@ export class AssociationTableFactoryImpl extends AssociationTableFactory {
     }
 
     private createColumnHeaders(): DynamicColumnHeaderModel[] {
+        const currentLanguage = this.i18NService.getActiveLang();
+        const currentLanguageAsString: string = this.i18NService.getActiveLangAsString();
         const columnHeaders: DynamicColumnHeaderModel[] = [
             {
-                title: this.i18NService.translate('admin.sport.association.column.name'),
+                compare: (a: Association, b: Association) =>
+                    (a.nameI18n[currentLanguage] || '').localeCompare(
+                        b.nameI18n[currentLanguage] || '',
+                        currentLanguageAsString
+                    ),
                 listOfFilter: [],
+                title: this.i18NService.translate('admin.sport.association.column.name'),
+            },
+            {
+                compare: (a: Association, b: Association) =>
+                    (a.shortName || '').localeCompare(b.shortName || '', currentLanguageAsString),
+                listOfFilter: [],
+                title: this.i18NService.translate('admin.sport.association.column.short_name'),
+            },
+            {
+                listOfFilter: this.categories.map((category: Category) => ({
+                    text: (category.nameI18n as any)[currentLanguage],
+                    value: (category.nameI18n as any)[currentLanguage],
+                })),
+                filterFn: (type: string, item: Association) => {
+                    return ((item as Association).category.nameI18n as any)[currentLanguage].indexOf(type) !== -1;
+                },
+                title: this.i18NService.translate('admin.sport.association.column.category'),
             },
         ];
 
@@ -77,6 +116,23 @@ export class AssociationTableFactoryImpl extends AssociationTableFactory {
                 objectPropertyName: '',
                 isObject: true,
                 isLocalized: true,
+            },
+            {
+                actionName: '',
+                actionRoute: '',
+                propertyName: 'shortName',
+                objectPropertyName: '',
+                isObject: false,
+                isLocalized: false,
+                isSimple: true,
+            },
+            {
+                actionName: '',
+                actionRoute: '',
+                propertyName: 'category',
+                isLocalized: true,
+                isDoubleObject: true,
+                objectPropertyName: 'nameI18n',
             },
         ];
 

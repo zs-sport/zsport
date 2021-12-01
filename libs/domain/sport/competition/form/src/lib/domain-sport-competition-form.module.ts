@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreI18nModule } from '@zsport/core/i18n';
 import { DomainSportCompetitionChampionshipFormModule } from '@zsport/domain/sport/competition/championship-form';
+import { DomainSportCompetitionTournamentFormModule } from '@zsport/domain/sport/competition/tournament-form';
 
 import { CompetitionFormComponent } from './component';
 
@@ -22,6 +23,7 @@ import { CompetitionFormComponent } from './component';
         FormsModule,
         CoreI18nModule,
         DomainSportCompetitionChampionshipFormModule,
+        DomainSportCompetitionTournamentFormModule,
         NzButtonModule,
         NzDatePickerModule,
         NzFormModule,

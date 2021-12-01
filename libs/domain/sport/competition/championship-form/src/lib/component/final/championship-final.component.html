@@ -1,6 +1,6 @@
 <div class="card-container">
     <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [nzSelectedIndex]="selectedFinalTabId$ | async">
-        <ng-container *ngIf="championship$ | async as championship">
+        <ng-container *ngIf="championship$$ | async as championship">
             <nz-tab
                 nzTitle="{{ 'admin.sport.competition.label.championship_info' | transloco }}"
                 (nzClick)="onTab0Click()"

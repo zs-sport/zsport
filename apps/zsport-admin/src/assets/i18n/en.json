@@ -153,16 +153,20 @@
                 },
                 "column": {
                     "action": "Action",
+                    "category": "Category",
                     "edit": "Edit",
-                    "name": "Name"
+                    "name": "Name",
+                    "short_name": "Short name"
                 },
                 "label": {
+                    "category": "Category",
+                    "category_placeholder": "Category",
                     "name": "Name",
                     "name_placeholder": "Name",
                     "parent": "Parent",
                     "parent_placeholder": "Parent",
-                    "category": "Category",
-                    "category_placeholder": "Category"
+                    "short_name": "Short name",
+                    "short_name_placeholder": "Short name"
                 }
             },
             "category": {
@@ -349,7 +353,7 @@
             },
             "associations": "Associations",
             "categories": "Categories",
-            "clubs": "Clubs",
+            "clubs": "Clubs and national teams",
             "competitions": "Competitions",
             "events": "Events",
             "players": "Players",

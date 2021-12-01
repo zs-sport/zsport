@@ -10,3 +10,4 @@ export * from './competition-type.enum';
 export * from './competition-util.service';
 export * from './competition.entity';
 export * from './competition.model';
+export * from './tournament';

@@ -7,6 +7,7 @@ import {
     AgeGroup,
     AgeGroupUtilService,
     Championship,
+    Competition,
     Gender,
     GenderUtilService,
     I18nService,
@@ -39,7 +40,7 @@ export class ChampionshipFormService extends ChampionshipFormBase {
         entityForm$$: Subject<FormGroup>,
         changeChampionship: EventEmitter<Championship>
     ): Observable<boolean> {
-        this.championship$ = championship$;
+        this.championship$$ = championship$;
         this.entityForm$$ = entityForm$$;
         this.changeChampionship = changeChampionship;
         this.buttonAction = 'Create';
@@ -67,9 +68,12 @@ export class ChampionshipFormService extends ChampionshipFormBase {
         this.genders$$.next(null);
 
         this.initChampionshipForm();
-        this.initChampionship();
 
-        return combineLatest([this.championship$, this.genders$$, this.ageGroups$$]).pipe(
+        return combineLatest([
+            this.championship$$.pipe(map((championship) => this.initChampionship(championship))),
+            this.genders$$,
+            this.ageGroups$$,
+        ]).pipe(
             switchMap(([championship, gender, ageGroup]) => {
                 const ageGroupId = ageGroup ? ageGroup.uid : championship.ageGroup ? championship.ageGroup.uid : 0;
                 const genderId = gender ? gender.uid : championship.gender ? championship.gender.uid : 0;
@@ -109,22 +113,22 @@ export class ChampionshipFormService extends ChampionshipFormBase {
         throw new Error('Method not implemented.');
     }
 
-    private initChampionship(): void {
-        this.championship$.pipe(takeUntil(this.destroy)).subscribe((championship) => {
-            if (championship) {
-                this.championship = championship;
+    private initChampionship(championship: Competition): Championship {
+        if (championship) {
+            this.championship = championship as Championship;
 
-                this.entityForm.patchValue({
-                    ageGroup: championship.ageGroup,
-                    gender: championship.gender,
-                    clubs: championship.clubs,
-                    roundIterations: championship.roundIterations,
-                });
+            this.entityForm.patchValue({
+                ageGroup: this.championship.ageGroup,
+                gender: this.championship.gender,
+                clubs: this.championship.clubs,
+                roundIterations: this.championship.roundIterations,
+            });
 
-                this.buttonAction = 'Update';
-                this.entityForm$$.next(this.entityForm);
-            }
-        });
+            this.buttonAction = 'Update';
+            this.entityForm$$.next(this.entityForm);
+        }
+
+        return championship as Championship;
     }
 
     private initChampionshipForm(): void {

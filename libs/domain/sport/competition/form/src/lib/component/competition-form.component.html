@@ -147,7 +147,12 @@
         </fieldset>
     </ng-template>
 
-    <ng-template #advanced_tournament> </ng-template>
+    <ng-template #advanced_tournament>
+        <zs-tournament-form
+            [tournament$]="instance$"
+            (changeTournament)="changeTournamentHandler($event)"
+        ></zs-tournament-form>
+    </ng-template>
 
     <ng-template #advanced_championship>
         <zs-championship-form [championship$]="instance$" (changeChampionship)="changeChampionshipHandler($event)">
@@ -156,7 +161,13 @@
 
     <ng-template #advanced_cup> Cup edit </ng-template>
 
-    <ng-template #final>
+    <ng-template #final_championship>
         <zs-championship-final [championship$]="instance$"></zs-championship-final>
     </ng-template>
+
+    <ng-template #final_tournament>
+        <zs-tournament-final [tournament$]="instance$"></zs-tournament-final>
+    </ng-template>
+
+    <ng-template #final_cup> Cup final </ng-template>
 </form>

@@ -1393,6 +1393,32 @@
             },
             "tags": []
         },
+        "domain-sport-competition-tournament-form": {
+            "projectType": "library",
+            "root": "libs/domain/sport/competition/tournament-form",
+            "sourceRoot": "libs/domain/sport/competition/tournament-form/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/competition/tournament-form"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/competition/tournament-form/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/competition/tournament-form/src/**/*.ts",
+                            "libs/domain/sport/competition/tournament-form/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-sport-competition-util": {
             "projectType": "library",
             "root": "libs/domain/sport/competition/util",

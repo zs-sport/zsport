@@ -1,7 +1,7 @@
 import { takeUntil, tap } from 'rxjs/operators';
 
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { CategoryEntity, Championship } from '@zsport/api';
+import { CategoryEntity, Championship, Tournament } from '@zsport/api';
 
 import { CompetitionFormBase } from '../base';
 import { CompetitionFormService } from '../service';
@@ -35,8 +35,14 @@ export class CompetitionFormComponent extends CompetitionFormBase implements OnD
         return this.componentService.compareTypes(o1, o2);
     };
 
-    @ViewChild('final', { static: true })
-    public final!: TemplateRef<any>;
+    @ViewChild('final_championship', { static: true })
+    public final_championship!: TemplateRef<any>;
+
+    @ViewChild('final_tournament', { static: true })
+    public final_tournament!: TemplateRef<any>;
+
+    @ViewChild('final_cup', { static: true })
+    public final_cup!: TemplateRef<any>;
 
     public competitionForm!: FormGroup;
 
@@ -50,6 +56,10 @@ export class CompetitionFormComponent extends CompetitionFormBase implements OnD
 
     public changeChampionshipHandler(championship: Championship): void {
         this.componentService.changeChampionshipHandler(championship);
+    }
+
+    public changeTournamentHandler(tournament: Tournament): void {
+        this.componentService.changeTournamentHandler(tournament);
     }
 
     public doneSteps(): void {
@@ -71,14 +81,20 @@ export class CompetitionFormComponent extends CompetitionFormBase implements OnD
     }
 
     public ngOnInit(): void {
-        const typeRefs = new Map<string, TemplateRef<any>>();
+        const advancedRefs = new Map<string, TemplateRef<any>>();
 
-        typeRefs.set('advanced_tournament', this.advanced_tournament);
-        typeRefs.set('advanced_championship', this.advanced_championship);
-        typeRefs.set('advanced_cup', this.advanced_cup);
+        advancedRefs.set('advanced_tournament', this.advanced_tournament);
+        advancedRefs.set('advanced_championship', this.advanced_championship);
+        advancedRefs.set('advanced_cup', this.advanced_cup);
+
+        const finalRefs = new Map<string, TemplateRef<any>>();
+
+        finalRefs.set('final_tournament', this.final_tournament);
+        finalRefs.set('final_championship', this.final_championship);
+        finalRefs.set('final_cup', this.final_cup);
 
         this.componentService
-            .init$([this.base, typeRefs, this.final], this.currentStep$$)
+            .init$([this.base, advancedRefs, finalRefs], this.currentStep$$)
             .pipe(
                 tap(() => {
                     this.languages$ = this.componentService.languages$;

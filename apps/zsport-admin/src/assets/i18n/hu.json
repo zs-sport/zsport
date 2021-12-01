@@ -152,16 +152,20 @@
                 },
                 "column": {
                     "action": "Művelet",
+                    "category": "Kategória",
                     "edit": "Akció",
-                    "name": "Név"
+                    "name": "Név",
+                    "short_name": "Rövid név"
                 },
                 "label": {
+                    "category": "Kategória",
+                    "category_placeholder": "Kategória",
                     "name": "Név",
                     "name_placeholder": "Név",
                     "parent": "Szülő",
                     "parent_placeholder": "Szülő",
-                    "category": "Kategória",
-                    "category_placeholder": "Kategória"
+                    "short_name": "Rövid név",
+                    "short_name_placeholder": "Rövid név"
                 }
             },
             "category": {
@@ -350,7 +354,7 @@
             },
             "associations": "Szervezetek",
             "categories": "Kategóriák",
-            "clubs": "Klubok",
+            "clubs": "Klubok és válogatottak ",
             "competitions": "Versenyek",
             "events": "Események",
             "players": "Játékosok",

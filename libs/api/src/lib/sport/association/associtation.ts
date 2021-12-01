@@ -10,6 +10,7 @@ export interface Association extends Identifiable {
     contacts?: string[];
     dates: Dates | null;
     nameI18n: I18nText;
+    shortName: string | null;
     parent: Association | null;
     phone?: string;
     states: States | null;

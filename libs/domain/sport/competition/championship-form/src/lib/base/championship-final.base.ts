@@ -1,11 +1,21 @@
 import { Observable, Subject } from 'rxjs';
 
-import { AgeGroup, BaseService, Category, Championship, Event, EventList, Gender, Team } from '@zsport/api';
+import {
+    AgeGroup,
+    BaseService,
+    Category,
+    Championship,
+    Competition,
+    Event,
+    EventList,
+    Gender,
+    Team,
+} from '@zsport/api';
 
 export abstract class ChampionshipFinalBase extends BaseService {
     public ageGroups$$!: Subject<AgeGroup[]>;
     public categories$$!: Subject<Category[]>;
-    public championship$!: Observable<Championship>;
+    public championship$$!: Observable<Championship>;
     public dynamicEventFormComponent$$!: Subject<any>;
     public dynamicEventFormInputs$$!: Subject<any>;
     public dynamicEventFormOutputs$$!: Subject<any>;

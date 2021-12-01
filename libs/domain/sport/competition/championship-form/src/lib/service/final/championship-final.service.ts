@@ -1,11 +1,12 @@
 import { combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { filter, switchMap } from 'rxjs/operators';
+import { filter, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import {
     AgeGroup,
     Category,
     Championship,
+    Competition,
     CompetitionStateService,
     Event,
     EventEntity,
@@ -98,28 +99,32 @@ export class ChampionshipFinalService extends ChampionshipFinalBase {
         dynamicEventFormInputs$$: Subject<any>,
         dynamicEventFormOutputs$$: Subject<any>
     ): Observable<boolean> {
-        this.championship$ = championship$;
+        this.championship$$ = championship$;
         this.dynamicEventFormComponent$$ = dynamicEventFormComponent$$;
         this.dynamicEventFormInputs$$ = dynamicEventFormInputs$$;
         this.dynamicEventFormOutputs$$ = dynamicEventFormOutputs$$;
         this.selectedFinalTabId$ = this.competitionStateService.selectSelectedFinalTabId$();
 
-        return this.championship$.pipe(
-            filter((championship) => !!championship.ageGroup),
+        return this.championship$$.pipe(
+            filter((championship) => !!(championship as Championship).ageGroup),
             switchMap((championship) => {
                 this.championship = championship;
                 this.events$$ = [];
 
-                const aggcId = this.generateAGGCId(championship.ageGroup, championship.gender, championship.category);
-                const clubIds: string[] = championship.clubs.map((club) => club.uid || '');
+                const aggcId = this.generateAGGCId(
+                    this.championship.ageGroup,
+                    this.championship.gender,
+                    championship.category
+                );
+                const clubIds: string[] = this.championship.clubs.map((club) => club.uid || '');
 
                 this.teamStateService.dispatchListTeamByAGGCIdAndClubIds(aggcId, clubIds);
 
-                if (championship && !championship.rounds) {
-                    championship.rounds = [];
+                if (this.championship && !this.championship.rounds) {
+                    this.championship.rounds = [];
 
-                    for (let i = 0; i < championship.clubs.length - 1; i++) {
-                        championship.rounds.push({
+                    for (let i = 0; i < this.championship.clubs.length - 1; i++) {
+                        this.championship.rounds.push({
                             index: i,
                             competitionId: championship.uid || '',
                             eventIds: [],
@@ -127,15 +132,15 @@ export class ChampionshipFinalService extends ChampionshipFinalBase {
                     }
                 }
 
-                championship.rounds.forEach((round) => {
+                this.championship.rounds.forEach((round) => {
                     this.events$$.push(new ReplaySubject<Event[]>());
                 });
 
-                if (championship.uid) {
-                    this.competitionStateService.dispatchListEventsByCompetitionId(championship.uid || '');
+                if (this.championship.uid) {
+                    this.competitionStateService.dispatchListEventsByCompetitionId(this.championship.uid || '');
                 }
 
-                this.eventNumber = championship.clubs.length / 2;
+                this.eventNumber = this.championship.clubs.length / 2;
 
                 return combineLatest([
                     this.teamStateService.selectTeamsByAGGCIdAndClubIds$(aggcId, clubIds),

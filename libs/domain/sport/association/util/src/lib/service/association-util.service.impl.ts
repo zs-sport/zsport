@@ -39,6 +39,7 @@ export class AssociationUtilServiceImpl extends AssociationUtilService {
                 nameI18n: updatedNameI18n,
                 parent: association.parent ? (association.parent as AssociationModel) : null,
                 category: this.categoryUtilService.convertEntityToModel(association.category, true) as CategoryModel,
+                shortName: association.shortName || null,
                 states: association.states,
                 uid: association.uid,
             };
@@ -50,6 +51,7 @@ export class AssociationUtilServiceImpl extends AssociationUtilService {
                 nameI18n: association.nameI18n,
                 parent: association.parent ? (association.parent as AssociationModel) : null,
                 category: association.category as CategoryModel,
+                shortName: association.shortName || null,
                 states: association.states,
                 uid: association.uid,
             };

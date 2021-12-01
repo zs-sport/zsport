@@ -14,13 +14,13 @@ import {
     Competition,
     CompetitionStateService,
     I18nService,
+    Tournament,
 } from '@zsport/api';
 
-import { CompetitionFormBase } from '../base';
+import { COMPETITION_TYPES, CompetitionFormBase } from '../base';
 
 @Injectable()
 export class CompetitionFormService extends CompetitionFormBase {
-    public competitionForm!: FormGroup;
     private current: number = 0;
     private editedCompetition!: Competition;
     private readClubsOrAssociations$$!: Subject<string>;
@@ -33,6 +33,7 @@ export class CompetitionFormService extends CompetitionFormBase {
     };
 
     public competition!: Competition;
+    public competitionForm!: FormGroup;
 
     public constructor(
         private activatedRoute: ActivatedRoute,
@@ -62,6 +63,10 @@ export class CompetitionFormService extends CompetitionFormBase {
         this.competition = championship;
     }
 
+    public changeTournamentHandler(tournament: Tournament): void {
+        this.competition = tournament;
+    }
+
     public doneSteps(): void {
         this.onSubmit();
     }
@@ -72,7 +77,7 @@ export class CompetitionFormService extends CompetitionFormBase {
         this.buttonAction = 'Create';
 
         this.template$$.next(this.templates[this.current]);
-        this.types$ = of(this.TYPES);
+        this.types$ = of(COMPETITION_TYPES);
         this.categories$ = this.categoryStateService
             .selectEntities$()
             .pipe(map((categories) => categories as Category[]));
@@ -113,18 +118,20 @@ export class CompetitionFormService extends CompetitionFormBase {
     }
 
     public nextStep(): void {
+        const type = this.competitionForm.value['type'];
+
         this.current += 1;
         this.currentStep$$.next(this.current);
 
         if (this.current === 1) {
-            this.template$$.next(this.templates[this.current].get('advanced_' + this.competitionForm.value['type']));
+            this.template$$.next(this.templates[this.current].get('advanced_' + type));
             this.instance$.next({
                 ...this.competition,
                 ...this.competitionForm.value,
             });
         } else if (this.current > 1) {
-            this.template$$.next(this.templates[this.current]);
-            this.instance$.next(this.competition as Championship);
+            this.template$$.next(this.templates[this.current].get('final_' + type));
+            this.instance$.next(this.competition);
         }
     }
 

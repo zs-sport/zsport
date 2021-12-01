@@ -1,8 +1,8 @@
-import { Observable } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
-import { AgeGroup, Championship, Gender } from '@zsport/api';
+import { AgeGroup, Championship, Competition, Gender } from '@zsport/api';
 
 import { ChampionshipFormBase } from '../../base';
 import { ChampionshipFormService } from '../../service';
@@ -17,7 +17,7 @@ import { ChampionshipFormService } from '../../service';
 })
 export class ChampionshipFormComponent extends ChampionshipFormBase implements OnDestroy, OnInit {
     @Input()
-    public championship$!: Observable<Championship>;
+    public championship$!: Observable<Competition>;
     public compareEntities = (o1: any, o2: any): boolean => {
         return this.championshipFormService.compareEntities(o1, o2);
     };
@@ -36,12 +36,17 @@ export class ChampionshipFormComponent extends ChampionshipFormBase implements O
 
     public ngOnInit(): void {
         this.championshipFormService
-            .init$(this.championship$, this.entityForm$$, this.changeChampionship)
+            .init$(
+                this.championship$.pipe(switchMap((championship) => of(championship as Championship))),
+                this.entityForm$$,
+                this.changeChampionship
+            )
             .pipe(
                 tap(() => {
                     this.ageGroupOptions$ = this.championshipFormService.ageGroupOptions$;
                     this.genderOptions$ = this.championshipFormService.genderOptions$;
                     this.clubs$$ = this.championshipFormService.clubs$$;
+                    this.championship$$ = this.championshipFormService.championship$$;
 
                     this.entityForm$$.pipe(
                         tap((data) => {

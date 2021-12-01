@@ -1,8 +1,8 @@
-import { Observable, ReplaySubject } from 'rxjs';
-import { skip, takeUntil, tap } from 'rxjs/operators';
+import { Observable, of, ReplaySubject } from 'rxjs';
+import { switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { Championship, EventEntity } from '@zsport/api';
+import { Championship, Competition, EventEntity } from '@zsport/api';
 
 import { ChampionshipFinalBase } from '../../base';
 import { ChampionshipFinalService } from '../../service';
@@ -16,7 +16,7 @@ import { ChampionshipFinalService } from '../../service';
 })
 export class ChampionshipFinalComponent extends ChampionshipFinalBase implements OnInit {
     @Input()
-    public championship$!: Observable<Championship>;
+    public championship$!: Observable<Competition>;
     public radioEvents = 'round';
 
     public constructor(private championshipFinalService: ChampionshipFinalService) {
@@ -42,7 +42,7 @@ export class ChampionshipFinalComponent extends ChampionshipFinalBase implements
     public ngOnInit(): void {
         this.championshipFinalService
             .init$(
-                this.championship$,
+                this.championship$.pipe(switchMap((championship) => of(championship as Championship))),
                 this.dynamicEventFormComponent$$,
                 this.dynamicEventFormInputs$$,
                 this.dynamicEventFormOutputs$$
@@ -58,6 +58,7 @@ export class ChampionshipFinalComponent extends ChampionshipFinalBase implements
                     this.categories$$ = this.championshipFinalService.categories$$;
                     this.teams$$ = this.championshipFinalService.teams$$;
                     this.selectedFinalTabId$ = this.championshipFinalService.selectedFinalTabId$;
+                    this.championship$$ = this.championshipFinalService.championship$$;
                 }),
                 takeUntil(this.destroy)
             )

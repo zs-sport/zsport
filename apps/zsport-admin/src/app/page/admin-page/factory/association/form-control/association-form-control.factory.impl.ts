@@ -68,6 +68,18 @@ export class AssociationFormControlFactoryImpl extends AssociationFormControlFac
                             ? (dataModel as AssociationEntity).nameI18n[this.i18nService.getActiveLang()]
                             : null,
                     }),
+                    this.createTextControl({
+                        key: 'shortName',
+                        label: this.i18nService.translate('admin.sport.association.label.short_name'),
+                        order: 5,
+                        placeholder: this.i18nService.translate('admin.sport.association.label.short_name_placeholder'),
+                        type: 'text',
+                        validators: [
+                            { key: DynamicFormValidatorNameEnum.minLength, value: 2 },
+                            { key: DynamicFormValidatorNameEnum.maxLength, value: 6 },
+                        ],
+                        value: dataModel ? (dataModel as AssociationEntity).shortName : null,
+                    }),
                     this.createSelectControl({
                         compare: (o1: any, o2: any): boolean => (o1 && o2 ? o1.uid === o2.uid : o1 === o2),
                         key: 'parent',
@@ -83,7 +95,8 @@ export class AssociationFormControlFactoryImpl extends AssociationFormControlFac
                                 }))
                             )
                         ),
-                        order: 5,
+                        showSearch: true,
+                        order: 6,
                         placeholder: this.i18nService.translate('admin.sport.association.label.parent_placeholder'),
                         type: 'select',
                         validators: [],
@@ -104,7 +117,7 @@ export class AssociationFormControlFactoryImpl extends AssociationFormControlFac
                                 }))
                             )
                         ),
-                        order: 6,
+                        order: 7,
                         placeholder: this.i18nService.translate('admin.sport.association.label.category_placeholder'),
                         type: 'select',
                         validators: [{ key: DynamicFormValidatorNameEnum.required, value: null }],

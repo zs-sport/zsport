@@ -12,6 +12,7 @@ export interface Club extends Identifiable {
     category: Category;
     contacts?: unknown[] | null;
     dates: Dates;
+    isNational: boolean;
     locations: Location[];
     logo: string;
     name: string;

@@ -23,17 +23,37 @@ import { AdminClubPermissionsService } from '../../../../../permission/club';
 
 @Injectable()
 export class ClubTableFactoryImpl extends ClubTableFactory {
+    private teamTypes: any[] = [];
     private clickHandler = (entity: ClubEntity): void => {
         this.sportClubStateService.dispatchSetSelectedEntityIdAction(entity.uid || '');
     };
 
     constructor(
         private authorizationService: AuthorizationService,
-        private i18NService: I18nService,
+        private i18nService: I18nService,
         private sportClubStateService: ClubStateService,
         private categoryStateService: CategoryStateService
     ) {
         super();
+
+        this.teamTypes = [
+            {
+                nameI18n: {
+                    hu: 'Nemzeti',
+                    en: 'National',
+                },
+                value: true,
+                uid: 'n1',
+            },
+            {
+                nameI18n: {
+                    hu: 'Klub',
+                    en: 'Club',
+                },
+                value: false,
+                uid: 'n2',
+            },
+        ];
     }
 
     public createTableConfig$(): Observable<DynamicTableConfigModel> {
@@ -59,21 +79,21 @@ export class ClubTableFactoryImpl extends ClubTableFactory {
     }
 
     private createColumnHeaders(categories: Category[]): DynamicColumnHeaderModel[] {
-        const curentLanguage: string = this.i18NService.getActiveLangAsString();
+        const curentLanguage: string = this.i18nService.getActiveLangAsString();
 
         const columnHeaders: DynamicColumnHeaderModel[] = [
             {
                 listOfFilter: [],
-                title: this.i18NService.translate('admin.sport.club.column.name'),
-                compare: (a: Club, b: Club) => a.name.localeCompare(b.name, this.i18NService.getActiveLangAsString()),
+                title: this.i18nService.translate('admin.sport.club.column.name'),
+                compare: (a: Club, b: Club) => a.name.localeCompare(b.name, this.i18nService.getActiveLangAsString()),
                 priority: 3,
             },
             {
                 listOfFilter: [],
-                title: this.i18NService.translate('admin.sport.club.column.association'),
+                title: this.i18nService.translate('admin.sport.club.column.association'),
             },
             {
-                title: this.i18NService.translate('admin.sport.club.column.category'),
+                title: this.i18nService.translate('admin.sport.club.column.category'),
                 filterMultiple: true,
                 listOfFilter: categories.map((category) => {
                     const categoryName: any = category.nameI18n;
@@ -90,11 +110,21 @@ export class ClubTableFactoryImpl extends ClubTableFactory {
                     return aName[curentLanguage].localeCompare(bName[curentLanguage], curentLanguage);
                 },
             },
+            {
+                listOfFilter: this.teamTypes.map((teamType) => ({
+                    text: this.i18nService.getValue(teamType.nameI18n),
+                    value: teamType.value,
+                })),
+                filterFn: (teamType: boolean, item: Club) => {
+                    return item.isNational === teamType;
+                },
+                title: this.i18nService.translate('admin.sport.club.column.is_national'),
+            },
         ];
 
         const editColumnHeader: DynamicColumnHeaderModel = {
             listOfFilter: [],
-            title: this.i18NService.translate('admin.sport.club.column.edit'),
+            title: this.i18nService.translate('admin.sport.club.column.edit'),
         };
 
         if (this.hasEditEntityPermission()) {
@@ -131,11 +161,21 @@ export class ClubTableFactoryImpl extends ClubTableFactory {
                 isDoubleObject: true,
                 objectPropertyName: 'nameI18n',
             },
+            {
+                actionName: '',
+                actionRoute: '',
+                propertyName: 'isNational',
+                icon: 'check-circle',
+                isLocalized: false,
+                isDoubleObject: false,
+                objectPropertyName: '',
+                isSimple: true,
+            },
         ];
 
         const editColumn: DynamicColumnModel = {
             actionHandler: this.clickHandler,
-            actionName: this.i18NService.translate('admin.sport.club.action.edit'),
+            actionName: this.i18nService.translate('admin.sport.club.action.edit'),
             actionRoute: '../edit',
             isAction: true,
             objectPropertyName: '',

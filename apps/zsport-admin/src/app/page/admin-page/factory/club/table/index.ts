@@ -1,1 +1,1 @@
-export * from './sport-club-table.factory.impl';
+export * from './club-table.factory.impl';

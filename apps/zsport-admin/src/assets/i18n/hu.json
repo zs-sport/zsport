@@ -155,6 +155,7 @@
                     "category": "Kategória",
                     "edit": "Akció",
                     "name": "Név",
+                    "parent": "Szülő",
                     "short_name": "Rövid név"
                 },
                 "label": {
@@ -193,29 +194,31 @@
                 },
                 "column": {
                     "action": "Művelet",
-                    "edit": "Akció",
-                    "name": "Név",
+                    "association": "Szervezet",
                     "category": "Kategória",
-                    "association": "Szervezet"
+                    "edit": "Akció",
+                    "is_national": "Nemzeti",
+                    "name": "Név"
                 },
                 "label": {
+                    "association": "Szervezet",
+                    "association_placeholder": "Szervezet",
+                    "category": "Kategória",
+                    "category_placeholder": "Kategória",
                     "club": "Klub",
-                    "teams": "Csapatok",
-                    "players": "Játékosok",
-                    "name": "Név",
-                    "name_placeholder": "Név",
+                    "is_national": "Nemzeti",
                     "locations": "Pályák",
                     "locations_placeholder": "Pályák",
                     "logo": "Logo",
                     "logo_placeholder": "Logo",
+                    "players": "Játékosok",
+                    "name": "Név",
+                    "name_placeholder": "Név",
                     "short_name": "Rövid név",
                     "short_name_placeholder": "Rövid név",
                     "simple_name": "Egyszerű név",
                     "simple_name_placeholder": "Egyszerű név",
-                    "category": "Kategória",
-                    "category_placeholder": "Kategória",
-                    "association": "Szervezet",
-                    "association_placeholder": "Szervezet"
+                    "teams": "Csapatok"
                 }
             },
             "competition": {

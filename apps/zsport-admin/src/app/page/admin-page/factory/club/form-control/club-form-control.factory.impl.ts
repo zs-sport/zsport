@@ -93,7 +93,7 @@ export class ClubFormControlFactoryImpl extends ClubFormControlFactory {
                             type: 'text',
                             validators: [
                                 { key: DynamicFormValidatorNameEnum.required, value: null },
-                                { key: DynamicFormValidatorNameEnum.minLength, value: 3 },
+                                { key: DynamicFormValidatorNameEnum.minLength, value: 2 },
                                 { key: DynamicFormValidatorNameEnum.maxLength, value: 4 },
                             ],
                             value: data ? data.shortName : null,
@@ -126,6 +126,7 @@ export class ClubFormControlFactoryImpl extends ClubFormControlFactory {
                             ),
                             order: 7,
                             placeholder: this.i18nService.translate('admin.sport.club.label.association_placeholder'),
+                            showSearch: true,
                             type: 'select',
                             validators: [],
                             value: data ? data.association : null,
@@ -176,8 +177,16 @@ export class ClubFormControlFactoryImpl extends ClubFormControlFactory {
                             order: 10,
                             placeholder: this.i18nService.translate('admin.sport.club.label.locations_placeholder'),
                             type: 'select',
-                            validators: [{ key: DynamicFormValidatorNameEnum.required, value: null }],
+                            validators: [],
                             value: data ? data.locations : null,
+                        }),
+                        this.createCheckboxControl({
+                            key: 'isNational',
+                            label: this.i18nService.translate('admin.sport.club.label.is_national'),
+                            order: 11,
+                            type: 'checkbox',
+                            validators: [],
+                            value: data ? data.isNational : false,
                         }),
                     ];
 

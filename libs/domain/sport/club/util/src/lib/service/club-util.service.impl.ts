@@ -31,6 +31,7 @@ export class ClubUtilServiceImpl extends ClubUtilService {
             logo: club.logo,
             name: club.name,
             dates: club.dates,
+            isNational: club.isNational || false,
             officialWebSite: club.officialWebSite || null,
             shortName: club.shortName,
             simpleName: club.simpleName,

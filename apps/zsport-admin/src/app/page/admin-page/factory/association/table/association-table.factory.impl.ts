@@ -93,6 +93,15 @@ export class AssociationTableFactoryImpl extends AssociationTableFactory {
                 },
                 title: this.i18NService.translate('admin.sport.association.column.category'),
             },
+            {
+                compare: (a: Association, b: Association) =>
+                    (a.parent?.nameI18n[currentLanguage] || '').localeCompare(
+                        b.parent?.nameI18n[currentLanguage] || '',
+                        currentLanguageAsString
+                    ),
+                listOfFilter: [],
+                title: this.i18NService.translate('admin.sport.association.column.parent'),
+            },
         ];
 
         const editColumnHeader = {
@@ -133,6 +142,14 @@ export class AssociationTableFactoryImpl extends AssociationTableFactory {
                 isLocalized: true,
                 isDoubleObject: true,
                 objectPropertyName: 'nameI18n',
+            },
+            {
+                actionName: '',
+                actionRoute: '',
+                propertyName: 'parent',
+                objectPropertyName: 'nameI18n',
+                isDoubleObject: true,
+                isLocalized: true,
             },
         ];
 

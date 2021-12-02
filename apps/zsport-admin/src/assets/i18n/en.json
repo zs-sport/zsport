@@ -156,6 +156,7 @@
                     "category": "Category",
                     "edit": "Edit",
                     "name": "Name",
+                    "parent": "Parent",
                     "short_name": "Short name"
                 },
                 "label": {
@@ -194,10 +195,11 @@
                 },
                 "column": {
                     "action": "Action",
-                    "edit": "Edit",
-                    "name": "Name",
+                    "association": "Association",
                     "category": "Category",
-                    "association": "Association"
+                    "edit": "Edit",
+                    "is_national": "National",
+                    "name": "Name"
                 },
                 "label": {
                     "club": "Club",
@@ -206,6 +208,7 @@
                     "name_placeholder": "Name",
                     "category": "Category",
                     "category_placeholder": "Category",
+                    "is_national": "National",
                     "association": "Association",
                     "association_placeholder": "Association",
                     "locations": "Locations",

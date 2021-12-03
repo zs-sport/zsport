@@ -2,7 +2,8 @@ import { Observable, of } from 'rxjs';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
-import { AgeGroup, Tournament, Gender, Competition } from '@zsport/api';
+import { FormArray } from '@angular/forms';
+import { AgeGroup, Competition, Gender, Tournament } from '@zsport/api';
 
 import { TournamentFormBase } from '../../base';
 import { TournamentFormService } from '../../service';
@@ -16,16 +17,25 @@ import { TournamentFormService } from '../../service';
     styleUrls: ['./tournament-form.component.less'],
 })
 export class TournamentFormComponent extends TournamentFormBase implements OnDestroy, OnInit {
-    @Input()
-    public tournament$!: Observable<Competition>;
     public compareEntities = (o1: any, o2: any): boolean => {
         return this.tournamentFormService.compareEntities(o1, o2);
     };
+
+    @Input()
+    public tournament$!: Observable<Competition>;
 
     public constructor(private tournamentFormService: TournamentFormService) {
         super();
 
         this.changeTournament = new EventEmitter();
+    }
+
+    public get groupLevels(): FormArray {
+        return this.tournamentFormService.getGroupLevels();
+    }
+
+    public addGroupLevel(): void {
+        this.tournamentFormService.addGroupLevel();
     }
 
     public ngOnDestroy(): void {
@@ -66,8 +76,14 @@ export class TournamentFormComponent extends TournamentFormBase implements OnDes
         this.tournamentFormService.onGenderChangeHandler(event);
     }
 
+    public onIsNationalChangeHandler(event: boolean): void {}
+
     public onSubmit(): void {
         this.tournamentFormService.onSubmit();
+    }
+
+    public removeGroupLevel(i: number): void {
+        this.tournamentFormService.removeGroupLevel(i);
     }
 
     public resetForm(event: MouseEvent): void {

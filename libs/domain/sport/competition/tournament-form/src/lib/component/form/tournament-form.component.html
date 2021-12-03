@@ -43,6 +43,21 @@
         </nz-form-item>
 
         <nz-form-item>
+            <nz-form-label nzNoColon [nzSpan]="6" nzFor="isNational"></nz-form-label>
+
+            <nz-form-control [nzSpan]="14">
+                <label
+                    id="isNational"
+                    nz-checkbox
+                    formControlName="isNational"
+                    (ngModelChange)="onIsNationalChangeHandler($event)"
+                >
+                    {{ 'admin.sport.competition.label.is_national' | transloco }}
+                </label>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
             <nz-form-label [nzSpan]="6" nzFor="clubs" nzRequired>{{
                 'admin.sport.competition.label.clubs' | transloco
             }}</nz-form-label>
@@ -61,19 +76,104 @@
             </nz-form-control>
         </nz-form-item>
 
-        <nz-form-item>
-            <nz-form-label [nzSpan]="6" nzFor="roundIterations" nzRequired>{{
-                'admin.sport.competition.label.round_iterations' | transloco
-            }}</nz-form-label>
+        <ng-container formArrayName="groupLevels">
+            <ng-container *ngFor="let groupLevel of groupLevels.controls; let i = index">
+                <fieldset [formGroupName]="i">
+                    <legend>Level {{ i + 1 }}</legend>
 
-            <nz-form-control [nzSpan]="14" nzHasFeedback="true">
-                <nz-input-number
-                    [nzMin]="0"
-                    [nzMax]="99"
-                    [nzStep]="1"
-                    formControlName="roundIterations"
-                    id="roundIterations"
-                ></nz-input-number>
+                    <nz-form-control hidden>
+                        <input hidden formControlName="level" />
+                    </nz-form-control>
+
+                    <nz-form-control hidden>
+                        <input hidden formControlName="groups" />
+                    </nz-form-control>
+
+                    <nz-form-control hidden>
+                        <input hidden formControlName="events" />
+                    </nz-form-control>
+
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="title_{{ i }}" nzRequired>{{
+                            'admin.sport.competition.label.group_level.title' | transloco
+                        }}</nz-form-label>
+
+                        <nz-form-control [nzSpan]="14" nzHasFeedback="true">
+                            <input
+                                nz-input
+                                formControlName="title"
+                                type="text"
+                                id="title_{{ i }}"
+                                placeholder="{{
+                                    'admin.sport.competition.label.group_level.title_placeholder' | transloco
+                                }}"
+                            />
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="groupsNumber_{{ i }}" nzRequired>
+                            {{ 'admin.sport.competition.label.group_level.groups_number' | transloco }}
+                        </nz-form-label>
+
+                        <nz-form-control [nzSpan]="14" nzHasFeedback="true">
+                            <nz-input-number
+                                [nzMin]="0"
+                                [nzMax]="10"
+                                [nzStep]="1"
+                                formControlName="groupsNumber"
+                                id="groupsNumber_{{ i }}"
+                            ></nz-input-number>
+
+                            <i
+                                nz-icon
+                                nzType="minus-circle"
+                                class="dynamic-delete-button"
+                                (click)="removeGroupLevel(i)"
+                            ></i>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="winnersNumber_{{ i }}" nzRequired>
+                            {{ 'admin.sport.competition.label.group_level.winners_number' | transloco }}
+                        </nz-form-label>
+
+                        <nz-form-control [nzSpan]="14" nzHasFeedback="true">
+                            <nz-input-number
+                                [nzMin]="0"
+                                [nzMax]="10"
+                                [nzStep]="1"
+                                formControlName="winnersNumber"
+                                id="winnersNumber_{{ i }}"
+                            ></nz-input-number>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label nzNoColon [nzSpan]="6" nzFor="isWithResults"></nz-form-label>
+
+                        <nz-form-control [nzSpan]="14">
+                            <label
+                                id="isWithResults"
+                                nz-checkbox
+                                formControlName="isWithResults"
+                                (ngModelChange)="onIsNationalChangeHandler($event)"
+                            >
+                                {{ 'admin.sport.competition.label.group_level.is_with_results' | transloco }}
+                            </label>
+                        </nz-form-control>
+                    </nz-form-item>
+                </fieldset>
+            </ng-container>
+        </ng-container>
+
+        <nz-form-item>
+            <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 4 }">
+                <button nz-button nzType="dashed" class="add-button" (click)="addGroupLevel()">
+                    <i nz-icon nzType="plus"></i>
+                    Add level
+                </button>
             </nz-form-control>
         </nz-form-item>
     </form>

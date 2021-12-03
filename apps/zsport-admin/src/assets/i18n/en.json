@@ -234,7 +234,10 @@
                     "previous": "Previous"
                 },
                 "column": {
+                    "action": "Action",
+                    "edit": "Edit",
                     "gender": "Gender",
+                    "is_national": "National",
                     "name": "Name",
                     "type": "Type",
                     "category": "Category"
@@ -257,6 +260,14 @@
                     "from_date_to_date": "From - To",
                     "gender": "Gender",
                     "gender_placeholder": "Gender",
+                    "group_level": {
+                        "is_with_results": "With results",
+                        "groups_number": "Groups number",
+                        "title": "Title",
+                        "title_placeholder": "Title",
+                        "winners_number": "Winners number"
+                    },
+                    "is_national": "National",
                     "list": "List",
                     "owner": "Owner",
                     "owner_placeholder": "Owner",

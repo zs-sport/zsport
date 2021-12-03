@@ -236,6 +236,7 @@
                     "action": "Művelet",
                     "edit": "Akció",
                     "gender": "Nem",
+                    "is_national": "Nemzeti",
                     "name": "Név",
                     "type": "Típus",
                     "category": "Kategória"
@@ -258,6 +259,14 @@
                     "from_date_to_date": "Tól - Ig",
                     "gender": "Nem",
                     "gender_placeholder": "Nem",
+                    "group_level": {
+                        "is_with_results": "Eredményekkel",
+                        "groups_number": "Csoportok száma",
+                        "title": "Megnevezés",
+                        "title_placeholder": "Megnevezés",
+                        "winners_number": "Továbbjutók száma"
+                    },
+                    "is_national": "Nemzeti",
                     "list": "Lista",
                     "owner": "Szülő",
                     "owner_placeholder": "Szülő",

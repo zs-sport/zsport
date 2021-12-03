@@ -11,8 +11,4 @@ export abstract class EntityBaseComponent extends BaseComponent {
     public dynamicComponent$!: Observable<any>;
     public dynamicInputs$$!: Subject<any>;
     public dynamicOutputs$!: Observable<unknown>;
-
-    public constructor() {
-        super();
-    }
 }

@@ -1,7 +1,10 @@
 import { DynamicModule } from 'ng-dynamic-component';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
@@ -23,9 +26,12 @@ import { TournamentFinalComponent, TournamentFormComponent } from './component';
         CommonModule,
         DynamicModule,
         FormsModule,
+        NzButtonModule,
+        NzCheckboxModule,
         NzCollapseModule,
         NzDescriptionsModule,
         NzFormModule,
+        NzIconModule,
         NzInputNumberModule,
         NzListModule,
         NzRadioModule,

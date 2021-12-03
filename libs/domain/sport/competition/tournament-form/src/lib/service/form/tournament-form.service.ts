@@ -2,11 +2,10 @@ import { combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { EventEmitter, Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
     AgeGroup,
     AgeGroupUtilService,
-    Competition,
     Gender,
     GenderUtilService,
     I18nService,
@@ -28,11 +27,32 @@ export class TournamentFormService extends TournamentFormBase {
     public constructor(
         private ageGroupUtilService: AgeGroupUtilService,
         private formBuilder: FormBuilder,
-        private i18nService: I18nService,
         private genderUtilService: GenderUtilService,
+        private i18nService: I18nService,
         private teamStateService: TeamStateService
     ) {
         super();
+    }
+
+    public addGroupLevel(): void {
+        const groupLevels: FormArray = this.entityForm.controls['groupLevels'] as FormArray;
+        const groupLevel: any = {
+            events: [null],
+            groups: [null],
+            groupsNumber: [0, Validators.required],
+            level: [groupLevels.length + 1],
+            isWithResults: [false],
+            title: [null, Validators.required],
+            winnersNumber: [0, Validators.required],
+        };
+
+        const groupLevelForm = this.formBuilder.group(groupLevel);
+
+        groupLevels.push(groupLevelForm);
+    }
+
+    public getGroupLevels(): FormArray {
+        return this.entityForm.controls['groupLevels'] as FormArray;
     }
 
     public init$(
@@ -105,6 +125,10 @@ export class TournamentFormService extends TournamentFormBase {
         const tournamentModel = this.entityForm.value;
     }
 
+    public removeGroupLevel(i: number): void {
+        (this.entityForm.controls['groupLevels'] as FormArray).removeAt(i);
+    }
+
     public resetForm(event: MouseEvent): void {
         throw new Error('Method not implemented.');
     }
@@ -121,8 +145,26 @@ export class TournamentFormService extends TournamentFormBase {
                 ageGroup: this.tournament.ageGroup,
                 gender: this.tournament.gender,
                 clubs: this.tournament.clubs,
-                groupLevels: this.tournament.groupLevels,
+                isNational: this.tournament.isNational,
             });
+
+            const groupLevels: FormArray = this.entityForm.controls['groupLevels'] as FormArray;
+
+            if (groupLevels.controls.length === 0 && this.tournament.groupLevels) {
+                this.tournament.groupLevels.forEach((groupLevel) => {
+                    const groupLevelForm = this.formBuilder.group({
+                        events: [groupLevel.events],
+                        groupsNumber: [groupLevel.groupsNumber],
+                        groups: [groupLevel.groups],
+                        isWithResults: [groupLevel.isWithResults],
+                        level: [groupLevel.level],
+                        title: [groupLevel.title, Validators.required],
+                        winnersNumber: [groupLevel.winnersNumber],
+                    });
+
+                    groupLevels.push(groupLevelForm);
+                });
+            }
 
             this.buttonAction = 'Update';
             this.entityForm$$.next(this.entityForm);
@@ -136,7 +178,8 @@ export class TournamentFormService extends TournamentFormBase {
             ageGroup: [null, Validators.required],
             gender: [null, Validators.required],
             clubs: [null, Validators.required],
-            groupLevels: [null, Validators.required],
+            isNational: [false],
+            groupLevels: this.formBuilder.array([]),
         });
 
         this.entityForm.valueChanges

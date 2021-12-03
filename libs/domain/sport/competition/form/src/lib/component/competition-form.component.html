@@ -19,7 +19,7 @@
         </div>
 
         <div class="steps-action">
-            <button nz-button [nzType]="'primary'" (click)="previousStep()" *ngIf="data.currentStep || 0 > 0">
+            <button nz-button [nzType]="'primary'" (click)="previousStep()" *ngIf="(data.currentStep || 0) > 0">
                 <span>{{ 'admin.sport.competition.button.previous' | transloco }}</span>
             </button>
 
@@ -28,7 +28,7 @@
                 [nzType]="'primary'"
                 [disabled]="!competitionForm.valid"
                 (click)="nextStep()"
-                *ngIf="data.currentStep || 0 < 2"
+                *ngIf="(data.currentStep || 0) < 2"
             >
                 <span>{{ 'admin.sport.competition.button.next' | transloco }}</span>
             </button>
@@ -100,6 +100,7 @@
                         [compareWith]="compareEntities"
                         [nzDisabled]="!isValid(categoryFormControl.status || '')"
                         nzErrorTip="Please select an owner!"
+                        nzShowSearch
                     >
                         <nz-option-group nzLabel="{{ 'admin.sport.competition.label.association' | transloco }}">
                             <nz-option

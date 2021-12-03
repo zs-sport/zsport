@@ -8,5 +8,6 @@ export interface Tournament extends Competition {
     ageGroup: AgeGroup;
     clubs: Club[];
     gender: Gender;
+    isNational: boolean;
     groupLevels: GroupLevel[];
 }

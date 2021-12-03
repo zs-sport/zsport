@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Championship, Competition, CompetitionModel, CompetitionUtilService, StateUtilService } from '@zsport/api';
+import {
+    Championship,
+    Competition,
+    CompetitionModel,
+    CompetitionTypeEnum,
+    CompetitionUtilService,
+    StateUtilService,
+    Tournament,
+} from '@zsport/api';
 
 @Injectable()
 export class CompetitionUtilServiceImpl extends CompetitionUtilService {
@@ -29,11 +37,19 @@ export class CompetitionUtilServiceImpl extends CompetitionUtilService {
             uid: competition.uid,
         };
 
-        return this.convertToChampionshipModel(competition as Championship, updatedCompetitionModel);
+        if (competition.type === CompetitionTypeEnum.CHAMPIONSHIP) {
+            return this.convertToChampionshipModel(competition as Championship, updatedCompetitionModel);
+        } else {
+            return this.convertToTournamentModel(competition as Tournament, updatedCompetitionModel);
+        }
     }
 
     public convertModelToEntity(competitionModel: Competition): Competition {
-        return this.convertToChampionship(competitionModel as Championship);
+        if (competitionModel.type === CompetitionTypeEnum.CHAMPIONSHIP) {
+            return this.convertToChampionship(competitionModel as Championship);
+        } else {
+            return this.convertToTournament(competitionModel as Tournament);
+        }
     }
 
     private convertToChampionship(championshipModel: Championship): Championship {
@@ -50,6 +66,23 @@ export class CompetitionUtilServiceImpl extends CompetitionUtilService {
             gender: championship.gender,
             roundIterations: championship.roundIterations,
             rounds: championship.rounds || null,
+        };
+    }
+
+    private convertToTournament(tournamentModel: Tournament): Tournament {
+        const tournament = { ...tournamentModel };
+
+        return tournament;
+    }
+
+    private convertToTournamentModel(tournament: Tournament, competitionModel: CompetitionModel): Tournament {
+        return {
+            ...competitionModel,
+            ageGroup: tournament.ageGroup,
+            clubs: tournament.clubs,
+            gender: tournament.gender,
+            groupLevels: tournament.groupLevels,
+            isNational: tournament.isNational,
         };
     }
 }

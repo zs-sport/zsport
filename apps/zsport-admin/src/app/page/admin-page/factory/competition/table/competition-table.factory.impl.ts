@@ -1,11 +1,15 @@
-import { Observable, of } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import {
     AuthorizationService,
+    Category,
+    CategoryEntity,
+    CategoryStateService,
     Championship,
     Competition,
     CompetitionStateService,
+    CompetitionTypeEnum,
     DynamicColumnHeaderModel,
     DynamicColumnModel,
     DynamicTableConfigModel,
@@ -13,6 +17,7 @@ import {
     Entity,
     GenderUtilService,
     I18nService,
+    Tournament,
 } from '@zsport/api';
 import { CompetitionTableFactory } from '@zsport/domain/sport/competition/table';
 import { NgzDynamicTableComponent } from '@zsport/ui/dynamic-table';
@@ -27,21 +32,26 @@ export class CompetitionTableFactoryImpl extends CompetitionTableFactory {
 
     constructor(
         private authorizationService: AuthorizationService,
+        private categoryStateService: CategoryStateService,
         private genderUtilService: GenderUtilService,
-        private i18NService: I18nService,
+        private i18nService: I18nService,
         private competitionStateService: CompetitionStateService
     ) {
         super();
     }
 
     public createTableConfig$(): Observable<DynamicTableConfigModel> {
-        return of({
-            id: 'competitionTable',
-            size: DynamicTableSizeEnum.default,
-            columnHeaders: this.createColumnHeaders(),
-            columns: this.createColumns(),
-            isSortable: false,
-        });
+        return this.categoryStateService.selectEntities$().pipe(
+            switchMap((entities) => {
+                return of({
+                    columnHeaders: this.createColumnHeaders(entities as CategoryEntity[]),
+                    columns: this.createColumns(),
+                    id: 'competitionTable',
+                    isSortable: true,
+                    size: DynamicTableSizeEnum.default,
+                });
+            })
+        );
     }
 
     public getData$(): Observable<Entity[]> {
@@ -52,40 +62,68 @@ export class CompetitionTableFactoryImpl extends CompetitionTableFactory {
         return NgzDynamicTableComponent;
     }
 
-    private createColumnHeaders(): DynamicColumnHeaderModel[] {
+    private createColumnHeaders(categories: CategoryEntity[]): DynamicColumnHeaderModel[] {
+        const curentLanguage: string = this.i18nService.getActiveLangAsString();
         const columnHeaders: DynamicColumnHeaderModel[] = [
             {
+                compare: (a: Competition, b: Competition) => {
+                    return a.name.localeCompare(b.name, curentLanguage);
+                },
                 listOfFilter: [],
-                title: this.i18NService.translate('admin.sport.competition.column.name'),
+                title: this.i18nService.translate('admin.sport.competition.column.name'),
             },
             {
-                listOfFilter: [],
-                title: this.i18NService.translate('admin.sport.competition.column.category'),
-            },
-            {
-                listOfFilter: [],
-                title: this.i18NService.translate('admin.sport.competition.column.type'),
-            },
-            {
-                title: this.i18NService.translate('admin.sport.competition.column.gender'),
                 filterMultiple: true,
+                title: this.i18nService.translate('admin.sport.competition.column.category'),
+                listOfFilter: categories.map((category) => {
+                    const categoryName: any = category.nameI18n;
+
+                    return {
+                        text: categoryName[curentLanguage] as string,
+                        value: category.uid,
+                    };
+                }),
+                filterFn: (categoryIds: string[], item: Competition) => {
+                    return categoryIds.some((categoryId) => item.category.uid === categoryId);
+                },
+                compare: (a: Competition, b: Competition) => {
+                    const aName: any = a.category.nameI18n;
+                    const bName: any = b.category.nameI18n;
+
+                    return aName[curentLanguage].localeCompare(bName[curentLanguage], curentLanguage);
+                },
+            },
+            {
+                listOfFilter: [],
+                title: this.i18nService.translate('admin.sport.competition.column.type'),
+            },
+            {
+                title: this.i18nService.translate('admin.sport.competition.column.gender'),
+                filterMultiple: false,
                 listOfFilter: this.genderUtilService.getGenders().map((gender) => ({
-                    text: gender.nameI18n[this.i18NService.getActiveLang()] as string,
-                    value: gender.nameI18n[this.i18NService.getActiveLang()],
+                    text: gender.nameI18n[this.i18nService.getActiveLang()] as string,
+                    value: gender.nameI18n[this.i18nService.getActiveLang()],
                 })),
-                filterFn: (list: string[], item: Competition) =>
-                    list.some(
-                        (genderName) =>
-                            (
-                                (item as Championship).gender.nameI18n[this.i18NService.getActiveLang()] as string
-                            ).indexOf(genderName) !== -1
-                    ),
+                filterFn: (genderName: string, item: Competition) => {
+                    let championshipOrTournament: Championship | Tournament | null = null;
+
+                    if (item.type === CompetitionTypeEnum.CHAMPIONSHIP) {
+                        championshipOrTournament = item as Championship;
+                    } else {
+                        championshipOrTournament = item as Tournament;
+                    }
+
+                    return (
+                        (championshipOrTournament.gender.nameI18n[this.i18nService.getActiveLang()] as string) ===
+                        genderName
+                    );
+                },
             },
         ];
 
         const editColumnHeader: DynamicColumnHeaderModel = {
             listOfFilter: [],
-            title: this.i18NService.translate('admin.sport.competition.column.edit'),
+            title: this.i18nService.translate('admin.sport.competition.column.edit'),
         };
 
         if (this.hasEditEntityPermission()) {
@@ -135,7 +173,7 @@ export class CompetitionTableFactoryImpl extends CompetitionTableFactory {
 
         const editColumn: DynamicColumnModel = {
             actionHandler: this.clickHandler,
-            actionName: this.i18NService.translate('admin.sport.competition.action.edit'),
+            actionName: this.i18nService.translate('admin.sport.competition.action.edit'),
             actionRoute: '../edit',
             isAction: true,
             propertyName: '',

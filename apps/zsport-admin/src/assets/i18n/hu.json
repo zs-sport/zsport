@@ -266,6 +266,7 @@
                         "title_placeholder": "Megnevezés",
                         "winners_number": "Továbbjutók száma"
                     },
+                    "group_levels": "Csoport színtek",
                     "is_national": "Nemzeti",
                     "list": "Lista",
                     "owner": "Szülő",
@@ -277,6 +278,7 @@
                     "round": "Forduló",
                     "round_iterations": "Fordulók száma",
                     "round_iterations_placeholder": "Fordulók száma",
+                    "tournament_info": "Tournament info",
                     "type": "Típus",
                     "type_placeholder": "Típus"
                 }

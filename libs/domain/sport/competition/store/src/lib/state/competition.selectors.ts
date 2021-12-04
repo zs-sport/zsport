@@ -1,6 +1,6 @@
 import { Dictionary } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { Competition, COMPETITION_FEATURE_KEY } from '@zsport/api';
+import { Competition, CompetitionEntity, COMPETITION_FEATURE_KEY } from '@zsport/api';
 
 import { competitionAdapter, CompetitionPartialState, State } from './competition.reducer';
 
@@ -18,6 +18,11 @@ export const isNewEntityButtonEnabled = createSelector(
     getCompetitionState,
     (state: State) => state.isNewEntityButtonEnabled
 );
+
+export const selectCompetitionById = () =>
+    createSelector(selectCompetitionEntities, (competitionEntities: Dictionary<CompetitionEntity>, props: any) => {
+        return competitionEntities[props.entityId];
+    });
 
 export const selectSelectedFinalTabId = createSelector(getCompetitionState, (state: State) => state.selectedFinalTabId);
 

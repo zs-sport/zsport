@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Competition, CompetitionStateService, Entity, Event } from '@zsport/api';
+import { Competition, CompetitionEntity, CompetitionStateService, Entity, Event } from '@zsport/api';
 
 import * as competitionActions from './competition.actions';
 import * as fromCompetition from './competition.reducer';
@@ -10,6 +10,9 @@ import * as competitionSelectors from './competition.selectors';
 
 @Injectable()
 export class CompetitionStateServiceImpl extends CompetitionStateService {
+    public dispatchAddEventByGroupLevelIndexGroupTitle(event: Event, index: number, title: string): void {
+        this.store.dispatch(competitionActions.addEventByGroupLevelIndexGroupTitleGroupTitle({ event, index, title }));
+    }
     public constructor(private store: Store<fromCompetition.CompetitionPartialState>) {
         super();
     }
@@ -80,8 +83,8 @@ export class CompetitionStateServiceImpl extends CompetitionStateService {
         return this.store.pipe(select(competitionSelectors.selectCompetition));
     }
 
-    public selectEntityById$(entityId: string): Observable<Entity> {
-        throw new Error('Method not implemented.');
+    public selectEntityById$(entityId: string): Observable<CompetitionEntity | undefined> {
+        return this.store.pipe(select(competitionSelectors.selectCompetitionById(), { entityId }));
     }
 
     public selectNewEntityButtonEnabled$(): Observable<boolean> {

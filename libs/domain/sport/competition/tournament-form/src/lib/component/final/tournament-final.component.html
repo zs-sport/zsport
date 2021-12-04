@@ -66,22 +66,22 @@
                     <label nz-radio-button nzValue="list">{{ 'admin.sport.competition.label.list' | transloco }}</label>
                 </nz-radio-group>
 
-                <!-- <ng-container *ngIf="radioEvents === 'round'">
+                <ng-container *ngIf="radioEvents === 'round'">
                     <nz-collapse [nzBordered]="false">
                         <nz-collapse-panel
-                            *ngFor="let round of tournament.rounds"
-                            [nzHeader]="round.index + 1 + 'round'"
+                            *ngFor="let groupLevel of tournament.groupLevels"
+                            [nzHeader]="groupLevel.title"
                         >
-                            <zs-round-form
-                                [events$]="events$$[round.index]"
-                                [eventNumber]="eventNumber"
-                                [round]="round"
+                            <zs-group-form
+                                [eventsMap]="events$$[groupLevel.level] | async"
+                                [eventsNumber]="eventNumber"
+                                [groupLevel]="groupLevel"
                                 (addEvent)="addEventHandler($event)"
                                 (editEvent)="editEventHandler($event)"
-                            ></zs-round-form>
+                            ></zs-group-form>
                         </nz-collapse-panel>
                     </nz-collapse>
-                </ng-container> -->
+                </ng-container>
 
                 <ng-container *ngIf="radioEvents === 'list'">
                     <nz-list

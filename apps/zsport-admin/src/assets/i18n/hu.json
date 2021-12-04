@@ -259,6 +259,10 @@
                     "from_date_to_date": "Tól - Ig",
                     "gender": "Nem",
                     "gender_placeholder": "Nem",
+                    "group": {
+                        "add_event": "Új esemény",
+                        "edit": "Szerkesztés"
+                    },
                     "group_level": {
                         "is_with_results": "Eredményekkel",
                         "groups_number": "Csoportok száma",

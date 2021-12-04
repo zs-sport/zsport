@@ -21,6 +21,16 @@ export const addEventByCompetitionIdSuccess = createAction(
     props<{ event: Event }>()
 );
 
+export const addEventByGroupLevelIndexGroupTitleGroupTitle = createAction(
+    '[Competition Tournament] Add Event GroupLevel Index Group Title',
+    props<{ event: Event; index: number; title: string }>()
+);
+
+export const addEventByGroupLevelIndexGroupTitleGrouptitleSuccess = createAction(
+    '[Competition Tournament] Add Event By GroupLevel Index Group Titles',
+    props<{ event: Event }>()
+);
+
 export const changeNewEntityButtonEnabled = createAction(
     '[Competition Admin] Change new Entity Button Enabled',
     props<{ enabled: boolean }>()

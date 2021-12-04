@@ -1,0 +1,39 @@
+<div class="group-level">
+    <title>{{ groupLevel?.title }}</title>
+
+    <ng-container *ngIf="groupLevel?.groups?.length; else groupTemplate">
+        <div *ngFor="let group of groupLevel?.groups">
+            <ng-container
+                [ngTemplateOutlet]="groupTemplate"
+                [ngTemplateOutletContext]="{
+                    title: group.title,
+                    events: eventsMap?.get(group.title) || [],
+                    level: groupLevel.level
+                }"
+            >
+            </ng-container>
+        </div>
+    </ng-container>
+</div>
+
+<ng-template #groupTemplate let-events="events" let-title="title" let-level="level">
+    <nz-card style="margin-bottom: 20px" [nzBordered]="false" [nzTitle]="title" [nzExtra]="extraTemplate">
+        <p *ngFor="let event of events">
+            <span>{{ event.team1.club.name }}</span>
+            -
+            <span>{{ event.team2.club.name }}</span>
+
+            <span style="float: right">
+                <a (click)="editEventClickHandler(event)">
+                    {{ 'admin.sport.competition.label.group.edit' | transloco }}
+                </a>
+            </span>
+        </p>
+    </nz-card>
+
+    <ng-template #extraTemplate>
+        <a *ngIf="events.length < (eventsNumber || 0)" (click)="addEventClickHandler(level, title)">{{
+            'admin.sport.competition.label.group.add_event' | transloco
+        }}</a>
+    </ng-template>
+</ng-template>

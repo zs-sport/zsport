@@ -1,11 +1,11 @@
 import { combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { filter, switchMap } from 'rxjs/operators';
+import { distinct, filter, switchMap, take, tap } from 'rxjs/operators';
 
+import { KeyValue } from '@angular/common';
 import { Injectable } from '@angular/core';
 import {
     AgeGroup,
     Category,
-    Tournament,
     CompetitionStateService,
     Event,
     EventEntity,
@@ -13,9 +13,10 @@ import {
     EventStateService,
     EventUtilService,
     Gender,
+    GroupLevel,
     Team,
     TeamStateService,
-    GroupLevel,
+    Tournament,
 } from '@zsport/api';
 import { EventCompetitionFormComponent } from '@zsport/domain/sport/event/competition-form';
 
@@ -23,9 +24,11 @@ import { TournamentFinalBase } from '../../base';
 
 @Injectable()
 export class TournamentFinalService extends TournamentFinalBase {
-    private tournament: Tournament | null = null;
     private events: Event[] = [];
     private teams: Team[] = [];
+    private tempGroupLevelIndex: number = -1;
+    private tempGroupTitle: string = '';
+    private tournament: Tournament | null = null;
 
     public compareEntities = (o1: any, o2: any): boolean => (o1 && o2 ? o1.uid === o2.uid : o1 === o2);
 
@@ -46,7 +49,7 @@ export class TournamentFinalService extends TournamentFinalBase {
         this.events$$ = [];
     }
 
-    public addEventHandler(index: number): void {
+    public addEventHandler(indexTitle: KeyValue<number, string>): void {
         this.competitionStateService.dispatchChangeSelectedfinalTabId(2);
 
         const event: Partial<EventEntity> = this.eventUtilService.createEventForCompetition(
@@ -54,8 +57,11 @@ export class TournamentFinalService extends TournamentFinalBase {
             this.tournament!.category,
             this.tournament!.gender,
             this.tournament!.uid || '',
-            index
+            indexTitle.key
         );
+
+        this.tempGroupLevelIndex = indexTitle.key;
+        this.tempGroupTitle = indexTitle.value;
 
         this.activateEventFormComponent();
 
@@ -119,21 +125,13 @@ export class TournamentFinalService extends TournamentFinalBase {
 
                 this.teamStateService.dispatchListTeamByAGGCIdAndClubIds(aggcId, clubIds);
 
-                /* if (this.tournament && !this.tournament.rounds) {
-                    tournament.rounds = [];
+                if (this.tournament && !this.tournament.groupLevels) {
+                    tournament.groupLevels = [];
+                }
 
-                    for (let i = 0; i < tournament.clubs.length - 1; i++) {
-                        tournament.rounds.push({
-                            index: i,
-                            competitionId: tournament.uid || '',
-                            eventIds: [],
-                        });
-                    }
-                } */
-
-                /* tournament.rounds.forEach((round) => {
-                    this.events$$.push(new ReplaySubject<Event[]>());
-                }); */
+                tournament.groupLevels.forEach((groupLevel) => {
+                    this.events$$.push(new ReplaySubject<Map<string, (Event | undefined)[]> | undefined>());
+                });
 
                 if (this.tournament.uid) {
                     this.competitionStateService.dispatchListEventsByCompetitionId(this.tournament.uid);
@@ -142,25 +140,29 @@ export class TournamentFinalService extends TournamentFinalBase {
                 this.eventNumber = this.tournament.clubs.length / 2;
 
                 return combineLatest([
-                    this.teamStateService.selectTeamsByAGGCIdAndClubIds$(aggcId, clubIds),
-                    this.eventStateService.selectEventsByCompetitionId(this.tournament.uid || ''),
+                    this.teamStateService
+                        .selectTeamsByAGGCIdAndClubIds$(aggcId, clubIds)
+                        .pipe(distinct((teams) => teams.length)),
+                    this.eventStateService
+                        .selectEventsByCompetitionId(this.tournament.uid || '')
+                        .pipe(distinct((events) => events.length)),
                 ]).pipe(
                     switchMap(([teams, events]) => {
                         this.teams = teams;
                         this.events = events;
 
-                        const eventsMap = this.separateEvents(events, this.tournament!.groupLevels);
+                        if (events.length) {
+                            const eventsGroupLevelMap: Map<number, Map<string, (Event | undefined)[]> | undefined> =
+                                this.separateEvents(events, this.tournament!.groupLevels);
 
-                        this.eventList$$.next(this.createEventLists(this.events));
-                        this.events$$.forEach((event$$, index) => {
-                            const sortedEvents: Event[] = eventsMap.get(index) || [];
+                            this.eventList$$.next(this.createEventLists(this.events));
+                            this.events$$.forEach((event$$, index) => {
+                                const separatedEvents: Map<string, (Event | undefined)[]> | undefined =
+                                    eventsGroupLevelMap.get(index);
 
-                            event$$.next(
-                                sortedEvents.sort((a, b) =>
-                                    (a as Event).eventDayTime < (b as Event).eventDayTime ? -1 : 1
-                                )
-                            );
-                        });
+                                event$$.next(separatedEvents);
+                            });
+                        }
 
                         return of(true);
                     })
@@ -200,7 +202,11 @@ export class TournamentFinalService extends TournamentFinalBase {
     }
 
     private createEvent(eventModel: any) {
-        this.competitionStateService.dispatchAddEventByCompetitionId(eventModel);
+        this.competitionStateService.dispatchAddEventByGroupLevelIndexGroupTitle(
+            eventModel,
+            this.tempGroupLevelIndex,
+            this.tempGroupTitle
+        );
     }
 
     private createEventLists(events: Event[]): EventList[] {
@@ -230,30 +236,41 @@ export class TournamentFinalService extends TournamentFinalBase {
         return `${ageGroup.uid}_${gender.uid}_${category.uid}`;
     }
 
-    private initializeEventsMap(groupLevels: GroupLevel[]): Map<number, Event[]> {
-        const eventsMap: Map<number, Event[]> = new Map();
+    private initializeEventsMap(groupLevels: GroupLevel[]): Map<number, Map<string, Event[]>> {
+        const eventsGroupLevelMap: Map<number, Map<string, Event[]>> = new Map();
 
-        groupLevels.forEach((groupLevel) => eventsMap.set(groupLevel.level, []));
+        groupLevels.forEach((groupLevel) => eventsGroupLevelMap.set(groupLevel.level, new Map()));
 
-        return eventsMap;
+        return eventsGroupLevelMap;
     }
 
-    private separateEvents(events: Event[], groupLevels: GroupLevel[]): Map<number, Event[]> {
-        const eventsMap: Map<number, Event[]> = this.initializeEventsMap(groupLevels);
+    private separateEvents(
+        events: Event[],
+        groupLevels: GroupLevel[]
+    ): Map<number, Map<string, (Event | undefined)[]> | undefined> {
+        const eventsGroupLevelMap: Map<number, Map<string, (Event | undefined)[]> | undefined> =
+            this.initializeEventsMap(groupLevels);
+        const eventsMap: Map<string, Event | undefined> = new Map();
 
-        events.forEach((event) => {
-            let tempEvents: Event[] | null = eventsMap.get(event.roundId || 0) || null;
+        events.forEach((event) => eventsMap.set(event.uid || '', event));
 
-            if (!tempEvents) {
-                tempEvents = [event];
-            } else {
-                tempEvents.push(event);
-            }
+        groupLevels.forEach((groupLevel) => {
+            const groupEventsMap: Map<string, (Event | undefined)[]> | undefined = eventsGroupLevelMap.get(
+                groupLevel.level
+            );
 
-            eventsMap.set(event.roundId || 0, tempEvents);
+            groupLevel.groups?.forEach((group) => {
+                const events: (Event | undefined)[] = [];
+
+                group.eventIds.forEach((eventId) => events.push(eventsMap.get(eventId)));
+
+                groupEventsMap?.set(group.title, events);
+            });
+
+            eventsGroupLevelMap.set(groupLevel.level, groupEventsMap);
         });
 
-        return eventsMap;
+        return eventsGroupLevelMap;
     }
 
     private updateEvent(event: Event): void {

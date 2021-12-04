@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreI18nModule } from '@zsport/core/i18n';
-import { DomainSportRoundFormModule } from '@zsport/domain/sport/round/form';
+import { DomainSportGroupFormModule } from '@zsport/domain/sport/group/form';
 
 import { TournamentFinalComponent, TournamentFormComponent } from './component';
 
@@ -39,7 +39,7 @@ import { TournamentFinalComponent, TournamentFormComponent } from './component';
         NzTabsModule,
         ReactiveFormsModule,
         CoreI18nModule,
-        DomainSportRoundFormModule,
+        DomainSportGroupFormModule,
     ],
 })
 export class DomainSportCompetitionTournamentFormModule {}

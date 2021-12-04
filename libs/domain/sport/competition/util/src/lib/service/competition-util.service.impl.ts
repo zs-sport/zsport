@@ -5,9 +5,13 @@ import {
     CompetitionModel,
     CompetitionTypeEnum,
     CompetitionUtilService,
+    Group,
+    GroupLevel,
     StateUtilService,
     Tournament,
 } from '@zsport/api';
+
+export const GROUP_NAMES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
 @Injectable()
 export class CompetitionUtilServiceImpl extends CompetitionUtilService {
@@ -76,13 +80,46 @@ export class CompetitionUtilServiceImpl extends CompetitionUtilService {
     }
 
     private convertToTournamentModel(tournament: Tournament, competitionModel: CompetitionModel): Tournament {
-        return {
+        const tournamentModel: Tournament = {
             ...competitionModel,
             ageGroup: tournament.ageGroup,
             clubs: tournament.clubs,
             gender: tournament.gender,
             groupLevels: tournament.groupLevels,
             isNational: tournament.isNational,
+        };
+
+        if (!tournamentModel.uid) {
+            tournamentModel.groupLevels = !!tournamentModel.groupLevels
+                ? tournamentModel.groupLevels.map((groupLevel) =>
+                      this.updateGroupLevel(groupLevel, tournamentModel.clubs.length)
+                  )
+                : [];
+        }
+
+        return tournamentModel;
+    }
+
+    private updateGroupLevel(groupLevel: GroupLevel, teamsNumber: number): GroupLevel {
+        const groups: Group[] = [];
+
+        if (teamsNumber > groupLevel.groupsNumber * 3) {
+            throw new Error('Groups number of group level is mismatched with teams number!');
+        }
+
+        if (groupLevel.groupsNumber > 0) {
+            [...Array(groupLevel.groupsNumber)].map((_, index) => {
+                groups.push({
+                    eventIds: [],
+                    title: 'Group ' + GROUP_NAMES[index],
+                });
+            });
+        }
+
+        return {
+            ...groupLevel,
+            groups,
+            eventIds: groupLevel.eventIds || [],
         };
     }
 }

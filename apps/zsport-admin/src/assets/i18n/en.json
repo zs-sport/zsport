@@ -260,6 +260,10 @@
                     "from_date_to_date": "From - To",
                     "gender": "Gender",
                     "gender_placeholder": "Gender",
+                    "group": {
+                        "add_event": "Add event",
+                        "edit": "Edit"
+                    },
                     "group_level": {
                         "is_with_results": "With results",
                         "groups_number": "Groups number",

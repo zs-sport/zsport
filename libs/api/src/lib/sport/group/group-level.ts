@@ -1,8 +1,7 @@
 import { Group } from './group';
-import { Event } from '../event';
 
 export interface GroupLevel {
-    events: Event[] | null;
+    eventIds: string[] | null;
     groups: Group[] | null;
     groupsNumber: number;
     isWithResults: boolean;

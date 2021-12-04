@@ -6,6 +6,7 @@ import { Tournament, EventEntity, Competition } from '@zsport/api';
 
 import { TournamentFinalBase } from '../../base';
 import { TournamentFinalService } from '../../service';
+import { KeyValue } from '@angular/common';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,8 +28,8 @@ export class TournamentFinalComponent extends TournamentFinalBase implements OnI
         this.dynamicEventFormOutputs$$ = new ReplaySubject();
     }
 
-    public addEventHandler(index: number): void {
-        this.tournamentFinalService.addEventHandler(index);
+    public addEventHandler(event: KeyValue<number, string>): void {
+        this.tournamentFinalService.addEventHandler(event);
     }
 
     public editEventHandler(event: EventEntity): void {

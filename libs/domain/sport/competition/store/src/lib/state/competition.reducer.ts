@@ -33,10 +33,14 @@ export const competitionReducer = createReducer(
     on(competitionActions.addCompetitionSuccess, (state, { competition }) =>
         competitionAdapter.addOne(competition as Competition, state)
     ),
-    on(competitionActions.addEventByCompetitionIdSuccess, (state, { event }) => ({
-        ...state,
-        loading: false,
-    })),
+    on(
+        competitionActions.addEventByCompetitionIdSuccess,
+        competitionActions.addEventByGroupLevelIndexGroupTitleGrouptitleSuccess,
+        (state, { event }) => ({
+            ...state,
+            loading: false,
+        })
+    ),
     on(competitionActions.changeNewEntityButtonEnabled, (state, { enabled }) => ({
         ...state,
         isNewEntityButtonEnabled: enabled,

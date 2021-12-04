@@ -40,7 +40,7 @@ export class TournamentFormService extends TournamentFormBase {
             events: [null],
             groups: [null],
             groupsNumber: [0, Validators.required],
-            level: [groupLevels.length + 1],
+            level: [groupLevels.length],
             isWithResults: [false],
             title: [null, Validators.required],
             winnersNumber: [0, Validators.required],
@@ -153,7 +153,7 @@ export class TournamentFormService extends TournamentFormBase {
             if (groupLevels.controls.length === 0 && this.tournament.groupLevels) {
                 this.tournament.groupLevels.forEach((groupLevel) => {
                     const groupLevelForm = this.formBuilder.group({
-                        events: [groupLevel.events],
+                        eventIds: [groupLevel.eventIds],
                         groupsNumber: [groupLevel.groupsNumber],
                         groups: [groupLevel.groups],
                         isWithResults: [groupLevel.isWithResults],

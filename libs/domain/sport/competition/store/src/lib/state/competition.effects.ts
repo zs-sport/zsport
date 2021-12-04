@@ -1,19 +1,25 @@
-import { map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { map, mergeMap, switchMap, take, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
     Competition,
     CompetitionDataService,
     CompetitionModel,
+    CompetitionStateService,
     CompetitionUtilService,
     Event,
     EventModel,
     EventStateService,
     EventUtilService,
+    Group,
+    GroupLevel,
+    Tournament,
 } from '@zsport/api';
 
 import * as competitionActions from './competition.actions';
+import { TitleCasePipe } from '@angular/common';
 
 @Injectable()
 export class CompetitionEffects {
@@ -46,6 +52,59 @@ export class CompetitionEffects {
                     .pipe(
                         map((eventModel) => {
                             return competitionActions.addEventByCompetitionIdSuccess({
+                                event: this.eventUtilService.convertModelToEntity(eventModel) as Event,
+                            });
+                        })
+                    )
+            )
+        )
+    );
+    public addEventByGroupLevelIndexGroupTitle = createEffect(() =>
+        this.actions$.pipe(
+            ofType(competitionActions.addEventByGroupLevelIndexGroupTitleGroupTitle),
+            switchMap((action) =>
+                this.competitionDataService
+                    .addEventByCompetitionId(
+                        this.eventUtilService.convertEntityToModel(action.event, false) as EventModel
+                    )
+                    .pipe(
+                        switchMap((eventModel) =>
+                            this.competitionStateService.selectEntityById$(eventModel.competitionId || '').pipe(
+                                take(1),
+                                switchMap((competition) => {
+                                    const groupMap: Map<string, Group> = new Map();
+                                    const groupLevels: GroupLevel[] = [...(competition as Tournament).groupLevels];
+                                    const groupLevel = groupLevels[action.index];
+
+                                    (groupLevel.groups || []).forEach((group) => groupMap.set(group.title, group));
+
+                                    let group: Group | undefined = groupMap.get(action.title);
+
+                                    if (group) {
+                                        group = { ...group, eventIds: [...group.eventIds] };
+                                        group.eventIds.push(eventModel.uid || '');
+
+                                        groupMap.set(group.title, group);
+
+                                        groupLevels[action.index] = {
+                                            ...groupLevel,
+                                            groups: Array.from(groupMap.values()),
+                                        };
+
+                                        const updatedCompetition = {
+                                            ...(competition as Tournament),
+                                            groupLevels,
+                                        } as Tournament;
+
+                                        this.competitionStateService.dispatchUpdateEntityAction(updatedCompetition);
+                                    }
+
+                                    return of(eventModel);
+                                })
+                            )
+                        ),
+                        map((eventModel) => {
+                            return competitionActions.addEventByGroupLevelIndexGroupTitleGrouptitleSuccess({
                                 event: this.eventUtilService.convertModelToEntity(eventModel) as Event,
                             });
                         })
@@ -146,6 +205,7 @@ export class CompetitionEffects {
         private actions$: Actions,
         private competitionDataService: CompetitionDataService,
         private competitionUtilService: CompetitionUtilService,
+        private competitionStateService: CompetitionStateService,
         private eventStateService: EventStateService,
         private eventUtilService: EventUtilService
     ) {}

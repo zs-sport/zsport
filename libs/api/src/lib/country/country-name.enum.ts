@@ -8,4 +8,5 @@ export enum CountryNameEnum {
     AUSTRIA = 'AUSTRIA',
     SLOVAKIA = 'SLOVAKIA',
     UKRAINE = 'UKRAINE',
+    SPAIN = 'SPAIN',
 }

@@ -9,6 +9,7 @@ export const CountryLocalizedNames: any = {
         AUSTRIA: 'Austria',
         SLOVAKIA: 'Slovakia',
         UKRAINE: 'Ukraine',
+        SPAIN: 'Spain',
     },
     hu: {
         HUNGARY: 'Magyarország',
@@ -20,5 +21,6 @@ export const CountryLocalizedNames: any = {
         AUSTRIA: 'Ausztria',
         SLOVAKIA: 'Szlovákia',
         UKRAINE: 'Ukrajna',
+        SPAIN: 'Spanyolország',
     },
 };

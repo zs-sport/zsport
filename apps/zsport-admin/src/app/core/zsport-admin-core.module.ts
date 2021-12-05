@@ -7,6 +7,7 @@ import { CoreAuthorizationDataModule } from '@zsport/core/authorization/data';
 import { CoreI18nModule } from '@zsport/core/i18n';
 import { CoreStorageDataModule } from '@zsport/core/storage/data';
 import { CoreStorageUtilModule } from '@zsport/core/storage/util';
+import { DomainCountryUtilModule } from '@zsport/domain/country/util';
 import { DomainGenderUtilModule } from '@zsport/domain/gender/util';
 import { DomainLocationDataModule } from '@zsport/domain/location/data';
 import { DomainLocationStoreModule } from '@zsport/domain/location/store';
@@ -62,6 +63,7 @@ import { DefaultUserHookService } from './hook/user';
         CoreAuthorizationDataModule,
         CoreStorageDataModule,
         CoreStorageUtilModule,
+        DomainCountryUtilModule,
         DomainGenderUtilModule,
         DomainLocationDataModule,
         DomainLocationStoreModule,

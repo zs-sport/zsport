@@ -5,6 +5,7 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
@@ -32,6 +33,7 @@ import { TournamentFinalComponent, TournamentFormComponent } from './component';
         NzDescriptionsModule,
         NzFormModule,
         NzIconModule,
+        NzInputModule,
         NzInputNumberModule,
         NzListModule,
         NzRadioModule,

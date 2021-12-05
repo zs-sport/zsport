@@ -21,6 +21,7 @@ export class LocationUtilServiceImpl extends LocationUtilService {
 
         const updatedLocationModel: LocationModel = {
             address: location.address,
+            country: location.country,
             descriptionI18n: location.descriptionI18n,
             photo: location.photo || null,
             name: location.name,

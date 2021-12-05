@@ -70,6 +70,10 @@ export class LocationTableFactoryImpl extends LocationTableFactory {
                 priority: 2,
                 listOfFilter: [],
             },
+            {
+                title: this.i18NService.translate('admin.location.column.country'),
+                listOfFilter: [],
+            },
         ];
 
         const editColumnHeader: DynamicColumnHeaderModel = {
@@ -112,6 +116,14 @@ export class LocationTableFactoryImpl extends LocationTableFactory {
                 isObject: false,
                 isLocalized: false,
                 isSimple: true,
+            },
+            {
+                actionName: '',
+                actionRoute: '',
+                propertyName: 'country',
+                isDoubleObject: true,
+                objectPropertyName: 'nameI18n',
+                isLocalized: true,
             },
         ];
 

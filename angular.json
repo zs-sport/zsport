@@ -255,6 +255,32 @@
             },
             "tags": ["scope:util", "type:core"]
         },
+        "domain-country-util": {
+            "projectType": "library",
+            "root": "libs/domain/country/util",
+            "sourceRoot": "libs/domain/country/util/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/country/util"],
+                    "options": {
+                        "jestConfig": "libs/domain/country/util/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/country/util/src/**/*.ts",
+                            "libs/domain/country/util/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-gender-util": {
             "projectType": "library",
             "root": "libs/domain/gender/util",

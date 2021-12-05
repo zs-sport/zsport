@@ -5,9 +5,12 @@ import { Injectable } from '@angular/core';
 import { AngularFireUploadTask } from '@angular/fire/compat/storage';
 import {
     ControlBase,
+    Country,
+    CountryUtilService,
     DynamicFormSelectModeEnum,
     DynamicFormValidatorNameEnum,
     I18nService,
+    Identifiable,
     LocationEntity,
     LocationTypeEnum,
     StorageDataService,
@@ -18,15 +21,18 @@ import { LocationFormControlFactory } from '@zsport/domain/location/form';
 @Injectable()
 export class LocationFormControlFactoryImpl extends LocationFormControlFactory {
     private activeLanguage: string;
+    private countries: Country[] = [];
 
     public constructor(
         private i18nService: I18nService,
+        private countryUtilService: CountryUtilService,
         private storageDataService: StorageDataService,
         private storageUtilService: StorageUtilService
     ) {
         super();
 
         this.activeLanguage = i18nService.getActiveLangAsString();
+        this.countries = this.countryUtilService.getCountries();
     }
 
     public createFormControls$(data: LocationEntity): Observable<ControlBase<any>[]> {
@@ -113,10 +119,33 @@ export class LocationFormControlFactoryImpl extends LocationFormControlFactory {
                     validators: [],
                     value: data ? data.photo : null,
                 }),
+                this.createSelectControl({
+                    compare: (o1: Identifiable, o2: Identifiable): boolean =>
+                        o1 && o2 ? o1.uid === o2.uid : o1 === o2,
+                    key: 'country',
+                    label: this.i18nService.translate('admin.location.label.country'),
+                    mode: DynamicFormSelectModeEnum.default,
+                    options$: of(this.countries).pipe(
+                        map((countries) =>
+                            countries.map((country) => {
+                                return {
+                                    label: this.i18nService.getValue(country.nameI18n),
+                                    value: country,
+                                };
+                            })
+                        )
+                    ),
+                    order: 8,
+                    placeholder: this.i18nService.translate('admin.customer.label.country_placeholder'),
+                    required: true,
+                    type: 'select',
+                    validators: [{ key: DynamicFormValidatorNameEnum.required, value: undefined }],
+                    value: data ? data.country : null,
+                }),
                 this.createTextControl({
                     key: 'address',
                     label: this.i18nService.translate('admin.location.label.address'),
-                    order: 8,
+                    order: 9,
                     placeholder: this.i18nService.translate('admin.location.label.address_placeholder'),
                     type: 'text',
                     validators: [

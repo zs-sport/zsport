@@ -89,6 +89,7 @@
             },
             "column": {
                 "address": "Cím",
+                "country": "Ország",
                 "name": "Name",
                 "edit": "Akció",
                 "type": "Típus"
@@ -96,6 +97,8 @@
             "label": {
                 "address": "Cím",
                 "address_placeholder": "Cím",
+                "country": "Ország",
+                "country_placeholder": "Ország",
                 "description": "Leírás",
                 "description_placeholder": "Leírás",
                 "name": "Név",

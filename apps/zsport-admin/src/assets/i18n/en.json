@@ -90,6 +90,7 @@
             },
             "column": {
                 "address": "Address",
+                "country": "Country",
                 "name": "Name",
                 "edit": "Action",
                 "type": "Type"
@@ -97,6 +98,8 @@
             "label": {
                 "address": "Address",
                 "address_placeholder": "Address",
+                "country": "Country",
+                "country_placeholder": "Country",
                 "description": "Description",
                 "description_placeholder": "Description",
                 "name": "Name",

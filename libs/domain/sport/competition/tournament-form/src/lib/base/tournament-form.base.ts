@@ -7,6 +7,7 @@ import { Tournament, Club, EntityBaseComponent, SelectOptionModel, Competition }
 export abstract class TournamentFormBase extends EntityBaseComponent {
     public ageGroupOptions$!: Observable<SelectOptionModel[]>;
     public buttonAction = 'Create';
+    public countryOptions$!: Observable<SelectOptionModel[]>;
     public tournament$$!: Observable<Tournament>;
     public changeTournament!: EventEmitter<Tournament>;
     public clubs$$!: Subject<Club[]>;

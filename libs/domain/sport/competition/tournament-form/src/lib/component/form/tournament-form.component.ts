@@ -3,7 +3,7 @@ import { switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormArray } from '@angular/forms';
-import { AgeGroup, Competition, Gender, Tournament } from '@zsport/api';
+import { AgeGroup, Competition, Country, Gender, Tournament } from '@zsport/api';
 
 import { TournamentFormBase } from '../../base';
 import { TournamentFormService } from '../../service';
@@ -54,8 +54,9 @@ export class TournamentFormComponent extends TournamentFormBase implements OnDes
             .pipe(
                 tap(() => {
                     this.ageGroupOptions$ = this.tournamentFormService.ageGroupOptions$;
-                    this.genderOptions$ = this.tournamentFormService.genderOptions$;
                     this.clubs$$ = this.tournamentFormService.clubs$$;
+                    this.countryOptions$ = this.tournamentFormService.countryOptions$;
+                    this.genderOptions$ = this.tournamentFormService.genderOptions$;
                 }),
                 takeUntil(this.destroy)
             )
@@ -64,6 +65,10 @@ export class TournamentFormComponent extends TournamentFormBase implements OnDes
 
     public onAgeGroupChangeHandler(event: AgeGroup): void {
         this.tournamentFormService.onAgeGroupChangeHandler(event);
+    }
+
+    public onCountryChangeHandler(event: Country): void {
+        this.tournamentFormService.onCountryChangeHandler(event);
     }
 
     public onGenderChangeHandler(event: Gender): void {

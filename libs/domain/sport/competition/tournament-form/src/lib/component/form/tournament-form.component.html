@@ -43,6 +43,27 @@
         </nz-form-item>
 
         <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="country" nzRequired>{{
+                'admin.sport.competition.label.country' | transloco
+            }}</nz-form-label>
+
+            <nz-form-control [nzSpan]="14" nzHasFeedback="true">
+                <ng-container *ngIf="countryOptions$ | async as countryOptions">
+                    <nz-select
+                        id="country"
+                        formControlName="country"
+                        nzPlaceHolder="{{ 'admin.sport.competition.label.country_placeholder' | transloco }}"
+                        [compareWith]="compareEntities"
+                        (ngModelChange)="onCountryChangeHandler($event)"
+                        nzErrorTip="Please select a value!"
+                        [nzOptions]="countryOptions"
+                    >
+                    </nz-select>
+                </ng-container>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
             <nz-form-label nzNoColon [nzSpan]="6" nzFor="isNational"></nz-form-label>
 
             <nz-form-control [nzSpan]="14">

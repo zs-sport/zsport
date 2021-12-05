@@ -1,4 +1,5 @@
 import { EntityUtilService } from '../base';
+import { SelectOptionModel } from '../dynamic-form';
 import { Gender } from './gender';
 
 export abstract class GenderUtilService extends EntityUtilService {
@@ -6,4 +7,5 @@ export abstract class GenderUtilService extends EntityUtilService {
     protected genders!: Gender[];
 
     public abstract getGenders(): Gender[];
+    public abstract getGenderOptions(): SelectOptionModel[];
 }

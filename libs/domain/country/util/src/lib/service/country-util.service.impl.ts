@@ -7,6 +7,7 @@ import {
     Entity,
     I18nService,
     Model,
+    SelectOptionModel,
 } from '@zsport/api';
 
 @Injectable()
@@ -29,6 +30,13 @@ export class CountryUtilServiceImpl extends CountryUtilService {
 
     public getCountries(): Country[] {
         return this.countries;
+    }
+
+    public getCountryOptions(): SelectOptionModel[] {
+        return this.countries.map((country) => ({
+            label: country.nameI18n[this.i18nService.getActiveLang()] as string,
+            value: country,
+        }));
     }
 
     protected createCountries(): Country[] {

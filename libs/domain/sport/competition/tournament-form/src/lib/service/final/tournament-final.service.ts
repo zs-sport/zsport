@@ -1,5 +1,5 @@
 import { combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { distinct, filter, switchMap, take, tap } from 'rxjs/operators';
+import { distinct, filter, switchMap } from 'rxjs/operators';
 
 import { KeyValue } from '@angular/common';
 import { Injectable } from '@angular/core';

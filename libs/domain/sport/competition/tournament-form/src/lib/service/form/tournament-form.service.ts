@@ -6,9 +6,10 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
     AgeGroup,
     AgeGroupUtilService,
+    Country,
+    CountryUtilService,
     Gender,
     GenderUtilService,
-    I18nService,
     TeamStateService,
     Tournament,
 } from '@zsport/api';
@@ -17,18 +18,19 @@ import { TournamentFormBase } from '../../base';
 
 @Injectable()
 export class TournamentFormService extends TournamentFormBase {
-    private ageGroups$$!: Subject<AgeGroup | null>;
+    private selectedAgeGroup$$!: Subject<AgeGroup | null>;
+    private selectedCountry$$!: Subject<Country | null>;
     private entityForm!: FormGroup;
-    private genders$$!: Subject<Gender | null>;
+    private selectedGender$$!: Subject<Gender | null>;
     private tournament!: Tournament;
 
     public compareEntities = (o1: any, o2: any): boolean => (o1 && o2 ? o1.uid === o2.uid : o1 === o2);
 
     public constructor(
         private ageGroupUtilService: AgeGroupUtilService,
+        private countryUtilService: CountryUtilService,
         private formBuilder: FormBuilder,
         private genderUtilService: GenderUtilService,
-        private i18nService: I18nService,
         private teamStateService: TeamStateService
     ) {
         super();
@@ -64,38 +66,28 @@ export class TournamentFormService extends TournamentFormBase {
         this.entityForm$$ = entityForm$$;
         this.changeTournament = changeTournament;
         this.buttonAction = 'Create';
-        this.ageGroupOptions$ = of(this.ageGroupUtilService.getAgeGroups()).pipe(
-            map((ageGroups: AgeGroup[]) =>
-                ageGroups.map((ageGroup) => ({
-                    label: ageGroup.nameI18n[this.i18nService.getActiveLang()] as string,
-                    value: ageGroup,
-                }))
-            )
-        );
-        this.genderOptions$ = of(this.genderUtilService.getGenders()).pipe(
-            map((genders) =>
-                genders.map((gender) => ({
-                    label: gender.nameI18n[this.i18nService.getActiveLang()] as string,
-                    value: gender,
-                }))
-            )
-        );
-        this.clubs$$ = new Subject();
-        this.ageGroups$$ = new ReplaySubject();
-        this.genders$$ = new ReplaySubject();
+        this.ageGroupOptions$ = of(this.ageGroupUtilService.getAgeGroupOptions());
+        this.genderOptions$ = of(this.genderUtilService.getGenderOptions());
+        (this.countryOptions$ = of(this.countryUtilService.getCountryOptions())), (this.clubs$$ = new Subject());
+        this.selectedAgeGroup$$ = new ReplaySubject();
+        this.selectedGender$$ = new ReplaySubject();
+        this.selectedCountry$$ = new ReplaySubject();
 
-        this.ageGroups$$.next(null);
-        this.genders$$.next(null);
+        this.selectedAgeGroup$$.next(null);
+        this.selectedGender$$.next(null);
+        this.selectedCountry$$.next(null);
 
         this.initTournamentForm();
 
         return combineLatest([
             this.tournament$$.pipe(map((tournament) => this.initTournament(tournament))),
-            this.genders$$,
-            this.ageGroups$$,
+            this.selectedGender$$,
+            this.selectedAgeGroup$$,
+            this.selectedCountry$$,
         ]).pipe(
-            switchMap(([tournament, gender, ageGroup]) => {
+            switchMap(([tournament, gender, ageGroup, country]) => {
                 const ageGroupId = ageGroup ? ageGroup.uid : tournament.ageGroup ? tournament.ageGroup.uid : 0;
+                const countryId = country ? country.uid : tournament.country ? tournament.country.uid : 0;
                 const genderId = gender ? gender.uid : tournament.gender ? tournament.gender.uid : 0;
                 const aggcId = ageGroupId + '_' + genderId + '_' + tournament.category.uid;
 
@@ -114,11 +106,15 @@ export class TournamentFormService extends TournamentFormBase {
     }
 
     public onAgeGroupChangeHandler(event: AgeGroup): void {
-        this.ageGroups$$.next(event);
+        this.selectedAgeGroup$$.next(event);
+    }
+
+    public onCountryChangeHandler(event: Country): void {
+        this.selectedCountry$$.next(event);
     }
 
     public onGenderChangeHandler(event: Gender): void {
-        this.genders$$.next(event);
+        this.selectedGender$$.next(event);
     }
 
     public onSubmit(): void {
@@ -143,6 +139,7 @@ export class TournamentFormService extends TournamentFormBase {
 
             this.entityForm.patchValue({
                 ageGroup: this.tournament.ageGroup,
+                country: this.tournament.country,
                 gender: this.tournament.gender,
                 clubs: this.tournament.clubs,
                 isNational: this.tournament.isNational,
@@ -176,6 +173,7 @@ export class TournamentFormService extends TournamentFormBase {
     private initTournamentForm(): void {
         this.entityForm = this.formBuilder.group({
             ageGroup: [null, Validators.required],
+            country: [null, Validators.required],
             gender: [null, Validators.required],
             clubs: [null, Validators.required],
             isNational: [false],

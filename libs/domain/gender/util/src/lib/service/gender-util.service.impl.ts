@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Entity, Gender, GenderUtilService, I18nService, Model } from '@zsport/api';
+import { Entity, Gender, GenderUtilService, I18nService, Model, SelectOptionModel } from '@zsport/api';
 
 @Injectable()
 export class GenderUtilServiceImpl extends GenderUtilService {
@@ -15,6 +15,13 @@ export class GenderUtilServiceImpl extends GenderUtilService {
 
     public convertModelToEntity(model: Model): Entity {
         throw new Error('Method not implemented.');
+    }
+
+    public getGenderOptions(): SelectOptionModel[] {
+        return this.genders.map((gender) => ({
+            label: gender.nameI18n[this.i18nService.getActiveLang()] as string,
+            value: gender,
+        }));
     }
 
     public getGenders(): Gender[] {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AgeGroup, AgeGroupUtilService, I18nService } from '@zsport/api';
+import { AgeGroup, AgeGroupUtilService, I18nService, SelectOptionModel } from '@zsport/api';
 
 @Injectable()
 export class AgeGroupUtilServiceImpl extends AgeGroupUtilService {
@@ -20,6 +20,13 @@ export class AgeGroupUtilServiceImpl extends AgeGroupUtilService {
         return {
             ...ageGroup,
         };
+    }
+
+    public getAgeGroupOptions(): SelectOptionModel[] {
+        return this.ageGroups.map((ageGroup) => ({
+            label: ageGroup.nameI18n[this.i18nService.getActiveLang()] as string,
+            value: ageGroup,
+        }));
     }
 
     public getAgeGroups(): AgeGroup[] {

@@ -84,6 +84,7 @@ export class CompetitionUtilServiceImpl extends CompetitionUtilService {
             ...competitionModel,
             ageGroup: tournament.ageGroup,
             clubs: tournament.clubs,
+            country: tournament.country,
             gender: tournament.gender,
             groupLevels: tournament.groupLevels,
             isNational: tournament.isNational,

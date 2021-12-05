@@ -36,13 +36,13 @@ export const listLocationsSuccess = createAction(
     props<{ locations: LocationEntity[] }>()
 );
 
-export const listLocationsByCategoryId = createAction(
-    '[Locations] List Locations By Category Id',
-    props<{ categoryId: string }>()
+export const listLocationsByCountryId = createAction(
+    '[Locations] List Locations By Country Id',
+    props<{ countryId: string }>()
 );
 
-export const listLocationsByCategoryIdSuccess = createAction(
-    '[Locations] List Locations By Category Id Success',
+export const listLocationsByCountryIdSuccess = createAction(
+    '[Locations] List Locations By Country Id Success',
     props<{ locations: LocationEntity[] }>()
 );
 

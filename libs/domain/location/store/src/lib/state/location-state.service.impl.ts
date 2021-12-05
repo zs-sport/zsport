@@ -10,9 +10,6 @@ import * as locationSelectors from './location.selectors';
 
 @Injectable()
 export class LocationStateServiceImpl extends LocationStateService {
-    public dispatchLoadEntitiesByIdsAction(uids: string[]): void {
-        throw new Error('Method not implemented.');
-    }
     public constructor(private store: Store<fromLocation.LocationPartialState>) {
         super();
     }
@@ -33,7 +30,15 @@ export class LocationStateServiceImpl extends LocationStateService {
         this.store.dispatch(locationActions.listLocations());
     }
 
+    public dispatchListLocationsByCountryId$(countryId: string): void {
+        this.store.dispatch(locationActions.listLocationsByCountryId({ countryId }));
+    }
+
     public dispatchLoadEntitiesAction(): void {}
+
+    public dispatchLoadEntitiesByIdsAction(uids: string[]): void {
+        throw new Error('Method not implemented.');
+    }
 
     public dispatchLoadEntityAction(uid: string): void {
         this.store.dispatch(locationActions.loadLocation({ uid }));
@@ -65,6 +70,10 @@ export class LocationStateServiceImpl extends LocationStateService {
 
     public selectEntityById$(entityId: string): Observable<LocationEntity> {
         throw new Error('Method not implemented.');
+    }
+
+    public selectLocationsByCountryId$(countryId: string): Observable<LocationEntity[]> {
+        return this.store.pipe(select(locationSelectors.selectLocationsByCountryId(), { countryId }));
     }
 
     public selectNewEntityButtonEnabled$(): Observable<boolean> {

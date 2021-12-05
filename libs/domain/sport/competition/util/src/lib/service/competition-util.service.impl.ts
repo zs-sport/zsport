@@ -88,6 +88,7 @@ export class CompetitionUtilServiceImpl extends CompetitionUtilService {
             gender: tournament.gender,
             groupLevels: tournament.groupLevels,
             isNational: tournament.isNational,
+            locations: tournament.locations,
         };
 
         if (!tournamentModel.uid) {

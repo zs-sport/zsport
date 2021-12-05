@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { LOCATION_FEATURE_KEY } from '@zsport/api';
+import { LocationEntity, LOCATION_FEATURE_KEY } from '@zsport/api';
 
 import { locationAdapter, LocationPartialState, State } from './location.reducer';
 
@@ -27,3 +27,8 @@ export const selectLocation = createSelector(
     getSelectedId,
     (locationEntities, locationID) => locationEntities[locationID]
 );
+
+export const selectLocationsByCountryId = () =>
+    createSelector(selectAllLocation, (locationEntities: LocationEntity[], props: any) =>
+        locationEntities.filter((location) => location.country && location.country.uid === props.countryId)
+    );

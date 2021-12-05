@@ -10,6 +10,8 @@ import {
     CountryUtilService,
     Gender,
     GenderUtilService,
+    Location,
+    LocationStateService,
     TeamStateService,
     Tournament,
 } from '@zsport/api';
@@ -31,6 +33,7 @@ export class TournamentFormService extends TournamentFormBase {
         private countryUtilService: CountryUtilService,
         private formBuilder: FormBuilder,
         private genderUtilService: GenderUtilService,
+        private locationStateService: LocationStateService,
         private teamStateService: TeamStateService
     ) {
         super();
@@ -69,6 +72,7 @@ export class TournamentFormService extends TournamentFormBase {
         this.ageGroupOptions$ = of(this.ageGroupUtilService.getAgeGroupOptions());
         this.genderOptions$ = of(this.genderUtilService.getGenderOptions());
         (this.countryOptions$ = of(this.countryUtilService.getCountryOptions())), (this.clubs$$ = new Subject());
+        this.locations$$ = new Subject();
         this.selectedAgeGroup$$ = new ReplaySubject();
         this.selectedGender$$ = new ReplaySubject();
         this.selectedCountry$$ = new ReplaySubject();
@@ -87,17 +91,23 @@ export class TournamentFormService extends TournamentFormBase {
         ]).pipe(
             switchMap(([tournament, gender, ageGroup, country]) => {
                 const ageGroupId = ageGroup ? ageGroup.uid : tournament.ageGroup ? tournament.ageGroup.uid : 0;
-                const countryId = country ? country.uid : tournament.country ? tournament.country.uid : 0;
+                const countryId = country ? country.uid : tournament.country ? tournament.country.uid : '';
                 const genderId = gender ? gender.uid : tournament.gender ? tournament.gender.uid : 0;
                 const aggcId = ageGroupId + '_' + genderId + '_' + tournament.category.uid;
 
                 this.teamStateService.dispatchListTeamsByAGGCId(aggcId);
+                this.locationStateService.dispatchListLocationsByCountryId$(countryId || '');
 
-                return this.teamStateService.selectTeamsByAGGCId$(aggcId).pipe(
-                    tap((teams) => {
-                        this.clubs$$.next(teams.map((teams) => ({ ...teams.club })));
-                    })
-                );
+                return combineLatest([
+                    this.teamStateService.selectTeamsByAGGCId$(aggcId).pipe(
+                        tap((teams) => {
+                            this.clubs$$.next(teams.map((teams) => ({ ...teams.club })));
+                        })
+                    ),
+                    this.locationStateService
+                        .selectLocationsByCountryId$(countryId || '')
+                        .pipe(tap((locations) => this.locations$$.next(locations as Location[]))),
+                ]);
             }),
             switchMap((data) => {
                 return of(true);
@@ -139,10 +149,11 @@ export class TournamentFormService extends TournamentFormBase {
 
             this.entityForm.patchValue({
                 ageGroup: this.tournament.ageGroup,
+                clubs: this.tournament.clubs,
                 country: this.tournament.country,
                 gender: this.tournament.gender,
-                clubs: this.tournament.clubs,
                 isNational: this.tournament.isNational,
+                locations: this.tournament.locations,
             });
 
             const groupLevels: FormArray = this.entityForm.controls['groupLevels'] as FormArray;
@@ -173,11 +184,12 @@ export class TournamentFormService extends TournamentFormBase {
     private initTournamentForm(): void {
         this.entityForm = this.formBuilder.group({
             ageGroup: [null, Validators.required],
+            clubs: [null, Validators.required],
             country: [null, Validators.required],
             gender: [null, Validators.required],
-            clubs: [null, Validators.required],
-            isNational: [false],
             groupLevels: this.formBuilder.array([]),
+            isNational: [false],
+            locations: [null, Validators.required],
         });
 
         this.entityForm.valueChanges

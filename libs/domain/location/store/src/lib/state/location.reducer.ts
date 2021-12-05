@@ -46,6 +46,9 @@ export const locationReducer = createReducer(
     on(locationActions.listLocationsSuccess, (state, { locations }) =>
         locationAdapter.upsertMany(locations as LocationEntity[], state)
     ),
+    on(locationActions.listLocationsByCountryIdSuccess, (state, { locations }) =>
+        locationAdapter.upsertMany(locations, state)
+    ),
     on(locationActions.loadLocationSuccess, (state, { location }) =>
         locationAdapter.upsertOne(location as LocationEntity, state)
     ),

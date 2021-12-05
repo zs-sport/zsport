@@ -1,4 +1,5 @@
-import { map, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -38,6 +39,28 @@ export class LocationEffects {
                                     this.locationUtilService.convertModelToEntity(locationModel) as LocationEntity
                             ),
                         });
+                    })
+                )
+            )
+        )
+    );
+    public listLocationsByCountryId = createEffect(() =>
+        this.actions$.pipe(
+            ofType(locationActions.listLocationsByCountryId),
+            switchMap((action) =>
+                this.locationDataService.listLocationsByCountryId$(action.countryId).pipe(
+                    map((locationModels) => {
+                        return locationActions.listLocationsByCountryIdSuccess({
+                            locations: locationModels.map(
+                                (locationModel) =>
+                                    this.locationUtilService.convertModelToEntity(locationModel) as LocationEntity
+                            ),
+                        });
+                    }),
+                    catchError((error) => {
+                        console.log(error);
+
+                        return of(error);
                     })
                 )
             )

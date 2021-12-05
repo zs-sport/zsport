@@ -64,6 +64,28 @@
         </nz-form-item>
 
         <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="locations" nzRequired>{{
+                'admin.sport.competition.label.locations' | transloco
+            }}</nz-form-label>
+
+            <nz-form-control [nzSpan]="14" nzHasFeedback="true">
+                <ng-container *ngIf="locations$$ | async as locations">
+                    <nz-select
+                        id="locations"
+                        formControlName="locations"
+                        [nzMode]="'multiple'"
+                        nzPlaceHolder="{{ 'admin.sport.competition.label.locations_placeholder' | transloco }}"
+                        [compareWith]="compareEntities"
+                        nzErrorTip="Please select a value!"
+                    >
+                        <nz-option *ngFor="let location of locations" [nzLabel]="location.name" [nzValue]="location">
+                        </nz-option>
+                    </nz-select>
+                </ng-container>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
             <nz-form-label nzNoColon [nzSpan]="6" nzFor="isNational"></nz-form-label>
 
             <nz-form-control [nzSpan]="14">

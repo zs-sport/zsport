@@ -4,6 +4,7 @@ import { Gender } from '../../../gender';
 import { Competition } from '../competition';
 import { GroupLevel } from '../../group';
 import { Country } from '../../../country';
+import { Location } from '../../../location';
 
 export interface Tournament extends Competition {
     ageGroup: AgeGroup;
@@ -12,4 +13,5 @@ export interface Tournament extends Competition {
     gender: Gender;
     groupLevels: GroupLevel[];
     isNational: boolean;
+    locations: Location[];
 }

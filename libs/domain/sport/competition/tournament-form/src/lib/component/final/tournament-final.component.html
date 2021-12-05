@@ -42,6 +42,16 @@
                         {{ tournament.groupLevels.length }}
                     </nz-descriptions-item>
 
+                    <nz-descriptions-item nzTitle="{{ 'admin.sport.competition.label.locations' | transloco }}">
+                        <nz-list [nzDataSource]="tournament.locations" [nzRenderItem]="defaultItem">
+                            <ng-template #defaultItem let-item>
+                                <nz-list-item>
+                                    {{ item.name }}
+                                </nz-list-item>
+                            </ng-template>
+                        </nz-list>
+                    </nz-descriptions-item>
+
                     <nz-descriptions-item nzTitle="{{ 'admin.sport.competition.label.clubs' | transloco }}">
                         <nz-list [nzDataSource]="tournament.clubs" [nzRenderItem]="defaultItem">
                             <ng-template #defaultItem let-item>

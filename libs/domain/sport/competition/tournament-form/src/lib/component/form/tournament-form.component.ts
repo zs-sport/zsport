@@ -57,6 +57,7 @@ export class TournamentFormComponent extends TournamentFormBase implements OnDes
                     this.clubs$$ = this.tournamentFormService.clubs$$;
                     this.countryOptions$ = this.tournamentFormService.countryOptions$;
                     this.genderOptions$ = this.tournamentFormService.genderOptions$;
+                    this.locations$$ = this.tournamentFormService.locations$$;
                 }),
                 takeUntil(this.destroy)
             )

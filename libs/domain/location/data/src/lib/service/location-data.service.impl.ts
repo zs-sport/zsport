@@ -8,12 +8,14 @@ import { I18nService, LocationDataService, LocationModel, LOCATION_FEATURE_KEY }
 export class LocationDataServiceImpl extends LocationDataService {
     protected locationCollection: AngularFirestoreCollection<LocationModel>;
     protected locations$: Observable<LocationModel[]>;
+    protected locationCollectionsByCountryId: Map<string, Observable<LocationModel[]>>;
 
     public constructor(private angularFirestore: AngularFirestore) {
         super();
 
         this.locationCollection = angularFirestore.collection<LocationModel>(LOCATION_FEATURE_KEY);
         this.locations$ = this.locationCollection.valueChanges();
+        this.locationCollectionsByCountryId = new Map<string, Observable<LocationModel[]>>();
     }
 
     public add$(location: LocationModel): Observable<LocationModel> {
@@ -38,6 +40,22 @@ export class LocationDataServiceImpl extends LocationDataService {
 
     public list$(): Observable<LocationModel[]> {
         return this.locations$;
+    }
+
+    public listLocationsByCountryId$(countryId: string): Observable<LocationModel[]> {
+        let locationCollectionByCountryId = this.locationCollectionsByCountryId.get(countryId);
+
+        if (!locationCollectionByCountryId) {
+            locationCollectionByCountryId = this.angularFirestore
+                .collection<LocationModel>(LOCATION_FEATURE_KEY, (reference) =>
+                    reference.where('country.uid', '==', countryId)
+                )
+                .valueChanges();
+
+            this.locationCollectionsByCountryId.set(countryId, locationCollectionByCountryId);
+        }
+
+        return locationCollectionByCountryId;
     }
 
     public load$(uid: string): Observable<LocationModel> {

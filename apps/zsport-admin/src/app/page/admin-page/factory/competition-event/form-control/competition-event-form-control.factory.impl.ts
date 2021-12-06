@@ -1,4 +1,4 @@
-import { map, Observable, Observer, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import {
@@ -11,7 +11,6 @@ import {
     Gender,
     I18nService,
     Location,
-    LocationStateService,
     Team,
 } from '@zsport/api';
 import { EventCompetitionFormControlFactory } from '@zsport/domain/sport/event/competition-form';
@@ -23,6 +22,7 @@ export class CompetitionEventFormControlFactoryImpl extends EventCompetitionForm
     private controls!: ControlBase<any>[];
     private dataModel!: Event;
     private genders!: Gender[];
+    private locations!: Location[];
     private observer: any;
     private teamChangeHandlerFunction = (team: Team) => {
         this.controls = this.createControls(
@@ -31,6 +31,7 @@ export class CompetitionEventFormControlFactoryImpl extends EventCompetitionForm
             this.genders,
             this.ageGroups,
             this.teams,
+            this.locations,
             team
         );
 
@@ -49,6 +50,7 @@ export class CompetitionEventFormControlFactoryImpl extends EventCompetitionForm
         genders: Gender[],
         ageGroups: AgeGroup[],
         teams: Team[],
+        locations: Location[],
         homeTeam: Team
     ): ControlBase<any>[] {
         return [
@@ -164,6 +166,7 @@ export class CompetitionEventFormControlFactoryImpl extends EventCompetitionForm
                 ),
                 order: 9,
                 placeholder: this.i18nService.translate('admin.sport.event.label.team1_placeholder'),
+                showSearch: true,
                 type: 'select',
                 validators: [{ key: DynamicFormValidatorNameEnum.required, value: null }],
                 value: homeTeam,
@@ -184,6 +187,7 @@ export class CompetitionEventFormControlFactoryImpl extends EventCompetitionForm
                 ),
                 order: 10,
                 placeholder: this.i18nService.translate('admin.sport.event.label.team2_placeholder'),
+                showSearch: true,
                 type: 'select',
                 validators: [{ key: DynamicFormValidatorNameEnum.required, value: null }],
                 value: data ? (data as Event).team2 : null,
@@ -196,14 +200,18 @@ export class CompetitionEventFormControlFactoryImpl extends EventCompetitionForm
                 placeholder: this.i18nService.translate('admin.sport.event.label.location_placeholder'),
                 mode: DynamicFormSelectModeEnum.default,
                 options$: of(homeTeam).pipe(
-                    map((homeTeam) =>
-                        homeTeam && homeTeam.club.locations
-                            ? (homeTeam.club.locations as Location[]).map((location) => ({
-                                  label: location.name,
-                                  value: location,
-                              }))
-                            : []
-                    )
+                    map((homeTeam) => {
+                        const mergedLocations = [...(locations ? locations : [])];
+
+                        if (homeTeam && homeTeam.club.locations) {
+                            mergedLocations.push(...(homeTeam.club.locations as Location[]));
+                        }
+
+                        return mergedLocations.map((location) => ({
+                            label: location.name,
+                            value: location,
+                        }));
+                    })
                 ),
                 type: 'select',
                 validators: [{ key: DynamicFormValidatorNameEnum.required, value: null }],
@@ -228,20 +236,30 @@ export class CompetitionEventFormControlFactoryImpl extends EventCompetitionForm
         categories: Category[],
         genders: Gender[],
         ageGroups: AgeGroup[],
-        teams: Team[]
+        teams: Team[],
+        locations: Location[]
     ): Observable<ControlBase<any>[]> {
         this.dataModel = dataModel;
         this.categories = categories;
         this.genders = genders;
         this.ageGroups = ageGroups;
         this.teams = teams;
+        this.locations = locations;
 
         return new Observable<ControlBase<any>[]>((observer) => {
             this.observer = observer;
 
             const selectedHomeTeam: Team = (dataModel as Event).team1 || null;
 
-            this.controls = this.createControls(dataModel, categories, genders, ageGroups, teams, selectedHomeTeam);
+            this.controls = this.createControls(
+                dataModel,
+                categories,
+                genders,
+                ageGroups,
+                teams,
+                locations,
+                selectedHomeTeam
+            );
 
             observer.next(this.controls);
         });

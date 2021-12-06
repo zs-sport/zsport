@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit } from 
 
 import { EventCompetitionFormBase } from '../base';
 import { EventCompetitionFormService } from '../service';
-import { AgeGroup, Category, Event, Gender, Team } from '@zsport/api';
+import { AgeGroup, Category, Event, Gender, Location, Team } from '@zsport/api';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -26,6 +26,8 @@ export class EventCompetitionFormComponent extends EventCompetitionFormBase impl
     public genders$!: Observable<Gender[]>;
     @Input()
     public teams$!: Observable<Team[]>;
+    @Input()
+    public locations$!: Observable<Location[]>;
 
     public constructor(private componentService: EventCompetitionFormService) {
         super();
@@ -42,6 +44,7 @@ export class EventCompetitionFormComponent extends EventCompetitionFormBase impl
                 this.categories$,
                 this.genders$,
                 this.teams$,
+                this.locations$,
                 this.eventUpdate,
                 this.formValueChange
             )

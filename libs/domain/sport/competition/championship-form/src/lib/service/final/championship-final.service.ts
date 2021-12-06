@@ -44,6 +44,7 @@ export class ChampionshipFinalService extends ChampionshipFinalBase {
         this.categories$$ = new ReplaySubject();
         this.teams$$ = new ReplaySubject();
         this.eventList$$ = new ReplaySubject();
+        this.locations$$ = new ReplaySubject();
         this.events$$ = [];
     }
 
@@ -65,6 +66,7 @@ export class ChampionshipFinalService extends ChampionshipFinalBase {
         this.categories$$.next([this.championship!.category]);
         this.event$$.next(event);
         this.teams$$.next(this.teams);
+        this.locations$$.next([]);
     }
 
     public editEventHandler(event: Event): void {
@@ -81,6 +83,7 @@ export class ChampionshipFinalService extends ChampionshipFinalBase {
         this.categories$$.next([this.championship!.category]);
         this.event$$.next(editedEvent);
         this.teams$$.next(this.teams);
+        this.locations$$.next([]);
     }
 
     public eventUpdateHandler(event: Event): void {
@@ -191,6 +194,7 @@ export class ChampionshipFinalService extends ChampionshipFinalBase {
             categories$: this.categories$$.asObservable(),
             genders$: this.genders$$.asObservable(),
             teams$: this.teams$$.asObservable(),
+            locations$: this.locations$$.asObservable(),
         });
 
         this.dynamicEventFormOutputs$$.next({

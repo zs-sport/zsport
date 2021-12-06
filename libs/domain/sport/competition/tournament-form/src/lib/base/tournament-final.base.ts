@@ -1,6 +1,6 @@
 import { Observable, Subject } from 'rxjs';
 
-import { AgeGroup, BaseService, Category, Event, EventList, Gender, Team, Tournament } from '@zsport/api';
+import { AgeGroup, BaseService, Category, Event, EventList, Gender, Location, Team, Tournament } from '@zsport/api';
 import { KeyValue } from '@angular/common';
 
 export abstract class TournamentFinalBase extends BaseService {
@@ -14,6 +14,7 @@ export abstract class TournamentFinalBase extends BaseService {
     public eventNumber!: number;
     public events$$!: Subject<Map<string, (Event | undefined)[]> | undefined>[];
     public genders$$!: Subject<Gender[]>;
+    public locations$$!: Subject<Location[]>;
     public selectedFinalTabId$!: Observable<number>;
     public teams$$!: Subject<Team[]>;
     public tournament$$!: Observable<Tournament>;

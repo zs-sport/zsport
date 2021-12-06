@@ -105,7 +105,7 @@ export class CompetitionUtilServiceImpl extends CompetitionUtilService {
     private updateGroupLevel(groupLevel: GroupLevel, teamsNumber: number): GroupLevel {
         const groups: Group[] = [];
 
-        if (teamsNumber > groupLevel.groupsNumber * 3) {
+        if (groupLevel.groupsNumber * 3 > teamsNumber) {
             throw new Error('Groups number of group level is mismatched with teams number!');
         }
 

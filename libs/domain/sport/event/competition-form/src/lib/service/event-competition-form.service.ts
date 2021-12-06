@@ -2,7 +2,7 @@ import { combineLatest, Observable, of, ReplaySubject } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 
 import { EventEmitter, Injectable } from '@angular/core';
-import { AgeGroup, Category, Event, Gender, Team } from '@zsport/api';
+import { AgeGroup, Category, Event, Gender, Location, Team } from '@zsport/api';
 
 import { EventCompetitionFormBase } from '../base';
 import {
@@ -29,6 +29,7 @@ export class EventCompetitionFormService extends EventCompetitionFormBase {
         categories$: Observable<Category[]>,
         genders$: Observable<Gender[]>,
         teams$: Observable<Team[]>,
+        locations$: Observable<Location[]>,
         eventUpdate: EventEmitter<Event>,
         formValueChange: EventEmitter<Event>
     ): Observable<boolean> {
@@ -41,15 +42,16 @@ export class EventCompetitionFormService extends EventCompetitionFormBase {
         this.dynamicComponent$$ = new ReplaySubject();
         this.dynamicInputs$$ = new ReplaySubject();
 
-        combineLatest([event$, categories$, genders$, ageGroups$, teams$])
+        combineLatest([event$, categories$, genders$, ageGroups$, teams$, locations$])
             .pipe(
-                switchMap(([event, categories, genders, ageGroups, teams]) => {
+                switchMap(([event, categories, genders, ageGroups, teams, locations]) => {
                     return this.eventCompetitionFormControlFactory.createFormControlsForEvent$(
                         event,
                         categories,
                         genders,
                         ageGroups,
-                        teams
+                        teams,
+                        locations
                     );
                 }),
                 tap((controls) => {

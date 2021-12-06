@@ -12,6 +12,7 @@ import {
     ControlBase,
     DynamicFormSelectModeEnum,
     DynamicFormValidatorNameEnum,
+    FileControlModel,
     I18nService,
     LanguagesEnum,
     LocationModel,
@@ -152,7 +153,7 @@ export class ClubFormControlFactoryImpl extends ClubFormControlFactory {
                         }),
                         this.createFileControl({
                             fileEventHandler: fileEventHandlerFunction,
-                            fileName: data ? data.name : '',
+                            fileName: data && data.logo ? data.name : '',
                             key: 'logo',
                             label: this.i18nService.translate('admin.sport.club.label.logo'),
                             order: 9,
@@ -221,8 +222,9 @@ export class ClubFormControlFactoryImpl extends ClubFormControlFactory {
             .subscribe((downloadURL) => {
                 controls[8] = {
                     ...controls[8],
+                    fileName: name,
                     value: downloadURL,
-                };
+                } as FileControlModel;
 
                 observer.next(controls);
             });

@@ -24,6 +24,7 @@ export abstract class ChampionshipFinalBase extends BaseService {
     public eventList$$!: Subject<EventList[] | undefined>;
     public eventNumber!: number;
     public events$$!: Subject<Event[]>[];
+    public locations$$!: Subject<Location[]>;
     public selectedFinalTabId$!: Observable<number>;
     public teams$$!: Subject<Team[]>;
 

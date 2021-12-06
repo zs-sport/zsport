@@ -1,7 +1,7 @@
 import { Observable, of } from 'rxjs';
 
 import { Injectable } from '@angular/core';
-import { AgeGroup, Category, ControlBase, DynamicFormControlFactory, Gender, Event, Team } from '@zsport/api';
+import { AgeGroup, Category, ControlBase, DynamicFormControlFactory, Gender, Event, Team, Location } from '@zsport/api';
 
 @Injectable()
 export abstract class EventCompetitionFormControlFactory extends DynamicFormControlFactory {
@@ -14,6 +14,7 @@ export abstract class EventCompetitionFormControlFactory extends DynamicFormCont
         categories: Category[],
         genders: Gender[],
         ageGroups: AgeGroup[],
-        teams: Team[]
+        teams: Team[],
+        locations: Location[]
     ): Observable<ControlBase<any>[]>;
 }

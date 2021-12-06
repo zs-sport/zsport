@@ -45,6 +45,7 @@ export class TournamentFinalService extends TournamentFinalBase {
         this.genders$$ = new ReplaySubject();
         this.categories$$ = new ReplaySubject();
         this.teams$$ = new ReplaySubject();
+        this.locations$$ = new ReplaySubject();
         this.eventList$$ = new ReplaySubject();
         this.events$$ = [];
     }
@@ -70,6 +71,7 @@ export class TournamentFinalService extends TournamentFinalBase {
         this.categories$$.next([this.tournament!.category]);
         this.event$$.next(event);
         this.teams$$.next(this.teams);
+        this.locations$$.next(this.tournament!.locations);
     }
 
     public editEventHandler(event: Event): void {
@@ -192,6 +194,7 @@ export class TournamentFinalService extends TournamentFinalBase {
             categories$: this.categories$$.asObservable(),
             genders$: this.genders$$.asObservable(),
             teams$: this.teams$$.asObservable(),
+            locations$: this.locations$$.asObservable(),
         });
 
         this.dynamicEventFormOutputs$$.next({

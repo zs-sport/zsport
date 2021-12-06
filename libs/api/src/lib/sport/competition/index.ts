@@ -3,6 +3,7 @@ export * from './competition';
 export * from './competition-data.service';
 export * from './competition-feature.key';
 export * from './competition-permissions.service';
+export * from './competition-quantity.service';
 export * from './competition-resource.enum';
 export * from './competition-rule';
 export * from './competition-state.service';

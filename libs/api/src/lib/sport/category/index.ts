@@ -2,6 +2,7 @@ export * from './category';
 export * from './category-data.service';
 export * from './category-feature.key';
 export * from './category-permissions.service';
+export * from './category-quantity.service';
 export * from './category-resource.enum';
 export * from './category-rule';
 export * from './category-skill-set';

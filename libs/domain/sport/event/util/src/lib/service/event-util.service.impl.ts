@@ -2,7 +2,12 @@ import { Injectable } from '@angular/core';
 import {
     AgeGroup,
     Category,
+    CategoryQuantityService,
+    CompetitionQuantityService,
     DateUtilService,
+    EntityQuantity,
+    EntityQuantityEnum,
+    Event,
     EventEntity,
     EventList,
     EventModel,
@@ -12,9 +17,14 @@ import {
 
 @Injectable()
 export class EventUtilServiceImpl extends EventUtilService {
-    public constructor(private dateUtilService: DateUtilService) {
+    public constructor(
+        private categoryQuantityService: CategoryQuantityService,
+        private competitionQuantityService: CompetitionQuantityService,
+        private dateUtilService: DateUtilService
+    ) {
         super();
     }
+
     public convertEntityToModel(event: EventEntity): EventModel {
         return { ...event, eventDayTime: this.dateUtilService.convertToDate(event.eventDayTime) };
     }
@@ -60,5 +70,20 @@ export class EventUtilServiceImpl extends EventUtilService {
             });
 
         return Array.from(eventMap.values());
+    }
+
+    public updateEntityQuantity(entityQuantity: EntityQuantity, event: Event): EntityQuantity {
+        let groups: any = { ...entityQuantity.groups };
+        let categoryGroup = this.categoryQuantityService.updateGroup(event.category.uid || '', groups);
+        let competitionGroup = this.competitionQuantityService.updateGroup(event.competitionId || '', groups);
+
+        groups[EntityQuantityEnum.SPORT_CATEGORY] = categoryGroup;
+        groups[EntityQuantityEnum.SPORT_COMPETITION] = competitionGroup;
+
+        return {
+            ...entityQuantity,
+            quantity: entityQuantity.quantity + 1,
+            groups,
+        };
     }
 }

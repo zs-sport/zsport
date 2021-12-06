@@ -1,5 +1,5 @@
 import { of } from 'rxjs';
-import { map, mergeMap, switchMap, take, tap } from 'rxjs/operators';
+import { map, mergeMap, switchMap, take, tap, withLatestFrom } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -9,6 +9,10 @@ import {
     CompetitionModel,
     CompetitionStateService,
     CompetitionUtilService,
+    EntityQuantity,
+    EntityQuantityEnum,
+    EntityQuantityStateService,
+    EntityQuantityUtilService,
     Event,
     EventModel,
     EventStateService,
@@ -19,7 +23,6 @@ import {
 } from '@zsport/api';
 
 import * as competitionActions from './competition.actions';
-import { TitleCasePipe } from '@angular/common';
 
 @Injectable()
 export class CompetitionEffects {
@@ -62,12 +65,22 @@ export class CompetitionEffects {
     public addEventByGroupLevelIndexGroupTitle = createEffect(() =>
         this.actions$.pipe(
             ofType(competitionActions.addEventByGroupLevelIndexGroupTitleGroupTitle),
-            switchMap((action) =>
+            withLatestFrom(this.entityQuantityStateService.selectEntityById$(EntityQuantityEnum.SPORT_EVENT)),
+            switchMap(([action, entityQuantity]) =>
                 this.competitionDataService
                     .addEventByCompetitionId(
                         this.eventUtilService.convertEntityToModel(action.event, false) as EventModel
                     )
                     .pipe(
+                        tap((eventModel) => {
+                            entityQuantity =
+                                entityQuantity ||
+                                this.entityQuantityUtilService.createEntityQuantity(EntityQuantityEnum.SPORT_EVENT);
+
+                            this.entityQuantityStateService.dispatchUpdateEntityAction(
+                                this.eventUtilService.updateEntityQuantity(entityQuantity as EntityQuantity, eventModel)
+                            );
+                        }),
                         switchMap((eventModel) =>
                             this.competitionStateService.selectEntityById$(eventModel.competitionId || '').pipe(
                                 take(1),
@@ -206,6 +219,8 @@ export class CompetitionEffects {
         private competitionDataService: CompetitionDataService,
         private competitionUtilService: CompetitionUtilService,
         private competitionStateService: CompetitionStateService,
+        private entityQuantityStateService: EntityQuantityStateService,
+        private entityQuantityUtilService: EntityQuantityUtilService,
         private eventStateService: EventStateService,
         private eventUtilService: EventUtilService
     ) {}

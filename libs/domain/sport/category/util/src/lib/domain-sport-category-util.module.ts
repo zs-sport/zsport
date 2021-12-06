@@ -1,12 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CategoryUtilService } from '@zsport/api';
+import { CategoryQuantityService, CategoryUtilService } from '@zsport/api';
 
-import { CategoryUtilServiceImpl } from './service';
+import { CategoryQuantityServiceImpl, CategoryUtilServiceImpl } from './service';
 
 @NgModule({
     imports: [CommonModule],
     providers: [
+        {
+            provide: CategoryQuantityService,
+            useClass: CategoryQuantityServiceImpl,
+        },
         {
             provide: CategoryUtilService,
             useClass: CategoryUtilServiceImpl,

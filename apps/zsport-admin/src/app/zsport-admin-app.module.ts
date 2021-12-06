@@ -10,16 +10,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { AuthenticationStateService, I18nUtil } from '@zsport/api';
+import { AuthenticationStateService, EntityQuantityStateService, I18nUtil } from '@zsport/api';
 
 import { environment } from '../environments/environment';
-import { ZsportAdminAppRoutingModule } from './zsport-admin-app-routing.module';
-import { ZsportAdminAppComponent } from './zsport-admin-app.component';
 import { ZsportAdminCoreModule } from './core/zsport-admin-core.module';
 import { ZsportAdminHeaderModule } from './header/zsport-admin-header.module';
-import { ZsportAdminI18nInitializer } from './initializer';
+import { ZsportAdminI18nInitializer, ZsportAdminQuantityInitializer } from './initializer';
 import { ZsportAdminPermissionModule } from './permission/zsport-admin-permission.module';
 import { ZsportAdminAdminResolverService } from './resolver';
+import { ZsportAdminAppRoutingModule } from './zsport-admin-app-routing.module';
+import { ZsportAdminAppComponent } from './zsport-admin-app.component';
 
 const ENVIRONMENT = new InjectionToken('ENVIRONMENT');
 
@@ -54,6 +54,12 @@ const ENVIRONMENT = new InjectionToken('ENVIRONMENT');
             provide: APP_INITIALIZER,
             useFactory: ZsportAdminI18nInitializer,
             deps: [AuthenticationStateService, ENVIRONMENT, I18nUtil],
+            multi: true,
+        },
+        {
+            provide: APP_INITIALIZER,
+            useFactory: ZsportAdminQuantityInitializer,
+            deps: [EntityQuantityStateService],
             multi: true,
         },
     ],

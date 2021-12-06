@@ -1,13 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CompetitionUtilService } from '@zsport/api';
+import { CompetitionQuantityService, CompetitionUtilService } from '@zsport/api';
 
 import { OwnerNamePipe } from './pipe/owner-name.pipe';
-import { CompetitionUtilServiceImpl } from './service';
+import { CompetitionQuantityServiceImpl, CompetitionUtilServiceImpl } from './service';
 
 @NgModule({
     imports: [CommonModule],
     providers: [
+        {
+            provide: CompetitionQuantityService,
+            useClass: CompetitionQuantityServiceImpl,
+        },
         {
             provide: CompetitionUtilService,
             useClass: CompetitionUtilServiceImpl,

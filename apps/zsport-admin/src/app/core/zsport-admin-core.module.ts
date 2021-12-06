@@ -4,6 +4,9 @@ import { LanguagesEnum, UserHookService } from '@zsport/api';
 import { CoreAuthenticationStoreModule } from '@zsport/core/authentication/store';
 import { CoreAuthenticationViewModule } from '@zsport/core/authentication/view';
 import { CoreAuthorizationDataModule } from '@zsport/core/authorization/data';
+import { CoreEntityQuantityDataModule } from '@zsport/core/entity-quantity/data';
+import { CoreEntityQuantityStoreModule } from '@zsport/core/entity-quantity/store';
+import { CoreEntityQuantityUtilModule } from '@zsport/core/entity-quantity/util';
 import { CoreI18nModule } from '@zsport/core/i18n';
 import { CoreStorageDataModule } from '@zsport/core/storage/data';
 import { CoreStorageUtilModule } from '@zsport/core/storage/util';
@@ -61,6 +64,9 @@ import { DefaultUserHookService } from './hook/user';
         CoreAuthenticationStoreModule,
         CoreAuthenticationViewModule,
         CoreAuthorizationDataModule,
+        CoreEntityQuantityDataModule,
+        CoreEntityQuantityStoreModule,
+        CoreEntityQuantityUtilModule,
         CoreStorageDataModule,
         CoreStorageUtilModule,
         DomainCountryUtilModule,

@@ -79,18 +79,27 @@ export class AssociationEffects {
     public listAssociationsByCategoryId = createEffect(() =>
         this.actions$.pipe(
             ofType(associationActions.listAssociationsByCategoryId),
-            switchMap((action) =>
-                this.associationDataService.listAssociationsByCategoryId(action.categoryId).pipe(
-                    map((associationModels) => {
-                        return associationActions.listAssociationsByCategoryIdSuccess({
-                            associations: associationModels.map(
-                                (associationModel) =>
-                                    this.associationUtilService.convertModelToEntity(
-                                        associationModel
-                                    ) as AssociationEntity
-                            ),
-                        });
-                    })
+            withLatestFrom(this.entityQuantityStateService.selectEntityById$(EntityQuantityEnum.SPORT_ASSOCIATION)),
+            switchMap(([action, entityQuantity]) =>
+                this.associationStateService.selectAssociationsByCategoryId$(action.categoryId).pipe(
+                    switchMap((entities) =>
+                        entityQuantity &&
+                        entities &&
+                        (entityQuantity as EntityQuantity).groups[action.categoryId].quantity !== entities.length
+                            ? this.associationDataService.listAssociationsByCategoryId(action.categoryId).pipe(
+                                  map((associationModels) => {
+                                      return associationActions.listAssociationsByCategoryIdSuccess({
+                                          associations: associationModels.map(
+                                              (associationModel) =>
+                                                  this.associationUtilService.convertModelToEntity(
+                                                      associationModel
+                                                  ) as AssociationEntity
+                                          ),
+                                      });
+                                  })
+                              )
+                            : of(associationActions.noAction)
+                    )
                 )
             )
         )

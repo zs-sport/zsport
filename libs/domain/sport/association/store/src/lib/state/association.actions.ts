@@ -14,6 +14,8 @@ export const addAssociationSuccess = createAction(
     props<{ association: AssociationEntity }>()
 );
 
+export const noAction = createAction('[Association] No Action');
+
 export const changeNewEntityButtonEnabled = createAction(
     '[Association Admin] Change new Entity Button Enabled',
     props<{ enabled: boolean }>()

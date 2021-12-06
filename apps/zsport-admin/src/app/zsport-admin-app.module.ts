@@ -8,7 +8,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
+import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthenticationStateService, EntityQuantityStateService, I18nUtil } from '@zsport/api';
 
@@ -20,8 +20,22 @@ import { ZsportAdminPermissionModule } from './permission/zsport-admin-permissio
 import { ZsportAdminAdminResolverService } from './resolver';
 import { ZsportAdminAppRoutingModule } from './zsport-admin-app-routing.module';
 import { ZsportAdminAppComponent } from './zsport-admin-app.component';
+import { localStorageSync } from 'ngrx-store-localstorage';
 
 const ENVIRONMENT = new InjectionToken('ENVIRONMENT');
+
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+    return localStorageSync({
+        keys: [
+            {
+                association: ['ids', 'entities'],
+                location: ['ids', 'entities'],
+            },
+        ],
+        rehydrate: true,
+    })(reducer);
+}
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
     declarations: [ZsportAdminAppComponent],
@@ -32,7 +46,7 @@ const ENVIRONMENT = new InjectionToken('ENVIRONMENT');
         AngularFireModule.initializeApp(environment.firebase),
         NzLayoutModule,
         NzMenuModule,
-        StoreModule.forRoot({}, {}),
+        StoreModule.forRoot({}, { metaReducers }),
         EffectsModule.forRoot(),
         StoreDevtoolsModule.instrument({
             maxAge: 25,

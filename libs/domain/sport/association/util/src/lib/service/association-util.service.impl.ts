@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import {
+    Association,
     AssociationEntity,
     AssociationModel,
     AssociationUtilService,
     CategoryModel,
+    CategoryQuantityService,
     CategoryUtilService,
+    EntityQuantity,
+    EntityQuantityEnum,
     I18nService,
     StateUtilService,
 } from '@zsport/api';
@@ -12,15 +16,12 @@ import {
 @Injectable()
 export class AssociationUtilServiceImpl extends AssociationUtilService {
     public constructor(
+        private categoryQuantityService: CategoryQuantityService,
+        private categoryUtilService: CategoryUtilService,
         private i18NService: I18nService,
-        private stateUtilService: StateUtilService,
-        private categoryUtilService: CategoryUtilService
+        private stateUtilService: StateUtilService
     ) {
         super();
-    }
-
-    public convertModelToEntity(model: AssociationModel): AssociationEntity {
-        return { ...model };
     }
 
     public convertEntityToModel(association: AssociationEntity): AssociationModel {
@@ -58,5 +59,22 @@ export class AssociationUtilServiceImpl extends AssociationUtilService {
         }
 
         return updatedAssociationModel;
+    }
+
+    public convertModelToEntity(model: AssociationModel): AssociationEntity {
+        return { ...model };
+    }
+
+    public updateEntityQuantity(entityQuantity: EntityQuantity, association: Association): EntityQuantity {
+        let groups: any = { ...entityQuantity.groups };
+        let categoryGroup = this.categoryQuantityService.updateGroup(association.category.uid || '', groups);
+
+        groups[EntityQuantityEnum.SPORT_CATEGORY] = categoryGroup;
+
+        return {
+            ...entityQuantity,
+            quantity: entityQuantity.quantity + 1,
+            groups,
+        };
     }
 }

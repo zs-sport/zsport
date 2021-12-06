@@ -68,11 +68,7 @@ export class AssociationEffects {
                               });
                           })
                       )
-                    : of(
-                          associationActions.listAssociationsSuccess({
-                              associations: [],
-                          })
-                      )
+                    : of(associationActions.noAction)
             )
         )
     );

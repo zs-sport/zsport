@@ -29,6 +29,7 @@ export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionRedu
         keys: [
             {
                 association: ['ids', 'entities'],
+                club: ['ids', 'entities'],
                 location: ['ids', 'entities'],
             },
         ],

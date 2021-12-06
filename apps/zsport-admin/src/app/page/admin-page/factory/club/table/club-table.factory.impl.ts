@@ -23,10 +23,11 @@ import { AdminClubPermissionsService } from '../../../../../permission/club';
 
 @Injectable()
 export class ClubTableFactoryImpl extends ClubTableFactory {
-    private teamTypes: any[] = [];
     private clickHandler = (entity: ClubEntity): void => {
         this.sportClubStateService.dispatchSetSelectedEntityIdAction(entity.uid || '');
     };
+
+    private teamTypes: any[] = [];
 
     constructor(
         private authorizationService: AuthorizationService,
@@ -79,7 +80,7 @@ export class ClubTableFactoryImpl extends ClubTableFactory {
     }
 
     private createColumnHeaders(categories: Category[]): DynamicColumnHeaderModel[] {
-        const curentLanguage: string = this.i18nService.getActiveLangAsString();
+        const currentLanguage: string = this.i18nService.getActiveLangAsString();
 
         const columnHeaders: DynamicColumnHeaderModel[] = [
             {
@@ -94,20 +95,22 @@ export class ClubTableFactoryImpl extends ClubTableFactory {
             },
             {
                 title: this.i18nService.translate('admin.sport.club.column.category'),
-                filterMultiple: true,
                 listOfFilter: categories.map((category) => {
                     const categoryName: any = category.nameI18n;
 
                     return {
-                        text: categoryName[curentLanguage] as string,
-                        value: categoryName[curentLanguage],
+                        text: categoryName[currentLanguage] as string,
+                        value: categoryName[currentLanguage],
                     };
                 }),
+                filterFn: (type: string, item: Club) => {
+                    return (item.category.nameI18n as any)[currentLanguage].indexOf(type) !== -1;
+                },
                 compare: (a: Club, b: Club) => {
                     const aName: any = a.category.nameI18n;
                     const bName: any = b.category.nameI18n;
 
-                    return aName[curentLanguage].localeCompare(bName[curentLanguage], curentLanguage);
+                    return aName[currentLanguage].localeCompare(bName[currentLanguage], currentLanguage);
                 },
             },
             {

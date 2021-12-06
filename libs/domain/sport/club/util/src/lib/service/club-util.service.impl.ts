@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import {
-    CategoryModel,
+    CategoryQuantityService,
     CategoryUtilService,
+    Club,
     ClubEntity,
     ClubModel,
     ClubUtilService,
+    EntityQuantity,
+    EntityQuantityEnum,
     StateUtilService,
 } from '@zsport/api';
 
 @Injectable()
 export class ClubUtilServiceImpl extends ClubUtilService {
-    public constructor(private stateUtilService: StateUtilService, private categoryUtilService: CategoryUtilService) {
+    public constructor(
+        private categoryQuantityService: CategoryQuantityService,
+        private categoryUtilService: CategoryUtilService,
+        private stateUtilService: StateUtilService
+    ) {
         super();
     }
 
@@ -47,5 +54,18 @@ export class ClubUtilServiceImpl extends ClubUtilService {
         const club = { ...clubModel };
 
         return club;
+    }
+
+    public updateEntityQuantity(entityQuantity: EntityQuantity, club: Club): EntityQuantity {
+        let groups: any = { ...entityQuantity.groups };
+        let categoryGroup = this.categoryQuantityService.updateGroup(club.category.uid || '', groups);
+
+        groups[EntityQuantityEnum.SPORT_CATEGORY] = categoryGroup;
+
+        return {
+            ...entityQuantity,
+            quantity: entityQuantity.quantity + 1,
+            groups,
+        };
     }
 }

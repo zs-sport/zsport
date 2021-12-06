@@ -60,6 +60,8 @@ export const loadClubFail = createAction('[Club] Load Club FAIL', props<{ error:
 
 export const loadClubSuccess = createAction('[Club] Load Club Success', props<{ club: ClubEntity }>());
 
+export const noAction = createAction('[Club] No Action');
+
 export const selectClub = createAction('[Club] Select Club', props<{ clubId: string }>());
 
 export const setSelectedClubId = createAction('[Club Admin] Set Selected Club Id', props<{ clubId: string }>());

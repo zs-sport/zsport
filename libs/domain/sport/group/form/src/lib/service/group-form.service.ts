@@ -1,9 +1,8 @@
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 
 import { KeyValue } from '@angular/common';
 import { EventEmitter, Injectable } from '@angular/core';
-import { Event, EventEntity, Group, GroupLevel } from '@zsport/api';
+import { Event, EventEntity, GroupLevel } from '@zsport/api';
 
 import { GroupFormBase } from '../base';
 

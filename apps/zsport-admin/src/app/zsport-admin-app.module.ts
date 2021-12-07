@@ -29,8 +29,16 @@ export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionRedu
         keys: [
             {
                 association: ['ids', 'entities'],
+                category: ['ids', 'entities'],
                 club: ['ids', 'entities'],
+                competition: ['ids', 'entities'],
+                event: ['ids', 'entities'],
                 location: ['ids', 'entities'],
+                person: ['ids', 'entities'],
+                player: ['ids', 'entities'],
+                role: ['ids', 'entities'],
+                team: ['ids', 'entities'],
+                user: ['ids', 'entities'],
             },
         ],
         rehydrate: true,

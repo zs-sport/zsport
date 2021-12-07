@@ -68,7 +68,7 @@ export class AssociationEffects {
                               });
                           })
                       )
-                    : of(associationActions.noAction)
+                    : of(associationActions.noAction())
             )
         )
     );
@@ -81,7 +81,7 @@ export class AssociationEffects {
                     switchMap((entities) =>
                         entityQuantity &&
                         entities &&
-                        (entityQuantity as EntityQuantity).groups[action.categoryId].quantity !== entities.length
+                        (entityQuantity as EntityQuantity).groups[action.categoryId] !== entities.length
                             ? this.associationDataService.listAssociationsByCategoryId(action.categoryId).pipe(
                                   map((associationModels) => {
                                       return associationActions.listAssociationsByCategoryIdSuccess({
@@ -94,7 +94,7 @@ export class AssociationEffects {
                                       });
                                   })
                               )
-                            : of(associationActions.noAction)
+                            : of(associationActions.noAction())
                     )
                 )
             )

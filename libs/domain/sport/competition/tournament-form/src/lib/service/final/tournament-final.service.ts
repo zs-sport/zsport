@@ -88,6 +88,7 @@ export class TournamentFinalService extends TournamentFinalBase {
         this.categories$$.next([this.tournament!.category]);
         this.event$$.next(editedEvent);
         this.teams$$.next(this.teams);
+        this.locations$$.next(this.tournament!.locations);
     }
 
     public eventUpdateHandler(event: Event): void {

@@ -1,19 +1,19 @@
-import { takeUntil, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { ResultFormBase } from '../base';
-import { ResultFormService } from '../service';
+import { ResultTableBase } from '../base';
+import { ResultTableService } from '../service';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [ResultFormService],
-    selector: 'zs-result-form',
-    templateUrl: './result-form.component.html',
-    styleUrls: ['./result-form.component.less'],
+    providers: [ResultTableService],
+    selector: 'zs-result-table',
+    templateUrl: './result-table.component.html',
+    styleUrls: ['./result-table.component.less'],
 })
-export class ResultFormComponent extends ResultFormBase implements OnInit {
-    public constructor(private componentService: ResultFormService) {
+export class ResultTableComponent extends ResultTableBase implements OnInit {
+    public constructor(private componentService: ResultTableService) {
         super();
     }
 
@@ -24,8 +24,7 @@ export class ResultFormComponent extends ResultFormBase implements OnInit {
                 tap(() => {
                     this.dynamicComponent$ = this.componentService.dynamicComponent$;
                     this.dynamicInputs$$ = this.componentService.dynamicInputs$$;
-                }),
-                takeUntil(this.destroy)
+                })
             )
             .subscribe();
     }

@@ -1835,6 +1835,32 @@
             },
             "tags": []
         },
+        "domain-sport-result-admin": {
+            "projectType": "library",
+            "root": "libs/domain/sport/result/admin",
+            "sourceRoot": "libs/domain/sport/result/admin/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/result/admin"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/result/admin/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/result/admin/src/**/*.ts",
+                            "libs/domain/sport/result/admin/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-sport-result-data": {
             "projectType": "library",
             "root": "libs/domain/sport/result/data",

@@ -91,6 +91,7 @@
             "@zsport/domain/sport/player/store": ["libs/domain/sport/player/store/src/index.ts"],
             "@zsport/domain/sport/player/table": ["libs/domain/sport/player/table/src/index.ts"],
             "@zsport/domain/sport/player/util": ["libs/domain/sport/player/util/src/index.ts"],
+            "@zsport/domain/sport/result/admin": ["libs/domain/sport/result/admin/src/index.ts"],
             "@zsport/domain/sport/result/data": ["libs/domain/sport/result/data/src/index.ts"],
             "@zsport/domain/sport/result/form": ["libs/domain/sport/result/form/src/index.ts"],
             "@zsport/domain/sport/result/store": ["libs/domain/sport/result/store/src/index.ts"],

@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  	function getRoleIdsForUser(userId) {
+    	return get(/databases/$(database)/documents/user/$(userId)).data.roleIds
+    }
+  
+    match /{document=**} {
+      allow read: if true
+      allow write: if request.auth != null || getRoleIdsForUser(request.auth.uid);
+    }
+  }
+}

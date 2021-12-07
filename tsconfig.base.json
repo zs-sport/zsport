@@ -92,6 +92,7 @@
             "@zsport/domain/sport/player/table": ["libs/domain/sport/player/table/src/index.ts"],
             "@zsport/domain/sport/player/util": ["libs/domain/sport/player/util/src/index.ts"],
             "@zsport/domain/sport/result/data": ["libs/domain/sport/result/data/src/index.ts"],
+            "@zsport/domain/sport/result/store": ["libs/domain/sport/result/store/src/index.ts"],
             "@zsport/domain/sport/round/form": ["libs/domain/sport/round/form/src/index.ts"],
             "@zsport/domain/sport/team/admin": ["libs/domain/sport/team/admin/src/index.ts"],
             "@zsport/domain/sport/team/data": ["libs/domain/sport/team/data/src/index.ts"],

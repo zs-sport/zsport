@@ -105,28 +105,18 @@ export class ClubEffects {
     public listClubsByCategoryId = createEffect(() =>
         this.actions$.pipe(
             ofType(clubActions.listClubsByCategoryId),
-            withLatestFrom(this.entityQuantityStateService.selectEntityById$(EntityQuantityEnum.SPORT_ASSOCIATION)),
-            switchMap(([action, entityQuantity]) =>
-                this.clubStateService.selectClubsByCategoryId$(action.categoryId).pipe(
-                    switchMap((entities) =>
-                        entityQuantity &&
-                        entities &&
-                        (entityQuantity as EntityQuantity).groups[EntityQuantityEnum.SPORT_CATEGORY][action.categoryId] !== entities.length
-                            ? this.clubDataService.listClubsByCategoryId(action.categoryId).pipe(
-                                  map((clubModels) => {
-                                      return clubActions.listClubsByCategoryIdSuccess({
-                                          clubs: clubModels.map(
-                                              (clubModel) =>
-                                                  this.clubUtilService.convertModelToEntity(clubModel) as ClubEntity
-                                          ),
-                                      });
-                                  }),
-                                  catchError((error) => {
-                                      return of(error);
-                                  })
-                              )
-                            : of(clubActions.noAction())
-                    )
+            switchMap((action) =>
+                this.clubDataService.listClubsByCategoryId(action.categoryId).pipe(
+                    map((clubModels) => {
+                        return clubActions.listClubsByCategoryIdSuccess({
+                            clubs: clubModels.map(
+                                (clubModel) => this.clubUtilService.convertModelToEntity(clubModel) as ClubEntity
+                            ),
+                        });
+                    }),
+                    catchError((error) => {
+                        return of(error);
+                    })
                 )
             )
         )

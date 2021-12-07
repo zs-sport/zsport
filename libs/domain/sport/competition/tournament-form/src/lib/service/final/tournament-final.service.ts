@@ -1,5 +1,5 @@
 import { combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { distinct, filter, switchMap } from 'rxjs/operators';
+import { distinct, filter, switchMap, tap } from 'rxjs/operators';
 
 import { KeyValue } from '@angular/common';
 import { Injectable } from '@angular/core';
@@ -114,6 +114,7 @@ export class TournamentFinalService extends TournamentFinalBase {
         this.selectedFinalTabId$ = this.competitionStateService.selectSelectedFinalTabId$();
 
         return this.tournament$$.pipe(
+            tap(() => console.log('TournamentFinalService - tournament$$')),
             filter((tournament) => !!tournament.ageGroup),
             switchMap((tournament) => {
                 this.tournament = tournament;
@@ -187,6 +188,8 @@ export class TournamentFinalService extends TournamentFinalBase {
     }
 
     private activateEventFormComponent() {
+        console.log('TournamentFinalService - activateEventFormComponent');
+
         this.dynamicEventFormComponent$$.next(EventCompetitionFormComponent);
 
         this.dynamicEventFormInputs$$.next({

@@ -111,7 +111,7 @@ export class ClubEffects {
                     switchMap((entities) =>
                         entityQuantity &&
                         entities &&
-                        (entityQuantity as EntityQuantity).groups[action.categoryId] !== entities.length
+                        (entityQuantity as EntityQuantity).groups[EntityQuantityEnum.SPORT_CATEGORY][action.categoryId] !== entities.length
                             ? this.clubDataService.listClubsByCategoryId(action.categoryId).pipe(
                                   map((clubModels) => {
                                       return clubActions.listClubsByCategoryIdSuccess({

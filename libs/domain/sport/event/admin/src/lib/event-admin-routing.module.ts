@@ -2,6 +2,7 @@ import { NgxPermissionsGuard } from 'ngx-permissions';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ResultAdminPermissionsService } from '@zsport/domain/sport/result/admin';
 
 import { EventAdminComponent } from './page/admin';
 import { EventEditComponent, EventEditResolverService } from './page/edit';
@@ -40,6 +41,20 @@ const routes: Routes = [
                     {
                         path: 'edit-details',
                         component: EventEditDetailsComponent,
+                    },
+                    {
+                        path: 'results',
+                        data: {
+                            breadcrumb: 'Results',
+                            permissions: {
+                                only: ['ADMIN', ResultAdminPermissionsService.viewResultAdminPage],
+                                redirectTo: '/error',
+                            },
+                        },
+                        loadChildren: () =>
+                            import('@zsport/domain/sport/result/admin').then((lib) => lib.DomainSportResultAdminModule),
+                        canActivate: [NgxPermissionsGuard],
+                        canLoad: [NgxPermissionsGuard],
                     },
                 ],
             },

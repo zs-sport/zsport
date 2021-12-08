@@ -309,23 +309,23 @@
                     "category": "Kategória"
                 },
                 "label": {
-                    "match": "Mérkőzés",
-                    "results": "Eredmények",
-                    "event_day_time": "Időpont",
-                    "event_day_time_placeholder": "Időpont",
-                    "team1": "Csapat 1",
-                    "team1_placeholder": "Csapat 1",
-                    "team2": "Csapat 2",
-                    "team2_placeholder": "Csapat 2",
-                    "location": "Helyszin",
-                    "location_placeholder": "Helyszin",
                     "age_group": "Korosztály",
                     "age_group_placeholder": "Korosztály",
                     "category": "Kategória",
                     "category_placeholder": "Kategória",
+                    "event": "Esemény",
+                    "event_day_time": "Időpont",
+                    "event_day_time_placeholder": "Időpont",
                     "gender": "Nem",
                     "gender_placeholder": "Nem",
-                    "round_id": "Forduló id"
+                    "location": "Helyszin",
+                    "location_placeholder": "Helyszin",
+                    "results": "Eredmények",
+                    "round_id": "Forduló id",
+                    "team1": "Csapat 1",
+                    "team1_placeholder": "Csapat 1",
+                    "team2": "Csapat 2",
+                    "team2_placeholder": "Csapat 2"
                 }
             },
             "player": {
@@ -353,6 +353,21 @@
                     "from_date_placeholder": "Szerződés kezdete",
                     "to_date": "Szerződés vége",
                     "to_date_placeholder": "Szerződés vége"
+                }
+            },
+            "result": {
+                "action": {
+                    "add_result": "Új eredmény",
+                    "edit": "Szerkesztés"
+                },
+                "column": {
+                    "action": "Művelet",
+                    "edit": "Akció",
+                    "event_id": "Esemény azonosító"
+                },
+                "label": {
+                    "event_id": "Esemény azonosító",
+                    "event_id_placeholder": "Esemény azonosító"
                 }
             },
             "team": {
@@ -383,6 +398,7 @@
             "competitions": "Versenyek",
             "events": "Események",
             "players": "Játékosok",
+            "results": "Eredmények",
             "sport": "Sport",
             "teams": "Csapatok"
         }

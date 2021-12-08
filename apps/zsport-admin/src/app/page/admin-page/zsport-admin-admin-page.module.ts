@@ -21,6 +21,7 @@ import { EventFactoryModule } from './factory/event';
 import { LocationFactoryModule } from './factory/location';
 import { PersonFactoryModule } from './factory/person';
 import { PlayerFactoryModule } from './factory/player';
+import { ResultFactoryModule } from './factory/result/result-factory.module';
 import { ZsportAdminRoleFactoryModule } from './factory/role';
 import { TeamFactoryModule } from './factory/team';
 import { ZsportAdminUserFactoryModule } from './factory/user';
@@ -49,6 +50,7 @@ import { ZsportAdminAdminPageComponent } from './zsport-admin-admin-page.compone
         LocationFactoryModule,
         PersonFactoryModule,
         PlayerFactoryModule,
+        ResultFactoryModule,
         TeamFactoryModule,
         ZsportAdminAdminRoutingModule,
         ZsportAdminRoleFactoryModule,

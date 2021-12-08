@@ -1,6 +1,7 @@
 <nz-tabset nzLinkRouter>
     <nz-tab>
         <a
+            *nzTabLink
             nz-tab-link
             [routerLink]="['./edit-details']"
             [queryParams]="{ eventId: eventId }"
@@ -11,6 +12,7 @@
     </nz-tab>
     <nz-tab>
         <a
+            *nzTabLink
             nz-tab-link
             [routerLink]="['./results']"
             [queryParams]="{ eventId: eventId }"

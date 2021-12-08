@@ -307,26 +307,26 @@
                     "gender": "Gender",
                     "team1": "Team 1",
                     "team2": "Team 2",
-                    "sport_category": "Category"
+                    "category": "Category"
                 },
                 "label": {
-                    "match": "Match",
-                    "results": "Results",
-                    "event_day_time": "Event day time",
-                    "event_day_time_placeholder": "Event day time",
-                    "team1": "Team1 1",
-                    "team1_placeholder": "Team 1",
-                    "team2": "Team 2",
-                    "team2_placeholder": "Team 2",
-                    "location": "Location",
-                    "location_placeholder": "Location",
                     "age_group": "Age group",
                     "age_group_placeholder": "Age group",
                     "category": "Category",
                     "category_placeholder": "Category",
+                    "event": "Event",
+                    "event_day_time": "Event day time",
+                    "event_day_time_placeholder": "Event day time",
                     "gender": "Gender",
                     "gender_placeholder": "Gender",
-                    "round_id": "Round id"
+                    "location": "Location",
+                    "location_placeholder": "Location",
+                    "results": "Results",
+                    "round_id": "Round id",
+                    "team1": "Team1 1",
+                    "team1_placeholder": "Team 1",
+                    "team2": "Team 2",
+                    "team2_placeholder": "Team 2"
                 }
             },
             "player": {
@@ -356,6 +356,21 @@
                 },
                 "players": "Players"
             },
+            "result": {
+                "action": {
+                    "add_result": "Add Result",
+                    "edit": "Edit"
+                },
+                "column": {
+                    "action": "Action",
+                    "edit": "Edit",
+                    "event_id": "Event id"
+                },
+                "label": {
+                    "event_id": "Event id",
+                    "event_id_placeholder": "Event id"
+                }
+            },
             "team": {
                 "action": {
                     "add_team": "Add team",
@@ -384,6 +399,7 @@
             "competitions": "Competitions",
             "events": "Events",
             "players": "Players",
+            "results": "Results",
             "sport": "Sport",
             "teams": "Teams"
         }

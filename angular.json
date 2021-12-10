@@ -1679,6 +1679,32 @@
             },
             "tags": []
         },
+        "domain-sport-period-util": {
+            "projectType": "library",
+            "root": "libs/domain/sport/period/util",
+            "sourceRoot": "libs/domain/sport/period/util/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/period/util"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/period/util/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/period/util/src/**/*.ts",
+                            "libs/domain/sport/period/util/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-sport-player-admin": {
             "projectType": "library",
             "root": "libs/domain/sport/player/admin",

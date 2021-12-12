@@ -1991,6 +1991,32 @@
             },
             "tags": []
         },
+        "domain-sport-result-util": {
+            "projectType": "library",
+            "root": "libs/domain/sport/result/util",
+            "sourceRoot": "libs/domain/sport/result/util/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/domain/sport/result/util"],
+                    "options": {
+                        "jestConfig": "libs/domain/sport/result/util/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/domain/sport/result/util/src/**/*.ts",
+                            "libs/domain/sport/result/util/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "domain-sport-round-form": {
             "projectType": "library",
             "root": "libs/domain/sport/round/form",

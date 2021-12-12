@@ -1,5 +1,6 @@
+import { Dictionary } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { RESULT_FEATURE_KEY } from '@zsport/api';
+import { RESULT_FEATURE_KEY, ResultEntity } from '@zsport/api';
 
 import { resultAdapter, ResultPartialState, State } from './result.reducer';
 
@@ -27,3 +28,13 @@ export const selectResult = createSelector(
     getSelectedId,
     (resultEntities, resultId) => resultEntities[resultId]
 );
+
+export const selectResultById = () =>
+    createSelector(selectResultEntities, (resultEntities: Dictionary<ResultEntity>, props: any) => {
+        return resultEntities[props.resultId];
+    });
+
+export const selectResultsByEventId = () =>
+    createSelector(selectAllResult, (results: ResultEntity[], props: any) =>
+        results.filter((result) => result.eventId === props.eventId)
+    );

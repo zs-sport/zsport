@@ -1,10 +1,31 @@
-import { Injectable } from '@angular/core';
-import { Dateable, Dates, Stateable, States, StateUtilService } from '@zsport/api';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import {
+    AuthenticationStateService,
+    Creatable,
+    Dateable,
+    Dates,
+    Stateable,
+    States,
+    StateUtilService,
+    User,
+} from '@zsport/api';
+import { tap } from 'rxjs';
 
 @Injectable()
 export class StateUtilServiceImpl extends StateUtilService {
-    constructor() {
+    private authenticatedUser: User | null = null;
+
+    public constructor(private authenticationStateService: AuthenticationStateService) {
         super();
+
+        this.authenticationStateService
+            .selectAuthenticatedUser$()
+            .pipe(tap((user) => (this.authenticatedUser = user)))
+            .subscribe();
+    }
+
+    public addCreatorId(creatable: Creatable): Creatable {
+        return { ...creatable, creatorId: this.authenticatedUser?.uid || '' };
     }
 
     public addDefaultDates(dateable: Dateable): Dateable {

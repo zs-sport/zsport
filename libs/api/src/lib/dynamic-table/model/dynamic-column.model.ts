@@ -1,18 +1,18 @@
 export interface DynamicColumnModel {
-    class?: string;
-    isArray?: boolean;
-    icon?: string;
-    isLocalized?: boolean;
-    objectPropertyName: string;
-    queryParams?: any;
-    propertyName: string;
-    isAction?: boolean;
     actionHandler?: any;
     actionName: string;
     actionRoute: string;
-    isSimple?: boolean;
-    isDate?: boolean;
-    isObject?: boolean;
-    isDoubleObject?: boolean;
+    class?: string;
     helperPropertyName?: string;
+    icon?: string;
+    isAction?: boolean;
+    isArray?: boolean;
+    isDate?: boolean;
+    isDoubleObject?: boolean;
+    isLocalized?: boolean;
+    isObject?: boolean;
+    isSimple?: boolean;
+    objectPropertyName: string;
+    propertyName: string;
+    queryParams?: any;
 }

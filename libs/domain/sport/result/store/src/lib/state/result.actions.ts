@@ -37,6 +37,13 @@ export const listResultsByCategoryIdSuccess = createAction(
     props<{ results: Result[] }>()
 );
 
+export const listResultsByEventId = createAction('[Results] List Results By Event Id', props<{ eventId: string }>());
+
+export const listResultsByEventIdSuccess = createAction(
+    '[Results] List Results By Event Id Success',
+    props<{ results: Result[] }>()
+);
+
 export const loadResult = createAction('[Result] Load Result', props<{ uid: string }>());
 
 export const loadResultFail = createAction('[Result] Load Result FAIL', props<{ error: Error }>());

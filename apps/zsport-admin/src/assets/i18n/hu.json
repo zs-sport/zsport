@@ -363,11 +363,19 @@
                 "column": {
                     "action": "Művelet",
                     "edit": "Akció",
-                    "event_id": "Esemény azonosító"
+                    "event_id": "Esemény azonosító",
+                    "creator_id": "Létrehozó azonosító",
+                    "result": "Eredmény"
                 },
                 "label": {
                     "event_id": "Esemény azonosító",
-                    "event_id_placeholder": "Esemény azonosító"
+                    "event_id_placeholder": "Esemény azonosító",
+                    "period": {
+                        "title": "Címke",
+                        "title_placeholder": "Címke",
+                        "participant1": "Csapa1",
+                        "participant2": "Csapat2"
+                    }
                 }
             },
             "team": {

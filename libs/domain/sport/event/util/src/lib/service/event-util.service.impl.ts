@@ -26,11 +26,24 @@ export class EventUtilServiceImpl extends EventUtilService {
     }
 
     public convertEntityToModel(event: EventEntity): EventModel {
-        return { ...event, eventDayTime: this.dateUtilService.convertToDate(event.eventDayTime) };
+        return {
+            ageGroup: event.ageGroup,
+            category: event.category,
+            dates: event.dates,
+            gender: event.gender,
+            location: event.location,
+            roundId: event.roundId,
+            states: event.states,
+            team1: event.team1,
+            team2: event.team2,
+            uid: event.uid || null,
+            competitionId: event.competitionId,
+            eventDayTime: this.dateUtilService.convertToDate(event.eventDayTime),
+        };
     }
 
     public convertModelToEntity(eventModel: EventModel): EventEntity {
-        return { ...eventModel };
+        return { ...eventModel, results: [] };
     }
 
     public createEventForCompetition(

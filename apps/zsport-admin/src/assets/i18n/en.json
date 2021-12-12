@@ -364,11 +364,19 @@
                 "column": {
                     "action": "Action",
                     "edit": "Edit",
-                    "event_id": "Event id"
+                    "event_id": "Event id",
+                    "creator_id": "Creator id",
+                    "result": "Result"
                 },
                 "label": {
                     "event_id": "Event id",
-                    "event_id_placeholder": "Event id"
+                    "event_id_placeholder": "Event id",
+                    "period": {
+                        "title": "Title",
+                        "title_placeholder": "Title",
+                        "participant1": "Team1",
+                        "participant2": "Team2"
+                    }
                 }
             },
             "team": {

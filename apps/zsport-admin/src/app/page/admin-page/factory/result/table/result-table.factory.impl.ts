@@ -2,10 +2,17 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import {
-    AuthorizationService, DynamicColumnHeaderModel, DynamicColumnModel, DynamicTableConfigModel,
-    DynamicTableSizeEnum, Entity, I18nService, Result, ResultStateService
+    AuthorizationService,
+    DynamicColumnHeaderModel,
+    DynamicColumnModel,
+    DynamicTableConfigModel,
+    DynamicTableSizeEnum,
+    Entity,
+    I18nService,
+    Result,
+    ResultStateService,
 } from '@zsport/api';
 import { ResultAdminPermissionsService } from '@zsport/domain/sport/result/admin';
 import { ResultTableFactory } from '@zsport/domain/sport/result/table';
@@ -26,6 +33,10 @@ export class ResultTableFactoryImpl extends ResultTableFactory {
         super();
     }
 
+    protected findParam(paramName: string, snapshots: ActivatedRouteSnapshot[]): string | null {
+        return snapshots ? snapshots.map((snapshot) => snapshot.params[paramName]).find((param) => !!param) : null;
+    }
+
     public createTableConfig$(): Observable<DynamicTableConfigModel> {
         return of({
             id: 'resultTable',
@@ -37,8 +48,10 @@ export class ResultTableFactoryImpl extends ResultTableFactory {
     }
 
     public getData$(): Observable<Result[]> {
+        const eventId: string | null = this.activatedRoute.snapshot.queryParams['eventId'];
+
         return this.resultStateService
-            .selectEntities$()
+            .selectResultsByEventId$(eventId || '')
             .pipe(map((entities) => entities.map((entity) => entity as Result)));
     }
 
@@ -51,6 +64,10 @@ export class ResultTableFactoryImpl extends ResultTableFactory {
             {
                 listOfFilter: [],
                 title: this.i18NService.translate('admin.sport.result.column.event_id'),
+            },
+            {
+                listOfFilter: [],
+                title: this.i18NService.translate('admin.sport.result.column.creator_id'),
             },
         ];
 
@@ -67,7 +84,7 @@ export class ResultTableFactoryImpl extends ResultTableFactory {
     }
 
     private createColumns(): DynamicColumnModel[] {
-        const matchId: string = this.activatedRoute.snapshot.queryParams.matchId;
+        const eventId: string | null = this.activatedRoute.snapshot.queryParams['eventId'];
 
         const columns: DynamicColumnModel[] = [
             {
@@ -77,6 +94,16 @@ export class ResultTableFactoryImpl extends ResultTableFactory {
                 isObject: false,
                 objectPropertyName: '',
                 propertyName: 'eventId',
+                isSimple: true,
+            },
+            {
+                actionName: '',
+                actionRoute: '',
+                isLocalized: false,
+                isObject: false,
+                objectPropertyName: '',
+                propertyName: 'creatorId',
+                isSimple: true,
             },
         ];
 
@@ -88,7 +115,7 @@ export class ResultTableFactoryImpl extends ResultTableFactory {
             objectPropertyName: '',
             propertyName: '',
             queryParams: {
-                matchId,
+                eventId,
             },
         };
 

@@ -2,7 +2,7 @@ import { combineLatest, Observable, of, ReplaySubject } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 
 import { EventEmitter, Injectable } from '@angular/core';
-import { AgeGroup, Category, Event, Gender, Location, Team } from '@zsport/api';
+import { AgeGroup, Category, Event, EventEntity, Gender, Location, Team } from '@zsport/api';
 
 import { EventCompetitionFormBase } from '../base';
 import {
@@ -30,7 +30,7 @@ export class EventCompetitionFormService extends EventCompetitionFormBase {
         genders$: Observable<Gender[]>,
         teams$: Observable<Team[]>,
         locations$: Observable<Location[]>,
-        eventUpdate: EventEmitter<Event>,
+        eventUpdate: EventEmitter<EventEntity>,
         formValueChange: EventEmitter<Event>
     ): Observable<boolean> {
         this.event$ = event$;

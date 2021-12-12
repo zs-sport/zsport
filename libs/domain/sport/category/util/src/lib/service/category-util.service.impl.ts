@@ -1,5 +1,15 @@
 import { Injectable } from '@angular/core';
-import { CategoryEntity, CategoryModel, CategoryUtilService, I18nService, StateUtilService } from '@zsport/api';
+import {
+    Category,
+    CategoryEntity,
+    CategoryModel,
+    CategoryRule,
+    CategoryRuleService,
+    CategoryUtilService,
+    I18nService,
+    LanguagesEnum,
+    StateUtilService,
+} from '@zsport/api';
 
 @Injectable()
 export class CategoryUtilServiceImpl extends CategoryUtilService {
@@ -22,7 +32,7 @@ export class CategoryUtilServiceImpl extends CategoryUtilService {
                 color: category.color,
                 dates: category.dates,
                 nameI18n: updatedNameI18n,
-                rule: category.rule,
+                rule: this.getCategoryRule(category),
                 states: category.states,
                 uid: category.uid,
             };
@@ -33,7 +43,7 @@ export class CategoryUtilServiceImpl extends CategoryUtilService {
                 color: category.color,
                 dates: category.dates,
                 nameI18n: category.nameI18n,
-                rule: category.rule,
+                rule: this.getCategoryRule(category),
                 states: category.states,
                 uid: category.uid,
             };
@@ -45,6 +55,11 @@ export class CategoryUtilServiceImpl extends CategoryUtilService {
     public convertModelToEntity(categoryModel: CategoryModel): CategoryEntity {
         return {
             ...categoryModel,
+            rule: this.getCategoryRule(categoryModel),
         } as CategoryEntity;
+    }
+
+    private getCategoryRule(category: Category): CategoryRule {
+        return CategoryRuleService.getRuleForCategory(category.nameI18n[LanguagesEnum.en]?.toLowerCase() || '');
     }
 }

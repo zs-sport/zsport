@@ -1,4 +1,4 @@
-import { map, Observable } from 'rxjs';
+import { map, Observable, takeUntil, tap } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
@@ -7,13 +7,14 @@ import { Result, RESULT_FEATURE_KEY, ResultDataService, ResultModel } from '@zsp
 @Injectable()
 export class ResultDataServiceImpl extends ResultDataService {
     protected resultCollection: AngularFirestoreCollection<ResultModel>;
+    protected resultCollectionsByEventId: Map<string, Observable<ResultModel[]>>;
     protected results$: Observable<ResultModel[]>;
 
     public constructor(private angularFirestore: AngularFirestore) {
         super();
 
         this.resultCollection = angularFirestore.collection<ResultModel>(RESULT_FEATURE_KEY);
-
+        this.resultCollectionsByEventId = new Map<string, Observable<ResultModel[]>>();
         this.results$ = this.resultCollection.valueChanges();
     }
 
@@ -39,6 +40,28 @@ export class ResultDataServiceImpl extends ResultDataService {
 
     public list$(): Observable<ResultModel[]> {
         return this.results$;
+    }
+
+    public listResultsByEventId(eventId: string): Observable<ResultModel[]> {
+        let resultCollectionByEventId = this.resultCollectionsByEventId.get(eventId);
+
+        if (!resultCollectionByEventId) {
+            resultCollectionByEventId = this.angularFirestore
+                .collectionGroup<ResultModel>(RESULT_FEATURE_KEY, (reference) =>
+                    reference.where('eventId', '==', eventId)
+                )
+                .valueChanges()
+                .pipe(
+                    tap((result) => {
+                        console.log(result);
+                    }),
+                    takeUntil(this.destroy)
+                );
+
+            this.resultCollectionsByEventId.set(eventId, resultCollectionByEventId);
+        }
+
+        return resultCollectionByEventId;
     }
 
     public load$(uid: string): Observable<ResultModel> {

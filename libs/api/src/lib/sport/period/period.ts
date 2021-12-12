@@ -1,6 +1,6 @@
 export interface Period {
-    periodTime: number;
-    resultId?: string;
-    team1Goals: number;
-    team2Goals: number;
+    index: number;
+    measurement: string;
+    participant1: number;
+    participant2: number;
 }

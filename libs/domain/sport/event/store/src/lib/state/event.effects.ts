@@ -1,8 +1,16 @@
-import { map, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EventDataService, EventEntity, EventUtilService } from '@zsport/api';
+import {
+    EventDataService,
+    EventEntity,
+    EventUtilService,
+    ResultEntity,
+    ResultModel,
+    ResultUtilService,
+} from '@zsport/api';
 
 import * as eventActions from './event.actions';
 
@@ -16,6 +24,45 @@ export class EventEffects {
                     map((eventModel) => {
                         return eventActions.addEventSuccess({
                             event: this.eventUtilService.convertModelToEntity(eventModel) as EventEntity,
+                        });
+                    })
+                )
+            )
+        )
+    );
+    public addResultByEventId = createEffect(() =>
+        this.actions$.pipe(
+            ofType(eventActions.addResultByEventId),
+            switchMap((action) =>
+                this.eventDataService
+                    .addResultByEventId(
+                        this.resultUtilService.convertEntityToModel(action.result, false) as ResultModel,
+                        action.eventId
+                    )
+                    .pipe(
+                        map((result) => {
+                            return eventActions.addResultByEventIdSuccess({
+                                result: this.resultUtilService.convertModelToEntity(result) as ResultEntity,
+                                eventId: action.eventId,
+                            });
+                        }),
+                        catchError((error) => {
+                            return of(error);
+                        })
+                    )
+            )
+        )
+    );
+    public listEvents = createEffect(() =>
+        this.actions$.pipe(
+            ofType(eventActions.listEvents),
+            switchMap((action) =>
+                this.eventDataService.list$().pipe(
+                    map((eventModels) => {
+                        return eventActions.listEventsSuccess({
+                            events: eventModels.map(
+                                (eventModel) => this.eventUtilService.convertModelToEntity(eventModel) as EventEntity
+                            ),
                         });
                     })
                 )
@@ -38,16 +85,15 @@ export class EventEffects {
             )
         )
     );
-    public listEvents = createEffect(() =>
+    public listResultsByEventId = createEffect(() =>
         this.actions$.pipe(
-            ofType(eventActions.listEvents),
-            switchMap((action) =>
-                this.eventDataService.list$().pipe(
-                    map((eventModels) => {
-                        return eventActions.listEventsSuccess({
-                            events: eventModels.map(
-                                (eventModel) => this.eventUtilService.convertModelToEntity(eventModel) as EventEntity
-                            ),
+            ofType(eventActions.listResultsByEventId),
+            mergeMap((action) =>
+                this.eventDataService.listResultsByEventId(action.eventId).pipe(
+                    map((results) => {
+                        return eventActions.listResultsByEventIdSuccess({
+                            results,
+                            eventId: action.eventId,
                         });
                     })
                 )
@@ -89,6 +135,7 @@ export class EventEffects {
     public constructor(
         private actions$: Actions,
         private eventDataService: EventDataService,
-        private eventUtilService: EventUtilService
+        private eventUtilService: EventUtilService,
+        private resultUtilService: ResultUtilService
     ) {}
 }

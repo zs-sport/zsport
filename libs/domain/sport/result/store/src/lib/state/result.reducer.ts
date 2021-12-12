@@ -33,18 +33,19 @@ export const resultReducer = createReducer(
         ...state,
         isNewEntityButtonEnabled: enabled,
     })),
+    on(resultActions.clearResults, (state) => resultAdapter.removeAll(state)),
     on(resultActions.selectResult, (state, { resultId }) => ({
         ...state,
         loading: false,
         error: null,
         selectedResultId: resultId,
     })),
-    on(resultActions.updateResultSuccess, (state, { result }) => resultAdapter.updateOne(result, state)),
     on(resultActions.deleteResultSuccess, (state, { resultId }) => resultAdapter.removeOne(resultId, state)),
     on(resultActions.listResultsSuccess, (state, { results }) => resultAdapter.upsertMany(results as Result[], state)),
+    on(resultActions.listResultsByEventIdSuccess, (state, { results }) => resultAdapter.upsertMany(results, state)),
     on(resultActions.loadResultSuccess, (state, { result }) => resultAdapter.upsertOne(result as Result, state)),
-    on(resultActions.clearResults, (state) => resultAdapter.removeAll(state)),
-    on(resultActions.setSelectedResultId, (state, { resultId }) => ({ ...state, selectedId: resultId }))
+    on(resultActions.setSelectedResultId, (state, { resultId }) => ({ ...state, selectedId: resultId })),
+    on(resultActions.updateResultSuccess, (state, { result }) => resultAdapter.updateOne(result, state))
 );
 
 export function reducer(state: State | undefined, action: Action) {

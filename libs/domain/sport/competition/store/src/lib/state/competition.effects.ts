@@ -14,6 +14,7 @@ import {
     EntityQuantityStateService,
     EntityQuantityUtilService,
     Event,
+    EventEntity,
     EventModel,
     EventStateService,
     EventUtilService,
@@ -151,7 +152,8 @@ export class CompetitionEffects {
                         tap((events) => {
                             this.eventStateService.dispatchListEventsByCompetitionIdSuccess(
                                 events.map(
-                                    (eventModel) => this.eventUtilService.convertModelToEntity(eventModel) as Event
+                                    (eventModel) =>
+                                        this.eventUtilService.convertModelToEntity(eventModel) as EventEntity
                                 )
                             );
                         })

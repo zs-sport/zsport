@@ -1,4 +1,69 @@
-<ndc-dynamic
-    [ndcDynamicComponent]="dynamicComponent$ | async"
-    [ndcDynamicInputs]="dynamicInputs$$.asObservable() | async"
-></ndc-dynamic>
+<ng-container *ngIf="resultFormGroup">
+    <form nz-form [formGroup]="resultFormGroup" [nzLayout]="'horizontal'">
+        <nz-form-control>
+            <input hidden formControlName="uid" />
+        </nz-form-control>
+
+        <nz-form-control hidden>
+            <input hidden formControlName="eventId" />
+        </nz-form-control>
+
+        <ng-container formArrayName="periods">
+            <ng-container *ngFor="let period of periodsFormArray.controls; let i = index">
+                <fieldset [formGroupName]="i">
+                    <legend>Period {{ i + 1 }}</legend>
+
+                    <nz-form-control hidden>
+                        <input hidden formControlName="index" />
+                    </nz-form-control>
+
+                    <nz-form-control hidden>
+                        <input hidden formControlName="quantityType" />
+                    </nz-form-control>
+
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="participant1_{{ i }}" nzRequired>
+                            {{ 'admin.sport.result.label.period.participant1' | transloco }}
+                        </nz-form-label>
+
+                        <nz-form-control [nzSpan]="14" nzHasFeedback="true">
+                            <nz-input-number
+                                [nzMin]="0"
+                                [nzMax]="100"
+                                [nzStep]="1"
+                                formControlName="participant1"
+                                id="participant1_{{ i }}"
+                            ></nz-input-number>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="participant2_{{ i }}" nzRequired>
+                            {{ 'admin.sport.result.label.period.participant2' | transloco }}
+                        </nz-form-label>
+
+                        <nz-form-control [nzSpan]="14" nzHasFeedback="true">
+                            <nz-input-number
+                                [nzMin]="0"
+                                [nzMax]="100"
+                                [nzStep]="1"
+                                formControlName="participant2"
+                                id="participant2_{{ i }}"
+                            ></nz-input-number>
+                        </nz-form-control>
+                    </nz-form-item>
+                </fieldset>
+            </ng-container>
+        </ng-container>
+
+        <nz-form-item>
+            <button nz-button [nzType]="'primary'" (click)="submit()">
+                <span>{{ 'admin.form.submit' | transloco }}</span>
+            </button>
+
+            <button nz-button [nzType]="'primary'" (click)="cancel()">
+                <span>{{ 'admin.form.cancel' | transloco }}</span>
+            </button>
+        </nz-form-item>
+    </form>
+</ng-container>

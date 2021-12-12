@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Entity, Result, ResultStateService } from '@zsport/api';
+import { Entity, Result, ResultEntity, ResultStateService } from '@zsport/api';
 
 import * as resultActions from './result.actions';
 import * as fromResult from './result.reducer';
@@ -28,6 +28,10 @@ export class ResultStateServiceImpl extends ResultStateService {
 
     public dispatchListEntitiesAction(): void {
         this.store.dispatch(resultActions.listResults());
+    }
+
+    public dispatchListResultsByEventIdAction(eventId: string): void {
+        this.store.dispatch(resultActions.listResultsByEventId({ eventId }));
     }
 
     public dispatchLoadEntitiesAction(): void {}
@@ -64,12 +68,16 @@ export class ResultStateServiceImpl extends ResultStateService {
         return this.store.pipe(select(resultSelectors.selectResult));
     }
 
-    public selectEntityById$(entityId: string): Observable<Result> {
-        throw new Error('Method not implemented.');
+    public selectEntityById$(resultId: string): Observable<Result | undefined> {
+        return this.store.pipe(select(resultSelectors.selectResultById(), { resultId }));
     }
 
     public selectNewEntityButtonEnabled$(): Observable<boolean> {
         return this.store.pipe(select(resultSelectors.isNewEntityButtonEnabled));
+    }
+
+    public selectResultsByEventId$(eventId: string): Observable<ResultEntity[]> {
+        return this.store.pipe(select(resultSelectors.selectResultsByEventId(), { eventId }));
     }
 
     public selectSelectedEntity$(): Observable<Result | undefined> {

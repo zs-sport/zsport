@@ -8,7 +8,7 @@ import {
     DynamicTableConfigModel,
     DynamicTableSizeEnum,
     Entity,
-    Event,
+    EventEntity,
     EventStateService,
 } from '@zsport/api';
 import { EventTableFactory } from '@zsport/domain/sport/event/table';
@@ -36,7 +36,7 @@ export class CompetitionEventTableFactoryImpl extends EventTableFactory {
         });
     }
 
-    public getData$(): Observable<Event[]> {
+    public getData$(): Observable<EventEntity[]> {
         return this.eventStateService.selectEntities$();
     }
 

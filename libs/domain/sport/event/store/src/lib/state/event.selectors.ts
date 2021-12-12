@@ -1,3 +1,4 @@
+import { Dictionary } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { EventEntity, EVENT_FEATURE_KEY } from '@zsport/api';
 
@@ -24,6 +25,11 @@ export const selectEvent = createSelector(
     getSelectedId,
     (eventEntities, eventID) => eventEntities[eventID]
 );
+
+export const selectEventById = () =>
+    createSelector(selectEventEntities, (eventEntities: Dictionary<EventEntity>, props: any) => {
+        return eventEntities[props.eventId];
+    });
 
 export const selectEventsByCompetitionId = () =>
     createSelector(selectAllEvent, (events: EventEntity[], props: any) =>

@@ -1,12 +1,27 @@
 import { Update } from '@ngrx/entity';
 import { createAction, props } from '@ngrx/store';
-import { EventEntity } from '@zsport/api';
+import { EventEntity, ResultEntity } from '@zsport/api';
 
 export const addEvent = createAction('[Event] Add Event', props<{ event: EventEntity }>());
 
 export const addEventFail = createAction('[Event] Add Event Fail', props<{ error: Error }>());
 
 export const addEventSuccess = createAction('[Event] Add Event Success', props<{ event: EventEntity }>());
+
+export const addResultByEventId = createAction(
+    '[Result Admin] Add Result By Event Id',
+    props<{ result: ResultEntity; eventId: string }>()
+);
+
+export const addResultByEventIdSuccess = createAction(
+    '[Result Admin] Add Result By Event Id Success',
+    props<{ result: ResultEntity; eventId: string }>()
+);
+
+export const addResultByEventIdFail = createAction(
+    '[Result Admin] Add Result By Event Id Fail',
+    props<{ error: Error }>()
+);
 
 export const changeNewEntityButtonEnabled = createAction(
     '[Event Admin] Change new Entity Button Enabled',
@@ -49,6 +64,13 @@ export const listEventsByCategoryIdSuccess = createAction(
 export const ListEventsByCompetitionIdSuccess = createAction(
     '[Competition] List Events By Competition Id Success',
     props<{ events: EventEntity[] }>()
+);
+
+export const listResultsByEventId = createAction('[Event] List Results By Event Id', props<{ eventId: string }>());
+
+export const listResultsByEventIdSuccess = createAction(
+    '[Club] List Results By Event Id Success',
+    props<{ results: ResultEntity[]; eventId: string }>()
 );
 
 export const loadEvent = createAction('[Event] Load Event', props<{ uid: string }>());

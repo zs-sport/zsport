@@ -40,8 +40,7 @@ import { DomainSportEventUtilModule } from '@zsport/domain/sport/event/util';
 import { DomainSportPlayerDataModule } from '@zsport/domain/sport/player/data';
 import { DomainSportPlayerStoreModule } from '@zsport/domain/sport/player/store';
 import { DomainSportPlayerUtilModule } from '@zsport/domain/sport/player/util';
-import { DomainSportResultDataModule } from '@zsport/domain/sport/result/data';
-import { DomainSportResultStoreModule } from '@zsport/domain/sport/result/store';
+
 import { DomainSportTeamDataModule } from '@zsport/domain/sport/team/data';
 import { DomainSportTeamStoreModule } from '@zsport/domain/sport/team/store';
 import { DomainSportTeamUtilModule } from '@zsport/domain/sport/team/util';
@@ -51,6 +50,8 @@ import { SharedModule, StateUtilModule } from '@zsport/shared';
 
 import { environment } from '../../environments/environment';
 import { DefaultUserHookService } from './hook/user';
+import { SportPeriodWrapperModule } from './module';
+import { SportResultWrapperModule } from './module/sport-result-wrapper.module';
 
 @NgModule({
     imports: [
@@ -99,8 +100,8 @@ import { DefaultUserHookService } from './hook/user';
         DomainSportPlayerDataModule,
         DomainSportPlayerStoreModule,
         DomainSportPlayerUtilModule,
-        DomainSportResultDataModule,
-        DomainSportResultStoreModule,
+        SportResultWrapperModule,
+        SportPeriodWrapperModule,
         DomainSportTeamDataModule,
         DomainSportTeamStoreModule,
         DomainSportTeamUtilModule,

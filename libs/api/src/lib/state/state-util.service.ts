@@ -1,8 +1,11 @@
+import { BaseService } from '../base';
+import { Creatable } from './creatable';
 import { Dateable } from './dateable';
 import { Dates } from './dates';
 import { Stateable } from './stateable';
 
-export abstract class StateUtilService {
+export abstract class StateUtilService extends BaseService {
+    public abstract addCreatorId(creatable: Creatable): Creatable;
     public abstract addDefaultDates(dateable: Dateable): Dateable;
     public abstract addDefaultState(stateable: Stateable): Stateable;
     public abstract createDates(): Dates;

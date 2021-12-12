@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { EventEmitter, Injectable, Optional } from '@angular/core';
-import { AuthorizationService, ButtonBase, Entity, Event, EventEntity, I18nService } from '@zsport/api';
+import { AuthorizationService, ButtonBase, Event, EventEntity, I18nService } from '@zsport/api';
 import { EventCompetitionFormButtonFactory } from '@zsport/domain/sport/event/competition-form';
 
 import { AdminCompetitionEventPermissionsService } from '../../../../../permission/competition-event';
@@ -15,7 +15,7 @@ export class CompetitionEventFormButtonFactoryImpl extends EventCompetitionFormB
         super();
     }
 
-    public createFormButtons(buttonUpdate: EventEmitter<Event>): ButtonBase[] {
+    public createFormButtons(buttonUpdate: EventEmitter<EventEntity>): ButtonBase[] {
         return [
             this.createSubmitButton(
                 (value: Event) => {

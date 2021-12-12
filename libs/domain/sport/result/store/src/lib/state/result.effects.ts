@@ -12,7 +12,7 @@ export class ResultEffects {
         this.actions$.pipe(
             ofType(resultActions.addResult),
             switchMap((action) =>
-                this.resultDataService.add$(action.result).pipe(
+                this.resultDataService.add$({ ...action.result }).pipe(
                     map((resultModel) => {
                         return resultActions.addResultSuccess({
                             result: { ...(resultModel as Result) },
@@ -30,6 +30,20 @@ export class ResultEffects {
                     map((resultModels) => {
                         return resultActions.listResultsSuccess({
                             results: resultModels.map((resultModel) => ({ ...(resultModel as ResultModel) })),
+                        });
+                    })
+                )
+            )
+        )
+    );
+    public listResultsByEventId = createEffect(() =>
+        this.actions$.pipe(
+            ofType(resultActions.listResultsByEventId),
+            switchMap((action) =>
+                this.resultDataService.listResultsByEventId(action.eventId).pipe(
+                    map((results) => {
+                        return resultActions.listResultsByEventIdSuccess({
+                            results,
                         });
                     })
                 )

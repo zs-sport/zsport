@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { EVENT_FEATURE_KEY, EventEntity } from '@zsport/api';
+import { Event, EVENT_FEATURE_KEY, EventEntity } from '@zsport/api';
 
 import * as eventActions from './event.actions';
 
@@ -33,20 +33,27 @@ export const eventReducer = createReducer(
         ...state,
         isNewEntityButtonEnabled: enabled,
     })),
+    on(eventActions.clearEvents, (state) => eventAdapter.removeAll(state)),
+    on(eventActions.deleteEventSuccess, (state, { eventId }) => eventAdapter.removeOne(eventId, state)),
+    on(eventActions.listEventsSuccess, (state, { events }) => eventAdapter.upsertMany(events, state)),
+    on(eventActions.ListEventsByCompetitionIdSuccess, (state, { events }) => eventAdapter.upsertMany(events, state)),
+    on(eventActions.listEventsByDaySuccess, (state, { events }) => eventAdapter.upsertMany(events, state)),
+    on(eventActions.loadEventSuccess, (state, { event }) => eventAdapter.upsertOne(event, state)),
+    on(eventActions.listResultsByEventIdSuccess, (state, { results, eventId }) => {
+        let event: EventEntity = state.entities[eventId] as EventEntity;
+
+        event = { ...event, results };
+
+        return eventAdapter.updateOne({ id: event.uid || '', changes: event }, state);
+    }),
     on(eventActions.selectEvent, (state, { eventId }) => ({
         ...state,
         loading: false,
         error: null,
         selectedEventId: eventId,
     })),
-    on(eventActions.updateEventSuccess, (state, { event }) => eventAdapter.updateOne(event, state)),
-    on(eventActions.deleteEventSuccess, (state, { eventId }) => eventAdapter.removeOne(eventId, state)),
-    on(eventActions.listEventsSuccess, (state, { events }) => eventAdapter.upsertMany(events, state)),
-    on(eventActions.ListEventsByCompetitionIdSuccess, (state, { events }) => eventAdapter.upsertMany(events, state)),
-    on(eventActions.listEventsByDaySuccess, (state, { events }) => eventAdapter.upsertMany(events, state)),
-    on(eventActions.loadEventSuccess, (state, { event }) => eventAdapter.upsertOne(event, state)),
-    on(eventActions.clearEvents, (state) => eventAdapter.removeAll(state)),
-    on(eventActions.setSelectedEventId, (state, { eventId }) => ({ ...state, selectedId: eventId }))
+    on(eventActions.setSelectedEventId, (state, { eventId }) => ({ ...state, selectedId: eventId })),
+    on(eventActions.updateEventSuccess, (state, { event }) => eventAdapter.updateOne(event, state))
 );
 
 export function reducer(state: State | undefined, action: Action) {

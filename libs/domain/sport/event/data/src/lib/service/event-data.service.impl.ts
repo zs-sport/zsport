@@ -9,6 +9,8 @@ import {
     EventDataService,
     EventModel,
     EventTeam,
+    RESULT_FEATURE_KEY,
+    ResultModel,
     TEAM_FEATURE_KEY,
 } from '@zsport/api';
 
@@ -37,6 +39,18 @@ export class EventDataServiceImpl extends EventDataService {
 
         return new Observable<EventModel>((observer) => {
             observer.next(event);
+        });
+    }
+
+    public addResultByEventId(resultModel: ResultModel, eventId: string): Observable<ResultModel> {
+        const newId = this.angularFirestore.createId();
+
+        resultModel = { ...resultModel, uid: newId };
+
+        this.eventCollection.doc(eventId).collection(RESULT_FEATURE_KEY).doc(newId).set(resultModel, { merge: true });
+
+        return new Observable<ResultModel>((observer) => {
+            observer.next(resultModel);
         });
     }
 
@@ -85,6 +99,23 @@ export class EventDataServiceImpl extends EventDataService {
                     values.map((item) => eventTeams.push(item as EventTeam));
 
                     observer.next(eventTeams);
+                });
+        });
+    }
+
+    public listResultsByEventId(eventId: string): Observable<ResultModel[]> {
+        return new Observable<ResultModel[]>((observer) => {
+            const eventDocument = this.angularFirestore.doc<EventModel>(EVENT_FEATURE_KEY + '/' + eventId);
+
+            eventDocument
+                .collection(RESULT_FEATURE_KEY)
+                .valueChanges()
+                .subscribe((values) => {
+                    const results: ResultModel[] = [];
+
+                    values.map((item) => results.push(item as ResultModel));
+
+                    observer.next(results);
                 });
         });
     }

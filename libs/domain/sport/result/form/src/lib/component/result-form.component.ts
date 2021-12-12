@@ -1,6 +1,7 @@
 import { takeUntil, tap } from 'rxjs/operators';
 
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormArray, FormGroup } from '@angular/forms';
 
 import { ResultFormBase } from '../base';
 import { ResultFormService } from '../service';
@@ -13,8 +14,18 @@ import { ResultFormService } from '../service';
     styleUrls: ['./result-form.component.less'],
 })
 export class ResultFormComponent extends ResultFormBase implements OnInit {
+    public resultFormGroup!: FormGroup;
+
     public constructor(private componentService: ResultFormService) {
         super();
+    }
+
+    public get periodsFormArray(): FormArray {
+        return this.componentService.getPeriodsFormArray();
+    }
+
+    public cancel(): void {
+        this.componentService.cancel();
     }
 
     public ngOnInit(): void {
@@ -22,11 +33,14 @@ export class ResultFormComponent extends ResultFormBase implements OnInit {
             .init$()
             .pipe(
                 tap(() => {
-                    this.dynamicComponent$ = this.componentService.dynamicComponent$;
-                    this.dynamicInputs$$ = this.componentService.dynamicInputs$$;
+                    this.resultFormGroup = this.componentService.resultFormGroup;
                 }),
                 takeUntil(this.destroy)
             )
             .subscribe();
+    }
+
+    public submit(): void {
+        this.componentService.submit();
     }
 }

@@ -1,11 +1,14 @@
 import { Observable } from 'rxjs';
 
 import { EntityDataService } from '../../base';
-import { EventTeam } from './event-team';
+import { ResultModel } from '../result';
 import { Event } from './event';
+import { EventTeam } from './event-team';
 
 export abstract class EventDataService extends EntityDataService {
+    public abstract addResultByEventId(resultModel: ResultModel, eventId: string): Observable<ResultModel>;
     public abstract listByDay$(day: Date): Observable<Event[]>;
     public abstract listEventTeamsByEventId(eventId: string): Observable<EventTeam[]>;
+    public abstract listResultsByEventId(eventId: string): Observable<ResultModel[]>;
     public abstract updateEventTeamByEventId(eventTeam: EventTeam, eventId: string): Observable<EventTeam>;
 }

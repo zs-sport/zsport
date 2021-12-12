@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { DateUtilService, EventEntity, EventStateService } from '@zsport/api';
+import { DateUtilService, EventEntity, EventStateService, ResultEntity } from '@zsport/api';
 
 import * as eventActions from './event.actions';
 import * as fromEvent from './event.reducer';
@@ -16,6 +16,15 @@ export class EventStateServiceImpl extends EventStateService {
 
     public dispatchAddEntityAction(entity: EventEntity): void {
         this.store.dispatch(eventActions.addEvent({ event: entity }));
+    }
+
+    public dispatchAddResultByEventIdAction(result: ResultEntity, eventId: string): void {
+        this.store.dispatch(
+            eventActions.addResultByEventId({
+                result,
+                eventId,
+            })
+        );
     }
 
     public dispatchChangeNewEntityButtonEnabled(enabled: boolean): void {

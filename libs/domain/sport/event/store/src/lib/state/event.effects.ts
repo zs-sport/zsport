@@ -131,6 +131,26 @@ export class EventEffects {
             )
         )
     );
+    public updateResultByEventId = createEffect(() =>
+        this.actions$.pipe(
+            ofType(eventActions.updateResultByEventId),
+            switchMap((action) =>
+                this.eventDataService
+                    .updateResultByEventId(
+                        this.resultUtilService.convertEntityToModel(action.result, false) as ResultModel,
+                        action.eventId
+                    )
+                    .pipe(
+                        map((result) => {
+                            return eventActions.updateResultByEventIdSuccess({
+                                result: this.resultUtilService.convertModelToEntity(result) as ResultEntity,
+                                eventId: action.eventId,
+                            });
+                        })
+                    )
+            )
+        )
+    );
 
     public constructor(
         private actions$: Actions,

@@ -210,7 +210,7 @@ export class EventFormControlFactoryImpl extends EventFormControlFactory {
                 options$: of(homeTeam).pipe(
                     map((homeTeam) =>
                         homeTeam
-                            ? (homeTeam.club.locations as Location[]).map((location) => ({
+                            ? ((homeTeam.club.locations as Location[]) || []).map((location) => ({
                                   label: location.name,
                                   value: location,
                               }))

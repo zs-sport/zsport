@@ -47,6 +47,10 @@ export class EventStateServiceImpl extends EventStateService {
         this.store.dispatch(eventActions.listEventsByDay({ day }));
     }
 
+    public dispatchListResultsByEventId(eventId: string): void {
+        this.store.dispatch(eventActions.listResultsByEventId({ eventId }));
+    }
+
     public dispatchLoadEntitiesAction(): void {}
 
     public dispatchLoadEntitiesByIdsAction(uids: string[]): void {

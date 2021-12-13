@@ -12,6 +12,7 @@ import {
     RESULT_FEATURE_KEY,
     ResultModel,
     TEAM_FEATURE_KEY,
+    ResultEntity,
 } from '@zsport/api';
 
 @Injectable()
@@ -156,6 +157,19 @@ export class EventDataServiceImpl extends EventDataService {
 
         return new Observable<EventTeam>((observer) => {
             observer.next(eventTeam);
+        });
+    }
+
+    public updateResultByEventId(result: ResultModel, eventId: string): Observable<ResultModel> {
+        const eventDocument = this.angularFirestore.doc<EventModel>('event' + '/' + eventId);
+
+        eventDocument
+            .collection(RESULT_FEATURE_KEY)
+            .doc(result.uid || '')
+            .set(result, { merge: true });
+
+        return new Observable<ResultModel>((observer) => {
+            observer.next(result);
         });
     }
 }

@@ -1,5 +1,5 @@
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
@@ -10,6 +10,8 @@ import {
     DynamicTableConfigModel,
     DynamicTableSizeEnum,
     Entity,
+    EventEntity,
+    EventStateService,
     I18nService,
     Result,
     ResultStateService,
@@ -27,14 +29,11 @@ export class ResultTableFactoryImpl extends ResultTableFactory {
     constructor(
         private activatedRoute: ActivatedRoute,
         private authorizationService: AuthorizationService,
+        private eventStateService: EventStateService,
         private i18NService: I18nService,
         private resultStateService: ResultStateService
     ) {
         super();
-    }
-
-    protected findParam(paramName: string, snapshots: ActivatedRouteSnapshot[]): string | null {
-        return snapshots ? snapshots.map((snapshot) => snapshot.params[paramName]).find((param) => !!param) : null;
     }
 
     public createTableConfig$(): Observable<DynamicTableConfigModel> {
@@ -50,13 +49,19 @@ export class ResultTableFactoryImpl extends ResultTableFactory {
     public getData$(): Observable<Result[]> {
         const eventId: string | null = this.activatedRoute.snapshot.queryParams['eventId'];
 
-        return this.resultStateService
-            .selectResultsByEventId$(eventId || '')
-            .pipe(map((entities) => entities.map((entity) => entity as Result)));
+        this.eventStateService.dispatchListResultsByEventId(eventId || '');
+
+        return this.eventStateService
+            .selectEntityById$(eventId || '')
+            .pipe(map((entity) => (entity as EventEntity).results));
     }
 
     public getTableComponent(): any {
         return NgzDynamicTableComponent;
+    }
+
+    protected findParam(paramName: string, snapshots: ActivatedRouteSnapshot[]): string | null {
+        return snapshots ? snapshots.map((snapshot) => snapshot.params[paramName]).find((param) => !!param) : null;
     }
 
     private createColumnHeaders(): DynamicColumnHeaderModel[] {

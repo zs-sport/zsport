@@ -11,4 +11,5 @@ export abstract class EventDataService extends EntityDataService {
     public abstract listEventTeamsByEventId(eventId: string): Observable<EventTeam[]>;
     public abstract listResultsByEventId(eventId: string): Observable<ResultModel[]>;
     public abstract updateEventTeamByEventId(eventTeam: EventTeam, eventId: string): Observable<EventTeam>;
+    public abstract updateResultByEventId(result: ResultModel, eventId: string): Observable<ResultModel>;
 }

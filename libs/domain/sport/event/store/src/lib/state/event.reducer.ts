@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { Event, EVENT_FEATURE_KEY, EventEntity } from '@zsport/api';
+import { Event, EVENT_FEATURE_KEY, EventEntity, Result, ResultEntity } from '@zsport/api';
 
 import * as eventActions from './event.actions';
 
@@ -53,7 +53,19 @@ export const eventReducer = createReducer(
         selectedEventId: eventId,
     })),
     on(eventActions.setSelectedEventId, (state, { eventId }) => ({ ...state, selectedId: eventId })),
-    on(eventActions.updateEventSuccess, (state, { event }) => eventAdapter.updateOne(event, state))
+    on(eventActions.updateEventSuccess, (state, { event }) => eventAdapter.updateOne(event, state)),
+    on(eventActions.updateResultByEventIdSuccess, (state, { result, eventId }) => {
+        let event: EventEntity = state.entities[eventId] as EventEntity;
+
+        const entityResults: ResultEntity[] = event.results || [];
+        const resultIndex = entityResults.findIndex((entityResult) => entityResult.uid === result.uid);
+
+        entityResults[resultIndex] = result;
+
+        event = { ...event, results: entityResults };
+
+        return eventAdapter.updateOne({ id: event.uid || '', changes: event }, state);
+    })
 );
 
 export function reducer(state: State | undefined, action: Action) {

@@ -9,6 +9,7 @@ export abstract class EventStateService extends EntityStateService {
     public abstract dispatchChangeNewEntityButtonEnabled(enabled: boolean): void;
     public abstract dispatchListEventsByCompetitionIdSuccess(events: EventEntity[]): void;
     public abstract dispatchListEventsByDay(day: Date): void;
+    public abstract dispatchListResultsByEventId(eventId: string): void;
     public abstract selectEntities$(): Observable<EventEntity[]>;
     public abstract selectEventsByCompetitionId(competitionId: string): Observable<EventEntity[]>;
     public abstract selectEventsByDay$(day: Date): Observable<EventEntity[]>;

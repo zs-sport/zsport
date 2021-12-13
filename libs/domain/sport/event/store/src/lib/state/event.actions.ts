@@ -1,6 +1,6 @@
 import { Update } from '@ngrx/entity';
 import { createAction, props } from '@ngrx/store';
-import { EventEntity, ResultEntity } from '@zsport/api';
+import { EventEntity, Result, ResultEntity } from '@zsport/api';
 
 export const addEvent = createAction('[Event] Add Event', props<{ event: EventEntity }>());
 
@@ -88,3 +88,13 @@ export const updateEvent = createAction('[Event] Update Event', props<{ event: E
 export const updateEventFail = createAction('[Event] Update Event Fail', props<{ error: Error }>());
 
 export const updateEventSuccess = createAction('[Event] Update Event Success', props<{ event: Update<EventEntity> }>());
+
+export const updateResultByEventId = createAction(
+    '[Event Admin] Update Result By Event Id',
+    props<{ result: ResultEntity; eventId: string }>()
+);
+
+export const updateResultByEventIdSuccess = createAction(
+    '[Event Admin] Update Result By Event Id Success',
+    props<{ result: ResultEntity; eventId: string }>()
+);

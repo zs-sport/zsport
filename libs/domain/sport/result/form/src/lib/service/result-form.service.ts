@@ -5,7 +5,17 @@ import { Location } from '@angular/common';
 import { Injectable, Optional } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
-import { Category, CategoryRule, Event, EventStateService, Period, Result, ResultStateService } from '@zsport/api';
+import {
+    Category,
+    CategoryRule,
+    CategoryRuleService,
+    Event,
+    EventStateService,
+    LanguagesEnum,
+    Period,
+    Result,
+    ResultStateService,
+} from '@zsport/api';
 
 import { ResultFormBase } from '../base';
 import { ResultFormFactory } from '../factory';
@@ -38,8 +48,8 @@ export class ResultFormService extends ResultFormBase {
     }
 
     public init$(): Observable<boolean> {
-        const resultId: string = this.activatedRoute.snapshot.paramMap.get('resultId') || '';
         const eventId: string | null = this.findParam('eventId', this.activatedRoute.snapshot.pathFromRoot);
+        const resultId: string = this.activatedRoute.snapshot.paramMap.get('resultId') || '';
 
         return this.resultStateService.selectEntityById$(resultId).pipe(
             withLatestFrom(this.eventStateService.selectEntityById$(eventId || '')),
@@ -47,7 +57,14 @@ export class ResultFormService extends ResultFormBase {
                 this.sportEvent = event as Event;
 
                 this.category = (event as Event).category;
-                this.resultFormGroup = this.createResultFormGroup(result as Result, this.category?.rule, eventId || '');
+                this.resultFormGroup = this.createResultFormGroup(
+                    result as Result,
+                    this.category?.rule ||
+                        CategoryRuleService.getRuleForCategory(
+                            this.sportEvent.category.nameI18n[LanguagesEnum.en]?.toLowerCase() || ''
+                        ),
+                    eventId || ''
+                );
             }),
             switchMap(() => of(true))
         );

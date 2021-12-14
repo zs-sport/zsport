@@ -36,7 +36,9 @@ export const eventReducer = createReducer(
     on(eventActions.clearEvents, (state) => eventAdapter.removeAll(state)),
     on(eventActions.deleteEventSuccess, (state, { eventId }) => eventAdapter.removeOne(eventId, state)),
     on(eventActions.listEventsSuccess, (state, { events }) => eventAdapter.upsertMany(events, state)),
-    on(eventActions.ListEventsByCompetitionIdSuccess, (state, { events }) => eventAdapter.upsertMany(events, state)),
+    on(eventActions.listEventsByCompetitionIdSuccess, (state, { events }) => {
+        return eventAdapter.setAll(events, state);
+    }),
     on(eventActions.listEventsByDaySuccess, (state, { events }) => eventAdapter.upsertMany(events, state)),
     on(eventActions.loadEventSuccess, (state, { event }) => eventAdapter.upsertOne(event, state)),
     on(eventActions.listResultsByEventIdSuccess, (state, { results, eventId }) => {

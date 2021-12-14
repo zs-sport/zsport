@@ -1,5 +1,5 @@
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import {
@@ -9,6 +9,7 @@ import {
     DynamicTableConfigModel,
     DynamicTableSizeEnum,
     Entity,
+    Event,
     EventEntity,
     EventStateService,
     I18nService,
@@ -33,13 +34,17 @@ export class EventTableFactoryImpl extends EventTableFactory {
     }
 
     public createTableConfig$(): Observable<DynamicTableConfigModel> {
-        return of({
-            id: 'eventTable',
-            size: DynamicTableSizeEnum.default,
-            columnHeaders: this.createColumnHeaders(),
-            columns: this.createColumns(),
-            isSortable: false,
-        });
+        return this.eventStateService.selectEntities$().pipe(
+            switchMap((entities) => {
+                return of({
+                    columnHeaders: this.createColumnHeaders(entities as EventEntity[]),
+                    id: 'eventTable',
+                    size: DynamicTableSizeEnum.default,
+                    columns: this.createColumns(),
+                    isSortable: false,
+                });
+            })
+        );
     }
 
     public getData$(): Observable<EventEntity[]> {
@@ -60,7 +65,14 @@ export class EventTableFactoryImpl extends EventTableFactory {
         return NgzDynamicTableComponent;
     }
 
-    private createColumnHeaders(): DynamicColumnHeaderModel[] {
+    private createColumnHeaders(events: EventEntity[]): DynamicColumnHeaderModel[] {
+        const clubNamesSet: Set<string> = new Set();
+
+        events.forEach((event) => {
+            clubNamesSet.add(event.team1.club.name);
+            clubNamesSet.add(event.team2.club.name);
+        });
+
         const columnHeaders: DynamicColumnHeaderModel[] = [
             {
                 listOfFilter: [],
@@ -73,6 +85,19 @@ export class EventTableFactoryImpl extends EventTableFactory {
             {
                 listOfFilter: [],
                 title: this.i18NService.translate('admin.sport.event.column.age_group'),
+            },
+            {
+                compare: (a: Event, b: Event) => (a.eventDayTime < b.eventDayTime ? -1 : 1),
+                listOfFilter: Array.from(clubNamesSet.values())
+                    .map((clubName) => ({
+                        text: clubName,
+                        value: clubName,
+                    }))
+                    .sort((a: any, b: any) => a['value'].localeCompare(b['value'])),
+                filterFn: (clubName: string, event: Event) => {
+                    return event.team1.club.name === clubName || event.team2.club.name === clubName;
+                },
+                title: this.i18NService.translate('admin.sport.event.column.date_time'),
             },
             {
                 listOfFilter: [],
@@ -121,6 +146,13 @@ export class EventTableFactoryImpl extends EventTableFactory {
                 isDoubleObject: true,
                 isLocalized: true,
                 objectPropertyName: 'nameI18n',
+            },
+            {
+                actionName: '',
+                actionRoute: '',
+                isDate: true,
+                objectPropertyName: '',
+                propertyName: 'eventDayTime',
             },
             {
                 actionName: '',

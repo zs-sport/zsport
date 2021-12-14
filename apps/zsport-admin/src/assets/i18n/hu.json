@@ -304,6 +304,7 @@
                     "age_group": "Életkor",
                     "edit": "Akció",
                     "gender": "Nem",
+                    "date_time": "Dátum időpont",
                     "team1": "Csapat 1",
                     "team2": "Csapat 2",
                     "category": "Kategória"
@@ -313,6 +314,8 @@
                     "age_group_placeholder": "Korosztály",
                     "category": "Kategória",
                     "category_placeholder": "Kategória",
+                    "competition": "Verseny",
+                    "competition_placeholder": "Válassz egy versenyt",
                     "event": "Esemény",
                     "event_day_time": "Időpont",
                     "event_day_time_placeholder": "Időpont",

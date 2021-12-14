@@ -1,6 +1,22 @@
 <section>
     <nz-page-header nzBackIcon [nzGhost]="false">
         <nz-page-header-extra>
+            <span>
+                <nz-select
+                    [(ngModel)]="selectedValue"
+                    [compareWith]="compareEntities"
+                    nzPlaceHolder="{{ 'admin.sport.event.label.competition_placeholder' | transloco }}"
+                    (ngModelChange)="competitionChangeHandler($event)"
+                >
+                    <nz-option
+                        *ngFor="let competition of competitions$$ | async"
+                        [nzLabel]="competition.name"
+                        [nzValue]="competition"
+                    >
+                    </nz-option>
+                </nz-select>
+            </span>
+
             <ng-template [ngxPermissionsOnly]="buttonPermissions">
                 <button
                     nz-button

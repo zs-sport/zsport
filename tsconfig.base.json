@@ -119,7 +119,7 @@
         }
     },
     "angularCompilerOptions": {
-        "fullTemplateTypeCheck": true,
+        "fullTemplateTypeCheck": false,
         "preserveWhitespaces": true
     },
     "exclude": ["node_modules", "tmp"]

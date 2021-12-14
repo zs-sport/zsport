@@ -18,6 +18,7 @@ import {
 @Injectable()
 export class EventDataServiceImpl extends EventDataService {
     private eventCollectionsByDay: Map<number, Observable<EventModel[]>>;
+    private eventCollectionsByCompetitionId: Map<string, Observable<EventModel[]>>;
 
     protected eventCollection: AngularFirestoreCollection<EventModel>;
     protected events$: Observable<EventModel[]>;
@@ -27,6 +28,7 @@ export class EventDataServiceImpl extends EventDataService {
 
         this.eventCollection = angularFirestore.collection<EventModel>(EVENT_FEATURE_KEY);
         this.eventCollectionsByDay = new Map<number, Observable<EventModel[]>>();
+        this.eventCollectionsByCompetitionId = new Map<string, Observable<EventModel[]>>();
 
         this.events$ = this.eventCollection.valueChanges();
     }
@@ -85,6 +87,23 @@ export class EventDataServiceImpl extends EventDataService {
         }
 
         return eventCollectionByDay;
+    }
+
+    public listByCompetitionId$(competitionId: string): Observable<EventModel[]> {
+        let eventCollectionByCompetitionId = this.eventCollectionsByCompetitionId.get(competitionId);
+
+        if (!eventCollectionByCompetitionId) {
+            eventCollectionByCompetitionId = this.angularFirestore
+                .collectionGroup<EventModel>('event', (reference) =>
+                    reference.where('competitionId', '==', competitionId)
+                )
+                .valueChanges()
+                .pipe(takeUntil(this.destroy));
+
+            this.eventCollectionsByCompetitionId.set(competitionId, eventCollectionByCompetitionId);
+        }
+
+        return eventCollectionByCompetitionId;
     }
 
     public listEventTeamsByEventId(eventId: string): Observable<EventTeam[]> {

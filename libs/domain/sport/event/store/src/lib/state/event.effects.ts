@@ -69,6 +69,22 @@ export class EventEffects {
             )
         )
     );
+    public listEventsByCompetitionId = createEffect(() =>
+        this.actions$.pipe(
+            ofType(eventActions.listEventsByCompetitionId),
+            switchMap((action) =>
+                this.eventDataService.listByCompetitionId$(action.competitionId).pipe(
+                    map((eventModels) => {
+                        return eventActions.listEventsByCompetitionIdSuccess({
+                            events: eventModels.map(
+                                (eventModel) => this.eventUtilService.convertModelToEntity(eventModel) as EventEntity
+                            ),
+                        });
+                    })
+                )
+            )
+        )
+    );
     public listEventsByDay = createEffect(() =>
         this.actions$.pipe(
             ofType(eventActions.listEventsByDay),

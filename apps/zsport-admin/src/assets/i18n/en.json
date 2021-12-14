@@ -303,6 +303,7 @@
                 "column": {
                     "action": "Action",
                     "age_group": "Age group",
+                    "date_time": "Date time",
                     "edit": "Action",
                     "gender": "Gender",
                     "team1": "Team 1",
@@ -314,6 +315,8 @@
                     "age_group_placeholder": "Age group",
                     "category": "Category",
                     "category_placeholder": "Category",
+                    "competition": "Competition",
+                    "competition_placeholder": "Choose a competition",
                     "event": "Event",
                     "event_day_time": "Event day time",
                     "event_day_time_placeholder": "Event day time",

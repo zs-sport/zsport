@@ -7,7 +7,6 @@ export class EventListResolverService implements Resolve<void> {
     constructor(private eventStateService: EventStateService) {}
 
     public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): void {
-        this.eventStateService.dispatchListEntitiesAction();
         this.eventStateService.dispatchSetSelectedEntityIdAction('');
         this.eventStateService.dispatchChangeNewEntityButtonEnabled(true);
     }

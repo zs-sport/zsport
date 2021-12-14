@@ -7,6 +7,7 @@ import { EventEntity } from './event.entity';
 export abstract class EventStateService extends EntityStateService {
     public abstract dispatchAddResultByEventIdAction(result: ResultEntity, eventId: string): void;
     public abstract dispatchChangeNewEntityButtonEnabled(enabled: boolean): void;
+    public abstract dispatchListEventsByCompetitionId(competitionId: string): void;
     public abstract dispatchListEventsByCompetitionIdSuccess(events: EventEntity[]): void;
     public abstract dispatchListEventsByDay(day: Date): void;
     public abstract dispatchListResultsByEventId(eventId: string): void;

@@ -1,0 +1,128 @@
+/* Event: Commentary */
+.alc-match-commentary-wrapper {
+
+}
+
+.alc-match-commentary {
+
+	thead > tr > th {
+		text-align: center;
+	}
+
+	thead > tr > th,
+	thead > tr > td,
+	tbody > tr > th,
+	tbody > tr > td {
+		vertical-align: middle;
+	}
+
+	tbody > tr > th:first-child,
+	tbody > tr > td:first-child {
+
+		@media (min-width: 992px) {
+			padding-left: $card-horizontal-padding;
+		}
+	}
+
+	tbody > tr > th:last-child,
+	tbody > tr > td:last-child {
+
+		@media (min-width: 992px) {
+			padding-right: $card-horizontal-padding;
+		}
+	}
+}
+	.alc-commentary-cell {
+		width: 48%;
+
+		strong {
+			color: $table-highlight;
+			font-weight: 400;
+		}
+	}
+
+	// Team #1
+	.alc-commentary-cell--team1 {
+
+		.alc-commentary-cell__inner {
+			justify-content: flex-end;
+			text-align: right;
+		}
+
+			.alc-commentary-cell__text {
+				order: 1;
+			}
+
+			.alc-commentary-cell__icon {
+				order: 2;
+			}
+	}
+
+	// Team #2
+	.alc-commentary-cell--team2 {
+
+		.alc-commentary-cell__inner {
+			justify-content: flex-start;
+			text-align: left;
+		}
+
+			.alc-commentary-cell__text {
+				order: 2;
+			}
+
+			.alc-commentary-cell__icon {
+				order: 1;
+			}
+	}
+		.alc-commentary-cell__inner {
+			display: flex;
+			align-items: center;
+		}
+			.alc-commentary-cell__text {
+				padding-top: 3px;
+				padding-bottom: 3px;
+			}
+			.alc-commentary-cell__icon {
+				flex-basis: 30px;
+				min-width: 30px;
+				text-align: center;
+
+				@media (min-width: 992px) {
+					flex-basis: 50px;
+					min-width: 50px;
+				}
+			}
+
+	.alc-time-stamp {
+		text-align: center;
+		width: 4%;
+		font-weight: 700;
+		color: $table-highlight;
+
+		@media (min-width: 992px) {
+
+		}
+	}
+
+	// Subheader
+	.alc-commentary-subheader {
+		text-align: center;
+		padding-top: 18px !important;
+		padding-bottom: 18px !important;
+	}
+		.alc-commentary-subheader__title {
+			text-transform: uppercase;
+			color: $table-highlight;
+			font-weight: 700;
+			margin-bottom: .75em;
+		}
+		.alc-commentary-subheader__subtitle {
+
+			strong {
+				font-weight: 400;
+				color: $table-highlight;
+			}
+		}
+		.alc-commentary-subheader__icon {
+			margin-bottom: 13px;
+		}

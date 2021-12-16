@@ -1,0 +1,28 @@
+/* Widget: Event Result Labels */
+.widget-event-result-labels {
+
+}
+
+	table.alc-event-result-labels {
+
+		> tbody {
+
+			> tr {
+
+				> td {
+
+					&.alc-team {
+
+					}
+					&.alc-results {
+						text-align: right;
+						vertical-align: middle;
+
+						.label {
+							margin: 0 4px;
+						}
+					}
+				}
+			}
+		}
+	}

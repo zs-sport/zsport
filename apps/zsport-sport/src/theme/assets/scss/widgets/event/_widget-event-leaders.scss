@@ -1,0 +1,223 @@
+/* Widget: Event Leaders */
+.alc-widget-event-leaders {
+
+
+}
+
+	// Default (vertical) layout
+	.alc-event-leader {
+		border-top: 1px solid $card-border-color;
+
+		.table-responsive:first-child & {
+			border-top: none;
+		}
+
+		.alc-event-leader__stat {
+			text-align: center;
+		}
+
+		.alc-event-leader__type,
+		.alc-event-leader__player {
+			padding-left: 15px;
+			vertical-align: middle;
+
+			@media (min-width: 1200px) {
+				padding-left: $card-horizontal-padding;
+			}
+		}
+
+		.alc-event-leader__player--highlight {
+			position: relative;
+
+			&::before {
+				content: "";
+				display: block;
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				width: 6px;
+			}
+		}
+
+		// add border radius to the last element
+		tbody:last-child tr:last-child .alc-event-leader__player--highlight::before {
+			border-bottom-left-radius: $card-border-radius - 1;
+		}
+
+		.alc-event-leader__player--highlight-primary {
+
+			&::before {
+				background-color: $color-primary;
+			}
+		}
+
+		.alc-event-leader__player--highlight-info {
+
+			&::before {
+				background-color: $color-info;
+			}
+		}
+
+		th:last-child,
+		td:last-child {
+			@media (min-width: 1200px) {
+				padding-right: $card-horizontal-padding;
+			}
+		}
+
+		tbody > tr > td {
+			vertical-align: middle;
+		}
+	}
+
+		th {
+			text-transform: uppercase;
+		}
+
+		.alc-event-leader__player-info {
+			display: flex;
+			align-items: center;
+		}
+			.alc-event-leader__player-img {
+				overflow: hidden;
+				margin-right: 10px;
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+			}
+			.alc-event-leader__player-img--sm {
+				width: 30px;
+				height: 30px;
+			}
+			.alc-event-leader__player-img--n {
+				width: 36px;
+				height: 36px;
+			}
+			.alc-event-leader__player-img--square {
+				border-radius: 4px;
+			}
+			.alc-event-leader__player-inner {
+				flex: 1;
+			}
+				.alc-event-leader__player-name {
+					text-transform: none;
+					font-size: 12px;
+					line-height: 1.2em;
+					font-weight: 400;
+					margin-bottom: 0;
+					font-style: normal;
+				}
+				.alc-event-leader__player-position {
+					display: block;
+					font-family: $font-family-accent;
+					font-size: 9px;
+					line-height: 1.2em;
+				}
+
+
+	// heading legend
+	.alc-event-leader__team-legend {
+		display: flex;
+		align-items: center;
+	}
+	.alc-event-leader__team-legend--reverse {
+		justify-content: flex-end;
+
+		.alc-event-leader__team-legend-color {
+			order: 2;
+			margin-right: 0;
+			margin-left: 8px;
+		}
+		.alc-event-leader__team-legend-abbr {
+			order: 1;
+		}
+	}
+		.alc-event-leader__team-legend-color {
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			border-radius: 2px;
+			background-color: $color-primary;
+			margin-right: 8px;
+		}
+		// for demo purpose
+		.alc-event-leader__team-legend-color--clovers {
+			background-color: #aaf20e;
+		}
+		.alc-event-leader__team-legend-abbr {
+
+		}
+
+
+
+	// Horizontal layout
+	.alc-event-leader--hor {
+
+		th:first-child,
+		td:first-child {
+			@media (min-width: 1200px) {
+				padding-left: $card-horizontal-padding;
+			}
+		}
+
+		.alc-event-leader__divider {
+			text-align: center;
+			font-weight: 700;
+			text-transform: uppercase;
+		}
+
+		.alc-event-leader__team {
+
+		}
+
+		.alc-event-leader__type {
+			vertical-align: middle;
+			padding-left: 0;
+			padding-right: 0;
+			text-align: center;
+			white-space: nowrap;
+
+			@media (min-width: 1200px) {
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+
+		.alc-event-leader__player {
+			padding-right: 0;
+
+			&:last-child {
+				padding-left: 0;
+
+				.alc-event-leader__player-info {
+					text-align: right;
+
+					.alc-event-leader__player-img {
+						order: 2;
+						margin-right: 0;
+						margin-left: 10px;
+					}
+					.alc-event-leader__player-inner {
+						order: 1;
+					}
+				}
+			}
+		}
+
+		.alc-event-leader__player-name {
+			white-space: nowrap;
+		}
+
+		.alc-event-leader__player-stats {
+			font-size: 10px;
+			line-height: 1.2em;
+			color: $headings-color;
+			font-weight: 700;
+			padding-top: 5px;
+		}
+
+		.alc-event-leader__player-stats + .alc-event-leader__player-stats {
+			padding-top: 0;
+		}
+	}

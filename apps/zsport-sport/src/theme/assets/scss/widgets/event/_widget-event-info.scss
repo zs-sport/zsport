@@ -1,0 +1,107 @@
+/* Widget: Event Info */
+.alc-event-img {
+	display: block;
+
+	img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+.alc-event-gmap {
+
+}
+.alc-event-gmap-wrapper {
+
+	.alc-event-gmap {
+		margin: 16px;
+		width: calc(100% - 32px);
+
+		@media (min-width: 992px) {
+			height: calc(100% - 32px);
+			min-height: 200px;
+		}
+	}
+}
+
+.alc-event-info {
+	margin: 0;
+}
+	.alc-event-info__item {
+		padding: $card-vertical-padding * 0.6 $card-horizontal-padding;
+		display: flex;
+		border-top: 1px solid $card-border-color;
+	}
+		.alc-event-info__icon {
+			width: 20px;
+			margin-right: 12px;
+
+			svg,
+			.icon-svg {
+				display: inline-block;
+				vertical-align: top;
+				position: relative;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+		}
+		.alc-event-info__label,
+		.alc-event-info__value {
+			font-family: $font-family-accent;
+			font-size: 11px;
+			color: $headings-color;
+			font-weight: 700;
+		}
+		.alc-event-info__value {
+			flex: 1;
+		}
+
+	.alc-event-info__item--desc {
+		display: block;
+		padding-top: $card-vertical-padding;
+		padding-bottom: $card-vertical-padding;
+		font-size: $font-size-sm;
+		line-height: 1.54em;
+
+		.alc-event-info__label {
+			display: inline-block;
+			margin: 0;
+		}
+	}
+
+
+// Bordered
+.alc-event-info-wrapper {
+
+	> [class*="col-"] + [class*="col-"] {
+		border-left: 1px solid $card-border-color;
+	}
+
+	.alc-event-info {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+		.alc-event-info__item {
+			flex-basis: 100%;
+			min-width: 100%;
+			display: flex;
+			padding-top: 13px;
+			padding-bottom: 13px;
+			align-items: center;
+
+			.alc-event-info__title {
+				flex-basis: 100px;
+				max-width: 100px;
+				font-size: 11px;
+				line-height: 1.2em;
+			}
+			.alc-event-info__value {
+				flex: 1;
+			}
+		}
+
+		.alc-event-info__item:first-child {
+			border-top: none;
+		}
+}

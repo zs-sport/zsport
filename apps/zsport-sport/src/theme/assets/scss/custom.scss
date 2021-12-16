@@ -1,0 +1,37 @@
+/*
+File Name: 		custom.css
+Description:  You can add your custom CSS here and it will overwrite template styles
+*/
+.edit-article {
+    background-color: #141414;
+}
+
+.ant-layout-header {
+    height: 112px;
+    padding: 0;
+}
+
+.header-logo {
+    bottom: 0px;
+
+    img {
+        margin-left: 30px;
+        width: 120px;
+    }
+}
+
+nz-form-control.hidden-form-control {
+    .ant-form-item-control-input {
+        min-height: 0;
+    }
+}
+
+.posts__thumb a img {
+    filter: grayscale(0.5); 
+}
+
+.header__top-bar {
+    .highlight {
+        padding-left: 3px;
+    }
+}

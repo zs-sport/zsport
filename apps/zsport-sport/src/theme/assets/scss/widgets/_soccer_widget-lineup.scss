@@ -1,0 +1,139 @@
+/* Widget: Soccer Lineup */
+.widget-lineup {
+    .widget__content {
+        text-align: center;
+    }
+}
+.soccer-lineup {
+    background-size: cover;
+    max-width: 100%;
+}
+
+.alc-formation {
+    overflow-x: auto;
+}
+.alc-formation__field {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 316px;
+    height: 460px;
+    margin: 0 auto;
+    list-style-type: none;
+    padding: 0;
+}
+.alc-formation__player {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 32px;
+}
+.alc-formation__player-tshirt {
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 32px 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.alc-formation__player-number {
+    font-size: 8px;
+    font-weight: 700;
+    font-family: $font-family-accent;
+    text-transform: uppercase;
+    @include fix_small_chars();
+    color: #fff;
+    padding-bottom: 0.5em;
+}
+.alc-formation__player-name {
+    display: inline-block;
+    position: relative;
+    font-family: $font-family-accent;
+    color: #fff;
+    font-size: 10px;
+    line-height: 1.1em;
+    font-weight: 700;
+    padding: 0.2em 0.5em;
+    border-radius: 2px;
+    background-color: rgba(#232b31, 0.6);
+    white-space: nowrap;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+// Lineup #1
+.alc-formation__field--lineup-1 {
+    .alc-formation__player:nth-child(1) {
+        transform: translate(142px, 26px);
+    }
+    .alc-formation__player:nth-child(2) {
+        transform: translate(79px, 72px);
+    }
+    .alc-formation__player:nth-child(3) {
+        transform: translate(207px, 72px);
+    }
+    .alc-formation__player:nth-child(4) {
+        transform: translate(37px, 136px);
+    }
+    .alc-formation__player:nth-child(5) {
+        transform: translate(247px, 136px);
+    }
+    .alc-formation__player:nth-child(6) {
+        transform: translate(142px, 198px);
+    }
+    .alc-formation__player:nth-child(7) {
+        transform: translate(63px, 230px);
+    }
+    .alc-formation__player:nth-child(8) {
+        transform: translate(221px, 230px);
+    }
+    .alc-formation__player:nth-child(9) {
+        transform: translate(62px, 314px);
+    }
+    .alc-formation__player:nth-child(10) {
+        transform: translate(221px, 314px);
+    }
+    .alc-formation__player:nth-child(11) {
+        transform: translate(142px, 358px);
+    }
+}
+
+// Lineup #2
+.alc-formation__field--lineup-2 {
+    .alc-formation__player:nth-child(1) {
+        transform: translate(142px, 26px);
+    }
+    .alc-formation__player:nth-child(2) {
+        transform: translate(37px, 134px);
+    }
+    .alc-formation__player:nth-child(3) {
+        transform: translate(142px, 108px);
+    }
+    .alc-formation__player:nth-child(4) {
+        transform: translate(247px, 134px);
+    }
+    .alc-formation__player:nth-child(5) {
+        transform: translate(63px, 210px);
+    }
+    .alc-formation__player:nth-child(6) {
+        transform: translate(142px, 198px);
+    }
+    .alc-formation__player:nth-child(7) {
+        transform: translate(221px, 210px);
+    }
+    .alc-formation__player:nth-child(8) {
+        transform: translate(37px, 297px);
+    }
+    .alc-formation__player:nth-child(9) {
+        transform: translate(247px, 297px);
+    }
+    .alc-formation__player:nth-child(10) {
+        transform: translate(97px, 362px);
+    }
+    .alc-formation__player:nth-child(11) {
+        transform: translate(188px, 362px);
+    }
+}

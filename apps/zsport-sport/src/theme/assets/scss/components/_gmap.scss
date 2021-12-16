@@ -1,0 +1,29 @@
+/* Google Map
+/* ------------------------- */
+
+.gm-map {
+	display: block;
+	width: 100%;
+	height: 240px;
+
+	@media (min-width: 992px) {
+		height: 350px;
+	}
+}
+
+	// Sizes
+	.gm-map--sm {
+		height: 180px;
+
+		@media (min-width: 992px) {
+			height: 200px;
+		}
+	}
+
+	.gm-map--lg {
+		height: 300px;
+
+		@media (min-width: 992px) {
+			height: 460px;
+		}
+	}

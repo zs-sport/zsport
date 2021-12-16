@@ -1,0 +1,30 @@
+/* Widget: Event Stats Carousel */
+.widget-event-stats-carousel {
+
+}
+	.alc-event-stats-carousel {
+		position: relative;
+		margin-bottom: 70px !important;
+	}
+		.alc-event-stats-carousel__item {
+			text-align: center;
+			padding-top: 40px;
+			padding-bottom: 40px;
+		}
+			.alc-event-stats-carousel__figure {
+				display: block;
+				text-align: center;
+				font-size: 32px;
+				line-height: 1em;
+				margin-bottom: 0;
+
+				@media (min-width: 992px) {
+					font-size: 72px;
+				}
+			}
+			.alc-event-stats-carousel__title {
+				padding: 10px 0;
+				color: $body-font-color;
+				font-size: 10px;
+				margin-bottom: 0;
+			}

@@ -1,0 +1,198 @@
+/* Widget: Events Scheduled */
+.widget-events-scheduled {
+
+}
+	.alc-event-scheduled {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+		.alc-event-scheduled__item {
+			border-top: 1px solid $card-border-color;
+
+			&:first-child {
+				border-top: none;
+			}
+		}
+			// Header
+			.alc-event-scheduled__header {
+				display: flex;
+				font-family: $font-family-accent;
+				text-transform: $widget-results-title-text-transform;
+				font-size: $widget-results-title-font-size;
+				line-height: 1.2em;
+				text-align: center;
+				font-weight: 400;
+				font-style: normal;
+				color: $body-font-color;
+				border-bottom: 1px solid $card-border-color;
+				padding: $widget-results-title-vertical-padding $card-horizontal-padding;
+				margin-bottom: 0;
+			}
+				.alc-event-scheduled__title {
+
+				}
+
+			// Content
+			.alc-event-scheduled__content {
+				display: flex;
+				flex-wrap: nowrap;
+				align-items: center;
+				padding: $card-vertical-padding / 2 $card-horizontal-padding / 2;
+
+				@media (min-width: 992px) {
+					padding: $card-vertical-padding $card-horizontal-padding;
+				}
+			}
+				// Team
+				.alc-event-scheduled__team {
+					display: flex;
+					align-items: center;
+					order: 1;
+					flex-basis: 50%;
+
+					& + & {
+						order: 3;
+						justify-content: flex-end;
+
+						.alc-event-scheduled__img {
+							order: 2;
+							margin-right: 0;
+							margin-left: 7px;
+
+							@media (min-width: 992px) {
+								margin-left: 10px;
+							}
+						}
+						.alc-event-scheduled__details {
+							text-align: right;
+						}
+					}
+				}
+					.alc-event-scheduled__img {
+						height: 40px;
+						width: 50px;
+						margin-right: 7px;
+						text-align: center;
+						position: relative;
+
+						@media (min-width: 992px) {
+							height: 50px;
+							width: 60px;
+							margin-right: 10px;
+
+							img {
+								max-width: 60px;
+							}
+						}
+
+						img {
+							display: block;
+							position: absolute;
+							top: 50%;
+							left: 50%;
+							transform: translate(-50%, -50%);
+							max-width: 60px;
+							height: auto;
+						}
+					}
+					.alc-event-scheduled__details {
+						flex: 1;
+					}
+						.alc-event-scheduled__team-name {
+							margin-bottom: 0;
+							line-height: 1.1em;
+							font-size: $font-size-h5;
+
+							@media (min-width: 992px) {
+								font-size: $font-size-h3;
+							}
+						}
+						.alc-event-scheduled__team-info {
+							font-size: 7px;
+							line-height: 1.3em;
+							font-family: $font-family-accent;
+							text-transform: uppercase;
+							font-weight: 700;
+
+							@media (min-width: 768px) {
+								font-size: 8px;
+								@include fix_small_chars();
+							}
+						}
+
+				// Divider
+				.alc-event-scheduled__divider {
+					font-family: $font-family-accent;
+					font-size: 1.067em;
+					line-height: 1.2em;
+					font-weight: 700;
+					color: $headings-color;
+					order: 2;
+				}
+
+
+// Small
+.alc-event-scheduled--sm {
+
+	.alc-event-scheduled__content {
+
+		@media (min-width: 992px) {
+			padding-top: 13px;
+			padding-bottom: 13px;
+		}
+	}
+
+	.alc-event-scheduled__img {
+		height: 30px;
+		width: 30px;
+		margin-right: 4px;
+
+		@media (min-width: 992px) {
+			height: 30px;
+			width: 30px;
+			margin-right: 7px;
+
+			img {
+				max-width: 30px;
+			}
+		}
+
+		img {
+			max-width: 30px;
+		}
+	}
+
+	.alc-event-scheduled__team-name {
+		margin-bottom: 0;
+		font-size: 12px;
+		text-transform: none;
+		font-style: normal;
+
+		@media (min-width: 992px) {
+			font-size: 12px;
+		}
+	}
+
+	.alc-event-scheduled__team + .alc-event-scheduled__team {
+
+		.alc-event-scheduled__img {
+			margin-left: 4px;
+			margin-right: 0;
+
+			@media (min-width: 992px) {
+				margin-left: 7px;
+				margin-right: 0;
+			}
+		}
+		.alc-event-scheduled__details {
+			text-align: right;
+		}
+	}
+
+	.alc-event-scheduled__team-info {
+		font-weight: 400;
+		text-transform: none;
+		font-size: 9px;
+	}
+}

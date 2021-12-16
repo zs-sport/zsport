@@ -1,0 +1,13 @@
+//- Mixins
+//- ----------------------------------------------
+
+// Bootstrap default mixins
+@import "../../vendor/bootstrap/scss/mixins";
+
+// Template mixins
+@import "../mixins/alerts";
+@import "../mixins/labels";
+@import "../mixins/buttons";
+@import "../mixins/forms";
+@import "../mixins/progress-bars";
+@import "../mixins/misc";

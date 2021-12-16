@@ -1,0 +1,866 @@
+/* Event: Header */
+.alc-event-header {
+	background-color: $card-bg;
+}
+	// Top
+	.alc-event-header__top {
+		font-size: 9px;
+		line-height: 1.2em;
+		font-family: $font-family-accent;
+		text-transform: uppercase;
+		font-weight: 700;
+		padding: 16px 0;
+		text-align: center;
+		border-top: 1px solid $card-border-color;
+		border-bottom: 1px solid $card-border-color;
+
+		.title {
+			font-size: 9px;
+			line-height: 1.2em;
+			display: inline-block;
+			margin: 0;
+		}
+		.subtitle {
+			display: inline-block;
+
+			&::before {
+				content: "\2013";
+				margin-right: .25em;
+			}
+
+			.highlight {
+				color: $headings-color;
+			}
+		}
+	}
+		// for complex headers
+		.alc-event-header__top--inner {
+
+			.alc-event-header__top--primary {
+				text-align: left;
+			}
+			.alc-event-header__top--tertiary {
+				text-align: right;
+			}
+			.subtitle--primary {
+
+				&::before {
+					display: none;
+				}
+			}
+			.subtitle--secondary {
+
+				&::before {
+					display: none;
+				}
+			}
+
+			@if $template == 'football' {
+				.title,
+				.subtitle {
+					font-weight: 400;
+				}
+			}
+		}
+
+	// Bottom
+	.alc-event-header__bottom {
+		font-size: 9px;
+		line-height: 1.2em;
+		font-family: $font-family-accent;
+		color: $headings-color;
+		padding: 11px 0;
+		border-bottom: 1px solid $card-border-color;
+
+		.row [class*="col-"] + [class*="col-"] {
+
+			.alc-event-header-performances {
+
+				@media (max-width: 991px) {
+					justify-content: flex-end;
+				}
+			}
+		}
+	}
+		.alc-event-header-performances {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+
+			@media (max-width: 991px) {
+				justify-content: flex-start;
+			}
+		}
+			.alc-event-header__performance {
+				margin-left: 10px;
+				margin-right: 10px;
+				line-height: 1.2em;
+
+				@media (max-width: 991px) {
+
+					& + & {
+						margin-top: 0.3em;
+					}
+				}
+
+				i {
+					margin-left: .5em;
+					display: inline-block;
+					vertical-align: middle;
+					position: relative;
+					top: -2px;
+
+					&.icon-svg {
+						font-size: 8px;
+						display: inline-block;
+						vertical-align: middle;
+					}
+				}
+			}
+
+	// Content
+	.alc-event-header__content {
+		position: relative;
+		overflow: hidden;
+		border-bottom: 1px solid $card-border-color;
+
+		.container {
+
+		}
+	}
+		.alc-event-header__content-inner {
+			position: relative;
+			z-index: 1;
+			padding: 18px 0 21px 0;
+
+			@media (min-width: 992px) {
+				padding: 36px 0 42px 0;
+			}
+		}
+
+
+	// Competitors
+	.alc-event-competitors {
+		display: flex;
+		align-items: center;
+
+		@media (max-width: 991px) {
+			flex-wrap: wrap;
+		}
+	}
+		.alc-event-competitors__item {
+			flex: 1;
+			order: 1;
+
+			& + & {
+				order: 3;
+			}
+		}
+
+			// Team
+			.alc-event-team {
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+
+				@media (max-width: 575px) {
+					flex-wrap: wrap;
+					align-content: center;
+				}
+
+				& + & {
+					justify-content: flex-start;
+
+					.alc-event-team__details {
+						padding-right: 0;
+						padding-left: 20px;
+						text-align: left;
+
+						@media (max-width: 767px) {
+							padding-right: 0;
+							padding-left: 10px;
+						}
+
+						@media (max-width: 575px) {
+							text-align: right;
+						}
+					}
+
+					.alc-event-team__score-wrap {
+						order: 1;
+						padding: 0 26px 0 38px;
+
+						@media (max-width: 1199px) {
+							padding-right: 13px;
+							padding-left: 19px;
+						}
+
+						@media (max-width: 767px) {
+							padding-right: 7px;
+							padding-left: 10px;
+						}
+					}
+
+					&.alc-event-team--winner {
+
+						.alc-event-team__score::after {
+							right: auto;
+							left: 0;
+							border-left: 8px solid $color-primary;
+							border-right: none;
+						}
+					}
+
+					.alc-event-team__logo {
+						order: 2;
+
+						@media (max-width: 575px) {
+							margin-right: 0;
+							margin-left: auto;
+						}
+					}
+					.alc-event-team__details {
+						order: 3;
+					}
+				}
+			}
+
+				// Details
+				.alc-event-team__details {
+					padding-right: 20px;
+					text-align: right;
+
+					@media (max-width: 767px) {
+						padding-right: 10px;
+					}
+
+					@media (max-width: 575px) {
+						width: 100%;
+						order: 3;
+						text-align: left;
+						padding-top: 10px;
+					}
+				}
+					.alc-event-team__name {
+						font-size: 18px;
+						line-height: 1.2em;
+						margin-bottom: 0;
+						text-transform: uppercase;
+
+						@media (max-width: 1199px) {
+							font-size: 16px;
+						}
+
+						@media (max-width: 767px) {
+							font-size: 14px;
+						}
+					}
+					.alc-event-team__info {
+						font-size: 10px;
+						line-height: 1.2em;
+						font-family: $font-family-accent;
+						text-transform: uppercase;
+						font-weight: 700;
+
+						@media (max-width: 1199px) {
+							font-size: 9px;
+						}
+
+						@media (max-width: 768px) {
+							display: none;
+						}
+					}
+
+				// Logo
+				.alc-event-team__logo {
+					width: 100px;
+					height: 90px;
+					position: relative;
+
+					@media (max-width: 1199px) {
+						width: 60px;
+					}
+
+					@media (max-width: 767px) {
+						width: 42px;
+					}
+
+					@media (max-width: 575px) {
+						width: 32px;
+						height: 40px;
+						margin-right: auto;
+					}
+
+					img {
+						display: block;
+						position: absolute;
+						left: 50%;
+						top: 50%;
+						transform: translate(-50%, -50%);
+						max-width: 100%;
+						height: auto;
+					}
+				}
+
+				// Score
+				.alc-event-team__score-wrap {
+					padding: 0 38px 0 26px;
+
+					@media (max-width: 1199px) {
+						padding-right: 19px;
+						padding-left: 13px;
+					}
+
+					@media (max-width: 767px) {
+						padding-right: 10px;
+						padding-left: 7px;
+					}
+				}
+					.alc-event-team__score {
+						position: relative;
+						padding: 0 22px;
+						font-size: 34px;
+						line-height: 1.2em;
+						font-family: $font-family-accent;
+						text-transform: uppercase;
+						font-weight: 700;
+
+						@media (max-width: 767px) {
+							font-size: 24px;
+							padding: 0 16px;
+						}
+
+						.alc-event-team--winner & {
+							color: $headings-color;
+
+							&::after {
+								content: "";
+								display: block;
+								width: 0;
+								height: 0;
+								position: absolute;
+								right: 0;
+								top: 50%;
+								transform: translateY(-50%);
+								border-right: 8px solid $color-primary;
+								border-top: 8px solid transparent;
+								border-bottom: 8px solid transparent;
+							}
+						}
+					}
+
+		.alc-event-competitors__status {
+			order: 2;
+
+			.table {
+				margin-bottom: 0;
+
+				> thead > tr > th:first-child,
+				> tbody > tr > td:first-child,
+				> tbody > tr > th:first-child {
+					padding-left: 18px;
+				}
+
+				> thead > tr > th:last-child,
+				> tbody > tr > td:last-child {
+					padding-right: 18px;
+				}
+			}
+
+			@media (max-width: 991px) {
+				width: 100%;
+				order: 3;
+				padding: 20px 15% 0 15%;
+			}
+
+			@media (max-width: 575px) {
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+
+		.alc-event-competitors__divider {
+			order: 2;
+			padding: 0 13px;
+			font-size: 44px;
+			font-family: $font-family-accent;
+			text-transform: uppercase;
+			font-weight: 700;
+
+			@media (max-width: 767px) {
+				font-size: 24px;
+				padding: 0 6px;
+			}
+
+			&::before {
+				content: "-";
+
+				@media (max-width: 575px) {
+					content: "";
+					padding: 0 10px;
+				}
+			}
+		}
+
+// Event Header - Layout 1
+.alc-event-header--layout-1 {
+
+	.alc-event-header__content {
+
+		&::before,
+		&::after {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 50%;
+		}
+
+		&::before {
+			left: 0;
+			background-color: $color-primary;
+		}
+
+		&::after {
+			right: 0;
+			background-color: $color-info;
+		}
+	}
+
+		.alc-event-header__content-inner {
+			background-color: $event-header-bg-color;
+
+			&::before,
+			&::after {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				width: 75px;
+			}
+
+			&::before {
+				left: -75px;
+				background-image: linear-gradient(to bottom left, $event-header-bg-color 50%, rgba(255,255,255,0) calc(50% + 1px));
+			}
+
+			&::after {
+				right: -75px;
+				background-image: linear-gradient(to bottom right, $event-header-bg-color 50%, rgba(255,255,255,0) calc(50% + 1px));
+			}
+		}
+}
+
+// Event Header - Layout 2
+.alc-event-header--layout-2 {
+
+	.alc-event-header__content {
+		background-position: 6px 10px;
+	}
+
+		.alc-event-competitors {
+
+			@media (min-width: 992px) {
+				padding-left: 100px;
+				padding-right: 100px;
+			}
+
+			@media (min-width: 1199px) {
+				padding-left: 130px;
+				padding-right: 130px;
+			}
+		}
+
+		// 2nd Team
+		.alc-event-team + .alc-event-team {
+
+			@media (min-width: 992px) {
+
+				// Logo Alt
+				.alc-event-team__logo-alt {
+					left: auto;
+					right: -25px;
+
+					&::before {
+						left: auto;
+						right: -18px;
+						transform: rotate(20deg);
+					}
+				}
+					.alc-event-team__logo-alt-inner {
+						left: auto;
+						right: 0;
+						transform: rotate(20deg);
+					}
+						.alc-event-team__logo-alt-img {
+							transform: translate(-50%, -50%) rotate(-20deg);
+						}
+			}
+
+			.alc-event-team__score-wrap {
+				padding: 0 40px 0 0;
+
+				@media (max-width: 1199px) {
+					padding-left: 0;
+					padding-right: 15px;
+				}
+
+				@media (max-width: 767px) {
+					padding-left: 0;
+					padding-right: 10px;
+				}
+			}
+
+				&.alc-event-team--winner {
+
+					.alc-event-team__score::after {
+						left: auto;
+						right: 0;
+					}
+				}
+
+				.alc-event-team__score {
+					padding: 0 40px 0 0;
+
+					@media (max-width: 767px) {
+						padding: 0 20px 0 0;
+					}
+				}
+		}
+
+		// Logo
+		.alc-event-team__logo {
+			width: 80px;
+			height: 80px;
+		}
+
+		// Logo Alt
+		.alc-event-team__logo-alt {
+			display: none;
+
+			@media (min-width: 992px) {
+				display: block;
+				position: absolute;
+				left: -25px;
+				top: -50%;
+				bottom: -50%;
+
+				&::before {
+					content: "";
+					display: block;
+					position: absolute;
+					width: 10px;
+					left: -18px;
+					top: 0;
+					bottom: 0;
+					background-color: #3c4550;
+					transform: rotate(-20deg);
+				}
+			}
+				.alc-event-team__logo-alt-inner {
+					overflow: hidden;
+					width: 95px;
+					background-color: #3c4550;
+					position: absolute;
+					left: 0;
+					top: 0;
+					bottom: 0;
+					transform: rotate(-20deg);
+
+					@media (min-width: 1200px) {
+						width: 112px;
+					}
+				}
+					.alc-event-team__logo-alt-img {
+						max-width: none;
+						min-width: 150px;
+						display: block;
+						position: absolute;
+						left: 50%;
+						top: 50%;
+						transform: translate(-50%, -50%) rotate(20deg);
+					}
+			}
+
+			.alc-event-team__logo-alt--color-alt {
+
+				&::before,
+				.alc-event-team__logo-alt-inner {
+					background-color: $color-4-darken;
+				}
+			}
+
+		// Score
+		.alc-event-team__score-wrap {
+			padding: 0 0 0 40px;
+
+			@media (max-width: 1199px) {
+				padding-right: 0;
+				padding-left: 15px;
+			}
+
+			@media (max-width: 767px) {
+				padding-right: 0;
+				padding-left: 10px;
+			}
+		}
+			// Score Numbers
+			.alc-event-team__score {
+				padding: 0 0 0 40px;
+				font-size: 44px;
+
+				@media (max-width: 767px) {
+					font-size: 24px;
+					padding: 0 0 0 20px;
+				}
+			}
+
+			.alc-event-team--winner .alc-event-team__score {
+
+				&::after {
+					right: auto;
+					left: 0;
+					transform: translateY(-50%) scaleX(-1);;
+				}
+			}
+}
+
+
+
+// Event Header - Layout 3
+.alc-event-header--layout-3 {
+	background-color: $event-header-bg-color;
+	position: relative;
+	z-index: 1;
+
+	.alc-event-header__content {
+
+		&::before,
+		&::after {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 50%;
+		}
+
+		&::before {
+			left: 0;
+			background-color: $color-primary;
+		}
+
+		&::after {
+			right: 0;
+			background-color: #aaf20e;
+		}
+	}
+		.alc-event-header__content-inner {
+
+			&::before {
+				content: "";
+				display: block;
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				background-image: linear-gradient(to right, transparent 0%, $event-header-bg-color 20%, $event-header-bg-color 80%, transparent 100%);
+			}
+
+			@if $template == 'football' {
+
+				&::after {
+					content: "";
+					display: block;
+					position: absolute;
+					left: -100%;
+					right: -100%;
+					top: 0;
+					bottom: 0;
+					background-position: 50% 0;
+					background-repeat: repeat;
+					z-index: 1;
+				}
+			}
+		}
+
+	.alc-event-header__top {
+		padding: 10px 0;
+		position: relative;
+
+		&::after {
+			content: "";
+			display: block;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background-position: 50% 0;
+			background-repeat: repeat;
+			z-index: -1;
+		}
+	}
+
+	.table {
+		background-color: $event-header-bg-color;
+	}
+
+		.alc-event-competitors {
+			position: relative;
+			z-index: 3;
+		}
+
+		// Team
+		.alc-event-team {
+
+		}
+
+			.alc-event-team__details {
+				padding-right: 0;
+				padding-left: 20px;
+				text-align: left;
+
+				@media (max-width: 767px) {
+					padding-right: 0;
+					padding-left: 10px;
+				}
+
+				@media (min-width: 576px) {
+					order: 2;
+				}
+			}
+				.alc-event-team__info {
+					font-style: $font-style-h5;
+					font-size: 12px;
+				}
+
+			.alc-event-team__logo {
+				width: 72px;
+				height: 72px;
+
+				@media (min-width: 576px) {
+					order: 1;
+				}
+
+				@media (max-width: 1199px) {
+					width: 60px;
+				}
+
+				@media (max-width: 767px) {
+					width: 42px;
+				}
+
+				@media (max-width: 575px) {
+					width: 32px;
+					height: 40px;
+				}
+			}
+			.alc-event-team__logo-bg {
+				display: block;
+				position: absolute;
+				left: 0;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				z-index: -1;
+				opacity: 0.08;
+				pointer-events: none;
+			}
+			.alc-event-team__score-wrap {
+				padding: 0 10px 0 50px;
+
+				@media (min-width: 576px) {
+					order: 3;
+				}
+
+				@media (max-width: 1199px) {
+					padding-right: 13px;
+					padding-left: 19px;
+				}
+
+				@media (max-width: 767px) {
+					padding-right: 10px;
+					padding-left: 7px;
+				}
+			}
+				.alc-event-team__score {
+					font-size: 48px;
+					font-style: $font-style-h1;
+
+					@media (max-width: 767px) {
+						font-size: 32px;
+					}
+				}
+
+				.alc-event-team--winner .alc-event-team__score {
+
+					&::after {
+						right: auto;
+						left: 0;
+						transform: translateY(-50%) scaleX(-1);;
+					}
+				}
+
+		// Team #2
+		.alc-event-team + .alc-event-team {
+
+			.alc-event-team__details {
+				padding-left: 0;
+				padding-right: 20px;
+				text-align: right;
+
+				@media (max-width: 767px) {
+					padding-left: 0;
+					padding-right: 10px;
+				}
+
+				@media (min-width: 576px) {
+					order: 2;
+				}
+			}
+			.alc-event-team__logo {
+
+				@media (min-width: 576px) {
+					order: 3;
+				}
+			}
+			.alc-event-team__logo-bg {
+				display: block;
+				position: absolute;
+				left: auto;
+				right: 0;
+				top: 50%;
+				transform: translate(50%, -50%);
+				z-index: -1;
+				opacity: 0.08;
+			}
+			.alc-event-team__score-wrap {
+				padding: 0 50px 0 10px;
+
+				@media (min-width: 576px) {
+					order: 1;
+				}
+
+				@media (max-width: 1199px) {
+					padding-right: 19px;
+					padding-left: 13px;
+				}
+
+				@media (max-width: 767px) {
+					padding-right: 10px;
+					padding-left: 7px;
+				}
+			}
+				& .alc-event-team__score {
+
+					&::after {
+						left: auto;
+						right: 0;
+						transform: translateY(-50%) scaleX(-1);
+					}
+				}
+		}
+}

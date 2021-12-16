@@ -1,0 +1,289 @@
+/* Table Stats */
+.alc-table-stats {
+	border: none;
+	margin-bottom: 0;
+
+	> thead > tr > th {
+		vertical-align: middle;
+		text-align: center;
+		white-space: nowrap;
+
+		&:first-child {
+			text-align: left;
+			padding-left: 24px;
+		}
+		&:last-child {
+			padding-right: 24px;
+		}
+	}
+
+	> tbody > tr > td,
+	> tbody > tr > th {
+		vertical-align: middle;
+		text-align: center;
+
+		@media (min-width: 992px) {
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+
+		&:first-child {
+			padding-left: $card-horizontal-padding;
+
+			&.alc-indent {
+				padding-left: $card-horizontal-padding * 1.5;
+			}
+		}
+		&:last-child {
+			padding-right: $card-horizontal-padding;
+		}
+	}
+
+	.alc-highlight {
+		color: $table-highlight;
+		font-weight: 700;
+	}
+
+	.alc-highlight-sm {
+		color: $table-highlight;
+	}
+
+	.alc-name,
+	.alc-position {
+		text-align: left;
+	}
+
+	.alc-name {
+		color: $table-highlight;
+	}
+
+	.alc-subheader,
+	.alc-total {
+		text-align: left;
+	}
+
+	.alc-caption {
+		text-align: center;
+	}
+	.alc-caption--danger {
+		background-color: rgba($color-danger, 0.2);
+	}
+	.alc-caption--success {
+		background-color: rgba($color-success, 0.2);
+	}
+
+	.alc-item-sm {
+		width: 60px;
+	}
+
+	// Total
+	.alc-total {
+		font-weight: 700;
+		text-transform: uppercase;
+		color: $table-highlight;
+	}
+
+	// Helpers
+	.alc-align-start {
+		text-align: left;
+	}
+	.alc-align-end {
+		text-align: right;
+	}
+	.alc-team-img {
+		margin-right: 10px;
+	}
+
+	[data-toggle="collapse"] {
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}
+
+// Player Info
+.alc-player-info {
+	display: flex;
+	align-items: center;
+}
+	.alc-player-info__img {
+		width: 26px;
+		height: 26px;
+		overflow: hidden;
+		flex-basis: 26px;
+		min-width: 26px;
+		border-radius: 50%;
+		object-fit: contain;
+		margin-right: 10px;
+
+		@media (min-width: 992px) {
+			margin-right: 14px;
+		}
+	}
+	.alc-player-info__name {
+		flex: 1;
+		color: $headings-color;
+	}
+
+// Instance Info (team, player, event, etc.)
+.alc-instance-info {
+	display: flex;
+	align-items: center;
+}
+.alc-instance-info--toggle {
+
+	[data-toggle="collapse"] & {
+		padding-left: 26px;
+		position: relative;
+
+		&::before {
+			display: block;
+			position: absolute;
+			left: 0;
+			width: 20px;
+			font-size: 12px;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			font-family: "Font Awesome 5 Free";
+			font-weight: 700;
+		}
+	}
+
+	[aria-expanded="false"] &::before {
+		content: "\f067";
+		color: $color-gray;
+	}
+
+	[aria-expanded="true"] &::before {
+		content: "\f068";
+		color: $color-success;
+	}
+}
+	.alc-instance-info__img {
+		width: 26px;
+		height: 26px;
+		overflow: hidden;
+		flex-basis: 26px;
+		min-width: 26px;
+		border-radius: 50%;
+		object-fit: contain;
+		margin-right: 10px;
+
+		@media (min-width: 992px) {
+			margin-right: 14px;
+		}
+	}
+	.alc-instance-info__content {
+		flex: 1;
+		text-transform: uppercase;
+	}
+	.alc-instance-info__content--alt {
+		text-transform: none;
+	}
+		.alc-instance-info__title {
+			color: $headings-color;
+			font-weight: 700;
+		}
+		.alc-instance-info__desc {
+			font-family: $font-family-base;
+			font-size: 9px;
+		}
+
+.alc-table-stats--compact {
+
+	> tbody > tr > td,
+	> tbody > tr > th {
+
+		@media (min-width: 992px) {
+			padding-top: 16px;
+			padding-bottom: 16px;
+		}
+	}
+}
+
+.alc-table-stats--compact-sm {
+
+	> tbody > tr > td,
+	> tbody > tr > th {
+
+		@media (min-width: 992px) {
+			padding-top: 11px;
+			padding-bottom: 11px;
+		}
+	}
+}
+
+
+.alc-table-stats--compact-sm-hor {
+
+	> thead > tr > th,
+	> tbody > tr > td,
+	> tbody > tr > th {
+
+		@media (min-width: 992px) {
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+	}
+
+	> tbody > tr > td,
+	> tbody > tr > th {
+
+		@media (min-width: 992px) {
+			padding-top: 17px;
+			padding-bottom: 17px;
+		}
+	}
+}
+
+// Play-by-Play
+.alc-table-stats__play-by-play {
+
+	.alc-team-img {
+		width: 26px;
+		height: 26px;
+		object-fit: contain;
+	}
+	.alc-team-img-spacer {
+		display: inline-block;
+		width: 36px;
+	}
+}
+
+// Details
+.alc-table-stats__details {
+
+	@if $template == 'football' {
+		background-color: rgba($color-dark-2, 60%);
+
+		&:hover {
+			background-color: rgba($color-dark-2, 60%);
+		}
+	}
+}
+.alc-table-stats__details-list {
+	text-align: left;
+	padding: 0;
+	margin-bottom: 0;
+	margin-left: -$card-horizontal-padding;
+	margin-right: -$card-horizontal-padding;
+}
+	.alc-table-stats__details-item {
+		border-bottom: 1px solid $table-border-color;
+		padding-left: $card-horizontal-padding;
+		padding-right: $card-horizontal-padding;
+		padding-top: 14px;
+		padding-bottom: 14px;
+	}
+	.alc-table-stats__details-title {
+		font-size: 11px;
+		line-height: 1.2em;
+		text-transform: none;
+		margin-bottom: 0.5em;
+	}
+	.alc-table-stats__details-desc {
+		font-family: $font-family-base;
+		font-size: 11px;
+		line-height: 1.5em;
+	}

@@ -2604,9 +2604,21 @@
                         "polyfills": "apps/zsport-sport/src/polyfills.ts",
                         "tsConfig": "apps/zsport-sport/tsconfig.app.json",
                         "inlineStyleLanguage": "less",
-                        "assets": ["apps/zsport-sport/src/favicon.ico", "apps/zsport-sport/src/assets"],
-                        "styles": ["apps/zsport-sport/src/styles.less"],
-                        "scripts": []
+                        "assets": [
+                            "apps/zsport-sport/src/favicon.ico",
+                            "apps/zsport-sport/src/assets",
+                            {
+                                "glob": "**/*",
+                                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                                "output": "/assets/"
+                            }
+                        ],
+                        "styles": [
+                            "apps/zsport-sport/src/styles.less",
+                            "apps/zsport-sport/src/theme/assets/scss/style-soccer.scss",
+                            "apps/zsport-sport/src/theme/assets/fonts/simple-line-icons/css/simple-line-icons.css"
+                        ],
+                        "scripts": ["apps/zsport-sport/src/theme/assets/vendor/jquery/jquery.min.js"]
                     },
                     "configurations": {
                         "production": {

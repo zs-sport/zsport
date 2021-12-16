@@ -9,6 +9,16 @@
             "site": "zs-sport-admin-dev",
             "public": "dist/apps/zsport-admin",
             "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+        },
+        {
+            "site": "zs-sport2",
+            "public": "dist/apps/zsport-sport",
+            "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+        },
+        {
+            "site": "zs-sport2-dev",
+            "public": "dist/apps/zsport-sport",
+            "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
         }
     ],
     "emulators": {

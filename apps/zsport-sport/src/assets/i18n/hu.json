@@ -1,0 +1,31 @@
+{
+    "action": {
+        "admin": "Adminisztrátor",
+        "login": "Bejelentkezés",
+        "profile": "Profil",
+        "logout": "Kijelentkezés"   
+    },
+    "application": {
+        "header": {
+            "article": "Cikk",
+            "club": "Klub",
+            "competition": "Verseny",
+            "language": "Nyelv",
+            "languages": {
+                "en": "angol",
+                "hu": "magyar"
+            },
+            "player": "Játékos"
+        }
+    },
+    "page": {
+        "admin": "Adminisztrátor",
+        "home": "Kezdőoldal",
+        "competition": "Versenyek",
+        "error": {
+            "back_to_results": "Vissza a kezdőoldalra",
+            "sub_title": "Nem rendelkezik a megfelelő jogosultsággal"
+        }
+    }
+
+}

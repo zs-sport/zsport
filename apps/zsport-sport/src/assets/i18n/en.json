@@ -1,0 +1,30 @@
+{
+    "action": {
+        "admin": "Admin",
+        "login": "Login",
+        "profile": "Profile",
+        "logout": "Logout"
+    },
+    "application": {
+        "header": {
+            "article": "Article",
+            "club": "Club",
+            "competition": "Competition",
+            "language": "Language",
+            "languages": {
+                "en": "english",
+                "hu": "hungarian"
+            },
+            "player": "Player"
+        }
+    },
+    "page": {
+        "admin": "Admin",
+        "competition": "Competitions",
+        "home": "Home",
+        "error": {
+            "back_to_results": "Back to the home page",
+            "sub_title": "Sorry, you are not authorized to access this page"
+        }
+    }
+}

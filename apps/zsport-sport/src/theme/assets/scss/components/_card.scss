@@ -2,478 +2,449 @@
 /* ------------------------- */
 
 .card {
-	border: 1px solid $card-border-color;
-	border-radius: $card-border-radius;
-	background-color: $card-bg;
-	margin-bottom: 15px;
+    border: 1px solid $card-border-color;
+    border-radius: $card-border-radius;
+    background-color: $card-bg;
+    margin-bottom: 15px;
 }
 .card--row {
-	flex-direction: row;
+    flex-direction: row;
 }
 .card--block {
-	display: block;
+    display: block;
 }
 .card--clean {
-	background: none;
-	border: none;
+    background: none;
+    border: none;
 
-	.card__header {
-		background-color: $card-bg;
-		border: 1px solid $card-border-color;
-		border-radius: $card-border-radius;
-	}
+    .card__header {
+        background-color: $card-bg;
+        border: 1px solid $card-border-color;
+        border-radius: $card-border-radius;
+    }
 
-	> .card__content {
-		padding: 15px 0 0 0; // leave only top padding
-	}
+    > .card__content {
+        padding: 15px 0 0 0; // leave only top padding
+    }
 }
 .card--has-table {
+    > .card__content {
+        padding: 0;
 
-	> .card__content {
-		padding: 0;
-
-		.table {
-			margin-bottom: 0;
-		}
-	}
+        .table {
+            margin-bottom: 0;
+        }
+    }
 }
 .card--no-paddings {
-
-	> .card__content {
-		padding: 0;
-	}
+    > .card__content {
+        padding: 0;
+    }
 }
 .card--squared-top {
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
-	.card__header {
-		padding: 27px 23px;
-		border-top-left-radius: $card-border-radius - 1;
-		border-top-right-radius: $card-border-radius - 1;
-		position: relative;
-		border-bottom: 1px solid $card-border-color;
-		overflow: hidden;
-		background-color: $card-header-bg;
+.card__header {
+    padding: 27px 23px;
+    border-top-left-radius: $card-border-radius - 1;
+    border-top-right-radius: $card-border-radius - 1;
+    position: relative;
+    border-bottom: 1px solid $card-border-color;
+    overflow: hidden;
+    background-color: $card-header-bg;
 
-		& ~ & {
-			border-radius: 0;
+    & ~ & {
+        border-radius: 0;
 
-			&::before {
-				border-radius: 0;
-			}
-		}
+        &::before {
+            border-radius: 0;
+        }
+    }
 
-		&::before {
-			content:"";
-			display: block;
-			position: absolute;
-			width: 6px;
-			left: 0;
-			top: 0;
-			bottom: 0;
-			background-color: $color-primary;
-			border-radius: 3px 0 0 0 ;
-		}
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 6px;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background-color: $color-primary;
+        border-radius: 3px 0 0 0;
+    }
 
-		> h4 {
-			font-size: 16px;
-			line-height: 1.2em;
-			letter-spacing: -0.02em;
-			margin-bottom: 0;
-			text-transform: uppercase;
-			font-style: $font-style-h4;
-		}
+    > h4 {
+        font-size: 16px;
+        line-height: 1.2em;
+        letter-spacing: -0.02em;
+        margin-bottom: 0;
+        text-transform: uppercase;
+        font-style: $font-style-h4;
+    }
 
-		.card-header__button {
+    .card-header__button {
+        @media (min-width: 992px) {
+            float: right;
+        }
+    }
+}
+.card__header--has-btn {
+    padding-top: 24px;
+    padding-bottom: 24px;
 
-			@media (min-width: 992px) {
-				float: right;
-			}
-		}
-	}
-	.card__header--has-btn {
-		padding-top: 24px;
-		padding-bottom: 24px;
+    > h4 {
+        margin-bottom: 0.5em;
 
-		> h4 {
-			margin-bottom: .5em;
+        @media (min-width: 480px) {
+            display: inline-block;
+            margin-bottom: 0;
+        }
+    }
+}
+.card__header--has-filter {
+    padding-top: 24px;
+    padding-bottom: 24px;
 
-			@media (min-width: 480px) {
-				display: inline-block;
-				margin-bottom: 0;
-			}
-		}
-	}
-	.card__header--has-filter {
-		padding-top: 24px;
-		padding-bottom: 24px;
+    > h4 {
+        display: inline-block;
+    }
 
-		> h4 {
-			display: inline-block;
-		}
+    .category-filter {
+        padding-top: 5px;
 
-		.category-filter {
-			padding-top: 5px;
+        @media (min-width: 480px) {
+            float: right;
+            padding-top: 0;
+        }
+    }
+}
+.card__header--has-legend {
+    padding-top: 24px;
+    padding-bottom: 24px;
 
-			@media (min-width: 480px) {
-				float: right;
-				padding-top: 0;
-			}
-		}
-	}
-	.card__header--has-legend {
-		padding-top: 24px;
-		padding-bottom: 24px;
+    > h4 {
+        display: inline-block;
+    }
 
-		> h4 {
-			display: inline-block;
-		}
+    .chart-legend {
+        padding-top: 5px;
 
-		.chart-legend {
-			padding-top: 5px;
+        @media (min-width: 480px) {
+            float: right;
+            padding-top: 0;
+        }
+    }
+}
+.card__header--has-checkbox {
+    padding-top: 24px;
+    padding-bottom: 24px;
 
-			@media (min-width: 480px) {
-				float: right;
-				padding-top: 0;
-			}
-		}
-	}
-	.card__header--has-checkbox {
-		padding-top: 24px;
-		padding-bottom: 24px;
+    > h4 {
+        margin-bottom: 0.5em;
 
-		> h4 {
-			margin-bottom: .5em;
+        @media (min-width: 480px) {
+            display: inline-block;
+            margin-bottom: 0;
+        }
+    }
 
-			@media (min-width: 480px) {
-				display: inline-block;
-				margin-bottom: 0;
-			}
-		}
+    .checkbox {
+        @media (min-width: 480px) {
+            float: right;
+            padding-top: 0;
+            font-size: 10px;
+            font-weight: bold;
+        }
+    }
+}
 
-		.checkbox {
+.card__header--has-toggle {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    display: flex;
+    align-items: center;
 
-			@media (min-width: 480px) {
-				float: right;
-				padding-top: 0;
-				font-size: 10px;
-				font-weight: bold;
-			}
-		}
-	}
+    .switch {
+        flex-grow: 1;
+        text-align: right;
+    }
+}
 
-	.card__header--has-toggle {
-		padding-top: 24px;
-		padding-bottom: 24px;
-		display: flex;
-		align-items: center;
+.card__header--has-arrows {
+    .slick-prev,
+    .slick-next {
+        top: 25px;
+    }
+}
 
-		.switch {
-			flex-grow: 1;
-			text-align: right;
-		}
-	}
+.card__header--has-team-info {
+    padding-top: 21px;
+    padding-bottom: 21px;
+}
 
-	.card__header--has-arrows {
+.card__header--no-highlight {
+    &::before {
+        display: none;
+    }
+}
 
-		.slick-prev,
-		.slick-next {
-			top: 25px;
-		}
-	}
+// Double Header
+.card__header--double {
+    display: flex;
+    justify-content: space-between;
 
-	.card__header--has-team-info {
-		padding-top: 21px;
-		padding-bottom: 21px;
-	}
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 6px;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: $color-4-darken;
+        border-radius: 0 3px 0 0;
+    }
+}
 
-	.card__header--no-highlight {
+.card__content {
+    padding: $card-vertical-padding $card-horizontal-padding;
+}
+.card__content-inner {
+    padding: 20px;
+}
+.card__content--header-bg {
+    background-color: $card-header-bg;
+}
+.card__content--pattern-dotted {
+    background-position: 6px 10px;
+}
 
-		&::before {
-			display: none;
-		}
-	}
+.card__subheader {
+    background: $card-subheader-bg;
+    border-top: 1px solid $card-border-color;
+    border-bottom: 1px solid $card-border-color;
+    text-align: center;
+    padding: 8px 0;
+    margin-left: -$card-horizontal-padding;
+    margin-right: -$card-horizontal-padding;
+    margin-bottom: 20px;
 
-	// Double Header
-	.card__header--double {
-		display: flex;
-		justify-content: space-between;
+    @media (min-width: 992px) {
+        padding: 11px 0;
+        margin-bottom: 30px;
+    }
 
-		&::after {
-			content:"";
-			display: block;
-			position: absolute;
-			width: 6px;
-			right: 0;
-			top: 0;
-			bottom: 0;
-			background-color: $color-4-darken;
-			border-radius: 0 3px 0 0;
-		}
-	}
+    h5 {
+        margin-bottom: 0;
+        font-style: normal;
+        text-transform: uppercase;
+    }
+}
+.card__subheader--nomargins {
+    margin: 0;
+}
 
+.card__subheader--sm {
+    h5 {
+        font-size: 11px;
+        line-height: 1.2em;
+    }
+}
+.card__subheader--side {
+    text-align: left;
+    border-top: 0;
+    background-color: transparent;
+    padding: 15px $card-horizontal-padding;
 
-	.card__content {
-		padding: $card-vertical-padding $card-horizontal-padding;
-	}
-	.card__content-inner {
-		padding: 20px;
-	}
-	.card__content--header-bg {
-		background-color: $card-header-bg;
-	}
-	.card__content--pattern-dotted {
-		background-position: 6px 10px;
-	}
+    h5 {
+        font-style: italic;
+    }
+}
+.card__subheader--flex {
+    display: flex;
+    border-top: 1px solid $card-border-color;
 
-	.card__subheader {
-		background: $card-subheader-bg;
-		border-top: 1px solid $card-border-color;
-		border-bottom: 1px solid $card-border-color;
-		text-align: center;
-		padding: 8px 0;
-		margin-left: -$card-horizontal-padding;
-		margin-right: -$card-horizontal-padding;
-		margin-bottom: 20px;
+    :last-child {
+        margin-left: auto;
+    }
 
-		@media (min-width: 992px) {
-			padding: 11px 0;
-			margin-bottom: 30px;
-		}
+    h5 {
+        font-style: normal;
+    }
+}
+.card__subheader--clean {
+    background-color: transparent;
 
-		h5 {
-			margin-bottom: 0;
-			font-style: normal;
-			text-transform: uppercase;
-		}
-	}
-	.card__subheader--nomargins {
-		margin: 0;
-	}
-
-	.card__subheader--sm {
-
-		h5 {
-			font-size: 11px;
-			line-height: 1.2em;
-		}
-	}
-	.card__subheader--side {
-		text-align: left;
-		border-top: 0;
-		background-color: transparent;
-		padding: 15px $card-horizontal-padding;
-
-		h5 {
-			font-style: italic;
-		}
-	}
-	.card__subheader--flex {
-		display: flex;
-		border-top: 1px solid $card-border-color;
-
-		:last-child {
-			margin-left: auto;
-		}
-
-		h5 {
-			font-style: normal;
-		}
-	}
-	.card__subheader--clean {
-		background-color: transparent;
-
-		> h5 {
-			font-weight: 400;
-			color: $body-font-color;
-			font-size: 9px;
-		}
-	}
-
-
+    > h5 {
+        font-weight: 400;
+        color: $body-font-color;
+        font-size: 9px;
+    }
+}
 
 // Card Header for Teams Legends
 .alc-teams-legend {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
-	.alc-teams-legend__heading {
+.alc-teams-legend__heading {
+}
+.alc-teams-legend__title {
+}
+.alc-teams-legend__info {
+    margin-left: auto;
 
-	}
-		.alc-teams-legend__title {
+    @media (min-width: 992px) {
+        display: flex;
+    }
+}
 
-		}
-		.alc-teams-legend__info {
-			margin-left: auto;
+.alc-teams-legend__teams {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
 
-			@media (min-width: 992px) {
-				display: flex;
-			}
-		}
+    @media (max-width: 991px) {
+        margin-bottom: 10px;
+    }
 
-		.alc-teams-legend__teams {
-			display: flex;
-			flex-wrap: nowrap;
-			align-items: center;
+    & + .btn {
+        margin-left: 20px;
+    }
+}
+.alc-teams-legend__team {
+    display: flex;
+    align-items: center;
 
-			@media (max-width: 991px) {
-				margin-bottom: 10px;
-			}
-
-			& + .btn {
-				margin-left: 20px;
-			}
-		}
-			.alc-teams-legend__team {
-				display: flex;
-				align-items: center;
-
-				& + & {
-					margin-left: 20px;
-				}
-			}
-				.alc-teams-legend__team-color {
-					width: 8px;
-					height: 8px;
-					background-color: $color-primary;
-					border-radius: 2px;
-					margin-right: 10px;
-				}
-				.alc-teams-legend__team-color--color-info {
-					background-color: $color-info;
-				}
-				.alc-teams-legend__team-color--color-success {
-					background-color: $color-success;
-				}
-				.alc-teams-legend__team-color--color-4 {
-					background-color: $color-4;
-				}
-				// for demo purpose
-				.alc-teams-legend__team-color--color-clovers {
-					background-color: #aaf20e;
-				}
-				.alc-teams-legend__team-logo {
-
-				}
+    & + & {
+        margin-left: 20px;
+    }
+}
+.alc-teams-legend__team-color {
+    width: 8px;
+    height: 8px;
+    background-color: $color-primary;
+    border-radius: 2px;
+    margin-right: 10px;
+}
+.alc-teams-legend__team-color--color-info {
+    background-color: $color-info;
+}
+.alc-teams-legend__team-color--color-success {
+    background-color: $color-success;
+}
+.alc-teams-legend__team-color--color-4 {
+    background-color: $color-4;
+}
+// for demo purpose
+.alc-teams-legend__team-color--color-clovers {
+    background-color: #aaf20e;
+}
+.alc-teams-legend__team-logo {
+}
 
 // Sizes
 .card--lg {
-
-	.card__content {
-
-		@media (min-width: 992px) {
-			padding: $card-vertical-padding-lg $card-horizontal-padding-lg;
-		}
-	}
+    .card__content {
+        @media (min-width: 992px) {
+            padding: $card-vertical-padding-lg $card-horizontal-padding-lg;
+        }
+    }
 }
 
 .card--xlg {
-
-	.card__content {
-
-		@media (min-width: 992px) {
-			padding: $card-vertical-padding-xlg $card-horizontal-padding-xlg;
-		}
-	}
+    .card__content {
+        @media (min-width: 992px) {
+            padding: $card-vertical-padding-xlg $card-horizontal-padding-xlg;
+        }
+    }
 }
 
 // Color
 .card--alt-color {
-
-	.card__header {
-
-		&::before {
-
-			@if $template == soccer {
-				background-color: $color-4-darken;
-			} @else {
-				background-color: $color-4;
-			}
-
-		}
-	}
+    .card__header {
+        &::before {
+            @if $template == soccer {
+                background-color: $color-4-darken;
+            } @else {
+                background-color: $color-4;
+            }
+        }
+    }
 }
-
 
 // for demo purpose
 .card--color-clovers {
-
-	.card__header {
-
-		&::before {
-			background-color: #aaf20e;
-		}
-	}
+    .card__header {
+        &::before {
+            background-color: #aaf20e;
+        }
+    }
 }
 
 .card--color--info {
-
-	.card__header {
-
-		&::before {
-			background-color: $color-info;
-		}
-	}
+    .card__header {
+        &::before {
+            background-color: $color-info;
+        }
+    }
 }
 
 // Shop
 .card__header--shop-filter {
-	padding: 0;
+    padding: 0;
 }
-
 
 // Full Width
 .card--section {
-	border-radius: 0;
-	border-left: none;
-	border-right: none;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
 }
 
 // Card
 .card--info {
+    .card__content {
+        p {
+            font-size: 0.86em;
+            line-height: 1.83em;
+        }
+    }
 
-	.card__content {
+    .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        border-top: 1px solid $card-border-color;
+    }
+    .contact-info__item {
+        flex-grow: 1;
+        max-width: 100%;
+        flex-basis: 0;
+        margin: -1px 0 0 -1px;
+        text-align: center;
+        padding: 25px 10px;
+        border-left: 1px solid $card-border-color;
+        border-top: 1px solid $card-border-color;
+    }
+    .contact-info__icon {
+        color: $color-primary;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    .contact-info__label {
+        font-size: 0.86em;
+        font-family: $font-family-accent;
+        font-weight: 700;
+        color: $headings-color;
 
-		p {
-			font-size: .86em;
-			line-height: 1.83em;
-		}
-	}
+        a {
+            color: $headings-color;
 
-	.contact-info {
-		display: flex;
-		flex-wrap: wrap;
-		border-top: 1px solid $card-border-color;
-	}
-		.contact-info__item {
-			flex-grow: 1;
-			max-width: 100%;
-			flex-basis: 0;
-			margin: -1px 0 0 -1px;
-			text-align: center;
-			padding: 25px 10px;
-			border-left: 1px solid $card-border-color;
-			border-top: 1px solid $card-border-color;
-		}
-			.contact-info__icon {
-				color: $color-primary;
-				font-size: 18px;
-				margin-bottom: 20px;
-			}
-			.contact-info__label {
-				font-size: .86em;
-				font-family: $font-family-accent;
-				font-weight: 700;
-				color: $headings-color;
-
-				a {
-					color: $headings-color;
-
-					&:hover {
-						color: $link-color-hover;
-					}
-				}
-			}
+            &:hover {
+                color: $link-color-hover;
+            }
+        }
+    }
 }

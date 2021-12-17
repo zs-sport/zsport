@@ -1,56 +1,48 @@
 /* Event: Event Result Box */
 .alc-event-stats-box {
-
 }
 
-	// Section
-	.alc-event-stats-box__section {
+// Section
+.alc-event-stats-box__section {
+    &:first-child {
+        margin-top: -1px;
+    }
 
-		&:first-child {
-			margin-top: -1px;
-		}
+    .circular__label--paddings {
+        @media (min-width: 992px) {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+    }
+}
+.alc-event-stats-box__section-inner {
+    padding: $card-vertical-padding / 2 $card-horizontal-padding / 2;
 
-		.circular__label--paddings {
+    @media (min-width: 992px) {
+        padding: $card-vertical-padding $card-horizontal-padding;
+    }
+}
 
-			@media (min-width: 992px) {
-				padding-left: 8px;
-				padding-right: 8px;
-			}
-		}
-	}
-		.alc-event-stats-box__section-inner {
-			padding: $card-vertical-padding / 2 $card-horizontal-padding / 2;
+.alc-event-stats-box__section-inner--lg {
+    @media (min-width: 992px) {
+        padding: 36px 40px;
+    }
 
-			@media (min-width: 992px) {
-				padding: $card-vertical-padding $card-horizontal-padding;
-			}
-		}
+    .progress-table--fullwidth {
+        @media (min-width: 992px) {
+            .progress-table__title {
+                padding-left: 16px;
+                padding-right: 16px;
 
-		.alc-event-stats-box__section-inner--lg {
-
-			@media (min-width: 992px) {
-				padding: 36px 40px;
-			}
-
-			.progress-table--fullwidth {
-
-				@media (min-width: 992px) {
-
-					.progress-table__title {
-						padding-left: 16px;
-						padding-right: 16px;
-
-						@if $template == 'basketball' {
-							font-size: 11px;
-						}
-					}
-				}
-			}
-		}
-			// Subheader
-			.alc-event-stats-box__subheader {
-
-			}
-				.alc-event-stats-box__subtitle {
-
-				}
+                @if $template == 'basketball' {
+                    font-size: 11px;
+                }
+            }
+        }
+    }
+}
+// Subheader
+.alc-event-stats-box__subheader {
+}
+.alc-event-stats-box__subtitle {
+}

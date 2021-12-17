@@ -1,18 +1,16 @@
 /* Widget: Banner */
 .widget-banner {
-
-  &.widget--sidebar {
-
-    .widget__content {
-      padding: 38px;
+    &.widget--sidebar {
+        .widget__content {
+            padding: 38px;
+        }
     }
-  }
 }
-  .widget-banner__img {
+.widget-banner__img {
     text-align: center;
-    
+
     img {
-      max-width: 100%;
-      height: auto;
+        max-width: 100%;
+        height: auto;
     }
-  }
+}

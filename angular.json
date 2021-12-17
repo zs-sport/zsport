@@ -180,6 +180,32 @@
             },
             "tags": ["scope:util", "type:core"]
         },
+        "core-entity-quantity-view": {
+            "projectType": "library",
+            "root": "libs/core/entity-quantity/view",
+            "sourceRoot": "libs/core/entity-quantity/view/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/core/entity-quantity/view"],
+                    "options": {
+                        "jestConfig": "libs/core/entity-quantity/view/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/core/entity-quantity/view/src/**/*.ts",
+                            "libs/core/entity-quantity/view/src/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
+        },
         "core-i18n": {
             "projectType": "library",
             "root": "libs/core/i18n",

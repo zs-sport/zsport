@@ -22,7 +22,7 @@ export class AssociationEffects {
     public addAssociation = createEffect(() =>
         this.actions$.pipe(
             ofType(associationActions.addAssociation),
-            withLatestFrom(this.entityQuantityStateService.selectEntityById$(EntityQuantityEnum.SPORT_ASSOCIATION)),
+            withLatestFrom(this.entityQuantityStateService.selectEntityById$(EntityQuantityEnum.ASSOCIATION)),
             switchMap(([action, entityQuantity]) =>
                 this.associationDataService
                     .add$(this.associationUtilService.convertEntityToModel(action.association, true))
@@ -30,9 +30,7 @@ export class AssociationEffects {
                         tap((association) => {
                             entityQuantity =
                                 entityQuantity ||
-                                this.entityQuantityUtilService.createEntityQuantity(
-                                    EntityQuantityEnum.SPORT_ASSOCIATION
-                                );
+                                this.entityQuantityUtilService.createEntityQuantity(EntityQuantityEnum.ASSOCIATION);
 
                             this.entityQuantityStateService.dispatchUpdateEntityAction(
                                 this.associationUtilService.updateEntityQuantity(
@@ -57,7 +55,7 @@ export class AssociationEffects {
             ofType(associationActions.listAssociations),
             withLatestFrom(
                 this.associationStateService.selectEntities$(),
-                this.entityQuantityStateService.selectEntityById$(EntityQuantityEnum.SPORT_ASSOCIATION)
+                this.entityQuantityStateService.selectEntityById$(EntityQuantityEnum.ASSOCIATION)
             ),
             switchMap(([action, entities, entityQuantity]) =>
                 entityQuantity && entities && (entityQuantity as EntityQuantity).quantity !== entities.length

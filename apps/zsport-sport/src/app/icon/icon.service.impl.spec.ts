@@ -7,7 +7,7 @@ describe('IconServiceImpl', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [IconServiceImpl]
+            providers: [IconServiceImpl],
         });
         service = TestBed.inject(IconServiceImpl);
     });

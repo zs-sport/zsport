@@ -90,8 +90,8 @@ export class EventUtilServiceImpl extends EventUtilService {
         let categoryGroup = this.categoryQuantityService.updateGroup(event.category.uid || '', groups);
         let competitionGroup = this.competitionQuantityService.updateGroup(event.competitionId || '', groups);
 
-        groups[EntityQuantityEnum.SPORT_CATEGORY] = categoryGroup;
-        groups[EntityQuantityEnum.SPORT_COMPETITION] = competitionGroup;
+        groups[EntityQuantityEnum.CATEGORY] = categoryGroup;
+        groups[EntityQuantityEnum.COMPETITION] = competitionGroup;
 
         return {
             ...entityQuantity,

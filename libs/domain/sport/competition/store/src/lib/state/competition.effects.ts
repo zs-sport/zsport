@@ -66,7 +66,7 @@ export class CompetitionEffects {
     public addEventByGroupLevelIndexGroupTitle = createEffect(() =>
         this.actions$.pipe(
             ofType(competitionActions.addEventByGroupLevelIndexGroupTitleGroupTitle),
-            withLatestFrom(this.entityQuantityStateService.selectEntityById$(EntityQuantityEnum.SPORT_EVENT)),
+            withLatestFrom(this.entityQuantityStateService.selectEntityById$(EntityQuantityEnum.EVENT)),
             switchMap(([action, entityQuantity]) =>
                 this.competitionDataService
                     .addEventByCompetitionId(
@@ -76,7 +76,7 @@ export class CompetitionEffects {
                         tap((eventModel) => {
                             entityQuantity =
                                 entityQuantity ||
-                                this.entityQuantityUtilService.createEntityQuantity(EntityQuantityEnum.SPORT_EVENT);
+                                this.entityQuantityUtilService.createEntityQuantity(EntityQuantityEnum.EVENT);
 
                             this.entityQuantityStateService.dispatchUpdateEntityAction(
                                 this.eventUtilService.updateEntityQuantity(entityQuantity as EntityQuantity, eventModel)

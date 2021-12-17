@@ -69,7 +69,7 @@ export class AssociationUtilServiceImpl extends AssociationUtilService {
         let groups: any = { ...entityQuantity.groups };
         let categoryGroup = this.categoryQuantityService.updateGroup(association.category.uid || '', groups);
 
-        groups[EntityQuantityEnum.SPORT_CATEGORY] = categoryGroup;
+        groups[EntityQuantityEnum.CATEGORY] = categoryGroup;
 
         return {
             ...entityQuantity,

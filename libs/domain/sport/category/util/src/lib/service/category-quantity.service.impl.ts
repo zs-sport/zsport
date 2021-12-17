@@ -4,9 +4,7 @@ import { CategoryQuantityService, EntityQuantityEnum } from '@zsport/api';
 @Injectable()
 export class CategoryQuantityServiceImpl extends CategoryQuantityService {
     public updateGroup(categoryId: string, groups: any): any {
-        let categoryGroup = groups[EntityQuantityEnum.SPORT_CATEGORY]
-            ? { ...groups[EntityQuantityEnum.SPORT_CATEGORY] }
-            : {};
+        let categoryGroup = groups[EntityQuantityEnum.CATEGORY] ? { ...groups[EntityQuantityEnum.CATEGORY] } : {};
 
         const categoryProperty = categoryGroup[categoryId || ''] || 0;
 

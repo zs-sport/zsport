@@ -5,9 +5,7 @@ import { HomePageContentService } from './home-page-content.service';
 describe('HomePageContentService', () => {
     beforeEach(() =>
         TestBed.configureTestingModule({
-            providers: [
-                HomePageContentService,
-            ],
+            providers: [HomePageContentService],
         })
     );
 

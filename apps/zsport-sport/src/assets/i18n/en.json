@@ -8,8 +8,10 @@
     "application": {
         "header": {
             "article": "Article",
+            "association": "Association",
             "club": "Club",
             "competition": "Competition",
+            "event": "Event",
             "language": "Language",
             "languages": {
                 "en": "english",

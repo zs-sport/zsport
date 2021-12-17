@@ -3,13 +3,15 @@
         "admin": "Adminisztrátor",
         "login": "Bejelentkezés",
         "profile": "Profil",
-        "logout": "Kijelentkezés"   
+        "logout": "Kijelentkezés"
     },
     "application": {
         "header": {
             "article": "Cikk",
+            "association": "Szervezet",
             "club": "Klub",
             "competition": "Verseny",
+            "event": "Esemény",
             "language": "Nyelv",
             "languages": {
                 "en": "angol",
@@ -27,5 +29,4 @@
             "sub_title": "Nem rendelkezik a megfelelő jogosultsággal"
         }
     }
-
 }

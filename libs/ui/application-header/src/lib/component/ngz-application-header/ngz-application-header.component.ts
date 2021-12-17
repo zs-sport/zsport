@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { I18nService, I18nUtil } from '@zsport/api';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { EntityQuantity, I18nService, I18nUtil } from '@zsport/api';
 import { ApplicationHeaderComponent } from '@zsport/shared';
 
 @Component({
@@ -12,6 +12,8 @@ import { ApplicationHeaderComponent } from '@zsport/shared';
 })
 export class NgzApplicationHeaderComponent extends ApplicationHeaderComponent implements OnInit {
     public activeLanguage$!: Observable<string>;
+    @Input()
+    public entityQuantities!: EntityQuantity[];
 
     public constructor(private i18nService: I18nService, private i18nUtil: I18nUtil) {
         super();

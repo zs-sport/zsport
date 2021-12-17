@@ -7,7 +7,7 @@ describe('HeaderMenuItemFactoryImpl', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [HeaderMenuItemFactoryImpl]
+            providers: [HeaderMenuItemFactoryImpl],
         });
 
         service = TestBed.inject(HeaderMenuItemFactoryImpl);

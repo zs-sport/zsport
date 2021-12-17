@@ -23,13 +23,13 @@ export class ClubEffects {
     public addClub = createEffect(() =>
         this.actions$.pipe(
             ofType(clubActions.addClub),
-            withLatestFrom(this.entityQuantityStateService.selectEntityById$(EntityQuantityEnum.SPORT_CLUB)),
+            withLatestFrom(this.entityQuantityStateService.selectEntityById$(EntityQuantityEnum.CLUB)),
             switchMap(([action, entityQuantity]) =>
                 this.clubDataService.add$(this.clubUtilService.convertEntityToModel(action.club, false)).pipe(
                     tap((club) => {
                         entityQuantity =
                             entityQuantity ||
-                            this.entityQuantityUtilService.createEntityQuantity(EntityQuantityEnum.SPORT_CLUB);
+                            this.entityQuantityUtilService.createEntityQuantity(EntityQuantityEnum.CLUB);
 
                         this.entityQuantityStateService.dispatchUpdateEntityAction(
                             this.clubUtilService.updateEntityQuantity(entityQuantity as EntityQuantity, club as Club)
@@ -54,7 +54,7 @@ export class ClubEffects {
             ofType(clubActions.listClubs),
             withLatestFrom(
                 this.clubStateService.selectEntities$(),
-                this.entityQuantityStateService.selectEntityById$(EntityQuantityEnum.SPORT_CLUB)
+                this.entityQuantityStateService.selectEntityById$(EntityQuantityEnum.CLUB)
             ),
             switchMap(([action, entities, entityQuantity]) =>
                 entityQuantity && entities && (entityQuantity as EntityQuantity).quantity !== entities.length

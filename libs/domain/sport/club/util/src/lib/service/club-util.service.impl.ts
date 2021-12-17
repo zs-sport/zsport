@@ -60,7 +60,7 @@ export class ClubUtilServiceImpl extends ClubUtilService {
         let groups: any = { ...entityQuantity.groups };
         let categoryGroup = this.categoryQuantityService.updateGroup(club.category.uid || '', groups);
 
-        groups[EntityQuantityEnum.SPORT_CATEGORY] = categoryGroup;
+        groups[EntityQuantityEnum.CATEGORY] = categoryGroup;
 
         return {
             ...entityQuantity,

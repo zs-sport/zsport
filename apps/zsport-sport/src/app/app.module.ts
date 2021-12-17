@@ -22,6 +22,7 @@ import { HeaderModule } from './header/header.module';
 import { IconServiceImpl } from './icon';
 import { ZssportI18nInitializer } from './initializer';
 import { PermissionModule } from './permission/permission.module';
+import { HomePageResolverService } from './resolver';
 
 const ENVIRONMENT = new InjectionToken('ENVIRONMENT');
 
@@ -54,6 +55,7 @@ const ENVIRONMENT = new InjectionToken('ENVIRONMENT');
         PermissionModule,
     ],
     providers: [
+        HomePageResolverService,
         {
             provide: IconService,
             useClass: IconServiceImpl,

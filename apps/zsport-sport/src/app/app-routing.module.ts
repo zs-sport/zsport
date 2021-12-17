@@ -14,6 +14,7 @@ export const routes = [
     {
         path: 'home',
         loadChildren: () => import('./page/home-page/home-page.module').then((module) => module.HomePageModule),
+        resolve: { data: HomePageResolverService },
         data: {
             breadcrumb: 'home',
         },

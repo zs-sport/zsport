@@ -1,8 +1,8 @@
-import { Observable, of, ReplaySubject, Subject } from 'rxjs';
+import { combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { AuthenticationStateService, User } from '@zsport/api';
+import { AuthenticationStateService, EntityQuantity, EntityQuantityStateService, User } from '@zsport/api';
 import {
     HeaderMenuItemFactory,
     HeaderMenuItemModel,
@@ -19,6 +19,7 @@ import { ApplicationHeaderBase } from '../base';
 export class ApplicationHeaderService extends ApplicationHeaderBase {
     public constructor(
         public authenticationStateService: AuthenticationStateService,
+        private entityQuantityStateService: EntityQuantityStateService,
         public headerMenuItemFactory: HeaderMenuItemFactory,
         public userProfileItemFactory: UserProfileItemFactory
     ) {
@@ -40,11 +41,15 @@ export class ApplicationHeaderService extends ApplicationHeaderBase {
 
         this.authenticationStateService.dispatchGetUser();
 
-        return this.authenticationStateService.selectAuthenticatedUser$().pipe(
-            map((user) => {
+        return combineLatest([
+            this.authenticationStateService.selectAuthenticatedUser$(),
+            this.entityQuantityStateService.selectEntities$(),
+        ]).pipe(
+            map(([user, entityQuantities]) => {
                 this.dynamicInputs$$.next({
                     avatarUrl: (user as User).photoURL,
                     displayName: (user as User).displayName,
+                    entityQuantities: entityQuantities as EntityQuantity[],
                     isAuthenticatedUser$: isAuthenticatedUser$$.asObservable(),
                     menuItems$: headerMenuItems$$.asObservable(),
                     menuMode: HeaderMenuModeEnum.horizontal,

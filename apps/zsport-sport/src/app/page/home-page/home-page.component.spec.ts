@@ -3,10 +3,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 
 import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-
-import {
-    HomePageContentComponent
-} from './component/home-page-content/home-page-content.component';
+import { HomePageContentComponent } from './component/home-page-content/home-page-content.component';
 import { HomePageComponent } from './home-page.component';
 
 describe('HomePageComponent', () => {

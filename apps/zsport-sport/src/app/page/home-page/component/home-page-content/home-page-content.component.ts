@@ -21,8 +21,7 @@ export class HomePageContentComponent extends HomePageContentBase implements OnI
         this.componentService
             .init$()
             .pipe(
-                tap(() => {
-                }),
+                tap(() => {}),
                 takeUntil(this.destroy)
             )
             .subscribe();

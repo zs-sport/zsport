@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BaseComponent } from '@zsport/api';
+import { BaseComponent, EntityQuantity } from '@zsport/api';
 
 import { HeaderMenuItemModel, HeaderMenuModeEnum, HeaderMenuThemeEnum } from '../../header-menu';
 import { UserProfileItemModel } from '../../user-profile';

@@ -2,7 +2,16 @@
     <div nz-row nzJustify="end" class="header__top-bar-inner">
         <div nz-col>
             <ul class="nav-account">
-                <li *zsIsAuthenticated="false" class="nav-account__item has-children">
+                <ng-container *ngIf="entityQuantities">
+                    <li *ngFor="let entityQuantity of entityQuantities" class="nav-account__item">
+                        <a href="#"
+                            >{{ 'application.header.' + entityQuantity.uid | transloco }}:
+                            <span class="highlight">{{ entityQuantity.quantity }}</span></a
+                        >
+                    </li>
+                </ng-container>
+
+                <li class="nav-account__item has-children">
                     <span class="main-nav__toggle"></span
                     ><a href="#"
                         >{{ 'application.header.language' | transloco }}:
@@ -12,8 +21,16 @@
                     >
 
                     <ul class="main-nav__sub">
-                        <li><a href="#" (click)="languageChangeHandler('en')">English</a></li>
-                        <li><a href="#" (click)="languageChangeHandler('hu')">Hungarian</a></li>
+                        <li>
+                            <a href="#" (click)="languageChangeHandler('en')">{{
+                                'application.header.languages.en' | transloco
+                            }}</a>
+                        </li>
+                        <li>
+                            <a href="#" (click)="languageChangeHandler('hu')">{{
+                                'application.header.languages.hu' | transloco
+                            }}</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -27,7 +44,7 @@
     <div nz-row class="header__primary-inner">
         <div nz-col nzXs="1" nzSm="18" nzMd="19" nzLg="20" nzXl="21">
             <div class="header-logo">
-                <a href=""></a>
+                <a href=""><img src="assets/site/site.png" alt="ZsSport" class="header-logo__img" /></a>
             </div>
 
             <ng-container *ngIf="menuItems$ | async as menuItems">

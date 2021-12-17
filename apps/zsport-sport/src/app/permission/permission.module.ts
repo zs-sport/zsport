@@ -7,9 +7,6 @@ import { AdminUserPermissionsService } from './user';
 @NgModule({
     declarations: [],
     imports: [CommonModule],
-    providers: [
-        AdminPermissionsService,
-        AdminUserPermissionsService,
-    ],
+    providers: [AdminPermissionsService, AdminUserPermissionsService],
 })
 export class PermissionModule {}

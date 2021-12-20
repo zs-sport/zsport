@@ -2490,6 +2490,29 @@
             },
             "tags": ["scope:ui", "type:ui"]
         },
+        "ui-widget": {
+            "projectType": "library",
+            "root": "libs/ui/widget",
+            "sourceRoot": "libs/ui/widget/src",
+            "prefix": "zsport",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ui/widget"],
+                    "options": {
+                        "jestConfig": "libs/ui/widget/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/ui/widget/src/**/*.ts", "libs/ui/widget/src/**/*.html"]
+                    }
+                }
+            },
+            "tags": []
+        },
         "zsport-admin": {
             "projectType": "application",
             "root": "apps/zsport-admin",
@@ -2641,10 +2664,10 @@
                         ],
                         "styles": [
                             "apps/zsport-sport/src/styles.less",
-                            "apps/zsport-sport/src/theme/assets/scss/style-soccer.scss",
-                            "apps/zsport-sport/src/theme/assets/fonts/simple-line-icons/css/simple-line-icons.css"
+                            "apps/zsport-sport/src/theme/alchemists/assets/scss/style-soccer.scss",
+                            "apps/zsport-sport/src/theme/alchemists/assets/fonts/simple-line-icons/css/simple-line-icons.css"
                         ],
-                        "scripts": ["apps/zsport-sport/src/theme/assets/vendor/jquery/jquery.min.js"]
+                        "scripts": ["apps/zsport-sport/src/theme/alchemists/assets/vendor/jquery/jquery.min.js"]
                     },
                     "configurations": {
                         "production": {

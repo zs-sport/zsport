@@ -1,32 +1,32 @@
 .widget {
-	&--header {
-		text-transform: uppercase;
-	}
+    &--header {
+        text-transform: uppercase;
+    }
 
-	&--content {
-		margin-bottom: 10px;
+    &--content {
+        margin-bottom: 10px;
 
-		@media (min-width: 992px) {
-			margin-bottom: 0;
-		}
-	}
+        @media (min-width: 992px) {
+            margin-bottom: 0;
+        }
+    }
 
-	&--footer {
-		margin-bottom: 60px;
+    &--footer {
+        margin-bottom: 60px;
 
-		@media (min-width: 992px) {
-			margin-bottom: 0;
-		}
+        @media (min-width: 992px) {
+            margin-bottom: 0;
+        }
 
-		.widget__title {
-			color: #fff;
-			font-size: $footer-widget-title-font-size;
-			font-style: $footer-widget-title-font-style;
-			margin-bottom: $footer-widget-title-margin;
-		}
+        .widget__title {
+            color: #fff;
+            font-size: $footer-widget-title-font-size;
+            font-style: $footer-widget-title-font-style;
+            margin-bottom: $footer-widget-title-margin;
+        }
 
-		& + & {
-			margin-top: 30px;
-		}
-	}
+        & + & {
+            margin-top: 30px;
+        }
+    }
 }

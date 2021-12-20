@@ -116,7 +116,8 @@
             "@zsport/ui/dynamic-form": ["libs/ui/dynamic-form/src/index.ts"],
             "@zsport/ui/dynamic-table": ["libs/ui/dynamic-table/src/index.ts"],
             "@zsport/ui/header-menu": ["libs/ui/header-menu/src/index.ts"],
-            "@zsport/ui/user-profile": ["libs/ui/user-profile/src/index.ts"]
+            "@zsport/ui/user-profile": ["libs/ui/user-profile/src/index.ts"],
+            "@zsport/ui/widget": ["libs/ui/widget/src/index.ts"]
         }
     },
     "angularCompilerOptions": {

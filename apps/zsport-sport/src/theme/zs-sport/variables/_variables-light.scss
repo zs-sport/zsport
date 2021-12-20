@@ -1,60 +1,60 @@
-$font-family-base:   'Source Sans Pro', sans-serif !default;
+$font-family-base: 'Source Sans Pro', sans-serif !default;
 $font-family-accent: 'Montserrat', sans-serif !default;
-$base-font-size:     15px !default;
-$base-line-height:   26px !default;
-$font-size-mobile:   13px !default;
+$base-font-size: 15px !default;
+$base-line-height: 26px !default;
+$font-size-mobile: 13px !default;
 $line-height-mobile: 22px !default;
-$body-font-weight:   400 !default;
+$body-font-weight: 400 !default;
 
-$font-size-sm:         ($base-font-size * .857) !default;
+$font-size-sm: ($base-font-size * 0.857) !default;
 
 //-------------------------------------------------------
 
-$color-primary:        #38a9ff !default;
+$color-primary: #38a9ff !default;
 $color-primary-darken: #1892ed !default;
-$color-dark:           #1e2024 !default;
-$color-dark-lighten:   #292c31 !default;
-$color-gray:           #9a9da2 !default;
-$color-2:              #31404b !default;
-$color-3:              #07e0c4 !default;
-$color-4:              #c2ff1f !default;
-$color-4-darken:       #9fe900 !default;
+$color-dark: #1e2024 !default;
+$color-dark-lighten: #292c31 !default;
+$color-gray: #9a9da2 !default;
+$color-2: #31404b !default;
+$color-3: #07e0c4 !default;
+$color-4: #c2ff1f !default;
+$color-4-darken: #9fe900 !default;
 
-$color-success:        #24d9b0 !default;
-$color-info:           #0cb2e2 !default;
-$color-warning:        #ff7e1f !default;
-$color-danger:         #f34141 !default;
+$color-success: #24d9b0 !default;
+$color-info: #0cb2e2 !default;
+$color-warning: #ff7e1f !default;
+$color-danger: #f34141 !default;
 
-$color-white:          #fff !default;
+$color-white: #fff !default;
 
 //-------------------------------------------------------
 
-$body-bg-color:           #edeff4;
-$body-font-color:         $color-gray;
+$body-bg-color: #edeff4;
+$body-font-color: $color-gray;
 $body-font-color-inverse: $color-gray;
 
 //-------------------------------------------------------
 
-$link-color:            $color-primary-darken;
-$link-decoration:       none;
-$link-color-hover:      $color-primary;
+$link-color: $color-primary-darken;
+$link-decoration: none;
+$link-color-hover: $color-primary;
 $link-decoration-hover: none;
 
 //-------------------------------------------------------
 
-$padding-base-vertical:     12px;
-$padding-base-horizontal:   16px;
+$padding-base-vertical: 12px;
+$padding-base-horizontal: 16px;
 
 //-------------------------------------------------------
 
-$card-bg:                     #fff;
-$card-header-bg:              transparent;
-$card-subheader-bg:           #f5f7f9;
-$card-border-color:           #e4e7ed;
-$card-border-radius:          4px;
-$card-horizontal-padding:     24px;
-$card-vertical-padding:       24px;
-$card-horizontal-padding-lg:  43px;
-$card-vertical-padding-lg:    43px;
+$card-bg: #fff;
+$card-header-bg: transparent;
+$card-subheader-bg: #f5f7f9;
+$card-border-color: #e4e7ed;
+$card-border-radius: 4px;
+$card-horizontal-padding: 24px;
+$card-vertical-padding: 24px;
+$card-horizontal-padding-lg: 43px;
+$card-vertical-padding-lg: 43px;
 $card-horizontal-padding-xlg: 70px;
-$card-vertical-padding-xlg:   70px;
+$card-vertical-padding-xlg: 70px;

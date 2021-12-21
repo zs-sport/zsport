@@ -7,7 +7,7 @@ import { Association, Club, I18nService } from '@zsport/api';
 export class OwnerNamePipe implements PipeTransform {
     public constructor(private i18nService: I18nService) {}
 
-    public transform(owner: any, property: string): string {
+    public transform(owner: any): string {
         let ownerName: string;
 
         if (owner && owner.name) {

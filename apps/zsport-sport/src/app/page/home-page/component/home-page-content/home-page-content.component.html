@@ -1,0 +1,55 @@
+<div nz-row nzJustify="space-around" *ngIf="competitions$ | async as competitions">
+    <ng-container *ngFor="let competition of competitions">
+        <div nz-col nzSpan="10">
+            <aside class="widget card card--no-paddings widget--sidebar widget-commentary">
+                <div class="widget__title card__header">
+                    <h4>
+                        {{ competition.category | i18nName: 'nameI18n' }}
+                    </h4>
+                </div>
+
+                <div class="widget__content card__content">
+                    <div class="main-news-banner main-news-banner--soccer-ball">
+                        <div class="main-news-banner__inner">
+                            <div class="posts posts--simple-list posts--simple-list--xlg">
+                                <div class="posts__item posts__item--category-1">
+                                    <div class="posts__inner">
+                                        <div class="posts__cat">
+                                            <span class="label posts__cat-label">{{
+                                                competition.owner | ownerName
+                                            }}</span>
+                                        </div>
+
+                                        <div class="posts__cat">
+                                            <span class="label posts__cat-label">{{ competition.type }}</span>
+                                        </div>
+
+                                        <h6 class="posts__title">
+                                            <a href="#">{{ competition.name }}</a>
+                                        </h6>
+
+                                        <span>
+                                            <time class="posts__date">{{ competition.fromTo[0] | translocoDate }}</time>
+
+                                            -
+
+                                            <time class="posts__date">{{ competition.fromTo[1] | translocoDate }}</time>
+                                        </span>
+
+                                        <div class="posts__more">
+                                            <a
+                                                href="#"
+                                                class="btn btn-inverse btn-sm btn-outline btn-icon-right btn-condensed"
+                                                >Részletek <i class="fas fa-plus text-primary"></i
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </ng-container>
+</div>

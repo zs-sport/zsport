@@ -1,4 +1,7 @@
-import { BaseComponent } from '@zsport/api';
 import { Observable, Subject } from 'rxjs';
 
-export abstract class HomePageContentBase extends BaseComponent {}
+import { BaseComponent, Competition } from '@zsport/api';
+
+export abstract class HomePageContentBase extends BaseComponent {
+    public competitions$!: Observable<Competition[]>;
+}

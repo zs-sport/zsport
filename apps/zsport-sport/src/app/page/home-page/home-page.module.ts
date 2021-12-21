@@ -7,6 +7,7 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { CoreI18nModule } from '@zsport/core/i18n';
+import { DomainSportCompetitionUtilModule } from '@zsport/domain/sport/competition/util';
 
 import { HomePageContentComponent } from './component/home-page-content/home-page-content.component';
 import { HomePageRoutingModule } from './home-page-routing.module';
@@ -23,6 +24,7 @@ import { HomePageComponent } from './home-page.component';
         NzLayoutModule,
         NzListModule,
         CoreI18nModule,
+        DomainSportCompetitionUtilModule,
     ],
 })
 export class HomePageModule {}
